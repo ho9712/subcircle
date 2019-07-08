@@ -74,7 +74,7 @@
 
 	function ToMyCart() 
 	{
-		window.location.href="<%=request.getContextPath()%>/Kb04MyCartCenter.html";
+		window.location.href="<%=request.getContextPath()%>/Kb04MyCartCenter.kbhtml";
 	}
 	
 </script>

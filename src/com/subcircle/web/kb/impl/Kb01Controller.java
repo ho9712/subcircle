@@ -9,5 +9,4 @@ public abstract class Kb01Controller extends KbAbstractController
 	{
 		this.setServices(new Kb01Services());
 	}
-	
 }

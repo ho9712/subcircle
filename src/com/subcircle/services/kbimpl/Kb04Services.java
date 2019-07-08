@@ -2,35 +2,79 @@ package com.subcircle.services.kbimpl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Map;
-import java.util.Map.Entry;
+
+import javax.print.DocFlavor.STRING;
 
 import com.subcircle.services.support.JdbcServicesSupport;
-import com.subcircle.system.db.DBUtils;
 
 public class Kb04Services extends JdbcServicesSupport 
 {	
+	
+	@Override
+	public Map<String, String> findById() throws Exception 
+	{
+		//查询购物车表中某用户是否存在某商品
+		StringBuilder sql = new StringBuilder()
+			.append(" select kkb101,kkd101,kkb402,kkb403")
+			.append("   from kb04 ")
+			.append("  where kkb101 = ? and kkd101 = ?")
+			;
+	
+		Object args[] = 
+			{
+				this.get("kkb101"),
+				"1" 	//用户id待修改
+			};
+		return this.queryForMap(sql.toString(),args);
+	}
+	
 	/**
-	 * 生成当前登入用户的收藏记录
+	 * 	查询购物车表中某用户是否存在某商品id
+	 * 	存在的话更新该条记录,不存在的话插入记录
+	 * 	维持购物车表中某一用户ID下某一商品ID仅有一条记录
 	 * @return
 	 * @throws Exception
 	 */
 	private boolean addToMyCart() throws Exception
 	{
-		StringBuilder sql = new StringBuilder()
-			.append("insert into kb04(kkb101,kkd101,kkb402,kkb403)")
-			.append("		 values (?,?,?,current_timestamp)")
-			;
-		Object args[] =
+//		//查询购物车表中某用户是否存在某商品
+//		StringBuilder sql_1 = new StringBuilder()
+//			.append(" select kkb101,kkd101,kkb402,kkb403")
+//			.append("   from kb04 ")
+//			.append("  where kkb101 = ? and kkd101 = ?")
+//			;
+//	
+//		Object args_1[] = 
+//			{
+//				this.get("kkb101"),
+//				"1" 	//用户id待修改
+//			};
+//		
+		Map<String,String> ins = this.findById();
+		
+		StringBuilder sql_2 = new StringBuilder();
+		//购物车中存在该用户存在对该商品的记录,更新数目
+		if (ins != null)
 		{
-			this.get("kkb101"),
-			"1",		//用户ID之后修正
-			this.get("kkb402")
-		};
-		return this.executeUpdate(sql.toString(), args) > 0;
+			sql_2.append("update kb04 set kkb402 = kkb402 + ? where kkb101 = ? and kkd101 = ?");
+		}
+		else 
+		{
+			sql_2.append("insert into kb04(kkb402,kkb101,kkd101,kkb403)")
+				 .append("		 values (?,?,?,current_timestamp)")
+				 ;
+		}
+		
+		Object args_2[] =
+			{
+				this.get("kkb402"),
+				this.get("kkb101"),
+				"1"		//用户ID之后修正
+			};
+		
+		return this.executeUpdate(sql_2.toString(), args_2) > 0;
 	}
 	
 	/**
@@ -51,34 +95,8 @@ public class Kb04Services extends JdbcServicesSupport
 			"1" //用户id待替换	
 		};
 		
-		//从kb04表中取出商品id及数量并合并相同商品(即数量相加)
+		//从kb04表中取出商品id及数量
 		List<Map<String, String>> rows = this.queryForList(sql_1.toString(),args);
-		//id_countMap中键为kkb101商品ID(利用键的唯一性)值为kkb402(数量)
-		Map<String, String> id_countMap = new LinkedHashMap<>(); 
-		int size = rows.size();
-
-		//冒泡把rows中kkb101(商品ID)相同的map数量加在一起(未去重)
-		for(int i = 0;i < size;i++) 
-		{
-			int count = Integer.parseInt(rows.get(i).get("kkb402"));
-			for(int j = i + 1;j < size;j++) 
-			{
-				if (rows.get(i).get("kkb101").equals(rows.get(j).get("kkb101")))
-				{
-					count += Integer.parseInt(rows.get(j).get("kkb402"));
-				}
-			}
-			
-			//kkb101去重,保留最先加入的那个商品id(冒泡完最先加入的数量最大)
-			if (!id_countMap.containsKey(rows.get(i).get("kkb101"))) 
-			{
-				id_countMap.put(rows.get(i).get("kkb101"), String.valueOf(count));
-			}
-		}
-
-
-//		System.out.println(rows);
-//		System.out.println(id_countMap);
 		
 		StringBuilder sql_2 = new StringBuilder()
 				.append(" select k.kkb101,k.kkb102,k.kkb103,k.kkb105")
@@ -90,13 +108,12 @@ public class Kb04Services extends JdbcServicesSupport
 		//定义返回容器
 		List<Map<String, String>> cartItems = new ArrayList<>();
 		//每一个cartItem包含kkb101(ID),kkb102(商品名),kkb103(商品单价),kkb105(缩略图),kkb402(数量)
-		int initSize = (int)(5/0.75)+1;
-		
-		for (Entry<String, String> entry : id_countMap.entrySet())
+		int initSize = (int)(5/0.75)+1;	
+		for (Map<String, String> ins:rows)
 		{
 			Map<String,String> cartItem = new HashMap<>(initSize);
-			cartItem = this.queryForMap(sql_2.toString(),entry.getKey());
-			cartItem.put("kkb402", entry.getValue());
+			cartItem = this.queryForMap(sql_2.toString(),ins.get("kkb101"));
+			cartItem.put("kkb402",ins.get("kkb402"));
 			cartItems.add(cartItem); 
 		  }
 	
@@ -104,16 +121,34 @@ public class Kb04Services extends JdbcServicesSupport
 	}
 	
 	/**
-	 * 	根据购物车中商品id删除购物车相应的记录
+	 * 	根据购物车中用户id和商品id删除购物车中该用户对该商品的记录
 	 * @return
 	 * @throws Exception
 	 */
 	private boolean deleteFromMyCart() throws Exception
 	{
-		String sql = "delete from kb04 where kkb101 = ?";
+		String sql = "delete from kb04 where kkb101 = ? and kkd101 = ?";
 		Object args[] = 
 			{
-				this.get("kkb101")	
+				this.get("kkb101"),
+				"1"			//用户id待修改
+			};
+		return this.executeUpdate(sql, args) > 0;
+	}
+	
+	/**
+	 * 	更新购物车中某一商品的数目
+	 * @return
+	 * @throws Exception
+	 */
+	private boolean updateMyCart() throws Exception
+	{
+		String sql="update kb04 set kkb402 = ? where kkb101 = ? and kkd101 = ?";
+		Object args[] = 
+			{
+				this.get("kkb402"),
+				this.get("kkb101"),
+				"1"			//用户id待修改
 			};
 		return this.executeUpdate(sql, args) > 0;
 	}

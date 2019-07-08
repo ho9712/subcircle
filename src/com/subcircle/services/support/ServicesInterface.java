@@ -16,8 +16,8 @@ public interface ServicesInterface
 	{
 		return null;
 	}
-	
-	default List<Map<String, String>> queryExtral()throws Exception	
+
+	default Map<String,Object> queryInMap() throws Exception
 	{
 		return null;
 	}

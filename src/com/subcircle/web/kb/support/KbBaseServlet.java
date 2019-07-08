@@ -1,6 +1,7 @@
 package com.subcircle.web.kb.support;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -54,6 +55,13 @@ public class KbBaseServlet extends HttpServlet
 		{
 			//System.out.println(request.getHeader("referer"));
 			response.sendRedirect(request.getHeader("Referer"));
+		}
+		else if (toPath.equals("ajax"))
+		{
+			PrintWriter out = response.getWriter();
+			out.write("true");
+			out.flush();
+			out.close();
 		}
 		else
 		{

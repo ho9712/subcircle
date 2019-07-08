@@ -30,7 +30,7 @@
 						<li data-slide-to="2" data-target="#myCarousel"></li>
 					</ol>
 					<div class="carousel-inner">
-						<c:forEach items="${hotItems }" var="ins" varStatus="vs">
+						<c:forEach items="${objMap.hotItems }" var="ins" varStatus="vs">
 							<c:choose>
 								<c:when test="${vs.count == 1 }">
 									<div class="item active">
@@ -69,7 +69,7 @@
 				<!-- 商品展示区 -->
 				<c:forEach begin="1" step="1" end="3" varStatus="i">
 					<ul class="thumbnails">
-						<c:forEach items="${rows }" var="ins" begin="${(i.count-1)*4 }"
+						<c:forEach items="${objMap.items }" var="ins" begin="${(i.count-1)*4 }"
 							step="1" end="${(i.count-1)*4+3 }">
 							<li class="span3">
 								<div class="thumbnail">
@@ -128,13 +128,13 @@
 	//根据商品id查看相应商品详情并为登入用户生成浏览记录
 	function itemInfo(kkb101)
 	{
-		window.location.href = "<%=request.getContextPath()%>/kb01FindItemById.html?kkb101=" + kkb101;
+		window.location.href = "<%=request.getContextPath()%>/kb01FindItemById.kbhtml?kkb101=" + kkb101;
 	}
 	
 	//根据商品id加入用户收藏李彪
 	function onCollect(kkb101)
 	{
-		window.location.href="<%=request.getContextPath()%>/kb03CollectItem.html?"
+		window.location.href="<%=request.getContextPath()%>/kb03CollectItem.kbhtml?"
 					+"kkb101="+kkb101;
 		alert("收藏成功");
 	}
@@ -143,7 +143,7 @@
 	function onAddToCart(kkb101)
 	{
 		var kkb402 = 1;
-		window.location.href="<%=request.getContextPath()%>/kb04AddToMyCart.html?"
+		window.location.href="<%=request.getContextPath()%>/kb04AddToMyCart.kbhtml?"
 				+"kkb101="+kkb101
 				+"&kkb402="+kkb402;
 		alert("加入购物车成功");

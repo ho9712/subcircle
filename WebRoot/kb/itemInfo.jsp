@@ -8,7 +8,7 @@
 <jsp:include page="index.jsp" flush="true"/>	<!-- 引入导航栏 -->
 </head>
 <body>
-${msg }
+<%-- ${msg } --%>
 	<div class="container-fluid">
 		<!-- 容器 -->
 		<div class="row-fluid" height="400px">
@@ -100,7 +100,7 @@ ${msg }
 	//根据商品id加入用户收藏列表
 	function onCollect(kkb101)
 	{
-		window.location.href="<%=request.getContextPath()%>/kb03CollectItem.html?"
+		window.location.href="<%=request.getContextPath()%>/kb03CollectItem.kbhtml?"
 					+"kkb101="+kkb101;
 		alert("收藏成功");
 	}
@@ -109,7 +109,7 @@ ${msg }
 	function onAddToCart(kkb101)
 	{
 		var kkb402 = document.getElementById('kkb402').value
-		window.location.href="<%=request.getContextPath()%>/kb04AddToMyCart.html?"
+		window.location.href="<%=request.getContextPath()%>/kb04AddToMyCart.kbhtml?"
 				+"kkb101="+kkb101
 				+"&kkb402="+kkb402;
 		alert("加入购物车成功");

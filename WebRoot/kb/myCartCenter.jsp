@@ -35,7 +35,7 @@
 					</thead>
 					<tbody>
 						<c:forEach items="${rows }" var="ins" varStatus="vs">
-							<tr>
+							<tr name = "cartRecord">		<!-- 一条购物车记录 -->
 								<td id="tdCenter">
 									<input type="checkbox" name = "idlist" 
 									onclick="onSelect(this.checked)" value = "${ins.kkb101 }">  
@@ -44,12 +44,22 @@
 										height="100" />
 								</td>
 								<td id="tdCenter">${ins.kkb102 }</td>
-								<td id="tdCenter">￥${ins.kkb103 }</td>
 								<td id="tdCenter">
-									<input type="number" min="1" step="1"
-										id = "kkb402" style="width: 60px;" value="${ins.kkb402 }"></td>
-								<td id="tdCenter">￥${ins.kkb103*ins.kkb402 }</td>
-								<td id="tdCenter"><a class="btn btn-success" href="#">收藏</a>
+									￥<span>${ins.kkb103 }</span>
+								</td>
+								<td id="tdCenter">
+									<input type="number" min="1" step="1" style="width: 60px;" 
+										name = "itemCount" id="itemCount${ins.kkb101 }" 
+										<%-- oninput="updateItemCount(${ins.kkb101 });"  --%>
+										onchange = "updateItemCount(${ins.kkb101 },${ins.kkb103 });" 
+										value="${ins.kkb402 }">
+								</td>
+								<td id="tdCenter" name ="itemPrice${ins.kkb101 }">
+									￥<em>${ins.kkb103*ins.kkb402 }</em>
+								</td>
+								<td id="tdCenter">
+								<a class="btn btn-success" href="#" 
+									onclick="onCollect(${ins.kkb101 });">收藏</a>
 									<a class="btn btn-danger" href="#" 
 										onclick="delFromCart(${ins.kkb101 })">移除</a>
 								</td>
@@ -63,8 +73,8 @@
 							</td>
 							<td></td>
 							<td></td>
-							<td id="tdCenter">已选<span id="itemCount">n</span>件商品</td>
-							<td id="tdCenter">总计元</td>
+							<td id="tdCenter" name = "itemsCount">已选 <em>0</em> 件商品</td>
+							<td id="tdCenter" name = "itemsPrice">总计 <em>0</em> 元</td>
 							<td id="tdCenter">
 							<button class="btn btn-warning" href="#" disabled="disabled" id = "pay">
 								去结算
@@ -80,13 +90,18 @@
 	</div>
 	<!-- 容器END -->
 	
-	<script type="text/javascript">
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 	
+	<script type="text/javascript">
 	
 	//idlist的checkbox的调用方法
 	
 	function onSelect(vsstate)
 	{
+		//只要复选框状态一发生变化更新选中商品的总数量和总金额
+		updateSummaryInfo(); 
+		
 		var selectAllList = document.getElementsByName("selectAll");
 		
 		//只要有任意一个checkbox状态为false取消全选
@@ -116,20 +131,6 @@
 		}		
 	}
 	
-	//选中的idlist的复选框的数目
-	function checkedCount()
-	{
-		var count = 0;
-		var checklist = document.getElementsByName("idlist");
-		for(var i = 0; i < checklist.length ;i++)
-        {
-        	if(checklist[i].checked == true)
-        	{
-        		count++;
-        	}
-        }
-		return count
-	}
 	
 	//所有idlist的复选框都被选中返回true
 	function isSelectedAll()
@@ -193,19 +194,111 @@
             
             document.getElementById("pay").disabled = true;        
 		}
+        
+      	///在复选框状态发生变化后更新选中商品的总数量和总金额
+        updateSummaryInfo();
 	}
 	
 	
+	//从购物车中移除该商品
 	function delFromCart(kkb101)
 	{
 		var msg = "您确认移出该商品吗";
 	    if (confirm(msg)==true)
 	    {
-	    	window.location.href="<%=request.getContextPath()%>/kb04DelFromMyCart.html?kkb101="+kkb101;
+	    	window.location.href="<%=request.getContextPath()%>/kb04DelFromMyCart.kbhtml?kkb101="+kkb101;
 	    	alert("移除成功");
 	    }
 	}
 	
+	//从购物车中加入该商品至用户收藏列表
+	function onCollect(kkb101)
+	{
+		window.location.href="<%=request.getContextPath()%>/kb03CollectItem.kbhtml?"
+					+"kkb101="+kkb101;
+		alert("收藏成功");
+	}
+	
+	//显示选中商品总金额和总件数的控件
+	var itemsCount = document.getElementsByName("itemsCount")[0].getElementsByTagName('em')[0];
+	var itemsPrice = document.getElementsByName("itemsPrice")[0].getElementsByTagName('em')[0];
+	
+	//根据checkbox的状态改变更新选中总件数和总金额的值
+	function updateSummaryInfo()
+	{
+		//选中的商品数和金额总数
+		var selecItemsCount = 0;
+		var selecItemsPrice = 0;
+		///每一条购物车中商品记录
+		var vCartRecord = document.getElementsByName("cartRecord");
+		//每一条购物车中商品记录中的checkbox
+		var vIdList = document.getElementsByName("idlist");
+		//每一条购物车中商品记录中的商品数量(number控件)
+		var vCountList = document.getElementsByName("itemCount");
+		
+		//vCartRecord和vIdList的数量是一致的
+		for(var i = 0; i < vCartRecord.length;i++)
+		{
+			if(vIdList[i].checked)
+			{
+				selecItemsPrice += Number(vCartRecord[i].getElementsByTagName('em')[0].innerHTML);
+				selecItemsCount += Number(vCountList[i].value);
+			}
+		}
+		
+		itemsCount.innerHTML = selecItemsCount;
+		itemsPrice.innerHTML = selecItemsPrice;
+	}
+	
+	
+	function updateItemCount(kkb101,kkb103)
+	{
+		var countID = "itemCount" + kkb101; //countID表示数量的控件的id(唯一)
+		var priceID = "itemPrice" + kkb101;	//countID表示数量的控件的name(唯一)
+		var updateCount = document.getElementById(countID).value;
+		var itemPrice = document.getElementsByName(priceID)[0].getElementsByTagName('em')[0];
+		
+		 $.ajax({
+	            type: "POST",
+	            url: "${pageContext.request.contextPath}/kb04UpdateMyCart.kbhtml?"
+	    			+"kkb101="+kkb101
+	    			+"&kkb402="+updateCount,
+/* 	            data: {"kkb101":kkb101,
+	                    "kkb402":updateCount
+	            }, */
+	            dataType: "text",
+	            success: function (data)
+	            {
+	            	if(data)
+	            	{
+	            		//先更新单项商品的金额
+	            		itemPrice.innerHTML = updateCount * kkb103;
+	            		//更新总金额和总件数
+	            		updateSummaryInfo();
+	            	}
+	            }//endsuccess
+	        });//endajax
+
+	
+		
+	}
+	
+	
+	
+	//更新数量控件的值
+ 	<%-- function updateItemCount(kkb101)
+	{
+		var countID = "itemCount" + kkb101; //countID表示数量的控件的id(唯一)
+		var updateCount = document.getElementById(countID).value;
+		window.location.href="<%=request.getContextPath()%>/kb04UpdateMyCart.kbhtml?"
+			+"kkb101="+kkb101
+			+"&kkb402="+updateCount;
+	} --%>
+	
+	window.onload = function()
+	{
+		onSelectAll(true);
+	}
 	</script>
 </body>
 </html>

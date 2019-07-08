@@ -138,24 +138,16 @@ public abstract class KbAbstractController implements ControllerInterface
 	 *********************************************************************/
 
 	/**
-	 * 	显示周边商城首页的商品数据信息
+	 * 	显示周边商城首页的商品数据信息(用于kb01)
 	 * @throws Exception
 	 */
 	protected final void queryAndShowMarketData()throws Exception
 	{
-		List<Map<String, String>> rows=this.services.queryByCondition();
-		List<Map<String, String>> Carouselrows = this.services.queryExtral();
-		if (Carouselrows.size() > 0) 
+		//objMap中包含热销商品(轮播图显示)和所有商品
+		Map<String, Object> objMap =this.services.queryInMap();
+		if(objMap.size()>0)
 		{
-			this.saveAttribute("hotItems",Carouselrows);
-		}
-		else 
-		{
-			this.saveAttribute("hotmsg", "无热销商品");
-		}
-		if(rows.size()>0)
-		{
-			this.saveAttribute("rows", rows);
+			this.saveAttribute("objMap", objMap);
 		}
 		else
 		{
@@ -164,7 +156,7 @@ public abstract class KbAbstractController implements ControllerInterface
 	}
 	
 	/**
-	 * 	显示商品详情的数据信息
+	 * 	显示商品详情的数据信息(用于kb01)
 	 * @throws Exception
 	 */
 	protected final void showMarketItemInfo() throws Exception
@@ -179,13 +171,12 @@ public abstract class KbAbstractController implements ControllerInterface
 	}
 
 	/**
-	 * 	根据用户ID显示购物车数据信息
+	 * 	根据用户ID显示购物车数据信息(用于kb04)
 	 * @throws Exception
 	 */
 	protected final void queryAndShowMyCartData()throws Exception
 	{
 		List<Map<String, String>> rows=this.services.queryByCondition();
-		//System.out.println(rows);
 		if(rows.size()>0)
 		{
 			this.saveAttribute("rows", rows);
@@ -196,4 +187,20 @@ public abstract class KbAbstractController implements ControllerInterface
 		}
 	}
 	
+	/**
+	 * 	显示购物车中更新后的数量(用于kb04)
+	 * @throws Exception
+	 */
+	protected final void queryAndShowUpdateCount()throws Exception
+	{
+		Map<String, String> ins = this.services.findById();
+		if(ins != null)
+		{
+			this.saveAttribute("ins",ins);
+		}
+		else
+		{
+			this.saveAttribute("msg", "数据不存在或禁止访问");
+		}
+	}
 }

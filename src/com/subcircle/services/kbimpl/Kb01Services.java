@@ -1,5 +1,6 @@
 package com.subcircle.services.kbimpl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -7,6 +8,19 @@ import com.subcircle.services.support.JdbcServicesSupport;
 
 public class Kb01Services extends JdbcServicesSupport 
 {
+	
+	@Override
+	public Map<String, Object> queryInMap() throws Exception
+	{
+		Map<String,Object> objMap = new HashMap<>();
+		List<Map<String,String>> items = queryByCondition();
+		List<Map<String,String>> hotItems = queryExtral();
+		objMap.put("items", items);
+		objMap.put("hotItems", hotItems);
+		
+		return objMap;
+	}
+	
 	/**
 	 * 多实例查询商品表
 	 * @return
