@@ -136,5 +136,17 @@ public abstract class KaAbstractController implements ControllerInterface
 	/*********************************************************************
 	 * 						根据需要在此写方法
 	 *********************************************************************/
-	
+	protected final void savePageData()throws Exception
+	{
+		System.out.println("savepage");
+		List<Map<String,String>> rows=this.services.queryByCondition();
+		if(rows.size()>0)
+		{
+			this.saveAttribute("rows", rows);
+		}
+		else
+		{
+			this.saveAttribute("msg", "没有符合条件的数据!");
+		}	
+	}
 }
