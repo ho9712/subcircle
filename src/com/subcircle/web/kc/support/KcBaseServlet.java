@@ -29,7 +29,7 @@ public class KcBaseServlet extends HttpServlet
 			//获取请求的资源路径  /项目名/资源名.html
 			String uri=request.getRequestURI();
 			//提取资源名
-			String baseName=uri.substring(uri.lastIndexOf("/")+1).replace("kc.html", "");
+			String baseName=uri.substring(uri.lastIndexOf("/")+1).replace(".kchtml", "");
 			//转换成目标Controller名
 			String controllerName=baseName.substring(0, 1).toUpperCase()+baseName.substring(1);
 			
