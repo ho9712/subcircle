@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.subcircle.web.ControllerInterface;
 
-@WebServlet("*kd.html")
+@WebServlet("*.kdhtml")
 public class KdBaseServlet extends HttpServlet 
 {
 	private static final long serialVersionUID = 1L;
