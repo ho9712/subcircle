@@ -37,6 +37,8 @@ public class KdBaseServlet extends HttpServlet
 			ControllerInterface controller=(ControllerInterface)Class.forName(packageName+controllerName+"Servlet").newInstance();
 			//将DTO植入controller中
 			controller.setDto(this.createDto(request));
+			//将Session植入controller中
+			controller.setSession(request.getSession());
 			//由具体的Controller对象执行处理
 			toPath=controller.execute();
 			//获取controller执行后设置的标签

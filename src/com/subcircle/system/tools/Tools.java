@@ -2,6 +2,12 @@ package com.subcircle.system.tools;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.Map.Entry;
+
+import javax.servlet.http.HttpServletRequest;
 
 import com.subcircle.system.db.DBUtils;
 
@@ -87,6 +93,51 @@ public class Tools
 		{
 			return value.toString();
 		}
+	}
+	
+	/**
+	 * 通过提交的请求自动生成DTO 
+	 * @param request
+	 * @return
+	 */
+	public static Map<String, Object> createDto(HttpServletRequest request)
+	{
+		
+		/**从表单中获取所有变量，并放入Map<String,String[]> tmp中，
+		 * 其中tmp的key是表单中标签的name，
+		 * value类型为String[]，可以有一个或多个值
+		 */
+		Map<String, String[]> tmp=request.getParameterMap();
+		
+		//计算dto安全初始容量
+		int initSize=((int)(tmp.size()/0.75))+1;
+		
+		//定义存放tmp中所有键值对的集合entrySet，并从tmp中将所有键值对放入其中
+		//一个Entry<String,String[]>代表一个键值对，Map中包含多个Entry
+		Set<Entry<String, String[]>> entrySet=tmp.entrySet();
+		
+		//定义dto,用于存储传递用的数据
+		Map<String, Object> dto=new HashMap<>(initSize);
+
+		//遍历entrySet，将其中每一个键值对中的value String[]转换成单个String或String[]存入dto中
+		for(Entry<String,String[]> entry:entrySet)
+		{
+			//判断每个键值对中的value String[]包含元素是单个还是多个
+			if(entry.getValue().length==1)
+			{
+				//判断传递的值是否为空
+				if(entry.getValue()[0]!=null && !entry.getValue()[0].equals(""))
+				{
+					//若传递的值不为空才将其存入dto中
+					dto.put(entry.getKey(), entry.getValue()[0]);
+				}
+			}
+			else
+			{
+				dto.put(entry.getKey(), entry.getValue());
+			}
+		}
+		return dto;
 	}
 
 }

@@ -27,7 +27,7 @@
 <div id="headerNeue2">
     <div class="headerNeueInner clearit">
          <div class="bg musume_2"></div>
-    <a href="/" class="logo">Bangumi 番组计划</a>
+    <a href="/" class="logo"><img src="/img/page_icon.png"></a>
     
 <input type="checkbox" id="navMenuNeueToggle" />    	
 <label for="navMenuNeueToggle" class="menuCompact"></label>    
@@ -119,7 +119,7 @@
 </div>
         
     <div class="idBadgerNeue">
-    <div class="guest"><a href="http://bangumi.tv/login" class="guest login">登录</a><a href="http://bangumi.tv/signup" class="guest signup">注册</a></div>
+    <div class="guest"><a href="<%=path %>/kd/login.jsp" class="guest login">登录</a><a href="<%=path %>/kd/signup.jsp" class="guest signup">注册</a></div>
 	
 </div><div id="headerSearchWrapper">
 <div id="headerSearch">
@@ -143,76 +143,38 @@
     </div>
 </div>
 
-<div id="main" class="png_bg"><div class="columnsLogin borderNeue clearit">
-    <h1>注册成为 Bangumi 会员</h1>
+<div id="main" class="png_bg">
+<div class="columnsLogin borderNeue clearit">
+    <h1>注册成为 SubCircle 会员</h1>
     <div class="clearit">
         <div id="columnLoginA" class="column">        
-            <div id="loginSelection" class="loginSelection">
-                <h2>我想使用 Bangumi：</h2>
-                <ul>
-                    <li><a href="javascript:void(0)" onclick="showSignUpAlert();">在线观看、下载资源</a></li>
-                    <li><a href="javascript:void(0)" onclick="showSignUpForm();">管理 ACG 收藏与收视进度，分享交流</a></li>
-                    <li><a href="javascript:void(0)" onclick="showSignUpForm();">在天窗联盟发布与收藏同人作品</a></li>
-                    <li><a href="javascript:void(0)" onclick="showSignUpForm();"><strike>婚恋交友</strike></a></li>                                                            
-                </ul>
-            </div>
-            <div id="signupAlert" style="display: none">
-                <p>Bangumi 仅提供条目资料与个人收藏记录，<br />不提供任何在线观看以及下载，<br />您可至以下网站收看正版在线内容：</p>
-                <p>
-                    <a href="https://www.netflix.com" target="_blank" class="btnBlue" rel="nofollow">Netflix</a>
-                    <a href="https://www.iqiyi.com" target="_blank" class="btnBlue" rel="nofollow">爱奇艺</a>
-                    <a href="https://www.youku.com" target="_blank" class="btnBlue" rel="nofollow">优酷</a>                                     
-                    <a href="https://www.bilibili.com" target="_blank" class="btnBlue" rel="nofollow">Bilibili</a>
-                    <a href="https://v.qq.com" target="_blank" class="btnBlue" rel="nofollow">腾讯视频</a>                 
-                </p>
-            </div>
-            <div id="signupFormWrapper" style="display: none">
-                <form id="signupForm" method="post" name="signup" action="/RedPill">
-                <input type="hidden" name="formhash" value="59c2e8b8">
-                <input type="hidden" name="referer" value="">
-                <p class="title"><label for="email">你的 Email 地址</label></p>
-                <p><input id="email" name="email" class="inputtext" type="text" onfocus="SetTips('RegEmail');" /></p>
-                <p class="title"><label for="password">设置一个密码</label></p>
-                <p><input id="password" name="password" class="inputtext" type="password" /></p>
-                <p class="title"><label for="password2">确认密码</label></p>
-                <p><input id="password2" name="password2" class="inputtext" type="password" /></p>
+            
+            <div id="signupFormWrapper">
+                <form id="signupForm" method="post" name="signup" action="<%=path %>/userSignUp.kdhtml">
+                <p class="title"><label for="email">你的用户名(6-12位)</label><span class="green">${usernameError }</span></p>
+                <p><input id="email" name="kkd102" class="inputtext" type="text" required="required" onfocus="SetTips('RegEmail');" /></p>
+                <p class="title"><label for="password">设置一个密码(6-16位)</label><span class="green">${passwordError }</span></p>
+                <p><input id="password" name="kkd103" class="inputtext" type="password" required="required" /></p>
+                <p class="title"><label for="password2">确认密码 </label><span class="green">${checkPwdError }</span></p>
+                <p><input id="password2" name="kkd103-1" class="inputtext" type="password" required="required" /></p>
                 <p class="title"><label for="nickname">设置一个昵称</label></p>
-                <p><input id="nickname" name="nickname" class="inputtext" type="text" onfocus="regSetNickName();" /></p>
+                <p><input id="nickname" name="kkd105" class="inputtext" type="text" required="required" onfocus="regSetNickName();" /></p>
                 <div id="rechaptcha_form"></div>
-                <p class="title"><label for="guideline">Bangumi <strong style="color:#F09199;">不提供</strong> 资源下载与观看（输入粉色文字内容）</label></p>            
-                <p>我已了解 Bangumi <input id="guideline" name="guideline" class="inputtext" type="text" style="width:100px;"/> 资源下载与观看</p>          
                 <p class="title"><input class="inputBtn" type="submit" name="regsubmit" value="注册会员" /></p>
+                <span class="green">${msg }</span>
                 </form>
             </div>
         </div>
         <div id="columnLoginB" class="column">
             <div class="panel">
-            <p class="title">已经注册过 Bangumi 账户？</p>
-            <a href="/login" class="btnPink">立即登录</a>
+            <p class="title">已经注册过 SubCircle 账户？</p>
+            <a href="<%=path %>/kd/login.jsp" class="btnPink">立即登录</a>
             </div>
-            <p class="title">忘记密码？</p>
-            <p class="tip"><a href="/reset_password" class="btnGray">重置密码</a></p>
         </div>
     </div>
 
     
 
-<div id="robot"  style="display:none;">
-<div id="ukagaka_shell">
-<div class="ui_10 shell_1">
-<div id="ukagaka_voice"></div>
-<div id="robot_balloon" class="ukagaka_balloon_pink">
-    <div class="inner">
-<div id="robot_speech" class="speech" >
-没<a href="signup"  class="nav">注册</a>时我很沉默</div>
-<div id="robot_speech_js" class="speech">
-    </div>
-</div>
-<div class="ukagaka_balloon_pink_bottom"></div>	
-</div>
-</div>
-</div>
-</div>
 <script src="js/bangumi.js" type="text/javascript"></script>
 <script type="text/javascript">
     var _gaq = _gaq || [];

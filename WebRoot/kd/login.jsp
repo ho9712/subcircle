@@ -119,7 +119,7 @@
 </div>
         
     <div class="idBadgerNeue">
-    <div class="guest"><a href="http://bangumi.tv/login" class="guest login">登录</a><a href="http://bangumi.tv/signup" class="guest signup">注册</a></div>
+    <div class="guest"><a href="<%=path %>/kd/login.jsp" class="guest login">登录</a><a href="<%=path %>/kd/signup.jsp" class="guest signup">注册</a></div>
 	
 </div><div id="headerSearchWrapper">
 <div id="headerSearch">
@@ -144,56 +144,38 @@
 </div>
 
 <div id="main" class="png_bg"><div class="columnsLogin borderNeue clearit">
-    <h1>登录至 Bangumi</h1>
+    <h1>登录至 SubCircle</h1>
     <div class="clearit">
         <div id="columnLoginA" class="column">
-    		<form id="loginForm" method="post" name="login" action="/FollowTheRabbit">
-    		<input type="hidden" name="formhash" value="59c2e8b8">
-    		<input type="hidden" name="referer" value="http://bangumi.tv/">
-    		<input type="hidden" name="dreferer" value="http://bangumi.tv/">    		
-    		<p class="title"><label for="email">你的 Email 地址</label></p>
-    		<p><input id="email" name="email" class="inputtext" type="text" /></p>
+    		<form id="loginForm" method="post" name="login" action="<%=path %>/login">
+    		<p class="title"><label for="email">你的用户名</label><span class="green">${usernameError }</span></p>
+    		<p><input id="email" name="kkd102" class="inputtext" type="text" /></p>
     		<p class="title"><label for="password">你的密码</label></p>
-    		<p><input id="password" name="password" class="inputtext" type="password"></p>
+    		<p><input id="password" name="kkd103" class="inputtext" type="password"></p>
     		
-            <div id="rechaptcha_form" style="display:none" class="clearit">
-                <p class="title"><label for="captcha">验证码</label></p>    
-                <p><input id="captcha" name="captcha_challenge_field" class="inputtext" type="text" autocomplete="off" /></p>
-                <p id="captcha_img" class="captcha_img"></p>
-            </div>		
-    		
-    		<p class="checkbox"><input id="loginStatus" class="checkbox" name="cookietime" value="0" type="checkbox"> <label for="loginStatus">不保存我的登陆状态</label></p>
+    		<p class="title"><label for="user">用户组别</label></p>
+    		<select name="kkd104" class="form" style="width:100px;">
+				<option value="4,5" selected="selected"> 普通用户 </option>
+				<option value="3" >论坛管理员</option>
+				<option value="2" >商城管理员</option>
+				<option value="1" >作品管理员</option>
+				<option value="0" >超级管理员</option>
+			</select>
+			<br><br>
     		<input class="inputBtn" type="submit" name="loginsubmit" value="登录">
+    		<span class="green">${error }</span>
     		</form>
         </div>
         <div id="columnLoginB" class="column">
             <div class="panel">
-            <p class="title">还没有 Bangumi 账户？</p>
-            <a href="/signup" class="btnPink">立即注册</a>
+            <p class="title">还没有 SubCircle 账户？</p>
+            <a href="<%=path %>/kd/signup.jsp" class="btnPink">立即注册</a>
             </div>
-            <p class="title">忘记密码？</p>
-            <p class="tip"><a href="/reset_password" class="btnGray">重置密码</a></p>          
-            </p>
         </div>
     </div>
     
 
-<div id="robot"  style="display:none;">
-<div id="ukagaka_shell">
-<div class="ui_10 shell_1">
-<div id="ukagaka_voice"></div>
-<div id="robot_balloon" class="ukagaka_balloon_pink">
-    <div class="inner">
-<div id="robot_speech" class="speech" >
-没<a href="signup"  class="nav">注册</a>时我很沉默</div>
-<div id="robot_speech_js" class="speech">
-    </div>
-</div>
-<div class="ukagaka_balloon_pink_bottom"></div>	
-</div>
-</div>
-</div>
-</div>
+
 <script src="js/bangumi.js" type="text/javascript"></script>
 <script type="text/javascript">
     var _gaq = _gaq || [];

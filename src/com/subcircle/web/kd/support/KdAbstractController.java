@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import com.subcircle.services.support.ServicesInterface;
 import com.subcircle.web.ControllerInterface;
 
@@ -35,6 +37,19 @@ public abstract class KdAbstractController implements ControllerInterface
 		//为Services传递DTO
 		this.services.setServicesDto(dto);
 	}
+	
+	/***********************************************************
+	 * 					保存Session
+	 ***********************************************************/
+	
+	private HttpSession session=null;
+	
+	@Override
+	public void setSession(HttpSession session) 
+	{
+		this.session=session;
+	}
+	
 	
 	/***********************************************************
 	 * 					为页面传递数据方法
@@ -119,6 +134,7 @@ public abstract class KdAbstractController implements ControllerInterface
 		return (boolean)method.invoke(this.services);
 	}
 	
+
 	/**
 	 * 更新操作后重新查询
 	 * @throws Exception
@@ -137,4 +153,74 @@ public abstract class KdAbstractController implements ControllerInterface
 	 * 						根据需要在此写方法
 	 *********************************************************************/
 
+	//用户注册
+	protected final void userSignUp()throws Exception
+	{
+		if(this.dto.get("kkd102").toString().length()<6 || this.dto.get("kkd102").toString().length()>12)
+		{
+			this.saveAttribute("usernameError", "请确保你的用户名长度在6-12位之间！");
+			return;
+		}
+		else if(this.dto.get("kkd103").toString().length()<6 || this.dto.get("kkd103").toString().length()>16)
+		{
+			this.saveAttribute("passwordError", "请确保你的密码长度在6-16位之间！");
+			return;
+		}
+		else if(!this.dto.get("kkd103").equals(this.dto.get("kkd103-1")))
+		{
+			this.saveAttribute("checkPwdError", "请确保你输入的两次密码保持一致！");
+			return;
+		}
+		else
+		{
+			if(this.executeMethod("userSignUp"))
+			{
+				this.saveAttribute("msg", "注册成功！");
+			}
+			else
+			{
+				this.saveAttribute("usernameError", "此用户名已被使用，请换一个试试！");
+			}
+		}
+	}
+
+//	protected boolean userLogin()throws Exception
+//	{
+//		Map<String, String> user=this.services.findById();
+//		if(user==null)
+//		{
+//			this.saveAttribute("usernameError", "此账号不存在！");
+//			return false;
+//		}
+//		else if(!user.get("kkd103").equals(this.dto.get("kkd103")) || !this.dto.get("kkd104").toString().contains(user.get("kkd104")))
+//		{
+//			this.saveAttribute("error", "请确认你的用户名、密码及用户组正确！");
+//			return false;
+//		}
+//		else
+//		{
+//			this.saveAttribute("user", user);
+//			return true;
+//		}
+//	}
+	
+	protected final void findById()throws Exception
+	{
+		this.dto.put("kkd101", this.session.getAttribute("kkd101"));
+		Map<String, String> user=this.services.findById();
+		this.saveAttribute("user", user);
+	}
+	
+	protected final void modifyInfo()throws Exception
+	{
+		if(this.executeMethod("modifyInfo"))
+		{
+			this.saveAttribute("msg", "修改成功");
+		}
+		else
+		{
+			this.saveAttribute("msg", "修改失败，请稍后再试");
+		}
+	}
+	
 }
