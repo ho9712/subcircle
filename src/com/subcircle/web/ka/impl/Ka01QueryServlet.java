@@ -6,7 +6,7 @@ public class Ka01QueryServlet extends Ka01Controller {
 	public String execute() throws Exception 
 	{
 		this.savePageData();
-		return "ka/test";
+		return "ka/usercollection";
 	}
 
 }

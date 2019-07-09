@@ -30,6 +30,7 @@ public class Ka01Services extends JdbcServicesSupport
 	  		//还原页面查询条件
 	  		Object kka102=this.get("qkka102");     //贴子名称  模糊查询
 	  		Object kka103=this.get("qkka103");     //话题
+	  		Object kkd101=this.get("qkkd101");     //用户信息
 	  		Object kkd105=this.get("qkkd105");     //作者
 	  		Object kka105=this.get("qkka105");     //时间
 	  		
@@ -37,31 +38,38 @@ public class Ka01Services extends JdbcServicesSupport
 	  		StringBuilder sql=new StringBuilder()
 	  				.append("select x.kka102,x.kka103,a.kkd105,x.kka105")
 	  				.append(" from ka01 x,kd01 a")
+	  				.append(" where a.kkd101=1")
 	  				;
 	  		
+	  		
 	  		//参数列表
-	  		List<Object> paramList=new ArrayList<>();
-	  		//逐一判断查询条件是否录入,拼接AND条件
-	  		if(this.isNotNull(kka102))
-	  		{
-	  			sql.append(" and x.kka102 like ?");
-	  			paramList.add("%"+kka102+"%");
-	  		}
-	  		if(this.isNotNull(kka103))
-	  		{
-	  			sql.append(" and x.kka103=?");
-	  			paramList.add(kka103);
-	  		}
-	  		//if(this.isNotNull(kkd105))
-	  		//{
-	  		//	sql.append(" and x.kkd105=?");
-	  		//	paramList.add(kkd105);
-	  		//}
-	  		if(this.isNotNull(kka105))
-	  		{
-	  			sql.append(" and x.kka105=?");
-	  			paramList.add(kka105);
-	  		}
+//	  		List<Object> paramList=new ArrayList<>();
+//	  		//逐一判断查询条件是否录入,拼接AND条件
+//	  		if(this.isNotNull(kka102))
+//	  		{
+//	  			sql.append(" and x.kka102 like ?");
+//	  			paramList.add("%"+kka102+"%");
+//	  		}
+//	  		if(this.isNotNull(kka103))
+//	  		{
+//	  			sql.append(" and x.kka103=?");
+//	  			paramList.add(kka103);
+//	  		}
+//	  		if(this.isNotNull(kkd101))
+//	  		{
+//	  			sql.append(" and x.kkd101=1");
+//	  			paramList.add(kkd101);
+//	  		}
+//	  		if(this.isNotNull(kkd105))
+//	  		{
+//	  			sql.append(" and x.kkd105=?");
+//	  			paramList.add(kkd105);
+//	  		}
+//	  		if(this.isNotNull(kka105))
+//	  		{
+//	  			sql.append(" and x.kka105=?");
+//	  			paramList.add(kka105);
+//	  		}
 	  		
 	  		//sql.append(" order by x.kka102");
 	  		Object args[] ={};
