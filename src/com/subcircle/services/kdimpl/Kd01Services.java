@@ -69,5 +69,26 @@ public class Kd01Services extends JdbcServicesSupport
 		};
 		return this.executeUpdate(sql.toString(), args)>0;
 	}
+	
+	public boolean modifyPwd()throws Exception
+	{
+		String sql1="select kkd103 from kd01 where kkd101=?";
+		Map<String, String> pwd=this.queryForMap(sql1, this.get("kkd101"));
+		if(pwd.get("kkd103").equals(this.get("kkd103-old")))
+		{
+			String sql2="update kd01 set kkd103=? where kkd101=?";
+			return this.executeUpdate(sql2, this.get("kkd103"),this.get("kkd101"))>0;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	public boolean modifyAvatar()throws Exception
+	{
+		String sql="update kd01 set kkd108=? where kkd101=?";
+		return this.executeUpdate(sql, this.get("kkd108"),this.get("kkd101"))>0;
+	}
 
 }

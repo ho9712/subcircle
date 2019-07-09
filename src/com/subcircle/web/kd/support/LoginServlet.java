@@ -41,9 +41,10 @@ public class LoginServlet extends HttpServlet
 			else
 			{
 				HttpSession session=request.getSession();
-				session.setAttribute("kkd101", user.get("kkd101"));
-				session.setAttribute("kkd104", user.get("kkd104"));
-				request.setAttribute("user", user);
+//				session.setAttribute("kkd101", user.get("kkd101"));
+//				session.setAttribute("kkd104", user.get("kkd104"));
+				session.setAttribute("user", user);
+//				request.setAttribute("user", user);
 				toPath="/kd/userpage_main.jsp";
 			}
 		}
@@ -52,7 +53,6 @@ public class LoginServlet extends HttpServlet
 			request.setAttribute("msg", "Ã· æ£∫Õ¯¬Áπ ’œ£°");
 			e.printStackTrace();
 		}
-		
 		request.getRequestDispatcher(toPath).forward(request, response);
 	}
 

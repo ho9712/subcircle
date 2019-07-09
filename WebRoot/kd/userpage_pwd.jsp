@@ -7,22 +7,28 @@
 <head>
 <meta charset="utf-8" />
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" name="viewport">
-<title>我的时光机</title>
-<meta name="keywords" content="我的时光机,ACG,anime,comic,game,music,动漫,音乐,游戏,动画,漫画,番组,bangumi,chii,chobits" />
-<meta name="description" content="我在 Bangumi 收藏的动画、游戏、音乐、图书,参加的小组,拥有的好友" />
+<title>ericho 的个人设置</title>
+<meta name="keywords" content="ericho 的个人设置,ACG,anime,comic,game,music,动漫,音乐,游戏,动画,漫画,番组,bangumi,chii,chobits" />
+<meta name="description" content="ericho 的个人设置" />
 <link rel="search" type="application/opensearchdescription+xml" href="http://bangumi.tv/static/xml/opensearch_bgm.xml" title="Bangumi 番组计划" />
 <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
 <link rel="apple-touch-icon-precomposed" href="/img/ico/ico_ios.png" />
 
+<!--[if lte IE 6]>
+<script src="/js/pngfixed.js" type="text/javascript"></script>
+<script>
+  DD_belatedPNG.fix('.png_bg,img,#wrapper');
+</script>
+<![endif]-->
 
 <link rel="stylesheet" type="text/css" href="<%=path %>/css/bangumi.css" />
-<script type="text/javascript">var SHOW_ROBOT = '0',CHOBITS_UID = 481528, SITE_URL = 'http://bangumi.tv';</script>
-<link rel="alternate" href="/feed/user/481528/interests" type="application/rss+xml" title="ericho的收藏" /></head>
+<script type="text/javascript">var SHOW_ROBOT = '1',CHOBITS_UID = 481528, SITE_URL = 'http://bangumi.tv';</script>
+</head>
 <body class="bangumi">
 <div id="wrapperNeue" class="wrapperNeue">
 <div id="headerNeue2">
     <div class="headerNeueInner clearit">
-         <div class="bg musume_4"></div>
+         <div class="bg musume_0"></div>
     <a href="/" class="logo">Bangumi 番组计划</a>
     
 <input type="checkbox" id="navMenuNeueToggle" />    	
@@ -153,16 +159,15 @@
 </div>
         
     <div class="idBadgerNeue">
-<a class="avatar" href="<%=path%>/kd/userpage_main.jsp"><img src="${sessionScope.user.kkd108}" onerror="this.src='<%=path %>/kd/icon/head_icon.png'" class="port" width="33px" height="33px"/></a>
+<a class="avatar" href="userpage_main.jsp"><img src="${sessionScope.user.kkd108}" onerror="this.src='<%=path %>/kd/icon/head_icon.png'" class="port" width="33px" height="33px"/></a>
 	
 <ul id="badgeUserPanel">
     	<li><a href="http://bangumi.tv/user/481528">时光机</a></li>                    
         <li><a href="http://bangumi.tv/user/481528/blog">作品</a></li>
         <li><a href="http://bangumi.tv/user/481528/mono">论坛</a></li>
         <li><a href="http://bangumi.tv/user/481528/index">商城</a></li>
-        <c:if test="${sessionScope.kkd104<4 }"><li class="row"><a href="<%= path %>/adminPage">管理员</a></li></c:if>
-        <li class="row"><a href="http://bangumi.tv/pm">短信</a> | <a href="<%=path%>/kd/userpage_info.jsp">设置</a> | <a href="<%=path%>/logout">登出</a></li>
-        
+        <c:if test="${sessionScope.user.kkd104<4 }"><li class="row"><a href="<%= path %>/adminPage">管理员</a></li></c:if>
+        <li class="row"><a href="http://bangumi.tv/pm">短信</a> | <a href="userpage_info.jsp">设置</a> | <a href="<%=path%>/logout">登出</a></li>
     </ul>	
     </div><div id="headerSearchWrapper">
 <div id="headerSearch">
@@ -186,128 +191,68 @@
     </div>
 </div>
 
-<div id="main" class="png_bg"></div>
-<div id="headerProfile" class="clearit">
-    <div class="subjectNav">
-    <div class="headerContainer">
-    	<h1 class="nameSingle">
-            <div class="rr">
-                        </div>
+<div id="main" class="png_bg"><div id="header">
+<ul class="secTab rr">
+<li><a href="userpage_info.jsp"><span>基本设置</span></a></li>
 
-            <div class="headerAvatar">
-                <a href="<%=path%>/kd/userpage_main.jsp" class="avatar"><span class="avatarNeue avatarSize75" style="background-image:url('${sessionScope.user.kkd108}')"></span></a>
-            </div>
-
-            <div class="inner">
-                <a href="<%=path%>/kd/userpage_main.jsp">${sessionScope.user.kkd102 }</a> <small class="grey">@${sessionScope.user.kkd101 }</small>
-                <span id="friend_flag"></span>
-            </div>
-    	</h1>
-    </div>
-    <div class="navTabsWrapper">
-<ul class="navTabs">
-        <li><a href="/user/481528" class="focus">时光机</a></li>
-        <li><a href="/anime/list/481528" >作品</a></li>
-        <li><a href="/user/481528/mono" >论坛</a></li>
-        <li><a href="/user/481528/blog" >商城</a></li>
-        <c:if test="${sessionScope.user.kkd104<4 }"><li><a href="<%= path %>/adminPage">管理员</a></li></c:if>
+<li><a href="userpage_pwd.jsp" class="selected"><span>密码</span></a></li>
 </ul>
+<h1>修改密码</h1>
 </div>
-<div class="navSubTabsWrapper">
-<ul class="navSubTabs">
-</ul>
-</div>
-
-</div>
-</div>
-<div class="mainWrapper"><div class="columns clearit">
+<hr class="board" />
+<div class="columns clearit">
 <div id="columnA" class="column">
-<div id="user_home">
-<div class="user_box clearit">
-     
-    <ul class="network_service clearit">
-<li><span class="service" style="background-color:#F09199;">SubCircle</span> <span class="tip">${sessionScope.user.kkd106 } 加入</span></li>
-</ul>    
-        
-    
-        <div class="adminTools">
-    <a href="<%=path%>/kd/userpage_info.jsp" class="btnGraySmall"><span>编辑</span></a>           
-                </div>
-    </div><div id="blog" class="sort">
-<h2 class="drag">&nbsp;</h2><div class="horizontalOptions clearit">
-<ul class="">
-<li class="title"><h2> 我的日志</h2></li>
-<li style="float:right"><small><a href="/user/481528/blog">...more</a></small></li>
-</ul>
-</div>
-
-<div class="content_inner clearit" align="left">
-<div align="center" class="clearit">
-<span class="green">还没有发表过日志?</h2>
-<a href="/blog/create" class="l">>立即发表<</a><br />
-<span class="tip_j">你甚至可以通过日志为 Bangumi 的会员提供新闻</span>
-</div>
-</div>
-</div>
-</div>
+    <form name="set" method="post" action="<%=path %>/modifyPwd.kdhtml">
+<span class="text">
+<table align="center" width="98%" cellspacing="0" cellpadding="5" class="settings">
+<tr><td valign="top" width="15%">现在的密码</td><td valign="top"><input name="kkd103-old" class="inputtext" type="password" required="required"></td></tr>
+<tr><td valign="top" width="15%">新的密码</td><td valign="top"><input name="kkd103" class="inputtext" type="password" required="required"></td></tr>
+<tr><td valign="top" width="15%">再输入一次</td><td valign="top"><input name="kkd103-check" class="inputtext" type="password" required="required"></td></tr>
+<tr><td valign="top" width="15%"><input class="inputBtn" value="修改密码" name="submit" type="submit"></td><td valign="top"><span class="green">${msg }</span></td></tr>
+</table>
+</span>
+</form>    
+        	
 </div>
 
 <div id="columnB" class="column">
-<div id="">
-<div class="SidePanel png_bg">
-<h2>/ 我的时间胶囊 <small><a href="/user/481528/timeline">...more</a></small></h2>
-
-<ul class="timeline"><li><small class="feed">注册成为了 Bangumi 成员</small> <small class="time">2019-6-28 18:52</small></li></ul>
 </div>
 </div>
-<div id="sideLayout"><div id="friend" class="sort">
-<div class="SidePanel png_bg" align="left">
-<h2>/ 我的朋友 <small><a href="/user/481528/friends">...more</a></small></h2><hr class="board" /><a href="/user/481528/rev_friends">+ 谁加我为好友</a>
-</div>
-</div>
-<div id="group" class="sort">
-<div class="SidePanel png_bg" align="left">
-<h2>/ 我参加的小组 </h2>
-    <ul class="groupsLine">
-            </ul>
-</div>
-</div>
-</div>
-<div class="menu_inner">
-    	<p> <a href="/feed/user/481528/interests" class="l">/ RSS2.0: 订阅我的收藏</a></p>
-    	<p><a href="/user/481528/wiki" class="l">/ 我的维基编辑</a></p>
-</div>
-</div>
-</div>
-</div>
-</div>
+</div></div>
 <div class="homeBg"></div>
 <!-- 底部菜单栏 -->
 <div id="dock">
     <div class="content">
-        <ul class="clearit">
-        <li class="first"><a href="<%=path%>/kd/userpage_main.jsp">${sessionScope.user.kkd102 }</a></li>
+         <ul class="clearit">
+        <li class="first"><a href="userpage_main.jsp">${sessionScope.user.kkd102 }</a></li>
         <li><a href="http://bangumi.tv/notify/all">提醒</a></li>
         <li><a href="http://bangumi.tv/pm">短信</a></li>
-        <li><a href="<%=path%>/kd/userpage_info.jsp">设置</a></li>
-        <li class="last"><a href="<%=path%>/logout">登出</a></li>
+        <li><a href="userpage_info.jsp">设置</a></li>
+        <li class="last"><a href="<%=path%>/logout" target="_self">登出</a></li>
         </ul>
     </div>
 </div>
 <!-- 底部菜单栏 -->
+
 <!-- 展示 -->
-<div id="robot">
+<div id="robot" >
 <div id="ukagaka_shell">
 <div class="ui_10 shell_1">
+<div id="ukagaka_voice"></div>
+<div id="robot_balloon" class="ukagaka_balloon_pink">
+<div class="tools"><a href="javascript:void(0);" id="ukagaka_menu"></a></div>    
 <div class="inner">
 <div id="robot_speech" class="speech" >
-必须守护的东西多的人容易操纵真是方便啊。
+<strong>关于『密码』</strong><br />
+密码可以随意修改，修改时请先输入旧密码，并保证两次输入的新密码保持一致。<br />
+</div>
+</div>
+<div class="ukagaka_balloon_pink_bottom"></div>	
 </div>
 </div>
 </div>
 </div>
-</div>
-<!-- 展示 -->
+<!-- 展示结束 -->
 
 <script src="/min/g=js?r307" type="text/javascript"></script>
 <script type="text/javascript">
@@ -325,6 +270,4 @@
 </script>
 
 
-<script src="/min/g=ui?r307" type="text/javascript"></script><script type="text/javascript">chiiLib.user.profile();</script>
-</body>
-</html>
+</body></html>

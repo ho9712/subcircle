@@ -7,7 +7,6 @@ public class ModifyInfoServlet extends Kd01Controller
 	public String execute() throws Exception 
 	{
 		this.modifyInfo();
-		this.findById();
 		return "kd/userpage_info";
 	}
 

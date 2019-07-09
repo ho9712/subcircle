@@ -204,12 +204,12 @@ public abstract class KdAbstractController implements ControllerInterface
 //		}
 //	}
 	
-	protected final void findById()throws Exception
-	{
-		this.dto.put("kkd101", this.session.getAttribute("kkd101"));
-		Map<String, String> user=this.services.findById();
-		this.saveAttribute("user", user);
-	}
+//	protected final void findById()throws Exception
+//	{
+//		this.dto.put("kkd101", this.session.getAttribute("kkd101"));
+//		Map<String, String> user=this.services.findById();
+//		this.saveAttribute("user", user);
+//	}
 	
 	protected final void modifyInfo()throws Exception
 	{
@@ -223,4 +223,23 @@ public abstract class KdAbstractController implements ControllerInterface
 		}
 	}
 	
+	protected final void modifyPwd()throws Exception
+	{
+		if(this.dto.get("kkd103").toString().equals(this.dto.get("kkd103-check")))
+		{
+			this.dto.put("kkd101", this.session.getAttribute("kkd101"));
+			if(this.executeMethod("modifyPwd"))
+			{
+				this.saveAttribute("msg", "密码修改成功！");
+			}
+			else
+			{
+				this.saveAttribute("msg", "现在的密码不正确");
+			}
+		}
+		else
+		{
+			this.saveAttribute("msg", "两次密码不一致！");
+		}
+	}
 }
