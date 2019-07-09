@@ -6,6 +6,6 @@ public class Kb01QueryItemsServlet extends Kb01Controller {
 	public String execute() throws Exception 
 	{
 		this.queryAndShowMarketData();
-		return "kb/marketCenter";
+		return "kb/marketCenter.jsp";
 	}
 }

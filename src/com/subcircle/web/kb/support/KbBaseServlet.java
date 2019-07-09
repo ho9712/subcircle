@@ -22,7 +22,7 @@ public class KbBaseServlet extends HttpServlet
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		String toPath=null;
+		String toPath="";//±‹√‚NPE
 		try 
 		{
 			//∞¸√˚
@@ -50,10 +50,9 @@ public class KbBaseServlet extends HttpServlet
 			request.setAttribute("msg", "Ã· æ£∫Õ¯¬Áπ ’œ£°");
 			e.printStackTrace();
 		}
-		//±‹√‚NPE
-		if(toPath != null && toPath.equals(""))
+		
+		if(toPath.equals("back"))
 		{
-			//System.out.println(request.getHeader("referer"));
 			response.sendRedirect(request.getHeader("Referer"));
 		}
 		else if (toPath.equals("ajax"))
@@ -65,7 +64,7 @@ public class KbBaseServlet extends HttpServlet
 		}
 		else
 		{
-			request.getRequestDispatcher("/"+toPath+".jsp").forward(request, response);
+			request.getRequestDispatcher("/"+toPath).forward(request, response);
 		}
 	}
 

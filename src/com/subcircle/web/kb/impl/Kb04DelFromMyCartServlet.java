@@ -6,7 +6,6 @@ public class Kb04DelFromMyCartServlet extends Kb04Controller
 	public String execute() throws Exception 
 	{
 		this.update("deleteFromMyCart","移出购物车");
-		return "";	//返回上一页面
+		return "back"; //返回上一页面	
 	}
-
 }

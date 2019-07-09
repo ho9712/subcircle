@@ -6,7 +6,6 @@ public class Kb04MyCartCenterServlet extends Kb04Controller
 	public String execute() throws Exception
 	{
 		this.queryAndShowMyCartData();
-		return "kb/myCartCenter";
+		return "kb/myCartCenter.jsp";
 	}
-
 }

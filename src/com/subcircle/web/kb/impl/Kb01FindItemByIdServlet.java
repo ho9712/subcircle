@@ -10,6 +10,6 @@ public class Kb01FindItemByIdServlet extends Kb01Controller
 	{
 		this.showMarketItemInfo();		//查询商品信息
 		this.update("insertBrowse", "找到该商品并生成新的浏览记录");	//生成用户的浏览记录
-		return "kb/itemInfo";
+		return "kb/itemInfo.jsp";
 	}
 }

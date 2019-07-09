@@ -191,16 +191,32 @@ public abstract class KbAbstractController implements ControllerInterface
 	 * 	显示购物车中更新后的数量(用于kb04)
 	 * @throws Exception
 	 */
-	protected final void queryAndShowUpdateCount()throws Exception
+//	protected final void queryAndShowUpdateCount()throws Exception
+//	{
+//		Map<String, String> ins = this.services.findById();
+//		if(ins != null)
+//		{
+//			this.saveAttribute("ins",ins);
+//		}
+//		else
+//		{
+//			this.saveAttribute("msg", "数据不存在或禁止访问");
+//		}
+//	}
+	
+	//显示待支付订单
+	protected final void queryAndShowOrderToPay()throws Exception
 	{
-		Map<String, String> ins = this.services.findById();
-		if(ins != null)
+		List<Map<String, String>> rows=(List<Map<String,String>>)this.services.queryInMap().get("orderTopay");
+		if(rows.size()>0)
 		{
-			this.saveAttribute("ins",ins);
+			this.saveAttribute("rows", rows);
 		}
 		else
 		{
-			this.saveAttribute("msg", "数据不存在或禁止访问");
+			this.saveAttribute("msg", "购物车空空如也！");
 		}
 	}
+	
+	
 }

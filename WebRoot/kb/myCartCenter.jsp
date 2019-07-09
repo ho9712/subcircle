@@ -6,9 +6,6 @@
 <title>我的购物车</title>
 <jsp:include page="index.jsp" flush="true" /> <!-- 引入导航栏 -->
 <style type="text/css">
-#tdCenter {
-	vertical-align: middle;
-}
 </style>
 </head>
 <body>
@@ -19,70 +16,70 @@
 			<!-- row -->
 			<div class="span10 offset2">
 				<!-- col -->
-				<table class="table table-hover">
-					<thead>
-						<tr>
-							<th id="tdCenter">
-								<input type="checkbox" onclick = "onSelectAll(this.checked)"
-								 		name = "selectAll">全选
-							</th>
-							<th id="tdCenter">商品名</th>
-							<th id="tdCenter">单价</th>
-							<th id="tdCenter">数量</th>
-							<th id="tdCenter">金额</th>
-							<th id="tdCenter">操作</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${rows }" var="ins" varStatus="vs">
-							<tr name = "cartRecord">		<!-- 一条购物车记录 -->
-								<td id="tdCenter">
-									<input type="checkbox" name = "idlist" 
-									onclick="onSelect(this.checked)" value = "${ins.kkb101 }">  
-									<img
-										class="img-thumbnail" src="${ins.kkb105 }" width="100"
-										height="100" />
+				<form action = "<%=request.getContextPath()%>/kb05CreateOrder.kbhtml" method="post">
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th style="vertical-align: middle;">
+									<input type="checkbox" onclick = "onSelectAll(this.checked);"
+									 		name = "selectAll">全选
+								</th>
+								<th style="vertical-align: middle;">商品名</th>
+								<th style="vertical-align: middle;">单价</th>
+								<th style="vertical-align: middle;">数量</th>
+								<th style="vertical-align: middle;">金额</th>
+								<th style="vertical-align: middle;">操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${rows }" var="ins" varStatus="vs">
+								<tr name = "cartRecord">		<!-- 一条购物车记录 -->
+									<td style="vertical-align: middle;">
+										<input type="checkbox" name = "idlist" 
+										onclick="onSelect(this.checked);" value = "${ins.kkb101 }">  
+										<img
+											class="img-thumbnail" src="${ins.kkb105 }" width="100"
+											height="100" />
+									</td>
+									<td style="vertical-align: middle;">${ins.kkb102 }</td>
+									<td style="vertical-align: middle;">
+											￥<span>${ins.kkb103 }</span>
+									</td>
+									<td style="vertical-align: middle;">
+										<input type="number" min="1" step="1" style="width: 60px;" 
+											name = "itemCount" id="itemCount${ins.kkb101 }" 
+											onchange = "updateItemCount(${ins.kkb101 },${ins.kkb103 });" 
+											value="${ins.kkb402 }">
+									</td>
+									<td style="vertical-align: middle;" name ="itemPrice${ins.kkb101 }">
+										￥<em>${ins.kkb103*ins.kkb402 }</em>
+									</td>
+									<td style="vertical-align: middle;">
+									<a class="btn btn-success" href="#" 
+										onclick="onCollect(${ins.kkb101 });">收藏</a>
+										<a class="btn btn-danger" href="#" 
+											onclick="delFromCart(${ins.kkb101 });">移除</a>
+									</td>
+								</tr>
+							</c:forEach>
+							<tr class="success">
+								<td style="vertical-align: middle;">
+									<input type="checkbox" onclick = "onSelectAll(this.checked);"
+											name = "selectAll">
+									全选
 								</td>
-								<td id="tdCenter">${ins.kkb102 }</td>
-								<td id="tdCenter">
-									￥<span>${ins.kkb103 }</span>
-								</td>
-								<td id="tdCenter">
-									<input type="number" min="1" step="1" style="width: 60px;" 
-										name = "itemCount" id="itemCount${ins.kkb101 }" 
-										<%-- oninput="updateItemCount(${ins.kkb101 });"  --%>
-										onchange = "updateItemCount(${ins.kkb101 },${ins.kkb103 });" 
-										value="${ins.kkb402 }">
-								</td>
-								<td id="tdCenter" name ="itemPrice${ins.kkb101 }">
-									￥<em>${ins.kkb103*ins.kkb402 }</em>
-								</td>
-								<td id="tdCenter">
-								<a class="btn btn-success" href="#" 
-									onclick="onCollect(${ins.kkb101 });">收藏</a>
-									<a class="btn btn-danger" href="#" 
-										onclick="delFromCart(${ins.kkb101 })">移除</a>
+								<td></td>
+								<td></td>
+								<td style="vertical-align: middle;" name = "itemsCount">已选 <em>0</em> 件商品</td>
+								<td style="vertical-align: middle;" name = "itemsPrice">总计 <em>0</em> 元</td>
+								<td style="vertical-align: middle;">
+									<input type="submit" class="btn btn-warning" 
+										disabled="disabled" id = "pay" value = "去结算">
 								</td>
 							</tr>
-						</c:forEach>
-						<tr class="success">
-							<td id="tdCenter">
-								<input type="checkbox" onclick = "onSelectAll(this.checked)"
-										name = "selectAll">
-								全选
-							</td>
-							<td></td>
-							<td></td>
-							<td id="tdCenter" name = "itemsCount">已选 <em>0</em> 件商品</td>
-							<td id="tdCenter" name = "itemsPrice">总计 <em>0</em> 元</td>
-							<td id="tdCenter">
-							<button class="btn btn-warning" href="#" disabled="disabled" id = "pay">
-								去结算
-							</button>
-							</td>
-						</tr>
-					</tbody>
-				</table>
+						</tbody>
+					</table>
+				</form>
 			</div>
 			<!-- col-END -->
 		</div>
@@ -90,9 +87,7 @@
 	</div>
 	<!-- 容器END -->
 	
-	<script src="js/jquery.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	
+
 	<script type="text/javascript">
 	
 	//idlist的checkbox的调用方法
@@ -203,20 +198,53 @@
 	//从购物车中移除该商品
 	function delFromCart(kkb101)
 	{
+		/* var msg = "您确认移出该商品吗";
+	    if (confirm(msg)==true)
+	    {
+		 	$.ajax({
+	        	    type: "POST",
+	            	url: "${pageContext.request.contextPath}/kb04DelFromMyCart.kbhtml?"
+		    			+"kkb101="+kkb101,
+		            dataType: "text",
+		            success: function (data)
+		            {
+		            	if(data)
+		            	{
+		            		alert("移出购物车成功");
+		            	}
+		            }//endsuccess
+		        });//endajax
+	    } */
+			
 		var msg = "您确认移出该商品吗";
 	    if (confirm(msg)==true)
 	    {
 	    	window.location.href="<%=request.getContextPath()%>/kb04DelFromMyCart.kbhtml?kkb101="+kkb101;
 	    	alert("移除成功");
 	    }
+	    
 	}
 	
 	//从购物车中加入该商品至用户收藏列表
 	function onCollect(kkb101)
 	{
-		window.location.href="<%=request.getContextPath()%>/kb03CollectItem.kbhtml?"
+		 $.ajax({
+	            type: "POST",
+	            url: "${pageContext.request.contextPath}/kb03CollectItem.kbhtml?"
+	    			+"kkb101="+kkb101,
+	            dataType: "text",
+	            success: function (data)
+	            {
+	            	if(data)
+	            	{
+	            		alert("收藏成功");
+	            	}
+	            }//endsuccess
+	        });//endajax
+		
+	<%-- window.location.href="<%=request.getContextPath()%>/kb03CollectItem.kbhtml?"
 					+"kkb101="+kkb101;
-		alert("收藏成功");
+		alert("收藏成功"); --%>
 	}
 	
 	//显示选中商品总金额和总件数的控件
@@ -251,6 +279,7 @@
 	}
 	
 	
+	//更新购物车中单项商品的总金额
 	function updateItemCount(kkb101,kkb103)
 	{
 		var countID = "itemCount" + kkb101; //countID表示数量的控件的id(唯一)
@@ -278,11 +307,7 @@
 	            	}
 	            }//endsuccess
 	        });//endajax
-
-	
-		
-	}
-	
+		}
 	
 	
 	//更新数量控件的值
@@ -295,10 +320,14 @@
 			+"&kkb402="+updateCount;
 	} --%>
 	
-	window.onload = function()
-	{
+	 window.onload = function()
+	 {
 		onSelectAll(true);
-	}
+	 } 
 	</script>
+	
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+		
 </body>
 </html>

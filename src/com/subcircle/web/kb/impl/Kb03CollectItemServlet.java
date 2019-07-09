@@ -6,6 +6,6 @@ public class Kb03CollectItemServlet extends Kb03Controller
 	public String execute() throws Exception 
 	{	
 		this.update("insertCollection", "添加收藏");
-		return ""; //""表示返回上一页面
+		return "ajax"; 
 	}
 }
