@@ -6,7 +6,7 @@ import java.util.Map;
 import com.subcircle.system.tools.Tools;
 import com.subcircle.services.support.JdbcServicesSupport;
 
-public class Ka01Services extends JdbcServicesSupport 
+public class Ka04Services extends JdbcServicesSupport 
 {
 	@Override
 	public Map<String,String> findById()throws Exception
@@ -30,16 +30,15 @@ public class Ka01Services extends JdbcServicesSupport
 	  		//还原页面查询条件
 	  		Object kka102=this.get("qkka102");     //贴子名称  模糊查询
 	  		Object kka103=this.get("qkka103");     //话题
-	  		Object kka104=this.get("qkka104");     //内容
 	  		Object kkd101=this.get("qkkd101");     //用户信息
 	  		Object kkd105=this.get("qkkd105");     //作者
 	  		Object kka105=this.get("qkka105");     //时间
 	  		
 	  		//定义SQL主体
 	  		StringBuilder sql=new StringBuilder()
-	  				.append("select x.kka102,x.kka103,x.kka104,a.kkd105,x.kka105")
+	  				.append("select x.kka102,x.kka103,a.kkd105,x.kka105")
 	  				.append(" from ka01 x,kd01 a")
-	  				//.append(" where a.kkd101=1")    //模拟用户1
+	  				.append(" where a.kkd101=1")    //模拟用户1
 	  				;
 	  		
 	  		

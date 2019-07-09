@@ -25,13 +25,14 @@
 <head>
 <meta charset="utf-8" />
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" name="viewport">
-<title>个人收藏</title>
+<title>论坛</title>
 <meta name="keywords" content="登录至 Bangumi 番组计划,ACG,anime,comic,game,music,动漫,音乐,游戏,动画,漫画,番组,bangumi,chii,chobits" />
 <meta name="description" content="登录至 Bangumi 番组计划" />
 <link rel="search" type="application/opensearchdescription+xml" href="http://bangumi.tv/static/xml/opensearch_bgm.xml" title="Bangumi 番组计划" />
 <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
-<link rel="apple-touch-icon-precomposed" href="/img/ico/ico_ios.png" />
+<link rel="apple-touch-icon-precomposed" href="/img/ico/ico_ios.png" />	
 
+</style>
 <!--[if lte IE 6]>
 <script src="/js/pngfixed.js" type="text/javascript"></script>
 <script>
@@ -167,7 +168,7 @@
 <!-- 以下为页面内容 -->
 <div id="main" class="png_bg"></div>
 <div id="headerProfile" class="clearit">
-    <div class="subjectNav">
+  <div class="subjectNav">
     <div class="headerContainer">
     	<h1 class="nameSingle">
             <div class="rr">
@@ -183,116 +184,63 @@
             </div>
     	</h1>
     </div>
-    <div class="navTabsWrapper">
-<ul class="navTabs">
-        <li><a href="/user/481528" >时光机</a></li>
-        <li><a href="/anime/list/481528" class="focus">收藏</a></li>
-        <li><a href="/user/481528/mono" >人物</a></li>
-        <li><a href="/user/481528/blog" >日志</a></li>
-        <li><a href="/user/481528/index" >目录</a></li>
-        <li><a href="/user/481528/timeline" >时间胶囊</a></li>
-        <li><a href="/user/481528/groups" >小组</a></li>
-        <li><a href="/user/481528/friends" >好友</a></li>
-        <li><a href="/user/481528/wiki" >维基</a></li>
-        <li><a href="/user/481528/doujin" >天窗</a></li>
-</ul>
+<div class="navTabsWrapper">
+  <div class="column">
+    <ul class="navTabs">
+      <li><b>论坛里有很多好东西哦~</b></li>
+    </ul>
+  </div>
+</div>
+</div>
 </div>
 
-</div>
-</div>
-<div class="mainWrapper"><div class="columns clearit">
+<div class="mainWrapper">
+<div class="columns clearit">
 <div id="columnA" class="column">
-<div id="user_home">
-<div class="user_box clearit">
-     
-    <ul class="network_service clearit">
-<li><span class="service" style="background-color:#F09199;">SubCircle</span> <span class="tip">${user.kkd106 } 加入</span></li>
-</ul>    
-        
-    
-        <div class="adminTools">
-    <a href="<%=path %>/findById.kdhtml" class="btnGraySmall"><span>编辑</span></a>           
-                </div>
+  <div class="navTabsWrapper">
+                                <!-- 论坛导航栏 -->
+    <div class="subjectNav">
+      <ul class="navTabs">
+        <li><a href="/animeforum" >番剧</a></li>
+        <li><a href="/bookforum">书籍</a></li>
+        <li><a href="/gameforum" >游戏</a></li>
+      </ul>
     </div>
-<div id="blog" class="sort">
-<h2 class="drag">&nbsp;</h2>
- <div class="horizontalOptions clearit">
-  <ul class="">
-    <li class="title"><h2> 我的收藏</h2></li>
-    <li style="float:right"><small><a href="#">...more</a></small></li>
-  </ul>
- </div>
-</div>
-</div>
-
-<form id="myform" action="<%=path%>/usercollection.html" method="post">
-				<table width="95%" border=0 style="table-layout:fixed" >
-				  
-				    <tr>
-				      <td width="45%" align="left"><font size="3">标题</font></th>
-				      <td width="15%" align="left"><font size="3">话题</font></th>
-				      <td width="15%" align="left"><font size="3">作者</font></th>
-				      <td width="25%" align="right"><font size="3">时间</font></th>
-				    </tr>
-				 
-				
-				   
-				
-				
-				
-				<c:choose>
-				  <c:when test="${rows!=null }">
-				    <c:forEach items="${rows }" var="ins" varStatus="vs">
-				      <tr>
-				        <td >
-				          <!-- #  空锚 -->
-				          <font size="4">
-				            <a href="#">${ins.kka102 }</a>
-				          </font>
-				        </td>
-				        <td><font size="4">${ins.kka103 }</font></td>
-				        <td>${ins.kkd105 }</td>
-				        <td align="right">${ins.kka105 }</td>
-				      </tr>
-				    </c:forEach>
-				    <c:forEach begin="${fn:length(rows)+1 }" step="1" end="15">
-		              <tr>
-		                <td></td>
-		                <td></td>
-		                <td></td>
-		                <td></td>
-		                <td></td>
-		                <td></td>
-		                <td></td>
-		                <td></td>
-		                <td></td>
-		                <td></td>
-		              </tr>
-		            </c:forEach>
-				  </c:when>
-				  <c:otherwise>
-	                <c:forEach begin="1" step="1" end="15">
-	                  <tr>
-	                    <td></td>
-	                    <td></td>
-	                    <td></td>
-	                    <td></td>
-	                    <td></td>
-	                    <td></td>
-	                    <td></td>
-	                    <td></td>
-	                    <td></td>
-	                    <td></td>
-	                  </tr>
-	                </c:forEach>
-	              </c:otherwise>
-				</c:choose>	
-				</table>
-				</form>
-  <div class="content_inner clearit" align="left">
-    <div align="center" class="clearit">
-      <span class="green">还没有收藏？去找找看吧！</h2>
-      <a href="/blog/create" class="l">>热门话题<</a><br />
+                                <!-- 搜索框 -->
+    <div id="forumSearch">
+      <form action="/subject_search" method="post">
+        <div class="inner">
+          <input id="search_text" name="search_text" class="textfield" type="text"  style="float:left;width:80%;height:40px;border:2px solid #34495E"/>
+          <input type="submit" name="submit" value="搜索" class="search" style="float:left;width:10%;height:40px;border:2px solid #34495E;background-color:#34495E;color:#ffffff"/>
+        </div>
+      </form>
+    </div> 
+      <br>
+    <div>
+    <br>
+    <br>
+      <c:forEach items="${rows }" var="ins">
+        <div>
+          <font size="3" style="float:left;width:80%;height:15px;margin-left: 10px">
+            <a href="#">
+              <b>
+              ${ins.kka102 }
+              </b>
+            </a>
+          </font>
+          
+          <font size="2" style="float:left;width:10%;height:15px">
+              ${ins.kkd105 }
+           </font>
+        </div>
+        <br>
+        <div style="margin-left: 15px">
+          ${ins.kka104 }
+        </div>
+        <div style="margin-left: 20px">
+          ${ins.kka105 }
+        </div>
+      </c:forEach>
     </div>
   </div>
 </div>
