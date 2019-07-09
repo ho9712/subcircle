@@ -38,7 +38,8 @@ public class Ka01Services extends JdbcServicesSupport
 	  		//定义SQL主体
 	  		StringBuilder sql=new StringBuilder()
 	  				.append("select x.kka102,x.kka103,x.kka104,a.kkd105,x.kka105")
-	  				.append(" from ka01 x,kd01 a")
+	  				.append(" from ka01 x,kd01 a ")
+	  				.append(" order by x.kka105 DESC")
 	  				//.append(" where a.kkd101=1")    //模拟用户1
 	  				;
 	  		
