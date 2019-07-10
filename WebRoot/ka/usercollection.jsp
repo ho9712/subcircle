@@ -250,7 +250,7 @@
 				            <a href="#">${ins.kka102 }</a>
 				          </font>
 				        </td>
-				        <td><font size="4">${ins.kka103 }</font></td>
+				        <td><font size="3">${ins.cnkka103 }</font></td>
 				        <td>${ins.kkd105 }</td>
 				        <td align="right">${ins.kka105 }</td>
 				      </tr>

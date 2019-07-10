@@ -16,6 +16,11 @@ public interface ServicesInterface
 	{
 		return null;
 	}
+	
+	default List<Map<String, String>> queryAnimeForum()throws Exception	
+	{
+		return null;
+	}
 
 	default Map<String,Object> queryInMap() throws Exception
 	{

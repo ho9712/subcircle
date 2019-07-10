@@ -8,7 +8,7 @@ import java.util.Map;
 import javax.management.Query;
 
 import com.subcircle.services.support.JdbcServicesSupport;
-import com.sun.org.apache.bcel.internal.generic.NEW;
+
 
 public class Kb05Services extends JdbcServicesSupport 
 {

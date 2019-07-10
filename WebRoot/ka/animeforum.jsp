@@ -204,7 +204,6 @@
         <li><a href="ka01AnimeForum.kahtml">番剧</a></li>
         <li><a href="ka01BookForum.kahtml">书籍</a></li>
         <li><a href="ka01GameForum.kahtml" >游戏</a></li>
-        
       </ul>
     </div>
                                 <!-- 搜索框 -->

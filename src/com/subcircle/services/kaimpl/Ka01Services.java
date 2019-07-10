@@ -37,8 +37,9 @@ public class Ka01Services extends JdbcServicesSupport
 	  		
 	  		//定义SQL主体
 	  		StringBuilder sql=new StringBuilder()
-	  				.append("select x.kka102,x.kka103,x.kka104,a.kkd105,x.kka105")
-	  				.append(" from ka01 x,kd01 a ")
+	  				.append("select x.kka102,b.fvalue cnkka103,x.kka104,a.kkd105,x.kka105")
+	  				.append(" from ka01 x,kd01 a,syscode b ")
+	  				.append(" where x.kka103=b.fcode and b.fname='kka103'")
 	  				.append(" order by x.kka105 DESC")
 	  				//.append(" where a.kkd101=1")    //模拟用户1
 	  				;
@@ -74,6 +75,20 @@ public class Ka01Services extends JdbcServicesSupport
 //	  		}
 	  		
 	  		//sql.append(" order by x.kka102");
+	  		Object args[] ={};
+	  		return this.queryForList(sql.toString(), args);
+	  }
+	  
+	  public List<Map<String,String>> queryAnimeForum()throws Exception
+	  {
+	  		//定义SQL主体
+	  		StringBuilder sql=new StringBuilder()
+	  				.append("select x.kka102,b.fvalue cnkka103,x.kka104,a.kkd105,x.kka105")
+	  				.append(" from ka01 x,kd01 a,syscode b ")
+	  				.append(" where x.kka103=b.fcode and b.fname='kka103' and x.kka103=1")
+	  				.append(" order by x.kka105 DESC")
+	  				//.append(" where a.kkd101=1")    //模拟用户1
+	  				;
 	  		Object args[] ={};
 	  		return this.queryForList(sql.toString(), args);
 	  }

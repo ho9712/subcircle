@@ -138,8 +138,20 @@ public abstract class KaAbstractController implements ControllerInterface
 	 *********************************************************************/
 	protected final void savePageData()throws Exception
 	{
-		System.out.println("savepage");
 		List<Map<String,String>> rows=this.services.queryByCondition();
+		if(rows.size()>0)
+		{
+			this.saveAttribute("rows", rows);
+		}
+		else
+		{
+			this.saveAttribute("msg", "没有符合条件的数据!");
+		}	
+	}
+	
+	protected final void forumToAnime()throws Exception
+	{
+		List<Map<String,String>> rows=this.services.queryAnimeForum();
 		if(rows.size()>0)
 		{
 			this.saveAttribute("rows", rows);
