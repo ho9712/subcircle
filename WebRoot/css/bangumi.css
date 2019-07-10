@@ -2,7 +2,7 @@ body{margin:0px;padding:0px;background:#FFF;font-size:12px;font-family:'SF Pro S
 .grp_stitle{color:#0187C5;font-size:12px;font-weight:normal}hr.board{height:1px;background-color:#EEE;border:0;color:#EEE}hr.line{height:0;margin:15px
 0;border:0;background-color:#fff;color:#fff}hr.inline{height:1px;margin:5px
 0;border:0;background-color:#CCC;color:#CCC}div.section_line{height:10px;margin:10px
-0 5px 0;border:0;background:#FFF url('/img/bangumi/bangumi_ui_1.png') repeat-x 0 -201px}div#sidebar
+0 5px 0;border:0;background:#FFF url('http://bangumi.tv/img/bangumi/bangumi_ui_1.png') repeat-x 0 -201px}div#sidebar
 .submit{margin:5px
 0}div#pageHeader
 h1{color:#494949;font-size:17px;padding-bottom:5px;text-align:left}div#pageHeader
@@ -59,8 +59,8 @@ li{margin:2px
 li.cat{padding:8px
 0 5px 0;border-bottom:1px solid #DDD;color:#555}ul.collect
 li.item{margin-left:5px;padding:4px
-0 4px 12px;border-bottom:1px dotted #E0E0E0;background:transparent url(/img/listdot.gif) no-repeat scroll 0 8px;color:#555}ul.timeline
-li{background:transparent url(/img/listdot.gif) no-repeat scroll 0 8px;border-bottom:1px dotted #E0E0E0;margin-top:5px;padding-bottom:5px;overflow:hidden;padding:4px
+0 4px 12px;border-bottom:1px dotted #E0E0E0;background:transparent url(http://bangumi.tv/img/listdot.gif) no-repeat scroll 0 8px;color:#555}ul.timeline
+li{background:transparent url(http://bangumi.tv/img/listdot.gif) no-repeat scroll 0 8px;border-bottom:1px dotted #E0E0E0;margin-top:5px;padding-bottom:5px;overflow:hidden;padding:4px
 0 4px 12px}ul.timeline_img
 li{overflow:hidden;margin-top:5px;padding-bottom:5px}ul.timeline_img li
 div.avatar{float:left;display:inline;padding-right:2px}ul.timeline_img li
@@ -98,10 +98,10 @@ li{border-bottom:1px dotted #E0E0E0;_height:120px;min-height:120px;margin-top:5p
 ul{margin-bottom:-1px;_margin-bottom:-2px;overflow:hidden}.horizontalOptions ul
 li{float:left;margin:0pt 5px 0pt 0pt;position:relative}.horizontalOptions ul li
 a{color:#0187C5;float:left;height:20px;line-height:20px;margin:0pt 3px 0pt 0pt;padding:0pt 2px 0pt 5px;text-decoration:none}.horizontalOptions ul
-li.current{background:transparent url(/img/tab_mini_right.png) no-repeat scroll right top}.horizontalOptions ul li.title
+li.current{background:transparent url(http://bangumi.tv/img/tab_mini_right.png) no-repeat scroll right top}.horizontalOptions ul li.title
 h2{font-weight:normal;color:#09C;font-size:14px;padding:0
 5px 0 5px}.horizontalOptions ul li.current
-a{background:transparent url(/img/tab_mini_left.png) no-repeat scroll left top;color:#666;text-decoration:none}.horizontalOptions ul li a:hover{text-decoration:underline}.horizontalOptions ul li.current a:hover{text-decoration:none}.horizontalOptions ul li.last, .horizontalOptions ul li:last-child{border:0pt none}#SecondaryNavContent{padding-top:15px;margin-top:5px;border-top:1px solid #959595}#SecondaryNavGroupLine{padding-top:8px;border-top:1px solid #959595}h1.SecondaryNavTitle{padding-top:5px;padding-bottom:1px;font-size:17px;*padding-bottom:0px;*height:9px}#ThirdNav li
+a{background:transparent url(http://bangumi.tv/img/tab_mini_left.png) no-repeat scroll left top;color:#666;text-decoration:none}.horizontalOptions ul li a:hover{text-decoration:underline}.horizontalOptions ul li.current a:hover{text-decoration:none}.horizontalOptions ul li.last, .horizontalOptions ul li:last-child{border:0pt none}#SecondaryNavContent{padding-top:15px;margin-top:5px;border-top:1px solid #959595}#SecondaryNavGroupLine{padding-top:8px;border-top:1px solid #959595}h1.SecondaryNavTitle{padding-top:5px;padding-bottom:1px;font-size:17px;*padding-bottom:0px;*height:9px}#ThirdNav li
 a{background:#F3F3F3;display:block;font-size:0.8em;font-style:normal;font-weight:normal;margin:1px;padding:2px
 6px 4px;text-align:left;text-decoration:none;width:80px;border:1px
 solid #959595}#ThirdNav li a:hover{background:#0A0A0A;width:86px;color:#fff}#ThirdNav li
@@ -202,7 +202,7 @@ span.Air{background:#369CF8}span.epAirStatus
 span.Today{background:#55B100}a.chiiBtn{display:inline-block;color:#666;text-shadow:0px 1px 2px #FFF;text-decoration:none;line-height:20px;margin:0
 5px 5px 0;padding:0
 12px;border:1px
-solid #DDD;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='FCFCFC', endColorstr='#F1F1F1');background: -webkit-gradient(linear, left top, left bottom, from(#FCFCFC), to(#F1F1F1));background: -moz-linear-gradient(top,  #FCFCFC,  #F1F1F1);background: -o-linear-gradient(top,  #FCFCFC,  #F1F1F1);-webkit-box-shadow:0 1px 2px #EEE, inset 0 1px 1px #FFF;-moz-box-shadow:0 1px 2px #EEE, inset 0 1px 1px #FFF;box-shadow:0 1px 2px #EEE, inset 0 1px 1px #FFF;-moz-border-radius:4px;-webkit-border-radius:4px;border-radius:4px}a.chiiBtn:hover{color:#FFF;text-shadow:none;background:#4F93CF;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#6BA6D8', endColorstr='#4F93CF');background: -moz-linear-gradient(top,  #6BA6D8,  #4F93CF);background: -o-linear-gradient(top,  #6BA6D8,  #4F93CF);background: -webkit-gradient(linear, left top, left bottom, from(#5FA3DB), to(#72B6E3));-webkit-box-shadow:0 0 3px #EEE, inset 0 -1px 5px rgba(0,0,0,0.1);-moz-box-shadow:0 0 3px #EEE, inset 0 -1px 5px rgba(0,0,0,0.1);box-shadow:0 0 3px #EEE, inset 0 -1px 5px rgba(0,0,0,0.1)}a.rakuenBtn{color:#666;text-decoration:none;background:url(/img/bangumi/rakuen_new_tpc.png) no-repeat;width:80px;height:30px;cursor:pointer;display:block;padding-right:10px}a.rakuenBtn:hover{color:#fff;text-decoration:none;background:url(/img/bangumi/rakuen_new_tpc.png) 0 bottom no-repeat;cursor:pointer}small.na{color:#C00;font-size:10px}small.fade{font-size:10px;color:#F90}small.aqua{font-size:10px;color:#9CF}small.blue{color:#39C;font-size:11px}small.orange{font-size:0.8em;color:#F60}small.grey{font-size:10px;color:#999}small.grey
+solid #DDD;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='FCFCFC', endColorstr='#F1F1F1');background: -webkit-gradient(linear, left top, left bottom, from(#FCFCFC), to(#F1F1F1));background: -moz-linear-gradient(top,  #FCFCFC,  #F1F1F1);background: -o-linear-gradient(top,  #FCFCFC,  #F1F1F1);-webkit-box-shadow:0 1px 2px #EEE, inset 0 1px 1px #FFF;-moz-box-shadow:0 1px 2px #EEE, inset 0 1px 1px #FFF;box-shadow:0 1px 2px #EEE, inset 0 1px 1px #FFF;-moz-border-radius:4px;-webkit-border-radius:4px;border-radius:4px}a.chiiBtn:hover{color:#FFF;text-shadow:none;background:#4F93CF;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#6BA6D8', endColorstr='#4F93CF');background: -moz-linear-gradient(top,  #6BA6D8,  #4F93CF);background: -o-linear-gradient(top,  #6BA6D8,  #4F93CF);background: -webkit-gradient(linear, left top, left bottom, from(#5FA3DB), to(#72B6E3));-webkit-box-shadow:0 0 3px #EEE, inset 0 -1px 5px rgba(0,0,0,0.1);-moz-box-shadow:0 0 3px #EEE, inset 0 -1px 5px rgba(0,0,0,0.1);box-shadow:0 0 3px #EEE, inset 0 -1px 5px rgba(0,0,0,0.1)}a.rakuenBtn{color:#666;text-decoration:none;background:url(http://bangumi.tv/img/bangumi/rakuen_new_tpc.png) no-repeat;width:80px;height:30px;cursor:pointer;display:block;padding-right:10px}a.rakuenBtn:hover{color:#fff;text-decoration:none;background:url(http://bangumi.tv/img/bangumi/rakuen_new_tpc.png) 0 bottom no-repeat;cursor:pointer}small.na{color:#C00;font-size:10px}small.fade{font-size:10px;color:#F90}small.aqua{font-size:10px;color:#9CF}small.blue{color:#39C;font-size:11px}small.orange{font-size:0.8em;color:#F60}small.grey{font-size:10px;color:#999}small.grey
 a{font-size:10px;color:#999}small.grey a:hover{text-decoration:underline}small.time{font-size:0.8em;color:#999}small.feed{font:12px Arial,Helvetica,sans-serif;line-height:150%;color:#666}small.sub_title{font-size:11px;color:#999}small.progress_percent{color:#FFF;background:#333;padding:0
 5px;-moz-opacity: .9;opacity: .9;filter:alpha(opacity=90)}small.progress_percent_text{color:#2774FF}h2.hot{font-weight:bold;text-align:left;font-size:14px;color:#D51007;margin:0}h2.subtitle, #columnSubjectA h2,#columnInSubjectA
 h2{font-weight:300;color:#555;font-size:18px;padding:0
@@ -215,7 +215,7 @@ h1{text-align:left;font-size:18px;color:#494949;margin:5px
 h4.Header{margin:10px
 0 5px 0;padding:0
 0 5px 0;border-bottom-color:#DDD;border-bottom-style:solid;border-bottom-width:1px;color:#1175A8;font-size:14px;font-weight:normal}.level8{font-size:12px}.level7{font-size:13px}.level6{font-size:14px}.level5{font-size:15px}.level4{font-size:16px}.level3{font-size:17px}.level2{font-size:18px}.level1{font-size:19px}.text_large{font-size:18px;line-height:18px}.text{font-size:14px;color:#666;line-height:150%}.inner_text{font-size:12px;color:#000;line-height:150%}.tip{font-size:12px;color:#666}.tip_i{font-size:12px;color:#CCC;text-shadow:none}.tip_j{font-size:12px;color:#999;text-shadow:none}.green{color:#91B876}.orange{color:#F60}div#sidebar_grey
-h2{text-align:left;color:#000;font-size:12px;height:25px;line-height:25px;margin:0;padding-left:10px;font-weight:normal;background:#B2B2B2 url('/img/bangumi/bangumi_ui_1.png') repeat-x 0 -53px}div#sidebar h2 small
+h2{text-align:left;color:#000;font-size:12px;height:25px;line-height:25px;margin:0;padding-left:10px;font-weight:normal;background:#B2B2B2 url('http://bangumi.tv/img/bangumi/bangumi_ui_1.png') repeat-x 0 -53px}div#sidebar h2 small
 a{font-weight:normal;color:#0187C5;font-size:10px}div#sidebar h2
 a{font-weight:normal;color:#0187C5;font-size:11px}div#sidebar h2 small a:hover,div#sidebar h2 a:hover{text-decoration:underline}strong.subTitle{color:#696969}.interest_now{font-size:13px;color:#09C}.interest_add{font-size:12px;color:#09C;padding:2px
 0 5px 0;display:block}span.alarm{color:#C00;font-size:12px}span.hide{visibility:hidden}span.green{font-size:15px;color:#8DC63F}div.edenListItem
@@ -232,25 +232,25 @@ solid #EEE;background-color:#FDFDFD}a.btnPinkSmall,a.btnGraySmall,a.btnBlueSmall
 0;padding:2px
 10px;font-size:12px;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px}a.btnPink,a.btnGray,a.btnBlue,a.btnGreen,a.btnRed{background:#F09199;color:#FFF;margin:5px
 0;padding:5px
-25px;font-size:14px;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;line-height:150%;display:inline-block}a.btnPink:hover,a.btnPinkSmall:hover,a.btnRed:hover,a.btnRedSmall:hover{background:#369CF8}a.btnGray,a.btnGraySmall{background:#EEE;color:#888}a.btnGray:hover,a.btnGraySmall:hover{background:#369CF8;color:#FFF}a.btnBlue,a.btnBlueSmall{background:#369CF8}a.btnBlue:hover,a.btnBlueSmall:hover{background:#F09199}a.btnGreen,a.btnGreenSmall{background:#4CAF50}a.btnGreen:hover,a.btnGreenSmall:hover{background:#369CF8}#wrapper{background:transparent url('/img/rc2/bg_header_v2.png') repeat-x}div#top{margin:0
+25px;font-size:14px;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;line-height:150%;display:inline-block}a.btnPink:hover,a.btnPinkSmall:hover,a.btnRed:hover,a.btnRedSmall:hover{background:#369CF8}a.btnGray,a.btnGraySmall{background:#EEE;color:#888}a.btnGray:hover,a.btnGraySmall:hover{background:#369CF8;color:#FFF}a.btnBlue,a.btnBlueSmall{background:#369CF8}a.btnBlue:hover,a.btnBlueSmall:hover{background:#F09199}a.btnGreen,a.btnGreenSmall{background:#4CAF50}a.btnGreen:hover,a.btnGreenSmall:hover{background:#369CF8}#wrapper{background:transparent url('http://bangumi.tv/img/rc2/bg_header_v2.png') repeat-x}div#top{margin:0
 auto;padding:10px
 0 0 0;width:980px}div#logo{position:relative}div#logo
-a.logo{display:block;width:175px;height:48px;background:url('/img/logo_rc1.png') no-repeat;text-indent: -9999px}div#logo
+a.logo{display:block;width:175px;height:48px;background:url('http://bangumi.tv/img/logo_rc1.png') no-repeat;text-indent: -9999px}div#logo
 a.special{position:absolute;top:10px;right:0;display:block;width:80px;height:45px}div#logo
 img.avatar{margin:7px
 5px 0 0}#main{margin:0
 auto;width:1000px}#main_nobg{margin:0
 auto;width:980px}.mainWrapper{margin:0
-auto;width:1000px}#headerNeue{line-height:100%;height:50px;background:transparent url('/img/rc2/bg_musume_v3.png') no-repeat right}#headerNeue
+auto;width:1000px}#headerNeue{line-height:100%;height:50px;background:transparent url('http://bangumi.tv/img/rc2/bg_musume_v3.png') no-repeat right}#headerNeue
 .headerNeueInner{width:980px;margin:0px
 auto;position:relative}#headerNeue
-a.logo{float:left;display:block;text-indent: -9999px;width:145px;height:50px;background:transparent url('/img/rc2/logo_rc2.png') no-repeat}#headerSearch{position:absolute;right:0;margin:10px
+a.logo{float:left;display:block;text-indent: -9999px;width:145px;height:50px;background:transparent url('http://bangumi.tv/img/rc2/logo_rc2.png') no-repeat}#headerSearch{position:absolute;right:0;margin:10px
 0 0 0;border:1px
 solid #F19299;background:rgba(255,255,255,0.8);-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;-moz-box-shadow:0px 1px 0 rgba(255,255,255,0.3), 0px 0 2px rgba(0, 0, 0, 0.3) inset;-webkit-box-shadow:0px 1px 0 rgba(255,255,255,0.3), 0px 0 2px rgba(0, 0, 0, 0.3) inset;box-shadow:0 0 1px rgba(0, 0, 0, 0.3) inset, 0px 1px 0 rgba(255,255,255,0.3)}#headerSearch
 .inner{padding:3px
 5px}#headerSearch
 input.textfield{background:transparent;line-height:20px;width:160px;border:none;-webkit-appearance:caret}#headerSearch input.textfield:focus{outline:none}#headerSearch
-input.search{text-indent: -9999px;width:20px;height:20px;background:transparent url('/img/rc2/ico_search.png') 50% 50% no-repeat;color:#FFF;border:none;cursor:pointer}#headerSearch input.search:focus{outline:none}#navNeue{height:35px;background:transparent url('/img/rc2/bg_nav.png') repeat-x;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.2);-moz-box-shadow:inset 0 1px 1px rgba(0,0,0,0.2);box-shadow:inset 0 1px 1px rgba(0,0,0,0.2)}#header{padding:15px
+input.search{text-indent: -9999px;width:20px;height:20px;background:transparent url('http://bangumi.tv/img/rc2/ico_search.png') 50% 50% no-repeat;color:#FFF;border:none;cursor:pointer}#headerSearch input.search:focus{outline:none}#navNeue{height:35px;background:transparent url('http://bangumi.tv/img/rc2/bg_nav.png') repeat-x;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.2);-moz-box-shadow:inset 0 1px 1px rgba(0,0,0,0.2);box-shadow:inset 0 1px 1px rgba(0,0,0,0.2)}#header{padding:15px
 0 10px 0;position:relative}#header
 h1{color:#3E3E3E;font-size:20px;font-size-adjust:none;font-stretch:normal;font-style:normal;font-variant:normal;font-weight:bold;display:inline}#header
 .inner{margin-left:60px;padding-top:2px}ul.subnav{margin-top:6px;display:block;text-align:center}ul.subnav
@@ -261,8 +261,8 @@ solid #ddd;float:left;padding:5px
 a{background-color:#FFF;border-color:#ccc #ccc #fff;color:#0187C5}ul.trinav{display:block;margin-top:5px}ul.trinav
 li{float:left}ul.trinav li
 a{padding:0
-10px 0 0;background:url(/img/ico/icons.gif) no-repeat 0 -74px;padding-left:12px}ul.trinav li a:hover,ul.trinav li
-a.on{color:#02A3FB;background:url(/img/ico/icons.gif) no-repeat 0 -87px;padding-left:12px}.columnsLogin{width:95%;max-width:800px;margin:30px
+10px 0 0;background:url(http://bangumi.tv/img/ico/icons.gif) no-repeat 0 -74px;padding-left:12px}ul.trinav li a:hover,ul.trinav li
+a.on{color:#02A3FB;background:url(http://bangumi.tv/img/ico/icons.gif) no-repeat 0 -87px;padding-left:12px}.columnsLogin{width:95%;max-width:800px;margin:30px
 auto;border:4px
 solid #e6e6e6;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px}.columnsLogin
 h1{color:#F09199;font-size:25px;padding:20px
@@ -272,9 +272,9 @@ h1{color:#F09199;font-size:25px;padding:20px
 h3{float:left;margin:0
 15px 0 0;color:#555;font-size:12px;line-height:50px;font-weight:normal}.columnsLogin .family
 a{display:block;height:50px;line-height:50px;text-indent: -9999px;float:left}.columnsLogin .family
-a.bgm{background:url('/img/logo/bgm_login.png') no-repeat 50% 50%;width:130px;margin:0
+a.bgm{background:url('http://bangumi.tv/img/logo/bgm_login.png') no-repeat 50% 50%;width:130px;margin:0
 15px 0 0}.columnsLogin .family
-a.doujin{background:url('/img/logo/doujin_login.png') no-repeat 50% 50%;width:115px}.columnsLogin
+a.doujin{background:url('http://bangumi.tv/img/logo/doujin_login.png') no-repeat 50% 50%;width:115px}.columnsLogin
 p.title{padding:10px
 0 5px 0;color:#42ABB3;font-size:12px}.columnsLogin
 p.checkbox{padding:10px
@@ -416,8 +416,8 @@ li{padding:0}#columnCrtRelatedB{margin:10px
 0 0 0}#colunmNotice
 h2{color:#F09199;font-size:17px;font-weight:normal}#colunmNotice
 p.text{padding:10px
-0}#headerCrtChl{background:url('/img/bg/bg_header_crt.png') repeat-x;height:55px}#headerCrtChl
-h1{background:#369CF8 url('/img/title_chl_crt.png') no-repeat;color:#FFF;font-weight:normal;font-size:15px;text-indent: -9999px;padding:0
+0}#headerCrtChl{background:url('http://bangumi.tv/img/bg/bg_header_crt.png') repeat-x;height:55px}#headerCrtChl
+h1{background:#369CF8 url('http://bangumi.tv/img/title_chl_crt.png') no-repeat;color:#FFF;font-weight:normal;font-size:15px;text-indent: -9999px;padding:0
 0 0 15px;float:left;display:block;width:160px;height:55px;line-height:55px}#headerCrtChl
 h1.crtName{height:40px;line-height:25px;background:#369CF8;text-indent:inherit;width:auto;padding:10px
 25px 5px 25px}#headerCrtChl h1.crtName
@@ -425,10 +425,10 @@ span{display:block;line-height:10px;font-size:11px;color:#EEE}#headerCrtChl
 h1.crtNameSingle{height:55px;line-height:55px;background:#369CF8;text-indent:inherit;width:auto;padding:0
 25px}#headerCrtChl h1
 a{color:#FFF}#headerCrtChl span.collect
-a{float:right;line-height:15px;font-size:14px;background:transparent url('/img/ico/ico_heart_break.png') no-repeat;padding:0
+a{float:right;line-height:15px;font-size:14px;background:transparent url('http://bangumi.tv/img/ico/ico_heart_break.png') no-repeat;padding:0
 10px 0 20px;margin:20px
 0 0 0}#headerCrtChl span.collect
-a.break{background:transparent url('/img/ico/ico_heart.png') no-repeat}#headerCrtChl span.collect
+a.break{background:transparent url('http://bangumi.tv/img/ico/ico_heart.png') no-repeat}#headerCrtChl span.collect
 a{color:#999}#headerCrtChl span.collect a:hover{color:#F09199}.crtChlNav{height:55px;line-height:55px;margin:0
 15px}.crtChlNav
 li{float:left;font-size:14px;margin:0
@@ -450,9 +450,9 @@ span{font-size:25px;color:#FFF;font-weight:bold}#headerSubject h1.dev
 span.light{font-weight:300}#headerSubject h1.dev
 span.slogan{float:right;font-weight:300;font-size:14px;line-height:200%}#headerSubject
 div.subjectNav{margin:0px;border-top:1px solid #FEFEFE;border-bottom:1px solid #EEE;background:#FBFBFB}#headerSubject span.collect
-a{float:right;line-height:40px;font-size:14px;background:transparent url('/img/ico/ico_heart_break.png') no-repeat 0 50%;padding:0
+a{float:right;line-height:40px;font-size:14px;background:transparent url('http://bangumi.tv/img/ico/ico_heart_break.png') no-repeat 0 50%;padding:0
 10px 0 20px}#headerSubject span.collect
-a.break{background:transparent url('/img/ico/ico_heart.png') no-repeat 0 50%}#headerSubject span.collect
+a.break{background:transparent url('http://bangumi.tv/img/ico/ico_heart.png') no-repeat 0 50%}#headerSubject span.collect
 a{color:#999;border:none}#headerSubject span.collect a:hover{color:#F09199;border:none}#headerProfile{}#headerProfile
 .headerContainer{background:#FFF;padding:10px
 0 15px 0}#headerProfile
@@ -482,7 +482,7 @@ li{float:left;font-size:13px;margin:0
 20px 0 0}.subjectNav .navSubTabs
 a{display:block;color:#AAA;padding:5px
 10x}.subjectNav .navSubTabs a:hover{color:#369CF8}.subjectNav .navSubTabs
-a.focus{color:#F09199}#crtBrowserWrapper{background:url('/img/bg/bg_left_side.png') repeat-y  -24px 0}#columnCrtBrowserA{margin:0
+a.focus{color:#F09199}#crtBrowserWrapper{background:url('http://bangumi.tv/img/bg/bg_left_side.png') repeat-y  -24px 0}#columnCrtBrowserA{margin:0
 10px 0 0;width:175px;background:#FAFBFC}#columnCrtBrowserA
 h3{background-color:#EAEAEA;margin:0
 0 0 0;padding:5px
@@ -634,7 +634,7 @@ a{display:block;width:85px;padding:5px
 #columnTimelineInnerA ul.trinav li a.on:hover{background:#6BA6D8;color:#FFF;text-shadow:#333 0 1px 0;border-top:1px solid #5495CE;border-bottom:1px solid #1B6CB5;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#6BA6D8', endColorstr='#1B6CB5');background: -moz-linear-gradient(top,  #6BA6D8,  #1B6CB5);background: -o-linear-gradient(top,  #6BA6D8,  #1B6CB5);background: -webkit-gradient(linear, left top, left bottom, from(#6BA6D8), to(#1B6CB5))}#columnTimelineInnerA ul.trinav li a:hover{background:#FFF;color:#333;text-shadow:#FFF 0 1px 0;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#EEEEEE');background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#EEE));background: -moz-linear-gradient(top,  #fff,  #EEE);background: -o-linear-gradient(top,  #fff,  #EEE)}#columnTimelineInnerA ul.trinav li a
 span{}#columnTimelineInnerA ul.trinav li a
 span.ico{width:15px;height:15px;margin:3px
-2px 0 0;display:block;float:left;background-image:url('/img/ico/ico_feed.png');background-repeat:no-repeat}ul.trinav li.tl_all
+2px 0 0;display:block;float:left;background-image:url('http://bangumi.tv/img/ico/ico_feed.png');background-repeat:no-repeat}ul.trinav li.tl_all
 span.ico{background-position:0 0}ul.trinav li.tl_blog
 span.ico{background-position:0 -15px}ul.trinav li.tl_subject
 span.ico{background-position:0 -30px}ul.trinav li.tl_progress
@@ -677,7 +677,7 @@ div.odd{border-bottom:1px dotted #E0E0E0}#columnNotifyA
 div.even{background-color:#F9F9F9;border-bottom:1px dotted #E0E0E0}#columnNotifyA a.l, #columnNotifyA
 a.nt_link{color:#1175A8;border:0}#columnNotifyA a.l:hover,a.nt_link:hover{color:#0187C5;text-decoration:underline}#columnHomeA
 #columnTimelineInnerA{width:89px}div.SidePanel,div.SidePanelLow{font-size:12px;border:1px
-solid #F0F0F0;background:#FFF url('/img/b5/bg_panel.png') repeat-x;margin-bottom:15px;padding:0
+solid #F0F0F0;background:#FFF url('http://bangumi.tv/img/b5/bg_panel.png') repeat-x;margin-bottom:15px;padding:0
 10px 10px 10px;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;-webkit-box-shadow:0px 5px 10px rgba(0,0,0,0.09);-moz-box-shadow:0px 5px 10px rgba(0,0,0,0.09);box-shadow:0px 5px 10px rgba(0,0,0,0.09)}div.SidePanel h2,div.SidePanelLow
 h2{height:45px;color:#555;line-height:40px;font-size:13px;font-weight:normal;padding:0;text-shadow:#FFF 1px 1px 0px}div.SidePanelLow{padding:0}div.SidePanelLow
 h2{padding:0
@@ -704,8 +704,8 @@ div.innerWrapper{margin:5px
 solid #DDD;background:#FCFCFC;padding:5px
 10px;font-size:12px;margin-bottom:15px;-moz-border-radius:4px;-webkit-border-radius:4px;border-radius:4px;-webkit-box-shadow:0px 0px 4px #EAEAEA, inset 0 1px 1px rgba(255,255,255,0.3);-moz-box-shadow:0px 0px 4px #EAEAEA, inset 0 1px 1px rgba(255,255,255,0.3);box-shadow:0px 0px 4px #EAEAEA, inset 0 1px 1px rgba(255,255,255,0.3)}div.menu_inner
 h3.title{border-bottom:1px solid #EEE;font-size:12px;color:#888;padding:0
-0 5px 0;font-weight:normal}#rakuenHeader{background:#000 url('/img/bg/bg_rakuen.png') no-repeat 50% top;height:60px;border-bottom:3px solid #DDD;overflow:hidden}#rakuenHeader
-a.logo{display:block;position:absolute;top:0;left:0;width:240px;height:60px;text-indent: -9999px;background:#000 url('/img/logo/logo_rakuen.png') no-repeat}#rakuenHeader
+0 5px 0;font-weight:normal}#rakuenHeader{background:#000 url('http://bangumi.tv/img/bg/bg_rakuen.png') no-repeat 50% top;height:60px;border-bottom:3px solid #DDD;overflow:hidden}#rakuenHeader
+a.logo{display:block;position:absolute;top:0;left:0;width:240px;height:60px;text-indent: -9999px;background:#000 url('http://bangumi.tv/img/logo/logo_rakuen.png') no-repeat}#rakuenHeader
 ul.rakuen_nav{display:block;position:absolute;top:0;left:240px;overflow:hidden;width:350px;height:40px;margin:0
 0 0 0;padding:10px
 0;background: -webkit-linear-gradient(left, #000 50%, rgba(0,0,0,0) 100%);background: -moz-linear-gradient(left, #000 50%, rgba(0,0,0,0) 100%);background:linear-gradient(left, #000 50%, rgba(0,0,0,0) 100%)}#rakuenHeader ul.rakuen_nav
@@ -731,7 +731,7 @@ a{display:block;color:#555;font-size:13px;padding:4px
 a.focus{color:#FFF;background:#F09199}#prgManagerHeader ul#prgManagerMode
 li{padding:0}#prgManagerHeader ul#prgManagerMode li
 a{padding:10px;-moz-border-radius:0;-webkit-border-radius:0;border-radius:0}#prgManagerHeader ul#prgManagerMode li a:hover{background:transparent}#prgManagerHeader ul#prgManagerMode li a
-span{display:block;text-indent: -9999px;height:18px;width:20px;background:url('/img/ico/ico_prg_mode.png') no-repeat top}#prgManagerHeader ul#prgManagerMode li a#switchTinyManager
+span{display:block;text-indent: -9999px;height:18px;width:20px;background:url('http://bangumi.tv/img/ico/ico_prg_mode.png') no-repeat top}#prgManagerHeader ul#prgManagerMode li a#switchTinyManager
 span{background-position:bottom}#prgManagerHeader ul#prgManagerMode li:first-child a.focus, #prgManagerHeader ul#prgManagerMode li:last-child
 a.focus{background:transparent;border-bottom:2px solid #F09199}#prgManagerMain{background:#FFF;height:230px;overflow:hidden}#prgManagerMain
 div.cloumnSubjects{width:230px;border-right:1px solid #EEE;position:relative}#prgManagerMain div.cloumnSubjects
@@ -739,7 +739,7 @@ div.tool{position:absolute;bottom:0;right:10px}#listWrapper{height:230px;padding
 0 20px 0;overflow:hidden;z-index:1}ul#prgSubjectList
 li{position:relative}ul#prgSubjectList.list{padding:0;background:#F9F9F5;width:230px}ul#prgSubjectList.list
 li{line-height:120%;border-top:1px solid #FFF;border-bottom:1px solid #EEE}ul#prgSubjectList.list li.onAir,ul#prgSubjectList.full
-li.onAir{background:url('/img/bg/bg_prg_list_onair.png') no-repeat top right}ul#prgSubjectList.list li
+li.onAir{background:url('http://bangumi.tv/img/bg/bg_prg_list_onair.png') no-repeat top right}ul#prgSubjectList.list li
 a.title{display:block;padding:3px
 10px}ul#prgSubjectList.list li a.title
 span{}ul#prgSubjectList.list li
@@ -753,7 +753,7 @@ a{margin:0}ul#prgSubjectList.grid li
 a.title{display:none}ul#prgSubjectList.grid li
 a.listThumb{display:none}ul#prgSubjectList.grid li
 img.grid{margin:0;width:48px;height:48px}ul#prgSubjectList.grid li.onAir
-span.onAir{position:absolute;right:3px;top:3px;width:13px;height:13px;background:url('/img/bg/bg_prg_list_onair.png') no-repeat}ul#prgSubjectList.grid li
+span.onAir{position:absolute;right:3px;top:3px;width:13px;height:13px;background:url('http://bangumi.tv/img/bg/bg_prg_list_onair.png') no-repeat}ul#prgSubjectList.grid li
 p.listProgress{position:absolute;bottom:3px;left:3px;width:48px}ul#prgSubjectList.grid li p.listProgress
 span{display:block;height:4px;background:#F09199;border-top:1px solid #FFF;border-right:1px solid #FFF;-moz-border-radius:0 2px 0 0;-webkit-border-radius:0 2px 0 0;border-radius:0 2px 0 0}ul#prgSubjectList.full{padding:0;background:#F9F9F5;width:230px}ul#prgSubjectList.full
 li{display:block;padding:3px
@@ -788,7 +788,7 @@ solid #CCC;-moz-border-radius:2px;-webkit-border-radius:2px;border-radius:2px}#c
 div.header{padding:5px
 5px 5px 10px;border-bottom:1px solid #EEE;background:#FAFAFA}#cloumnSubjectInfo div.header
 h3{color:#555;font-size:13px;text-shadow:1px 1px #FFF}#cloumnSubjectInfo div.header
-span.onAir{display:block;width:75px;height:30px;background:url(/img/b5/ico_onair.png);text-indent: -9999px}#cloumnSubjectInfo div.header
+span.onAir{display:block;width:75px;height:30px;background:url(http://bangumi.tv/img/b5/ico_onair.png);text-indent: -9999px}#cloumnSubjectInfo div.header
 div.headerInner{margin-left:85px}#cloumnSubjectInfo div.header div.headerInner
 .inputtext{margin:2px
 0 0 2px;padding:2px
@@ -846,7 +846,7 @@ solid #CCC;-webkit-box-shadow:inset 0 0 2px #CCC;-moz-box-shadow:inset 0 0 2px #
 span{font-size:11px;color:#AAA}#cloumnSubjectInfo a.prgCheckIn:hover
 span{color:#999}ul#prgSubjectList li a.prgCheckIn, #cloumnSubjectInfo .tinyMode div.tinyHeader
 a.prgCheckIn{display:none;position:absolute;float:none;text-indent: -9999px;padding:0
-2px;width:16px;height:18px;background:no-repeat url('/img/ico/ico_eye.png') 50% top}ul#prgSubjectList li:hover
+2px;width:16px;height:18px;background:no-repeat url('http://bangumi.tv/img/ico/ico_eye.png') 50% top}ul#prgSubjectList li:hover
 a.prgCheckIn{display:block}ul#prgSubjectList li a.prgCheckIn:hover{background-position:50% bottom}ul#prgSubjectList.list li
 a.prgCheckIn{top:1px;right:5px}ul#prgSubjectList.full li
 a.prgCheckIn{top:12px;right:8px}ul#prgSubjectList.grid li
@@ -933,7 +933,7 @@ a{display:block;background:none;color:#0187C5;text-align:left;padding:5px
 0;background-color:#FFF;-moz-opacity: .9;opacity: .9;filter:alpha(opacity=90);-moz-border-radius:15px;-webkit-border-radius:15px;border-radius:15px;-webkit-box-shadow:inset 0 1px 1px rgba(255,255,255,0.5), inset 0 -1px 0 hsla(0,100%,100%,.1), 0 0px 0 hsla(212,77%,26%,1), 0 0px 2px hsla(214,100%,0%,.5);-moz-box-shadow:inset 0 1px 0 rgba(255,255,255,0.5), inset 0 -1px 0 hsla(0,100%,100%,.1), 0 0px 0 hsla(212,77%,26%,1), 0 0px 2px hsla(214,100%,0%,.5);box-shadow:inset 0 1px 1px rgba(255,255,255,0.5), inset 0 -1px 0 hsla(0,100%,100%,.1), 0 0px 0 hsla(212,77%,26%,1), 0 0px 2px hsla(214,100%,0%,.5)}#searchfrom
 input.button{width:20px;height:20px;margin:0px
 5px 0 0;padding:4px
-0;border:medium none;background:transparent url('/img/btn/search.png') no-repeat;text-indent: -9999px}#searchfrom
+0;border:medium none;background:transparent url('http://bangumi.tv/img/btn/search.png') no-repeat;text-indent: -9999px}#searchfrom
 input.textarea{width:110px;height:15px;padding:2px;margin:0
 2px 0 0;border:none;background:transparent}#searchfrom
 select{background:transparent;border:none;padding:1px;margin-left:5px}#tagSearch{}#tagSearch
@@ -971,12 +971,12 @@ label{float:left;width:30px;color:#555;text-align:right;padding:0
 input{float:left;width:135px;padding:2px;border:1px
 solid #DDD;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px}#LoginBox dl dt input:focus{border-color:#D98D88 #F4A8BC #F4A8BC #D98D88;-webkit-box-shadow:0 0 5px #ECC6C3;-moz-box-shadow:0 0 5px #ECC6C3;box-shadow:0 0 5px #ECC6C3}#LoginBox dl
 dd{padding-top:5px;text-align:right}#LoginBox
-.login{position:absolute;top:5px;right:0px;width:52px;height:52px;margin-left:-30px;padding:0pt;border:medium none;background:url("/img/loginbtn.gif") no-repeat}#LoginBox #rechaptcha_form
+.login{position:absolute;top:5px;right:0px;width:52px;height:52px;margin-left:-30px;padding:0pt;border:medium none;background:url("http://bangumi.tv/img/loginbtn.gif") no-repeat}#LoginBox #rechaptcha_form
 .input{margin:0
 0 0 40px}#introWrapper{height:195px;background:#F9F9F5;margin:0
 0 15px 0;-webkit-box-shadow:inset 0 -2px 2px rgba(0,0,0,0.05);-moz-box-shadow:inset 0 -2px 2px rgba(0,0,0,0.05);box-shadow:inset 0 -2px 2px rgba(0,0,0,0.05)}#intro{width:980px;margin:0
 auto}#columnIntroA{width:690px;position:relative}#columnIntroA
-div.musume{background:url("/img/bg/bg_intro_musume.png") no-repeat;width:300px;height:215px;position:absolute;left: -50px}#columnIntroA
+div.musume{background:url("http://bangumi.tv/img/bg/bg_intro_musume.png") no-repeat;width:300px;height:215px;position:absolute;left: -50px}#columnIntroA
 div.slider{position:relative}#columnIntroA
 #sliderNav{position:absolute;z-index:2;left:430px;top:20px;width:245px}#columnIntroA #sliderNav li
 span{float:left;cursor:pointer;color:#999;text-shadow:0px -1px 1px #FFF;font-size:21px;padding:5px;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px}#columnIntroA #sliderNav li span.active, #columnIntroA #sliderNav li span:hover{color:#FFF;text-shadow:none;background:#F09199;-webkit-transition:background linear 0.2s;-moz-transition:background linear 0.2s;transition:background linear 0.2s}#sliderSequence{position:relative;z-index:1;width:690px;height:195px;overflow:hidden;-webkit-backface-visibility:hidden;-moz-backface-visibility:hidden;-ms-backface-visibility:hidden;-o-backface-visibility:hidden;backface-visibility:hidden}#sliderSequence li>*{position:absolute}/*/*/#sliderSequence
@@ -1088,7 +1088,7 @@ div.prgText{padding:0
 0 2px 0;font-size:11px}.panelProgress.book div.prgText
 small{display:inline-block;width:30px}.progress{margin-top:2px;padding:1px;width:205px;border:1px
 solid #ccc;-moz-border-radius:2px;-webkit-border-radius:2px;border-radius:2px}.progress
-.inner{height:20px;background:#FFF url('/img/bangumi/bangumi_ui_1.png') repeat-x 0 -145px}div.progress_mini{width:150px;padding:1px;border:1px
+.inner{height:20px;background:#FFF url('http://bangumi.tv/img/bangumi/bangumi_ui_1.png') repeat-x 0 -145px}div.progress_mini{width:150px;padding:1px;border:1px
 solid #ccc;line-height:12px;-moz-border-radius:2px;-webkit-border-radius:2px;border-radius:2px}div.prg_info{margin:0
 0 0 57px;padding:0;height:100%}div.prg_odd{margin-right:5px;border-right:1px solid #E0E0E0}div.prg_agg{height:100%;margin-left:265px;*margin-left:240px;padding:0
 5px;border-left:1px solid #FFF;word-wrap:break-word}div.prg_ep_title{margin-bottom:2px}div.prg_ep_block{width:99%;white-space:normal}div.prg_new_dz{margin-top:3px;border-top:1px solid #E0E0E0;width:99%;overflow:hidden}div#eden_header{display:block;height:110px;overflow:hidden;position:relative;width:950px;border:1px
@@ -1119,14 +1119,14 @@ span{padding-left:5px}table.mediumImageChart{width:100%}table.mediumImageChart
 td{border-bottom:10px solid #fff}table.mediumImageChart
 td.positionCell{text-align:right}table.mediumImageChart td.subjectCell
 strong{display:block;width:28px;height:18px;margin:0;padding:5px
-0;background-image:url(/img/frame/chart_position.png);background-position:right top;background-repeat:no-repeat;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/img/frame/chart_position.png', sizingMethod='scale');_background-image:none;color:#0187c5;font-size:18px;line-height:18px;text-align:center;float:right}table.mediumImageChart td.subjectCell
+0;background-image:url(http://bangumi.tv/img/frame/chart_position.png);background-position:right top;background-repeat:no-repeat;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://bangumi.tv/img/frame/chart_position.png', sizingMethod='scale');_background-image:none;color:#0187c5;font-size:18px;line-height:18px;text-align:center;float:right}table.mediumImageChart td.subjectCell
 strong.first{color:#F39}table.mediumImageChart td.imageCell
 img{display:block;padding:1px;border:1px
 solid #ccc;background:#fff}table.mediumImageChart
 td.subjectCell{position:relative;width:100%;font-size:10px;line-height:1.2em}table.mediumImageChart td.subjectCell
 span.subject{display:block;margin:0
 0 11px 5px;font-size:12px;line-height:1.181818em}table.mediumImageChart td.subjectCell
-div.wishes{opacity:0.5;-moz-opacity:0.5;filter:alpha(opacity=50)}div.chartbar{background:transparent url(/img/bangumi/charts_right.png) no-repeat scroll right top;overflow:hidden;min-width:50px}div.chartbar
+div.wishes{opacity:0.5;-moz-opacity:0.5;filter:alpha(opacity=50)}div.chartbar{background:transparent url(http://bangumi.tv/img/bangumi/charts_right.png) no-repeat scroll right top;overflow:hidden;min-width:50px}div.chartbar
 span{background:#71B7E6 none repeat scroll 0 0;color:#FFF;display:block;height:17px;margin:0
 3px 0 0;overflow:hidden;padding:3px
 0.5em 0}table
@@ -1182,9 +1182,9 @@ solid #DDD;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;-w
 5px 0 0}#comment_box
 .text_pm{padding:8px
 12px}div#menu_pm{margin-top:10px;margin-bottom:5px;padding:0;text-align:center;border-left:1px solid #F4198F}ul.menu_pm
-li{float:left;background:url('/img/bangumi/bangumi_ui_1.png') repeat-x 0 -81px;width:150px;height:30px;line-height:30px;border-left:1px solid #FF76AE;border-right:1px solid #F4198F;color:#FFF}ul.menu_pm li
+li{float:left;background:url('http://bangumi.tv/img/bangumi/bangumi_ui_1.png') repeat-x 0 -81px;width:150px;height:30px;line-height:30px;border-left:1px solid #FF76AE;border-right:1px solid #F4198F;color:#FFF}ul.menu_pm li
 a{width:100%;height:30px;line-height:30px;display:block;text-align:center;font-size:14px;color:#FFF}ul.menu_pm li a:hover,ul.menu_pm
-.focus{color:#FFF;background:url('/img/bangumi/bangumi_ui_1.png') repeat-x 0 -113px}#pm_main{background-color:#F7F7F7;padding:5px
+.focus{color:#FFF;background:url('http://bangumi.tv/img/bangumi/bangumi_ui_1.png') repeat-x 0 -113px}#pm_main{background-color:#F7F7F7;padding:5px
 10px;margin:5px
 0;font-size:12px;color:#333;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;width:450px;float:left}#pm_sidebar{margin-top:8px;margin-left:5px;float:left;width:120px;border-left:2px solid #56A9ED;padding:3px
 0 3px 8px;text-align:left;color:#555;background:#FFF;-moz-border-radius:0 5px 5px 0;-webkit-border-radius:0 5px 5px 0;border-radius:0 5px 5px 0}div#pm_sidebar
@@ -1222,7 +1222,7 @@ span.id{font-size:13px;color:#555}div.grp_box{background-color:#F7F7F7;padding:1
 0;margin:0px
 auto;font-size:12px;color:#333;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;clear:both}div.eden_rec_box{width:800px;padding:20px
 0;margin:0px
-auto;font-size:12px;color:#333;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;clear:both;padding-left:20px;background:#FFF url(/img/bangumi/eden_box_bg.gif) no-repeat}blockquote.intro{background:#F9F9F5 url("/img/quote_left.gif") no-repeat 5px 5px;margin:5px
+auto;font-size:12px;color:#333;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;clear:both;padding-left:20px;background:#FFF url(http://bangumi.tv/img/bangumi/eden_box_bg.gif) no-repeat}blockquote.intro{background:#F9F9F5 url("http://bangumi.tv/img/quote_left.gif") no-repeat 5px 5px;margin:5px
 0 0 0;padding:10px
 0;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px}blockquote.intro
 div.bio{color:#555;padding:0
@@ -1244,7 +1244,7 @@ h2{color:#1175A8;font-size:13px;font-weight:normal;padding-bottom:4px;text-align
 .rateEmo{background-position:-38px 0px}.score5 .rateEmo,.score6
 .rateEmo{background-position:-77px 0px}.score7 .rateEmo,.score8
 .rateEmo{background-position:-115px 0px}.score9 .rateEmo,.score10
-.rateEmo{background-position:-153px 0px}.rateEmo{background:transparent url(/img/bangumi/rate_emo.gif) no-repeat;height:37px;width:30px;margin:0
+.rateEmo{background-position:-153px 0px}.rateEmo{background:transparent url(http://bangumi.tv/img/bangumi/rate_emo.gif) no-repeat;height:37px;width:30px;margin:0
 0 5px 0}.frdScore
 .num{color:#E800A4;font-weight:bold;font-size:14px}.frdScore
 .desc{color:#555}#ChartWarpper{position:relative;background-color:#FBFBFB}#ChartWarpper
@@ -1278,7 +1278,7 @@ a{border-width:1px 3px 1px 4px;border-style:solid;border-color:#B9D8F4;display:b
 span{background-color:#FFF;background-image:none}#profile_nav li a
 span{border:1px
 solid #FFF;cursor:pointer;display:block;height:20px;line-height:20px;overflow:hidden;padding:1px
-11px;background:#FFF url(/img/bangumi/bangumi_ui_1.png) repeat-x scroll 0 -201px}#entry_list
+11px;background:#FFF url(http://bangumi.tv/img/bangumi/bangumi_ui_1.png) repeat-x scroll 0 -201px}#entry_list
 div.item{padding:5px;margin:0;border-bottom:1px solid #eee}#entry_list
 p.cover{padding-top:5px}#entry_list
 div.entry{margin-left:85px}#entry_list
@@ -1355,16 +1355,16 @@ p.title{line-height:160%}ul#crtRelateSubjects
 li.old{background-color:#F9F9F9;border-bottom-color:#E0E0E0;border-bottom-style:dotted;border-bottom-width:1px}ul#crtRelateSubjects
 input.inputtext{width:30px;padding:1px
 5px;color:#555;font-size:11px;-moz-border-radius:3px;-webkit-border-radius:3px;border-radius:3px}ul#crtRelateSubjects
-input.item_sort_hidden{display:none}#browserTools{background:url('/img/b5/bg_sub_list.png') repeat-x bottom;border-bottom:1px solid #EEE;padding:0
+input.item_sort_hidden{display:none}#browserTools{background:url('http://bangumi.tv/img/b5/bg_sub_list.png') repeat-x bottom;border-bottom:1px solid #EEE;padding:0
 0 0 10px}ul.browserTypeSelector{float:right;height:20px}ul.browserTypeSelector
 li{float:left;height:25px}ul.browserTypeSelector li
-a{background-image:url("/img/b5/btn_dsp_mode.png");display:block;overflow:hidden;height:17px;width:25px;text-indent: -9999px}ul.browserTypeSelector li
+a{background-image:url("http://bangumi.tv/img/b5/btn_dsp_mode.png");display:block;overflow:hidden;height:17px;width:25px;text-indent: -9999px}ul.browserTypeSelector li
 a#full_selector{background-position:-25px 0}ul.browserTypeSelector li
 a#grid_selector{background-position:-50px 0}ul.browserTypeSelector li
 a#list_selector.active{background-position:0 bottom}ul.browserTypeSelector li
 a#full_selector.active{background-position:-25px bottom}ul.browserTypeSelector li
 a#grid_selector.active{background-position:-50px bottom}div.crt_summary{padding:5px;background:#F5F5F5;border-bottom:1px solid #ccc;border-right:1px solid #ccc}body.bangumiNeue{background:#FFF}#wrapperNeue{min-width:980px}#headerNeue2{position:relative;min-width:980px;background:#FCFCFC;border-bottom:1px solid #DDD;height:50px;box-shadow:0px 0 0px 1px rgba(250,250,250,0.8);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#FCFCFC', endColorstr='#FAFAF9');background-image: -webkit-gradient(linear, left top, left bottom, from(#FCFCFC), to(#FAFAF9));background-image: -moz-linear-gradient(top,  #FCFCFC,  #FAFAF9);background-image: -o-linear-gradient(top,  #FCFCFC,  #FAFAF9);background-image: -ms-linear-gradient(top,  #FCFCFC,  #FAFAF9);background-image:linear-gradient(top,  #FCFCFC,  #FAFAF9)}#headerNeue2
-div.bg{position:absolute;left: -40px;background:url('/img/rc3/bg_musume.png') 0 -10px no-repeat;width:40px;height:50px}#headerNeue2
+div.bg{position:absolute;left: -40px;background:url('http://bangumi.tv/img/rc3/bg_musume.png') 0 -10px no-repeat;width:40px;height:50px}#headerNeue2
 div.musume_0{}#headerNeue2
 div.musume_1{background-position: -40px 0}#headerNeue2
 div.musume_2{background-position: -80px 0}#headerNeue2
@@ -1375,7 +1375,7 @@ div.musume_6{background-position: -240px 0}#headerNeue2
 .headerNeueInner{width:1000px;margin:0
 auto;padding:0;position:relative}#headerNeue2
 a.logo{margin:0
-5px 0 0;float:left;display:block;text-indent: -9999px;width:140px;height:50px;background:transparent url('/img/rc3/logo.png') left 50% no-repeat}#headerNeue2
+5px 0 0;float:left;display:block;text-indent: -9999px;width:180px;height:50px;background:transparent url('http://localhost:8080/project_subcircle/img/logo.png ') left 50% no-repeat}#headerNeue2
 #headerSearch{float:right;position:relative;margin:10px
 10px 0 10px;border:1px
 solid #DDD;-moz-border-radius:100px;-webkit-border-radius:100px;border-radius:100px;-moz-box-shadow:none;-webkit-box-shadow:none;box-shadow:none}#headerNeue2 #headerSearch
@@ -1386,7 +1386,7 @@ div.idBadgerNeue{padding:7px
 0 5px 0;height:40px;float:right}#headerNeue2 div.idBadgerNeue
 a.avatar{}#headerNeue2 div.idBadgerNeue
 div.guest{margin:2px
-0 0 0;background:#F09199;-moz-border-radius:100px;-webkit-border-radius:100px;border-radius:100px}#headerNeue2 div.idBadgerNeue div.guest
+0 0 0;background:#00ffff;-moz-border-radius:100px;-webkit-border-radius:100px;border-radius:100px}#headerNeue2 div.idBadgerNeue div.guest
 a{display:inline-block;color:#FFF}#headerNeue2 div.idBadgerNeue div.guest a:hover{background:#369CF8}#headerNeue2 div.idBadgerNeue div.guest
 a.login{padding:5px
 5px 5px 10px;border-radius:100px 0 0 100px}#headerNeue2 div.idBadgerNeue div.guest
@@ -1402,16 +1402,16 @@ a.top_lite{padding:6px
 #navNeue2 #navMenuNeue li a.focus:hover{color:#333;line-height:36px;border-top:2px solid #F09199;-moz-box-shadow:none;-webkit-box-shadow:none;box-shadow:none}#navNeue2 #navMenuNeue li:hover a.focus
 span{background:transparent}#navNeue2 #navMenuNeue
 li.doujin{display:block;padding:0;width:80px;height:49px;overflow:hidden}#navNeue2 #navMenuNeue li.doujin
-a{display:block;text-indent: -9999px;background:url('/img/doujin/logo_doujin.png') no-repeat;width:80px;height:50px}#navNeue2 #navMenuNeue li a.top, #navNeue2 #navMenuNeue li a.focus, #navNeue2 #navMenuNeue li
+a{display:block;text-indent: -9999px;background:url('http://bangumi.tv/img/doujin/logo_doujin.png') no-repeat;width:80px;height:50px}#navNeue2 #navMenuNeue li a.top, #navNeue2 #navMenuNeue li a.focus, #navNeue2 #navMenuNeue li
 a.top_lite{font-weight:normal;text-shadow:none}#navNeue2 #navMenuNeue li:hover a.top span, #navNeue2 #navMenuNeue li.sfhover a.top
 span{text-shadow:none}#navNeue2 #navMenuNeue li
 a.chl{font-weight:bold;margin:8px
 0 0 0;padding:5px
 8px;line-height:25px;background:#F1F1F1;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#F5F5F5', endColorstr='#F1F1F1');background-image: -webkit-gradient(linear, left top, left bottom, from(#F5F5F5), to(#F1F1F1));background-image: -moz-linear-gradient(top,  #F5F5F5,  #F1F1F1);background-image: -o-linear-gradient(top,  #F5F5F5,  #F1F1F1);background-image: -ms-linear-gradient(top,  #F5F5F5,  #F1F1F1);background-image:linear-gradient(top,  #F5F5F5,  #F1F1F1)}#navNeue2 #navMenuNeue li a.chl:hover, #navNeue2 #navMenuNeue li a.chl:hover,
 #navNeue2 #navMenuNeue li:hover a.chl, #navNeue2 #navMenuNeue li.sfhover
-a.chl{border:none;line-height:25px;background:#F09199;color:#FFF;text-shadow:none}#navNeue2 #navMenuNeue li
+a.chl{border:none;line-height:25px;background:#00ffff;color:#FFF;text-shadow:none}#navNeue2 #navMenuNeue li
 a.anime{padding-left:15px;-moz-border-radius:100px 0 0 100px;-webkit-border-radius:100px 0 0 100px;border-radius:100px 0 0 100px}#navNeue2 #navMenuNeue li
-a.real{padding-right:15px;margin-right:5px;-moz-border-radius:0 100px 100px 0;-webkit-border-radius:0 100px 100px 0;border-radius:0 100px 100px 0}#navNeue2 #navMenuNeue li
+a.game{padding-right:15px;margin-right:5px;-moz-border-radius:0 100px 100px 0;-webkit-border-radius:0 100px 100px 0;border-radius:0 100px 100px 0}#navNeue2 #navMenuNeue li
 ul{-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;-moz-box-shadow:inset 0 1px 1px hsla(0,100%,100%,1), inset 0 -1px 0 hsla(0,100%,100%,.3), 0 2px 4px hsla(214,100%,0%,.2);-webkit-box-shadow:inset 0 1px 1px hsla(0,100%,100%,1), inset 0 -1px 0 hsla(0,100%,100%,.3), 0 2px 4px hsla(214,100%,0%,.2);box-shadow:inset 0 1px 1px hsla(0,100%,100%,1), inset 0 -1px 0 hsla(0,100%,100%,.3), 0 2px 4px hsla(214,100%,0%,.2)}#headerNeue2 .menuCompact, #headerNeue2
 #navMenuNeueToggle{display:none}#wrapperNeue
 #header{}#wrapperNeue #header
@@ -1423,7 +1423,7 @@ solid #DFDFDF;-webkit-box-shadow:0px 0px 0px 2px rgba(0,0,0,0.04);-moz-box-shado
 auto 5px auto;padding:0
 10px;height:50px;border:1px
 solid #F09199;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;max-width:1000px}.tipIntro
-.musume{display:block;width:40px;height:50px;float:left;background:url('/img/rc3/bg_musume.png') -40px 0px no-repeat}.tipIntro
+.musume{display:block;width:40px;height:50px;float:left;background:url('http://bangumi.tv/img/rc3/bg_musume.png') -40px 0px no-repeat}.tipIntro
 .inner{padding:5px
 5px 5px 50px}.tipIntro
 .btnPink{margin:5px
@@ -1506,7 +1506,7 @@ div.inner{margin:0
 0 0 52px}#featuredItems div.subitem
 p.title{max-height:38px;overflow:hidden}ul.onlineEpList{margin:0
 0 5px 0;padding:5px
-10px;border-top:1px solid #EEE;background:#EEE url("/img/bg/bg_header_crt.png") repeat-x bottom}ul.onlineEpList li
+10px;border-top:1px solid #EEE;background:#EEE url("http://bangumi.tv/img/bg/bg_header_crt.png") repeat-x bottom}ul.onlineEpList li
 a{float:left;display:block;background:#FFF;color:#888;margin:0
 5px 0 0;padding:3px
 6px;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;-webkit-box-shadow:0 0 5px #DDD;-moz-box-shadow:0 0 5px #DDD;box-shadow:0 0 5px #DDD}ul.onlineEpList li a:hover{color:#0187C5;-webkit-box-shadow:0 1px 5px #0187C5;-moz-box-shadow:0 1px 5px #0187C5;box-shadow:0 1px 5px #0187C5}ul.onlineEpList li
@@ -1523,7 +1523,7 @@ a{color:#09C}ul.line_list h5 a:hover{text-decoration:underline}ul.line_list
 h6{font-weight:normal;text-align:left;font-size:13px;color:#09C;margin:2px}ul.line_list h6
 a{color:#09C}ul.line_list h6 a:hover{text-decoration:underline}ul.line_list
 li.cat{color:#666;font-size:13px;padding:5px
-10px;border-top:1px solid #DDD;background:url("/img/bg/bg_header_crt.png") repeat-x bottom}ul.line_list_music{margin-top:5px}ul.line_list_music
+10px;border-top:1px solid #DDD;background:url("http://bangumi.tv/img/bg/bg_header_crt.png") repeat-x bottom}ul.line_list_music{margin-top:5px}ul.line_list_music
 li.cat{padding:2px
 10px;border-top:none;color:#999;font-size:12px}.line_odd{background-color:#FFF;border-bottom:1px dotted #E0E0E0;font-size:12px;padding:2px
 5px;white-space:normal}.line_even{background-color:#F9F9F9;border-bottom:1px dotted #E0E0E0;font-size:12px;padding:2px
@@ -1531,7 +1531,7 @@ li.cat{padding:2px
 ul.listEpPrgManager{float:right}ul.listEpPrgManager{position:relative}ul.listEpPrgManager
 a.prgCheckIn{display:inline-block;text-indent: -9999px;margin:5px
 0 0 5px;padding:0
-2px;width:16px;height:18px;background:no-repeat url('/img/ico/ico_eye.png') 50% top;color:#4AA1F9;border:1px
+2px;width:16px;height:18px;background:no-repeat url('http://bangumi.tv/img/ico/ico_eye.png') 50% top;color:#4AA1F9;border:1px
 solid #DDD;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;-webkit-transition:border linear 0.2s,box-shadow linear 0.1s;-moz-transition:border linear 0.1s,box-shadow linear 0.1s;transition:border linear 0.1s,box-shadow linear 0.2s}ul.listEpPrgManager a.prgCheckIn:hover{color:#0084B4;border:1px
 solid #CCC;-webkit-box-shadow:inset 0 0 2px #CCC;-moz-box-shadow:inset 0 0 2px #CCC;box-shadow:inset 0 0 2px #CCC}ul.listEpPrgManager
 ul{display:none;position:absolute;left: -95px;top:0px;z-index:99;width:135px;background-color:#FAFAFA;padding:0
@@ -1591,16 +1591,16 @@ li.item{float:left;width:105px;height:170px;position:relative;margin:0
 div.collectBlock{position:absolute;bottom:10px;right:0}ul.browserGrid li.item
 a.subjectCover{display:block;overflow:hidden;position:relative;width:100px;height:100px;float:none}ul.browserGrid li.item a.subjectCover
 .image{display:block;width:97px;height:91px;overflow:hidden;position:absolute;top:2px;left:2px}ul.browserGrid li.item a.subjectCover
-.overlay{background:url("/img/frame/pic_frame_grid.png") repeat scroll left top transparent;cursor:pointer;display:block;height:100px;width:100px;top:0;left:0;position:absolute}ul.browserGrid li.item a.subjectCover
+.overlay{background:url("http://bangumi.tv/img/frame/pic_frame_grid.png") repeat scroll left top transparent;cursor:pointer;display:block;height:100px;width:100px;top:0;left:0;position:absolute}ul.browserGrid li.item a.subjectCover
 img.cover{max-width:100px;border:none;margin:0;padding:0;-webkit-box-shadow:none;-moz-box-shadow:none}ul.browserGrid li.item p.info,ul.browserGrid li.item p.rateInfo,ul.browserGrid li.item span.rank,ul.browserGrid h3
 small{display:none}ul.browserGrid li.item
 #comment_box{display:none}ul.browserGrid li.item
 p.collectInfo{display:none}ul.browserGrid li.item p.tools
 a.tip_j{font-size:10px}div.collectBlock
-p.collectModify{background:#FFF url('/img/ico/ico_list_love.gif') no-repeat 5px 50%;border:1px
+p.collectModify{background:#FFF url('http://bangumi.tv/img/ico/ico_list_love.gif') no-repeat 5px 50%;border:1px
 solid #EEE;padding:2px
 5px 2px 17px;-webkit-box-shadow:1px 1px 2px #EEE;-moz-box-shadow:1px 1px 2px #EEE;box-shadow:1px 1px 2px #EEE;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px}span.ico_subject_type{display:block;height:15px;width:17px;margin:2px
-0 0 0;background:transparent url('/img/ico/subject_type_v2.png') no-repeat}span.ico_subject_type.subject_type_1{background-position:0 0}span.ico_subject_type.subject_type_2{background-position:0 -19px}span.ico_subject_type.subject_type_3{background-position:0 -34px}span.ico_subject_type.subject_type_4{background-position:0 -50px}span.ico_subject_type.subject_type_6{background-position:0 -65px}span.ico_subject_type.num{padding:0
+0 0 0;background:transparent url('http://bangumi.tv/img/ico/subject_type_v2.png') no-repeat}span.ico_subject_type.subject_type_1{background-position:0 0}span.ico_subject_type.subject_type_2{background-position:0 -19px}span.ico_subject_type.subject_type_3{background-position:0 -34px}span.ico_subject_type.subject_type_4{background-position:0 -50px}span.ico_subject_type.subject_type_6{background-position:0 -65px}span.ico_subject_type.num{padding:0
 5px 0 17px;line-height:15px;width:auto;color:#AAA}ul.browserFull li.item #comment_box,ul.browserList li.item #comment_box, .browserCrtList
 #comment_box{margin-top:0;width:99%;height:auto}ul.browserFull li.item #comment_box div.text,ul.browserList li.item #comment_box div.text, .browserCrtList #comment_box
 div.text{margin:5px
@@ -1716,14 +1716,14 @@ a{color:#999}div.reply_highlight{border:2px
 solid #369CF8;background:#FFF;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;-webkit-box-shadow:2px 2px 5px #DDD;-moz-box-shadow:2px 2px 5px #DDD;box-shadow:2px 2px 5px #DDD}.ui-slider{position:relative;text-align:left}.ui-slider .ui-slider-handle{position:absolute;z-index:2;width:1.2em;height:1.2em;cursor:default}.ui-slider .ui-slider-range{position:absolute;z-index:1;font-size: .7em;display:block;border:0}.ui-slider-horizontal{height: .8em}.ui-slider-horizontal .ui-slider-handle{top: -.3em;margin-left: -.6em}.ui-slider-horizontal .ui-slider-range{top:0;height:100%}.ui-slider-horizontal .ui-slider-range-min{left:0}.ui-slider-horizontal .ui-slider-range-max{right:0}.ui-corner-all{-moz-border-radius:4px;-webkit-border-radius:4px;border-radius:4px}.ui-state-default, .ui-widget-content .ui-state-default{border:1px
 solid #ccc;background:#f6f6f6;font-weight:bold;color:#1c94c4;outline:none}.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited{color:#1c94c4;text-decoration:none;outline:none}.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus{border:1px
 solid #fbcb09;background:#fdf5ce;font-weight:bold;color:#c77405;outline:none}.ui-state-hover a, .ui-state-hover a:hover{color:#c77405;text-decoration:none;outline:none}.ui-state-active, .ui-widget-content .ui-state-active{border:1px
-solid #fbd850;background:#fff;font-weight:bold;color:#eb8f00;outline:none}.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited{color:#eb8f00;outline:none;text-decoration:none}#slider{width:400px;font-size:10px;float:right;margin-right:10px}#sliderContainer.sticky{-webkit-box-shadow:2px 2px 5px #DDD;-moz-box-shadow:2px 2px 5px #DDD;box-shadow:2px 2px 5px #DDD;position:fixed;top:0;filter:alpha(opacity=90);opacity:0.9;_position:absolute;_top:expression(eval(document.documentElement.scrollTop))}#sliderContainer{background:url(/img/b5/bg_sub_list.png) repeat-x #f5f5f5 bottom;padding:9px
+solid #fbd850;background:#fff;font-weight:bold;color:#eb8f00;outline:none}.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited{color:#eb8f00;outline:none;text-decoration:none}#slider{width:400px;font-size:10px;float:right;margin-right:10px}#sliderContainer.sticky{-webkit-box-shadow:2px 2px 5px #DDD;-moz-box-shadow:2px 2px 5px #DDD;box-shadow:2px 2px 5px #DDD;position:fixed;top:0;filter:alpha(opacity=90);opacity:0.9;_position:absolute;_top:expression(eval(document.documentElement.scrollTop))}#sliderContainer{background:url(http://bangumi.tv/img/b5/bg_sub_list.png) repeat-x #f5f5f5 bottom;padding:9px
 10px;border:1px
 solid #bbb;height:10px;padding:9px
 10px;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px}div.ui-widget-content{background:#FFF;border:1px
 solid #CCC}.ui-slider{position:relative;text-align:left}.ui-slider .ui-slider-handle{position:absolute;z-index:2;width:1.2em;height:1.2em;cursor:default}.ui-slider .ui-slider-range{position:absolute;z-index:1;font-size: .7em;display:block;border:0}.ui-slider-horizontal{height: .8em}.ui-slider-horizontal .ui-slider-handle{top: -.3em;margin-left: -.6em}.ui-slider-horizontal .ui-slider-range{top:0;height:100%}.ui-slider-horizontal .ui-slider-range-min{left:0}.ui-slider-horizontal .ui-slider-range-max{right:0}.ui-corner-all{-moz-border-radius:4px;-webkit-border-radius:4px;border-radius:4px}.ui-state-default, .ui-widget-content .ui-state-default{border:1px
 solid #ccc;background:#f6f6f6;font-weight:bold;color:#1c94c4;outline:none}.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited{color:#1c94c4;text-decoration:none;outline:none}.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus{border:1px
 solid #fbcb09;background:#fdf5ce;font-weight:bold;color:#c77405;outline:none}.ui-state-hover a, .ui-state-hover a:hover{color:#c77405;text-decoration:none;outline:none}.ui-state-active, .ui-widget-content .ui-state-active{border:1px
-solid #fbd850;background:#fff;font-weight:bold;color:#eb8f00;outline:none}.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited{color:#eb8f00;outline:none;text-decoration:none}#slider{width:400px;font-size:10px;float:right;margin-right:10px}#sliderContainer.sticky{-webkit-box-shadow:2px 2px 5px #DDD;-moz-box-shadow:2px 2px 5px #DDD;box-shadow:2px 2px 5px #DDD;position:fixed;top:0;filter:alpha(opacity=90);opacity:0.9;_position:absolute;_top:expression(eval(document.documentElement.scrollTop))}#sliderContainer{background:url(/img/b5/bg_sub_list.png) repeat-x #f5f5f5 bottom;padding:9px
+solid #fbd850;background:#fff;font-weight:bold;color:#eb8f00;outline:none}.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited{color:#eb8f00;outline:none;text-decoration:none}#slider{width:400px;font-size:10px;float:right;margin-right:10px}#sliderContainer.sticky{-webkit-box-shadow:2px 2px 5px #DDD;-moz-box-shadow:2px 2px 5px #DDD;box-shadow:2px 2px 5px #DDD;position:fixed;top:0;filter:alpha(opacity=90);opacity:0.9;_position:absolute;_top:expression(eval(document.documentElement.scrollTop))}#sliderContainer{background:url(http://bangumi.tv/img/b5/bg_sub_list.png) repeat-x #f5f5f5 bottom;padding:9px
 10px;border:1px
 solid #bbb;height:10px;padding:9px
 10px;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px}div.ui-widget-content{background:#FFF;border:1px
@@ -1851,7 +1851,7 @@ p.opt{font-family:'Bitstream Vera Sans Mono','Courier',monospace;font-size:13px;
 0 5px 0}input[type=text],input[type=password],select,textarea{-webkit-transition:border linear 0.2s,box-shadow linear 0.2s;-moz-transition:border linear 0.2s,box-shadow linear 0.2s;transition:border linear 0.2s,box-shadow linear 0.2s;-webkit-box-shadow:inset 0 1px 3px rgba(0, 0, 0, 0.1);-moz-box-shadow:inset 0 1px 3px rgba(0, 0, 0, 0.1);box-shadow:inset 0 1px 3px rgba(0,0,0,0.1)}textarea:focus{-webkit-box-shadow:inset 0 1px 3px rgba(0, 0, 0, 0.1),0 0 8px rgba(240, 145, 153, 0.6);-moz-box-shadow:inset 0 1px 3px rgba(0, 0, 0, 0.1),0 0 8px rgba(240, 145, 153, 0.6);box-shadow:inset 0 1px 3px rgba(0, 0, 0, 0.1),0 0 8px rgba(240,145,153,0.6)}input.inputtext{border-width:1px;border-style:solid;border-color:#d9d9d9;font-size:15px;padding:5px
 5px;line-height:22px;background-color:#FDFDFD;width:98%;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px}input.inputtext:focus{border-width:1px;border-style:solid;border-color:#F09199;color:#000;-webkit-box-shadow:inset 0 1px 3px rgba(0, 0, 0, 0.1),0 0 8px rgba(240, 145, 153, 0.6);-moz-box-shadow:inset 0 1px 3px rgba(0, 0, 0, 0.1),0 0 8px rgba(240, 145, 153, 0.6);box-shadow:inset 0 1px 3px rgba(0, 0, 0, 0.1),0 0 8px rgba(240, 145, 153, 0.6)}#infobox_normal
 input.inputtext{width:60%}#infobox_normal
-input.inputtext.id{width:30%}input.multiKey,input.multiVal,input.multiVal:focus{background:#C9F}input.multiVal{cursor:pointer}input.multiSubKey{background:#C9F;text-align:right}input.multiSubVal{}input.multiKeyAdd{background:url(/img/ico/ico_add.png) no-repeat;width:16px;height:16px;border:0;cursor:pointer}input.multiKeyDel{background:url(/img/ico/delete.gif) no-repeat;width:16px;height:16px;border:0;cursor:pointer}input.multiKeyDel:hover{background-position:bottom}input.btnPink,input.btnGray{border:0px;background:#F09199;color:#FFF;cursor:pointer;margin:5px
+input.inputtext.id{width:30%}input.multiKey,input.multiVal,input.multiVal:focus{background:#C9F}input.multiVal{cursor:pointer}input.multiSubKey{background:#C9F;text-align:right}input.multiSubVal{}input.multiKeyAdd{background:url(http://bangumi.tv/img/ico/ico_add.png) no-repeat;width:16px;height:16px;border:0;cursor:pointer}input.multiKeyDel{background:url(http://bangumi.tv/img/ico/delete.gif) no-repeat;width:16px;height:16px;border:0;cursor:pointer}input.multiKeyDel:hover{background-position:bottom}input.btnPink,input.btnGray{border:0px;background:#F09199;color:#FFF;cursor:pointer;margin:5px
 0;padding:5px
 25px;font-size:14px;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;line-height:150%;-webkit-appearance:none}input.btnGray{background:#EEE;color:#555}input.btnPink.large{width:100%;font-size:16px;padding:10px
 25px}input.btnPink.green{background-color:#4CAF50}input.btnPink.red{background-color:#C00}input.btnPink:hover,input.btnGray:hover{background:#369CF8;color:#FFF}input.inputBtn,a.fancyBtn{cursor:pointer;font-size:13px;font-weight:bold;border:1px
@@ -1876,9 +1876,9 @@ optgroup{font-weight:normal;font-style:normal;color:#888;background-color:#eee;p
 5px}select#grpCatSlct
 option{padding:2px
 5px}select#grpCatSlct optgroup
-option{text-align:center;color:menutext}div.quote{background:transparent url(/img/ico/quote_l.gif) no-repeat scroll 0 3px;color:#666;margin:5px
+option{text-align:center;color:menutext}div.quote{background:transparent url(http://bangumi.tv/img/ico/quote_l.gif) no-repeat scroll 0 3px;color:#666;margin:5px
 0;overflow:hidden;padding-left:18px;width:430px}div.quote
-q{background:transparent url(/img/ico/quote_r.gif) no-repeat scroll 100% 100%;padding-right:18px}#ModifyRelatedForm,#newIndexRelatedForm{padding:10px}#ModifyRelatedForm #submitBtnO,#newIndexRelatedForm
+q{background:transparent url(http://bangumi.tv/img/ico/quote_r.gif) no-repeat scroll 100% 100%;padding-right:18px}#ModifyRelatedForm,#newIndexRelatedForm{padding:10px}#ModifyRelatedForm #submitBtnO,#newIndexRelatedForm
 #submitBtnO{padding:5px
 0 0 0}form.thickbox{padding:10px}#topicStateForm{padding:10px
 0 0 0}#topicStateForm
@@ -1912,32 +1912,32 @@ solid #0187C5;padding:1px}img.home{margin-bottom:10px}img.grid{margin:2px
 solid #CCC;padding:1px}a.grid:hover img.grid,img.grid_focus{background-color:#FFF;border:1px
 solid #0187C5}img.code{padding:1px;background-color:#FFF;border:1px
 solid #EEE;margin:5px
-10px 0 5px;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;max-width:99%}a.tml_del,a.nt_del,a.ico_del{background:transparent url(/img/ico/icons.gif) no-repeat scroll -2px -33px;display:block;height:13px;position:absolute;top:0;right:0;text-indent:-999em;width:13px;-moz-opacity: .8;opacity: .8;filter:alpha(opacity=80);overflow:hidden}a.tml_del:hover,a.nt_del:hover,a.ico_del:hover{background-position:-2px -46px}a.tml_reply,a.cmt_reply{background:transparent url(/img/ico/ico_ui.png) no-repeat;display:block;height:13px;position:absolute;top:15px;right:5px;text-indent:-999em;width:13px;-moz-opacity: .8;opacity: .8;filter:alpha(opacity=80);overflow:hidden}a.tml_reply:hover,a.cmt_reply:hover{background-position:0 -15px}.pictureFrame{display:block;height:117px;overflow:hidden;position:relative;width:100px}.pictureFrame
-.overlay{background:url(/img/frame/pic_frame.png) left top transparent;display:block;height:115px;left:0pt;position:absolute;top:0pt;width:80px;cursor:pointer}* html .pictureFrame
-.overlay{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/img/frame/pic_frame.png', sizingMethod='crop');cursor:pointer}.pictureFrame
+10px 0 5px;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;max-width:99%}a.tml_del,a.nt_del,a.ico_del{background:transparent url(http://bangumi.tv/img/ico/icons.gif) no-repeat scroll -2px -33px;display:block;height:13px;position:absolute;top:0;right:0;text-indent:-999em;width:13px;-moz-opacity: .8;opacity: .8;filter:alpha(opacity=80);overflow:hidden}a.tml_del:hover,a.nt_del:hover,a.ico_del:hover{background-position:-2px -46px}a.tml_reply,a.cmt_reply{background:transparent url(http://bangumi.tv/img/ico/ico_ui.png) no-repeat;display:block;height:13px;position:absolute;top:15px;right:5px;text-indent:-999em;width:13px;-moz-opacity: .8;opacity: .8;filter:alpha(opacity=80);overflow:hidden}a.tml_reply:hover,a.cmt_reply:hover{background-position:0 -15px}.pictureFrame{display:block;height:117px;overflow:hidden;position:relative;width:100px}.pictureFrame
+.overlay{background:url(http://bangumi.tv/img/frame/pic_frame.png) left top transparent;display:block;height:115px;left:0pt;position:absolute;top:0pt;width:80px;cursor:pointer}* html .pictureFrame
+.overlay{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://bangumi.tv/img/frame/pic_frame.png', sizingMethod='crop');cursor:pointer}.pictureFrame
 .image{display:block;height:108px;left:2px;overflow:hidden;position:absolute;top:2px;width:76px}.pictureFrameGroup{display:block;height:81px;overflow:hidden;position:relative;width:78px}.pictureFrameGroup
-.overlay{background:url(/img/frame/group_frame.png) left top transparent;display:block;height:81px;left:0pt;position:absolute;top:0pt;width:77px;cursor:pointer}.pictureFrameGroup
-.overlay{background:url(/img/frame/group_frame.png) left top transparent;display:block;height:81px;left:0pt;position:absolute;top:0pt;width:77px;cursor:pointer}.pictureFrameGroup
-.rank{padding-top:3px;padding-left:7px;z-index:99;background:url(/img/bangumi/rank_bg.png) no-repeat;display:block;height:20px;left:0pt;position:absolute;top:0pt;width:20px;cursor:pointer;color:#fff}* html .pictureFrameGroup
-.overlay{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/img/frame/group_frame.png', sizingMethod='crop');cursor:pointer}.pictureFrameGroup
+.overlay{background:url(http://bangumi.tv/img/frame/group_frame.png) left top transparent;display:block;height:81px;left:0pt;position:absolute;top:0pt;width:77px;cursor:pointer}.pictureFrameGroup
+.overlay{background:url(http://bangumi.tv/img/frame/group_frame.png) left top transparent;display:block;height:81px;left:0pt;position:absolute;top:0pt;width:77px;cursor:pointer}.pictureFrameGroup
+.rank{padding-top:3px;padding-left:7px;z-index:99;background:url(http://bangumi.tv/img/bangumi/rank_bg.png) no-repeat;display:block;height:20px;left:0pt;position:absolute;top:0pt;width:20px;cursor:pointer;color:#fff}* html .pictureFrameGroup
+.overlay{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://bangumi.tv/img/frame/group_frame.png', sizingMethod='crop');cursor:pointer}.pictureFrameGroup
 .image{display:block;height:73px;left:2px;overflow:hidden;position:absolute;top:2px;width:74px}.pictureFrameGrid{display:block;height:100px;overflow:hidden;position:relative;width:100px}.pictureFrameGrid
 .image{display:block;height:91px;left:2px;overflow:hidden;position:absolute;top:2px;width:96px}.pictureFrameGrid
-.overlay{position:absolute;display:block;top:0;left:0;height:100px;width:100px;background:url(/img/frame/pic_frame_grid.png) left top transparent;cursor:pointer}* html .pictureFrameGrid
-.overlay{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/img/frame/pic_frame_grid.png',sizingMethod='crop');cursor:pointer}.starsinfo{background:transparent url(/img/ico/star_s.gif) no-repeat;display:inline-block;height:11px;margin:0;width:50px}.sstars10{background-position:left 1px}.sstars9{background-position:right 1px}.sstars8{background-position:left -11px}.sstars7{background-position:right -11px}.sstars6{background-position:left -24px}.sstars5{background-position:right -24px}.sstars4{background-position:left -37px}.sstars3{background-position:right -37px}.sstars2{background-position:left bottom}.sstars1{background-position:right bottom}.starstop{background:transparent url(/img/ico/star_l.png) no-repeat;display:block;float:left;height:14px;margin:1px
+.overlay{position:absolute;display:block;top:0;left:0;height:100px;width:100px;background:url(http://bangumi.tv/img/frame/pic_frame_grid.png) left top transparent;cursor:pointer}* html .pictureFrameGrid
+.overlay{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://bangumi.tv/img/frame/pic_frame_grid.png',sizingMethod='crop');cursor:pointer}.starsinfo{background:transparent url(http://bangumi.tv/img/ico/star_s.gif) no-repeat;display:inline-block;height:11px;margin:0;width:50px}.sstars10{background-position:left 1px}.sstars9{background-position:right 1px}.sstars8{background-position:left -11px}.sstars7{background-position:right -11px}.sstars6{background-position:left -24px}.sstars5{background-position:right -24px}.sstars4{background-position:left -37px}.sstars3{background-position:right -37px}.sstars2{background-position:left bottom}.sstars1{background-position:right bottom}.starstop{background:transparent url(http://bangumi.tv/img/ico/star_l.png) no-repeat;display:block;float:left;height:14px;margin:1px
 0pt 0pt 7px;width:71px}.stars10{background-position:left 0}.stars9{background-position:right 0}.stars8{background-position:left -15px}.stars7{background-position:right -15px}.stars6{background-position:left -30px}.stars5{background-position:right -30px}.stars4{background-position:left -45px}.stars3{background-position:right -45px}.stars2{background-position:left -60px}.stars1{background-position:right -60px}.starb{float:left !important}div.rating-cancel,div.star-rating{float:left;width:17px;height:15px;text-indent:-999em;cursor:pointer;display:block;background:transparent;overflow:hidden}div.rating-cancel,div.rating-cancel
-a{background:url(/img/ico/delete.gif) no-repeat 0 -16px}div.star-rating,div.star-rating
-a{background:url(/img/ico/star.gif) no-repeat 0 0px}div.rating-cancel a,div.star-rating
+a{background:url(http://bangumi.tv/img/ico/delete.gif) no-repeat 0 -16px}div.star-rating,div.star-rating
+a{background:url(http://bangumi.tv/img/ico/star.gif) no-repeat 0 0px}div.rating-cancel a,div.star-rating
 a{display:block;width:16px;height:100%;background-position:0 0px;border:0}div.star-rating-on
 a{background-position:0 -16px!important}div.star-rating-hover
 a{background-position:0 -32px}div.star-rating-readonly
-a{cursor:default !important}div.star-rating{background:transparent!important;overflow:hidden!important}a.icons_cmt{background:url(/img/ico/ico_ui.png) no-repeat 0 0;padding-left:17px}a.icons_cmt:hover{background-position:0 -15px}a.icons_play{background:url(/img/ico/icons.gif) no-repeat 0 -17px;padding-left:17px}.photo_pre{position:relative}#related_subject_list
+a{cursor:default !important}div.star-rating{background:transparent!important;overflow:hidden!important}a.icons_cmt{background:url(http://bangumi.tv/img/ico/ico_ui.png) no-repeat 0 0;padding-left:17px}a.icons_cmt:hover{background-position:0 -15px}a.icons_play{background:url(http://bangumi.tv/img/ico/icons.gif) no-repeat 0 -17px;padding-left:17px}.photo_pre{position:relative}#related_subject_list
 li{position:relative}span a.photo_del,span
-a.related_del{background:transparent url(/img/ico/icons.gif) no-repeat scroll -2px -33px;display:block;height:13px;position:absolute;right:0;text-indent:-999em;top:0;width:13px;-moz-opacity: .8;opacity: .8;filter:alpha(opacity=80);overflow:hidden}span a:hover.photo_del,span a:hover.related_del{background-position:-2px -46px}.shareBtn{color:#FFF}.shareBtn
+a.related_del{background:transparent url(http://bangumi.tv/img/ico/icons.gif) no-repeat scroll -2px -33px;display:block;height:13px;position:absolute;right:0;text-indent:-999em;top:0;width:13px;-moz-opacity: .8;opacity: .8;filter:alpha(opacity=80);overflow:hidden}span a:hover.photo_del,span a:hover.related_del{background-position:-2px -46px}.shareBtn{color:#FFF}.shareBtn
 .shareText{display:inline-block;line-height:100%;background:#f09199;padding:4px
 5px;margin:0
 5px 0 0;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;-webkit-border-radius:5px}.shareBtn
 a{display:inline-block;width:16px;height:16px;margin:0
-5px 0 0;background:transparent url('/img/btn/btn_share.png') no-repeat}.shareBtn
+5px 0 0;background:transparent url('http://bangumi.tv/img/btn/btn_share.png') no-repeat}.shareBtn
 a.share_sina{background-position:0 0}.shareBtn
 a.share_douban{background-position:0 -16px}.shareBtn
 a.share_qq{background-position:0 -32px}.shareBtn
@@ -1976,57 +1976,57 @@ div.ui_10{width:150px;height:355px;color:#AB515D;padding:0px
 10px 0 10px}#ukagaka_shell
 div.ui_11{width:180px;height:310px;color:#AB515D;padding:0px
 10px 0 10px}#ukagaka_shell
-.shell_1{background:url("/img/ukagaka/shell_1.gif") no-repeat top right}#ukagaka_shell .shell_1
+.shell_1{background:url("http://bangumi.tv/img/ukagaka/shell_1.gif") no-repeat top right}#ukagaka_shell .shell_1
 #ukagaka_voice{top:140px;left:80px}#ukagaka_shell
-.shell_2{background:url("/img/ukagaka/shell_2.png") no-repeat top right}#ukagaka_shell .shell_2
+.shell_2{background:url("http://bangumi.tv/img/ukagaka/shell_2.png") no-repeat top right}#ukagaka_shell .shell_2
 #ukagaka_voice{top:70px;left:75px}#ukagaka_shell
-.shell_3{background:url("/img/ukagaka/shell_3.png") no-repeat top right}#ukagaka_shell .shell_3
+.shell_3{background:url("http://bangumi.tv/img/ukagaka/shell_3.png") no-repeat top right}#ukagaka_shell .shell_3
 #ukagaka_voice{top:80px;left:75px}#ukagaka_shell
-.shell_4{margin-bottom:10px;background:url("/img/ukagaka/shell_4.png") no-repeat top right}#ukagaka_shell .shell_4
+.shell_4{margin-bottom:10px;background:url("http://bangumi.tv/img/ukagaka/shell_4.png") no-repeat top right}#ukagaka_shell .shell_4
 #ukagaka_voice{top:85px;left:85px}#ukagaka_shell
-.shell_5{background:url("/img/ukagaka/shell_5.png") no-repeat top right}#ukagaka_shell .shell_5
+.shell_5{background:url("http://bangumi.tv/img/ukagaka/shell_5.png") no-repeat top right}#ukagaka_shell .shell_5
 #ukagaka_voice{top:75px;left:85px}#ukagaka_shell
-.shell_6{background:url("/img/ukagaka/shell_6.png") no-repeat top right}#ukagaka_shell .shell_6
+.shell_6{background:url("http://bangumi.tv/img/ukagaka/shell_6.png") no-repeat top right}#ukagaka_shell .shell_6
 #ukagaka_voice{top:70px;left:85px}#ukagaka_shell
-.shell_7{background:url("/img/ukagaka/shell_7.png") no-repeat top right}#ukagaka_shell .shell_7
+.shell_7{background:url("http://bangumi.tv/img/ukagaka/shell_7.png") no-repeat top right}#ukagaka_shell .shell_7
 #ukagaka_voice{top:70px;left:85px}#ukagaka_shell
-.shell_8{background:url("/img/ukagaka/shell_8.png") no-repeat top right}#ukagaka_shell
-.shell_9{background:url("/img/ukagaka/shell_9.png") no-repeat top right}#ukagaka_shell .shell_9
+.shell_8{background:url("http://bangumi.tv/img/ukagaka/shell_8.png") no-repeat top right}#ukagaka_shell
+.shell_9{background:url("http://bangumi.tv/img/ukagaka/shell_9.png") no-repeat top right}#ukagaka_shell .shell_9
 #ukagaka_voice{top:85px;left:75px}#ukagaka_shell
-.shell_10{background:url("/img/ukagaka/shell_10.png") no-repeat top right}#ukagaka_shell
-.shell_11{margin-bottom:15px;background:url("/img/ukagaka/shell_11.gif") no-repeat bottom right}#ukagaka_shell .shell_11
+.shell_10{background:url("http://bangumi.tv/img/ukagaka/shell_10.png") no-repeat top right}#ukagaka_shell
+.shell_11{margin-bottom:15px;background:url("http://bangumi.tv/img/ukagaka/shell_11.gif") no-repeat bottom right}#ukagaka_shell .shell_11
 #ukagaka_voice{top:110px;left:40px}#ukagaka_shell
-.shell_12{margin-bottom:20px;background:url("/img/ukagaka/shell_12.gif") no-repeat bottom right}#ukagaka_shell .shell_12
+.shell_12{margin-bottom:20px;background:url("http://bangumi.tv/img/ukagaka/shell_12.gif") no-repeat bottom right}#ukagaka_shell .shell_12
 #ukagaka_voice{top:150px;left:30px}#ukagaka_shell
-.shell_13{margin-bottom:20px;background:url("/img/ukagaka/shell_13.gif") no-repeat bottom right}#ukagaka_shell .shell_13
+.shell_13{margin-bottom:20px;background:url("http://bangumi.tv/img/ukagaka/shell_13.gif") no-repeat bottom right}#ukagaka_shell .shell_13
 #ukagaka_voice{top:130px;left:55px}#ukagaka_shell
-.shell_14{margin-bottom:15px;background:url("/img/ukagaka/shell_14.gif") no-repeat bottom right}#ukagaka_shell .shell_14
+.shell_14{margin-bottom:15px;background:url("http://bangumi.tv/img/ukagaka/shell_14.gif") no-repeat bottom right}#ukagaka_shell .shell_14
 #ukagaka_voice{top:70px;left:45px}#ukagaka_shell
-.shell_15{margin-bottom:15px;background:url("/img/ukagaka/shell_15.gif") no-repeat bottom right}#ukagaka_shell
-.shell_16{margin-bottom:15px;background:url("/img/ukagaka/shell_16.gif") no-repeat bottom right}#ukagaka_shell .shell_16
+.shell_15{margin-bottom:15px;background:url("http://bangumi.tv/img/ukagaka/shell_15.gif") no-repeat bottom right}#ukagaka_shell
+.shell_16{margin-bottom:15px;background:url("http://bangumi.tv/img/ukagaka/shell_16.gif") no-repeat bottom right}#ukagaka_shell .shell_16
 #ukagaka_voice{top:105px;left:80px}#ukagaka_shell
-.shell_17{margin-bottom:15px;background:url("/img/ukagaka/shell_17.gif") no-repeat bottom right}#ukagaka_shell .shell_17
+.shell_17{margin-bottom:15px;background:url("http://bangumi.tv/img/ukagaka/shell_17.gif") no-repeat bottom right}#ukagaka_shell .shell_17
 #ukagaka_voice{top:85px;left:75px}#ukagaka_shell
-.shell_18{margin-bottom:15px;background:url("/img/ukagaka/shell_18.gif") no-repeat bottom right}#ukagaka_shell .shell_18
+.shell_18{margin-bottom:15px;background:url("http://bangumi.tv/img/ukagaka/shell_18.gif") no-repeat bottom right}#ukagaka_shell .shell_18
 #ukagaka_voice{top:105px;left:110px}#ukagaka_shell
-.shell_19{margin-bottom:15px;background:url("/img/ukagaka/shell_19.gif") no-repeat bottom right}#ukagaka_shell .shell_19
+.shell_19{margin-bottom:15px;background:url("http://bangumi.tv/img/ukagaka/shell_19.gif") no-repeat bottom right}#ukagaka_shell .shell_19
 #ukagaka_voice{top:90px;left:65px}#ukagaka_shell
-.shell_20{margin-bottom:15px;background:url("/img/ukagaka/shell_20.gif") no-repeat bottom right}#ukagaka_shell .shell_20
+.shell_20{margin-bottom:15px;background:url("http://bangumi.tv/img/ukagaka/shell_20.gif") no-repeat bottom right}#ukagaka_shell .shell_20
 #ukagaka_voice{top:95px;left:95px}#ukagaka_shell
-.shell_22{margin-bottom:20px;background:url("/img/ukagaka/shell_22.png") no-repeat bottom right}#ukagaka_shell .shell_22
+.shell_22{margin-bottom:20px;background:url("http://bangumi.tv/img/ukagaka/shell_22.png") no-repeat bottom right}#ukagaka_shell .shell_22
 #ukagaka_voice{top:120px;left:120px}.ukagaka_balloon_pink
 hr.board{height:2px;background-color:#D98D88;border:0;border-bottom:1px solid #FFF;color:#D98D88}.ukagaka_balloon_pink{width:340px;margin-left: -320px}.ukagaka_balloon_pink
 .inner{min-height:50px;padding:10px
-10px 5px 10px;background:url("/img/ukagaka/balloon_pink.png") no-repeat top left}.ukagaka_balloon_pink_bottom{width:337px;height:11px;background:url("/img/ukagaka/balloon_pink.png") no-repeat bottom left}div#robot_balloon
+10px 5px 10px;background:url("http://bangumi.tv/img/ukagaka/balloon_pink.png") no-repeat top left}.ukagaka_balloon_pink_bottom{width:337px;height:11px;background:url("http://bangumi.tv/img/ukagaka/balloon_pink.png") no-repeat bottom left}div#robot_balloon
 a.new_notify{background:#D98D88;color:#FFF;padding:2px
 5px;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px}div#robot_balloon a:hover.new_notify{background:#9B2838}div#robot_balloon
 a.notify{background:#9B2838};.ukagaka_balloon_1_1{padding:10px
-20px;height:90px;width:295px;background:url("/img/ukagaka/balloon.png") no-repeat top left}.ukagaka_balloon_1_2{padding:10px
-20px;height:160px;width:300px;background:url("/img/ukagaka/balloon2.png") no-repeat top left}div#robot_balloon.ukagaka_balloon_1_2 a.nav,div#robot_balloon.ukagaka_balloon_1_1
-a.nav{color:#EFEFEF}div#robot_balloon.ukagaka_balloon_1_2 a.nav:hover,div#robot_balloon.ukagaka_balloon_1_1 a:hover.nav{color:#FFF}.ukagaka_balloon_2_1{padding:10px;height:80px;width:320px;color:#AB515D;background:url("/img/ukagaka/balloon3_ie.png") no-repeat top left}.ukagaka_balloon_2_2{padding:10px
-20px;height:150px;width:300px;background:url("/img/ukagaka/balloon4_ie.png") no-repeat top left}div#robot_balloon.ukagaka_balloon_2_1 a.nav,div#robot_balloon.ukagaka_balloon_2_2 a.nav,div.ukagaka_balloon_pink
+20px;height:90px;width:295px;background:url("http://bangumi.tv/img/ukagaka/balloon.png") no-repeat top left}.ukagaka_balloon_1_2{padding:10px
+20px;height:160px;width:300px;background:url("http://bangumi.tv/img/ukagaka/balloon2.png") no-repeat top left}div#robot_balloon.ukagaka_balloon_1_2 a.nav,div#robot_balloon.ukagaka_balloon_1_1
+a.nav{color:#EFEFEF}div#robot_balloon.ukagaka_balloon_1_2 a.nav:hover,div#robot_balloon.ukagaka_balloon_1_1 a:hover.nav{color:#FFF}.ukagaka_balloon_2_1{padding:10px;height:80px;width:320px;color:#AB515D;background:url("http://bangumi.tv/img/ukagaka/balloon3_ie.png") no-repeat top left}.ukagaka_balloon_2_2{padding:10px
+20px;height:150px;width:300px;background:url("http://bangumi.tv/img/ukagaka/balloon4_ie.png") no-repeat top left}div#robot_balloon.ukagaka_balloon_2_1 a.nav,div#robot_balloon.ukagaka_balloon_2_2 a.nav,div.ukagaka_balloon_pink
 a.nav{color:#9B2838}div#robot_balloon.ukagaka_balloon_2_1 a:hover.nav,div#robot_balloon.ukagaka_balloon_2_2 a:hover.nav, .ukagaka_balloon_pink a:hover.nav{color:#333}#cluetip-close
-img{border:0}#cluetip-title{overflow:hidden}#cluetip-title #cluetip-close{float:right;position:relative}#cluetip-waitimage{width:43px;height:11px;position:absolute;background-image:url(/img/loadingAnimation.gif)}.cluetip-arrows{display:none;position:absolute;top:0;left: -11px;height:22px;width:11px;background-repeat:no-repeat;background-position:0 0}#cluetip-extra{display:none}.cluetip-default{background-color:#F7F7F7}.cluetip-default #cluetip-outer{position:relative;margin:0;background-color:#FFF;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#FAFAFA');background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#FAFAFA));background: -moz-linear-gradient(top,  #fff,  #FAFAFA);background: -o-linear-gradient(top,  #fff,  #FAFAFA);-moz-box-shadow:0px 0 5px #CCC;;-webkit-box-shadow:0px 0 5px #CCC;box-shadow:0px 0 5px #CCC;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px}.cluetip-default h3#cluetip-title{margin:0;padding:8px
+img{border:0}#cluetip-title{overflow:hidden}#cluetip-title #cluetip-close{float:right;position:relative}#cluetip-waitimage{width:43px;height:11px;position:absolute;background-image:url(http://bangumi.tv/img/loadingAnimation.gif)}.cluetip-arrows{display:none;position:absolute;top:0;left: -11px;height:22px;width:11px;background-repeat:no-repeat;background-position:0 0}#cluetip-extra{display:none}.cluetip-default{background-color:#F7F7F7}.cluetip-default #cluetip-outer{position:relative;margin:0;background-color:#FFF;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#FAFAFA');background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#FAFAFA));background: -moz-linear-gradient(top,  #fff,  #FAFAFA);background: -o-linear-gradient(top,  #fff,  #FAFAFA);-moz-box-shadow:0px 0 5px #CCC;;-webkit-box-shadow:0px 0 5px #CCC;box-shadow:0px 0 5px #CCC;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px}.cluetip-default h3#cluetip-title{margin:0;padding:8px
 10px 4px;font-size:1.1em;font-weight:normal;background-color:#F09199;color:#fff;-moz-border-radius:0 5px 0 0;-webkit-border-radius:0 5px 0 0;border-radius:0 5px 0 0}.cluetip-default #cluetip-title
 a{color:#EEE;font-size:0.95em}.cluetip-default #cluetip-title a:hover{color:#FFF}.cluetip-default #cluetip-inner{padding:5px
 10px}.cluetip-default #cluetip-inner
@@ -2036,8 +2036,8 @@ p.epBtnCu{float:right;color:#FFF;background:#F09199;padding:5px
 10px;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px}.cluetip-default #cluetip-inner
 a.ep_status{display:inline-block;color:#0084B4;padding:5px
 10px;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px}.cluetip-default #cluetip-inner a.ep_status:hover{background:#F09199;color:#FFF;text-decoration:none}.cluetip-default div#cluetip-close{text-align:right;margin:0
-5px 5px;color:#fff}.clue-right-default .cluetip-arrows{background-image:url(/img/darrowleft.png);z-index:80;_margin-top:1px}.clue-bottom-default .cluetip-arrows{background-image:url(/img/darrowup.gif);top: -11px;left:50%;margin-left: -11px;height:11px;width:22px}.cluetip-rounded #cluetip-title,
-.cluetip-rounded #cluetip-inner{zoom:1}#TB_window{font:12px Arial,Helvetica,sans-serif;color:#333}#TB_secondLine{font:10px Arial,Helvetica,sans-serif;color:#666}.TB_overlayActive{position:fixed;z-index:100;top:0px;left:0px;height:100%;width:100%}.TB_overlayMacFFBGHack{background:url(/img/macFFBgHack.png) repeat}.TB_overlayBG{background-color:#000;filter:alpha(opacity=75);-moz-opacity:0.75;opacity:0.75}* html
+5px 5px;color:#fff}.clue-right-default .cluetip-arrows{background-image:url(http://bangumi.tv/img/darrowleft.png);z-index:80;_margin-top:1px}.clue-bottom-default .cluetip-arrows{background-image:url(http://bangumi.tv/img/darrowup.gif);top: -11px;left:50%;margin-left: -11px;height:11px;width:22px}.cluetip-rounded #cluetip-title,
+.cluetip-rounded #cluetip-inner{zoom:1}#TB_window{font:12px Arial,Helvetica,sans-serif;color:#333}#TB_secondLine{font:10px Arial,Helvetica,sans-serif;color:#666}.TB_overlayActive{position:fixed;z-index:100;top:0px;left:0px;height:100%;width:100%}.TB_overlayMacFFBGHack{background:url(http://bangumi.tv/img/macFFBgHack.png) repeat}.TB_overlayBG{background-color:#000;filter:alpha(opacity=75);-moz-opacity:0.75;opacity:0.75}* html
 #TB_overlay{position:absolute;height:expression(document.body.scrollHeight > document.body.offsetHeight ? document.body.scrollHeight : document.body.offsetHeight + 'px')}* html
 .TB_overlayActive{position:absolute;height:expression(document.body.scrollHeight > document.body.offsetHeight ? document.body.scrollHeight : document.body.offsetHeight+'px')}#TB_window{position:fixed;background:#fff;z-index:102;color:#000;display:none;text-align:left;top:50%;left:50%;-moz-box-shadow:0px 0 15px #555;-webkit-box-shadow:0px 0 15px #555;box-shadow:0px 5px 20px rgba(0, 0, 0, 0.5);-moz-border-radius:10px;-webkit-border-radius:10px;border-radius:10px}* html
 #TB_window{position:absolute;margin-top:expression(0 - parseInt(this.offsetHeight / 2) + (TBWindowMargin = document.documentElement && document.documentElement.scrollTop || document.body.scrollTop) + 'px')}#TB_window
@@ -2049,7 +2049,7 @@ img#TB_Image{display:block;margin:15px
 10px;line-height:35px;font-size:16px;font-weight:bold}#TB_title{height:35px;background:#F09199;color:#FFF;position:relative;-moz-border-radius:10px 10px 0 0;-webkit-border-radius:10px 10px 0 0;border-radius:10px 10px 0 0}#TB_ajaxContent{clear:both;overflow:auto;text-align:left;line-height:1.4em}#TB_ajaxContent.TB_modal{padding:15px}#TB_ajaxContent
 p{}#TB_load{position:fixed;display:none;height:13px;width:208px;z-index:103;top:50%;left:50%;margin: -6px 0 0 -104px}* html
 #TB_load{position:absolute;margin-top:expression(0 - parseInt(this.offsetHeight / 2) + (TBWindowMargin = document.documentElement && document.documentElement.scrollTop || document.body.scrollTop)+'px')}#TB_HideSelect{z-index:99;position:fixed;top:0;left:0;background-color:#fff;border:none;filter:alpha(opacity=0);-moz-opacity:0;opacity:0;height:100%;width:100%}* html
-#TB_HideSelect{position:absolute;height:expression(document.body.scrollHeight > document.body.offsetHeight ? document.body.scrollHeight : document.body.offsetHeight+'px')}#TB_iframeContent{clear:both;border:none;margin-bottom:-1px;margin-top:1px;_margin-bottom:1px}#TB_title a:hover{color:#000}#TB_title a:link{color:#FFF}#TB_closeWindowButton{color:#FFF;text-indent: -9999px;background:url('/img/ico/closebox.png');width:30px;height:30px;cursor:pointer;position:absolute;top:-12px;right: -12px}.fileUploadQueueItem{font:11px Verdana, Geneva, sans-serif;background-color:#F5F5F5;border:2px
+#TB_HideSelect{position:absolute;height:expression(document.body.scrollHeight > document.body.offsetHeight ? document.body.scrollHeight : document.body.offsetHeight+'px')}#TB_iframeContent{clear:both;border:none;margin-bottom:-1px;margin-top:1px;_margin-bottom:1px}#TB_title a:hover{color:#000}#TB_title a:link{color:#FFF}#TB_closeWindowButton{color:#FFF;text-indent: -9999px;background:url('http://bangumi.tv/img/ico/closebox.png');width:30px;height:30px;cursor:pointer;position:absolute;top:-12px;right: -12px}.fileUploadQueueItem{font:11px Verdana, Geneva, sans-serif;background-color:#F5F5F5;border:2px
 solid #E5E5E5;margin:5px
 0 0 0;padding:2px
 5px;width:95%}.fileUploadQueueItem
@@ -2079,7 +2079,7 @@ textarea.quick{max-width:470px}.tooltip{position:absolute;z-index:1020;display:b
 ul.large{}div.BgmCalendar ul.large
 li.week{float:left;width:135px}div.BgmCalendar
 h3{text-indent: -9999px}div.BgmCalendar dl
-dt{background:url('/img/b5/ico_week.png') no-repeat;height:60px;width:135px}div.BgmCalendar dl
+dt{background:url('http://bangumi.tv/img/b5/ico_week.png') no-repeat;height:60px;width:135px}div.BgmCalendar dl
 dt.Sun{background-position:0}div.BgmCalendar dl
 dt.Mon{background-position: -135px}div.BgmCalendar dl
 dt.Tue{background-position: -270px}div.BgmCalendar dl
@@ -2113,18 +2113,18 @@ li{float:left}@media only screen and (-webkit-min-device-pixel-ratio: 2),
 only screen and (min--moz-device-pixel-ratio: 2),
 only screen and (     -o-min-device-pixel-ratio: 2/1),
 only screen and (        min-device-pixel-ratio: 2){body.bangumi{}#columnIntroA
-div.musume{background-image:url("/img/bg/bg_intro_musume_2x.png");background-size:300px 215px}/*/*/#columnIntroA #sliderSequence
+div.musume{background-image:url("http://bangumi.tv/img/bg/bg_intro_musume_2x.png");background-size:300px 215px}/*/*/#columnIntroA #sliderSequence
 p.thumb{background-image:url("https://pic.yupoo.com/fotomag/Cpg0nF4C/Zpxer.jpg");background-size:270px}div#logo
-a.logo{background:url('/img/logo_rc1_2x.png') no-repeat;background-size:175px 43px}#headerSearch
-input.search{background-image:url('/img/rc2/ico_search_2x.png');background-size:20px 20px}#headerNeue2
-div.bg{background-image:url('/img/rc3/bg_musume_2x.png');background-size:280px 75px}#headerNeue2
-a.logo{background-image:url('/img/rc3/logo_2x.png');background-size:130px 35px}ul#prgSubjectList li a.prgCheckIn, #cloumnSubjectInfo .tinyMode div.tinyHeader a.prgCheckIn, ul.listEpPrgManager
-a.prgCheckIn{background-image:url('/img/ico/ico_eye_2x.png');background-size:25px 36px}#prgManagerHeader ul#prgManagerMode li a
-span{background-image:url('/img/ico/ico_prg_mode_2x.png');background-size:20px 36px}#rakuenHeader
-a.logo{background-image:url('/img/logo/logo_rakuen_2x.png');background-size:240px 60px}#wrapper{background:transparent url('/img/rc2/bg_header_2x_v2.png') repeat-x;background-size:50px 50px}#headerNeue{background:transparent url('/img/rc2/bg_musume_2x_v3.png') no-repeat right;background-size:900px 50px}#headerNeue
-a.logo{background-image:url('/img/rc2/logo_rc2_2x.png');background-size:145px 50px}#navNeue{background-image:url('/img/rc2/bg_nav_2x.png');background-size:50px 35px}.tipIntro
-.musume{background-image:url('/img/rc3/bg_musume_2x.png');background-size:280px 75px}#navNeue2 #navMenuNeue li.doujin
-a{background:url('/img/doujin/logo_doujin_2x.png') no-repeat;background-size:80px 50px}span.ico_subject_type{background:transparent url('/img/ico/subject_type_2x.png') no-repeat;background-size:15px 100px}a.icons_cmt{background-image:url(/img/ico/ico_ui_2x.png);background-size:15px 100px}a.tml_reply,a.cmt_reply{background-image:url(/img/ico/ico_ui_2x.png);background-size:15px 100px}}@media (max-width:640px){#wrapperNeue{min-width:100%}#headerNeue2{min-width:100%}#headerNeue2
+a.logo{background:url('http://bangumi.tv/img/logo_rc1_2x.png') no-repeat;background-size:175px 43px}#headerSearch
+input.search{background-image:url('http://bangumi.tv/img/rc2/ico_search_2x.png');background-size:20px 20px}#headerNeue2
+div.bg{background-image:url('http://bangumi.tv/img/rc3/bg_musume_2x.png');background-size:280px 75px}#headerNeue2
+a.logo{background-image:url('http://bangumi.tv/img/rc3/logo_2x.png');background-size:130px 35px}ul#prgSubjectList li a.prgCheckIn, #cloumnSubjectInfo .tinyMode div.tinyHeader a.prgCheckIn, ul.listEpPrgManager
+a.prgCheckIn{background-image:url('http://bangumi.tv/img/ico/ico_eye_2x.png');background-size:25px 36px}#prgManagerHeader ul#prgManagerMode li a
+span{background-image:url('http://bangumi.tv/img/ico/ico_prg_mode_2x.png');background-size:20px 36px}#rakuenHeader
+a.logo{background-image:url('http://bangumi.tv/img/logo/logo_rakuen_2x.png');background-size:240px 60px}#wrapper{background:transparent url('http://bangumi.tv/img/rc2/bg_header_2x_v2.png') repeat-x;background-size:50px 50px}#headerNeue{background:transparent url('http://bangumi.tv/img/rc2/bg_musume_2x_v3.png') no-repeat right;background-size:900px 50px}#headerNeue
+a.logo{background-image:url('http://bangumi.tv/img/rc2/logo_rc2_2x.png');background-size:145px 50px}#navNeue{background-image:url('http://bangumi.tv/img/rc2/bg_nav_2x.png');background-size:50px 35px}.tipIntro
+.musume{background-image:url('http://bangumi.tv/img/rc3/bg_musume_2x.png');background-size:280px 75px}#navNeue2 #navMenuNeue li.doujin
+a{background:url('http://bangumi.tv/img/doujin/logo_doujin_2x.png') no-repeat;background-size:80px 50px}span.ico_subject_type{background:transparent url('http://bangumi.tv/img/ico/subject_type_2x.png') no-repeat;background-size:15px 100px}a.icons_cmt{background-image:url(http://bangumi.tv/img/ico/ico_ui_2x.png);background-size:15px 100px}a.tml_reply,a.cmt_reply{background-image:url(http://bangumi.tv/img/ico/ico_ui_2x.png);background-size:15px 100px}}@media (max-width:640px){#wrapperNeue{min-width:100%}#headerNeue2{min-width:100%}#headerNeue2
 .headerNeueInner{width:auto;padding:0
 5px}#headerNeue2
 #headerSearchWrapper{display:none}#headerNeue2
@@ -2144,7 +2144,7 @@ li{float:none}#navMenuNeue li a,
 #navMenuNeue li a.top_lite,
 #navNeue2 #navMenuNeue li a.chl,
 #navNeue2 #navMenuNeue li a.anime,
-#navNeue2 #navMenuNeue li a.real,
+#navNeue2 #navMenuNeue li a.game,
 #navMenuNeue li:hover a.top span, #navMenuNeue li.sfhover a.top
 span{display:block;float:none;-moz-border-radius:0;-webkit-border-radius:0;border-radius:0;margin:0;padding:0;border:none;line-height:30px}#navMenuNeue li a,
 #navNeue2 #navMenuNeue li a.chl,

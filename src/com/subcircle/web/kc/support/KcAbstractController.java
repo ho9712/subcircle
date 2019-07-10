@@ -136,5 +136,69 @@ public abstract class KcAbstractController implements ControllerInterface
 	/*********************************************************************
 	 * 						根据需要在此写方法
 	 *********************************************************************/
+	
+	
+	/**
+	 * 用于kc02，显示番剧表排名信息
+	 * @throws Exception
+	 */
+	
+	protected final void ShowAnimebyRank()throws Exception
+	{
+		List<Map<String, String>> rows=this.services.queryByCondition();
+//		System.out.println(rows.size());
+		if(rows.size()>0)
+		{
+			this.saveAttribute("rows", rows);
+		}
+		else
+		{
+			this.saveAttribute("msg", "没有排名信息！");
+		}
+	}
+	
+	
+	/**
+	 * 用于kc03，显示书籍表排名信息
+	 * @throws Exception
+	 */
+	
+	
+	protected final void ShowBookbyRank() throws Exception
+	{
+		List<Map<String, String>> rows=this.services.queryByCondition();
+		if(rows.size()>0)
+		{
+			this.saveAttribute("rows", rows);
+		}
+		else
+		{
+			this.saveAttribute("msg", "没有排名信息！");
+		}
+	}
+	
+	
+	/**
+	 * 用于kc04，显示游戏表排名信息
+	 * @throws Exception
+	 */
+	
+	protected final void ShowGamebyRank() throws Exception
+	{
+		List<Map<String, String>> rows=this.services.queryByCondition();
+		if(rows.size()>0)
+		{
+			this.saveAttribute("rows", rows);
+		}
+		else
+		{
+			this.saveAttribute("msg", "没有排名信息！");
+		}
+	}
+	
+	
+	
+	
+	
 
 }
