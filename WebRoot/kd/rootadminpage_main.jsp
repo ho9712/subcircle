@@ -151,18 +151,15 @@
 	
     <!-- 顶部头像菜单 -->
     <div class="idBadgerNeue">
-		<a class="avatar" href="<%=path%>/kd/userpage_main.jsp">
+		<a class="avatar" href="<%=path%>/kd/rootadminpage_main.jsp">
 			<img src="${sessionScope.user.kkd108}" onerror="this.src='<%=path %>/img/avatar/def_avatar.png'" class="port" width="33px" height="33px"/>
 		</a>
 		<ul id="badgeUserPanel">
-			<li><a href="<%=path%>/kd/userpage_main.jsp">时光机</a></li>                    
-       		<li><a href="http://bangumi.tv/user/481528/blog">作品</a></li>
-       		<li><a href="http://bangumi.tv/user/481528/mono">论坛</a></li>
-       		<li><a href="http://bangumi.tv/user/481528/index">商城</a></li>
-	    	
+			<li><a href="<%=path%>/kd/rootadminpage_main.jsp">账号</a></li>                    
+	    	<li class="row"><a href="<%= path %>/kd01QueryAdmin.kdhtml">管理员</a></li>
 	        <li class="row">
 		        <a href="http://bangumi.tv/pm">短信</a> | 
-		        <a href="<%=path%>/kd/userpage_info.jsp">设置</a> | 
+		        <a href="<%=path%>/kd/rootadminpage_info.jsp">设置</a> | 
 		        <a href="<%=path%>/logout.kdhtml">登出</a>
 	        </li>
     	</ul>	
@@ -205,11 +202,11 @@
             </div>
 
             <div class="headerAvatar">
-                <a href="<%=path%>/kd/userpage_main.jsp" class="avatar"><span class="avatarNeue avatarSize75" style="background-image:url('${sessionScope.user.kkd108}')"></span></a>
+                <a href="<%=path%>/kd/rootadminpage_main.jsp" class="avatar"><span class="avatarNeue avatarSize75" style="background-image:url('${sessionScope.user.kkd108}') "></span></a>
             </div>
 
             <div class="inner">
-                <a href="<%=path%>/kd/userpage_main.jsp">${sessionScope.user.kkd102 }</a> <small class="grey">@${sessionScope.user.kkd101 }</small>
+                <a href="<%=path%>/rootadminpage_main.jsp">${sessionScope.user.kkd102 }</a> <small class="grey">@${sessionScope.user.kkd101 }</small>
                 <span id="friend_flag"></span>
             </div>
     	</h1>
@@ -219,10 +216,8 @@
     <!-- 主页导航栏 -->
     <div class="navTabsWrapper">
 		<ul class="navTabs">
-			<li><a href="<%=path%>/kd/userpage_main.jsp" class="focus">时光机</a></li>                    
-       		<li><a href="http://bangumi.tv/user/481528/blog">作品</a></li>
-       		<li><a href="http://bangumi.tv/user/481528/mono">论坛</a></li>
-       		<li><a href="http://bangumi.tv/user/481528/index">商城</a></li>
+			<li><a href="<%= path %>/kd/rootadminpage_main.jsp" class="focus">账号</a></li>
+        	<li><a href="<%= path %>/kd01QueryAdmin.kdhtml">管理员</a></li>
        		<li><a href="http://bangumi.tv/user/481528/index">消息</a></li>
 		</ul>
 	</div>
@@ -249,7 +244,7 @@
 					<span class="tip">${sessionScope.user.kkd106 } 加入</span></li>
 					</ul>    
 			        <div class="adminTools">
-				    	<a href="<%=path%>/kd/userpage_info.jsp" class="btnGraySmall"><span>编辑</span></a>           
+				    	<a href="<%=path%>/kd/rootadminpage_info.jsp" class="btnGraySmall"><span>编辑</span></a>           
 	                </div>
 				</div>
 			    <div id="blog" class="sort">
@@ -319,10 +314,10 @@
 <div id="dock">
     <div class="content">
         <ul class="clearit">
-        <li class="first"><a href="<%=path%>/kd/userpage_main.jsp">${sessionScope.user.kkd102 }</a></li>
+        <li class="first"><a href="<%= path %>/kd/rootadminpage_main.jsp">${sessionScope.user.kkd102 }</a></li>
         <li><a href="http://bangumi.tv/notify/all">提醒</a></li>
         <li><a href="http://bangumi.tv/pm">短信</a></li>
-        <li><a href="<%=path%>/kd/userpage_info.jsp">设置</a></li>
+        <li><a href="<%= path %>/kd/rootadminpage_info.jsp">设置</a></li>
         <li class="last"><a href="<%=path%>/logout.kdhtml">登出</a></li>
         </ul>
     </div>

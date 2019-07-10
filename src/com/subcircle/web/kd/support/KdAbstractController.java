@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import com.subcircle.services.support.ServicesInterface;
+import com.subcircle.system.tools.Tools;
 import com.subcircle.web.ControllerInterface;
 
 public abstract class KdAbstractController implements ControllerInterface 
@@ -159,17 +160,14 @@ public abstract class KdAbstractController implements ControllerInterface
 		if(this.dto.get("kkd102").toString().length()<6 || this.dto.get("kkd102").toString().length()>12)
 		{
 			this.saveAttribute("usernameError", "请确保你的用户名长度在6-12位之间！");
-			return;
 		}
 		else if(this.dto.get("kkd103").toString().length()<6 || this.dto.get("kkd103").toString().length()>16)
 		{
 			this.saveAttribute("passwordError", "请确保你的密码长度在6-16位之间！");
-			return;
 		}
 		else if(!this.dto.get("kkd103").equals(this.dto.get("kkd103-1")))
 		{
 			this.saveAttribute("checkPwdError", "请确保你输入的两次密码保持一致！");
-			return;
 		}
 		else
 		{
@@ -184,38 +182,64 @@ public abstract class KdAbstractController implements ControllerInterface
 		}
 	}
 
-//	protected boolean userLogin()throws Exception
-//	{
-//		Map<String, String> user=this.services.findById();
-//		if(user==null)
-//		{
-//			this.saveAttribute("usernameError", "此账号不存在！");
-//			return false;
-//		}
-//		else if(!user.get("kkd103").equals(this.dto.get("kkd103")) || !this.dto.get("kkd104").toString().contains(user.get("kkd104")))
-//		{
-//			this.saveAttribute("error", "请确认你的用户名、密码及用户组正确！");
-//			return false;
-//		}
-//		else
-//		{
-//			this.saveAttribute("user", user);
-//			return true;
-//		}
-//	}
+	//用户登录
+	protected String userLogin()throws Exception
+	{
+		Map<String, String> user=services.findById();
+		if(user==null)
+		{
+			this.saveAttribute("usernameError", "此账号不存在！");
+			return "kd/login";
+		}
+		else if(!user.get("kkd103").equals(Tools.getMd5(dto.get("kkd103"))))
+		{
+			this.saveAttribute("error", "请确认你的用户名、密码正确！");
+			return "kd/login";
+		}
+		else
+		{
+			user.remove("kkd103");
+			this.session.setAttribute("kkd101", user.get("kkd101"));
+			this.session.setAttribute("kkd104", user.get("kkd104"));
+			this.session.setAttribute("user", user);
+			if(user.get("kkd104").toString().equals("0"))
+			{
+				return "kd/rootadminpage_main";
+			}
+			else if(user.get("kkd104").toString().equals("4") || user.get("kkd104").toString().equals("5"))
+			{
+				return "kd/userpage_main";
+			}
+			else
+			{
+				return "kd/login";
+			}
+		}
+	}
 	
+	//用户登出
+	protected void userLogout()throws Exception
+	{
+		this.session.removeAttribute("user");
+		this.session.removeAttribute("kkd104");
+		this.session.removeAttribute("kkd101");
+	}
 //	protected final void findById()throws Exception
 //	{
 //		this.dto.put("kkd101", this.session.getAttribute("kkd101"));
 //		Map<String, String> user=this.services.findById();
 //		this.saveAttribute("user", user);
 //	}
-	
+	//用户修改个人信息
 	protected final void modifyInfo()throws Exception
 	{
 		if(this.executeMethod("modifyInfo"))
 		{
 			this.saveAttribute("msg", "修改成功");
+			Map<String, String> user=services.findById();
+			user.remove("kkd103");
+			this.session.removeAttribute("user");
+			this.session.setAttribute("user", user);
 		}
 		else
 		{
@@ -223,9 +247,18 @@ public abstract class KdAbstractController implements ControllerInterface
 		}
 	}
 	
+	//用户修改密码
 	protected final void modifyPwd()throws Exception
 	{
-		if(this.dto.get("kkd103").toString().equals(this.dto.get("kkd103-check")))
+		if(!this.dto.get("kkd103").toString().equals(this.dto.get("kkd103-check")))
+		{
+			this.saveAttribute("msg", "两次密码不一致！");
+		}
+		else if(this.dto.get("kkd103").toString().length()<6 || this.dto.get("kkd103").toString().length()>16)
+		{
+			this.saveAttribute("msg", "请确保你的密码长度在6-16位之间！");
+		}
+		else
 		{
 			this.dto.put("kkd101", this.session.getAttribute("kkd101"));
 			if(this.executeMethod("modifyPwd"))
@@ -237,9 +270,12 @@ public abstract class KdAbstractController implements ControllerInterface
 				this.saveAttribute("msg", "现在的密码不正确");
 			}
 		}
-		else
-		{
-			this.saveAttribute("msg", "两次密码不一致！");
-		}
+	}
+	
+	//查询所有管理员账号
+	protected final void queryAdmin()throws Exception
+	{
+		List<Map<String, String>> admins=this.services.queryByCondition();
+		this.saveAttribute("admins", admins);
 	}
 }

@@ -151,15 +151,12 @@
 	
     <!-- 顶部头像菜单 -->
     <div class="idBadgerNeue">
-		<a class="avatar" href="<%=path%>/kd/userpage_main.jsp">
+		<a class="avatar" href="<%=path%>/kd/rootadminpage_main.jsp">
 			<img src="${sessionScope.user.kkd108}" onerror="this.src='<%=path %>/img/avatar/def_avatar.png'" class="port" width="33px" height="33px"/>
 		</a>
 		<ul id="badgeUserPanel">
-			<li><a href="<%=path%>/kd/userpage_main.jsp">时光机</a></li>                    
-       		<li><a href="http://bangumi.tv/user/481528/blog">作品</a></li>
-       		<li><a href="http://bangumi.tv/user/481528/mono">论坛</a></li>
-       		<li><a href="http://bangumi.tv/user/481528/index">商城</a></li>
-	    	
+			<li><a href="<%=path%>/kd/rootadminpage_main.jsp">账号</a></li>
+	        <li class="row"><a href="<%= path %>/kd01QueryAdmin.kdhtml">管理员</a></li>
 	        <li class="row">
 		        <a href="http://bangumi.tv/pm">短信</a> | 
 		        <a href="<%=path%>/kd/userpage_info.jsp">设置</a> | 
@@ -219,17 +216,17 @@
     <!-- 主页导航栏 -->
     <div class="navTabsWrapper">
 		<ul class="navTabs">
-			<li><a href="<%=path%>/kd/userpage_main.jsp" class="focus">时光机</a></li>                    
-       		<li><a href="http://bangumi.tv/user/481528/blog">作品</a></li>
-       		<li><a href="http://bangumi.tv/user/481528/mono">论坛</a></li>
-       		<li><a href="http://bangumi.tv/user/481528/index">商城</a></li>
-       		<li><a href="http://bangumi.tv/user/481528/index">消息</a></li>
+			<li><a href="<%= path %>/kd/rootadminpage_main.jsp">账号</a></li>
+        	<li><a href="<%= path %>/kd01QueryAdmin.kdhtml" class="focus">管理员</a></li>
+        	<li><a href="http://bangumi.tv/user/481528/index">消息</a></li>
 		</ul>
 	</div>
 	<!-- 主页导航栏 -->
 	<!-- 子导航栏 -->
 	<div class="navSubTabsWrapper">
 		<ul class="navSubTabs">
+			<li><a href="/user/481528/mono" class="focus"><span>现有管理员账号</span></a></li>
+  	 		<li><a href="/user/481528/mono/character" ><span>添加管理员账户</span></a></li>
 		</ul>
 	</div>
 	<!-- 子导航栏 -->
@@ -253,19 +250,17 @@
 	                </div>
 				</div>
 			    <div id="blog" class="sort">
-					<h2 class="drag">&nbsp;</h2>
-					<div class="horizontalOptions clearit">
-						<ul class="">
-							<li class="title"><h2> 我的日志</h2></li>
-							<li style="float:right"><small><a href="/user/481528/blog">...more</a></small></li>
-						</ul>
-					</div>
-				
-					<div class="content_inner clearit" align="left">
-						<div align="center" class="clearit">
-							<span class="green">还没有发表过日志?</span>
-								<a href="/blog/create" class="l">>立即发表<</a><br />
-							<span class="tip_j">你甚至可以通过日志为 Bangumi 的会员提供新闻</span>
+					<div id="entry_list">
+						<div class="item clearit">
+							<p class="cover ll">
+							<a href="/blog/291179" title="test"><span class="pictureFrameGroup"><span class="image"><img src="//lain.bgm.tv/pic/photo/g/no_photo.png" /></span><span class="overlay"></span></span></a>
+							</p>
+							<div class="entry">
+							<h2 class="title"><a href="/blog/291179" class="l">test</a></h2>
+							<div class="time"><small class="time">2019-7-9 18:09</small> <small class="orange">(+0)</small></div>
+							<div class="content">test <small><a href="/blog/291179" class="l">(more)</a></small></div>
+							<!--<div class="tools"><div class="tags">Tags: <a href="/user/481528/blog/tag/%E5%8A%A8%E7%94%BB" class="l">动画</a> </div></div>-->
+							</div>
 						</div>
 					</div>
 				</div>

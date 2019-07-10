@@ -1,5 +1,6 @@
 package com.subcircle.system.tools;
 
+import java.security.MessageDigest;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.HashMap;
@@ -14,6 +15,19 @@ import com.subcircle.system.db.DBUtils;
 public class Tools 
 {
 
+	public static void main(String[] args) 
+	{
+		String pwd="root";
+		try 
+		{
+			System.out.println(Tools.getMd5(pwd));
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	 * 私有化构造器，防止该类被实例化
 	 */
@@ -33,7 +47,7 @@ public class Tools
 		ResultSet rs=null;
 		try
 		{
-			int pk=0;
+			int pk=100000;
 			String sql1="select s.pkvalue from sequence s where pkname=?";
 			pstm1=DBUtils.prepareStatement(sql1);
 			pstm1.setObject(1, pkname);
@@ -139,5 +153,83 @@ public class Tools
 		}
 		return dto;
 	}
+	
+	/***************************************************************************
+	 *                    MD5Begin
+	 ***************************************************************************/
+	
+	
+	   public static String getMd5(Object pwd)throws Exception
+	   {
+			/**
+			 * MD5二次混淆加密
+			 */
+			//完成原始加密
+			String md5pwd1=Tools.MD5Encode(pwd);
+			//生成混淆明文
+			String pwd2=md5pwd1+"隐技フャゥソツ巧ΧΤΚㄕㄣˇΒ于无形:以無にはたコをっㄘㄗㄡεωぅ法為有法,以無ㄤㄆмязр限為有限"+md5pwd1;
+			String md5pwd2=Tools.MD5Encode(pwd2);
+			return md5pwd2;
+
+	   }
+	
+	   
+	    private final static String[] hexDigits = {
+		     "0", "1", "2", "3", "4", "5", "6", "7",
+		     "8", "9", "a", "b", "c", "d", "e", "f"
+		     };
+
+		  /**
+		   * 转换字节数组为16进制字串
+		   * @param b 字节数组
+		   * @return 16进制字串
+		   */
+		  private static String byteArrayToHexString(byte[] b)
+		  {
+		      StringBuffer resultSb = new StringBuffer();
+		      for (int i = 0; i < b.length; i++)
+		      {
+		         resultSb.append(byteToHexString(b[i]));
+		      }
+		      return resultSb.toString();
+		  }
+		  /**
+		   * 转换字节为16进制字符串
+		   * @param b byte
+		   * @return String
+		   */
+		  private static String byteToHexString(byte b)
+		  {
+		      int n = b;
+		      if (n < 0)
+		         n = 256 + n;
+		      int d1 = n / 16;
+		      int d2 = n % 16;
+		      return hexDigits[d1] + hexDigits[d2];
+		  }
+		  /**
+		   * 得到MD5的秘文密码
+		   * @param origin String
+		   * @throws Exception
+		   * @return String
+		   */
+		  private static String MD5Encode(Object origin) throws Exception
+		  {
+		       String resultString = null;
+		       try
+		       {
+		           resultString=new String(origin.toString());
+		           MessageDigest md = MessageDigest.getInstance("MD5");
+		           resultString=byteArrayToHexString(md.digest(resultString.getBytes()));
+		           return resultString;
+		       }
+		       catch (Exception ex)
+		       {
+		          throw ex;
+		       }
+		  }	
+	/***************************************************************************
+	 *                    MD5End
+	 ***************************************************************************/
 
 }
