@@ -82,7 +82,7 @@
 			<c:choose>
 			<c:when test="${(vs.count)%2 ==1 }">
 			<li id="${ins.kkc101}" class="item odd clearit">
-    <a href="${ins.kkc403 }" class="subjectCover cover ll">       
+    <a href="Kc04ShowDetail.kchtml?kkc101=${ins.kkc101}" class="subjectCover cover ll">       
             <span class="image">
                         <img src="${ins.kkc404 }" class="cover" />
                         
@@ -92,7 +92,7 @@
     </a>
     <div class="inner">
                                 <h3>
-                    <a href="${ins.kkc403 }" class="l">${ins.kkc402 }</a> 
+                    <a href="Kc04ShowDetail.kchtml?kkc101=${ins.kkc101}" class="l">${ins.kkc402 }</a> 
                 				</h3>
                 
         <span class="rank"><small>Rank ${ins.kkc408 }</small></span>        
@@ -106,7 +106,7 @@
 </c:when>
 <c:otherwise>
 <li id="${ins.kkc101}" class="item even clearit">
-    <a href="${ins.kkc403 }" class="subjectCover cover ll">       
+    <a href="Kc04ShowDetail.kchtml?kkc101=${ins.kkc101}" class="subjectCover cover ll">       
             <span class="image">
                         <img src="${ins.kkc404 }" class="cover" />
                         
@@ -116,7 +116,7 @@
     </a>
     <div class="inner">
                                 <h3>
-                    <a href="${ins.kkc403 }" class="l">${ins.kkc402 }</a> 
+                    <a href="Kc04ShowDetail.kchtml?kkc101=${ins.kkc101}\" class="l">${ins.kkc402 }</a> 
                 				</h3>
                 
         <span class="rank"><small>Rank ${ins.kkc408 }</small></span>        

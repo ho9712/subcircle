@@ -198,6 +198,20 @@ public abstract class KcAbstractController implements ControllerInterface
 	
 	
 	
+	protected final void ShowAnimeDetail() throws Exception
+	{
+		Map<String,String> ins = this.services.findById();
+		if(ins!=null)
+		{
+			this.saveAttribute("ins", ins);
+		}
+		else
+		{
+			this.saveAttribute("msg", "提示：该条目已被删除或禁止访问！");
+		}
+		
+	}
+	
 	
 	
 
