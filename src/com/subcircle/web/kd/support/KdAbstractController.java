@@ -154,30 +154,37 @@ public abstract class KdAbstractController implements ControllerInterface
 	 * 						根据需要在此写方法
 	 *********************************************************************/
 
+	//消息提示
+	private void setHint(String hint,String msg)
+	{
+		this.saveAttribute("hint", hint);
+		this.saveAttribute("msg", msg);
+	}
+	
 	//用户注册
 	protected final void userSignUp()throws Exception
 	{
 		if(this.dto.get("kkd102").toString().length()<6 || this.dto.get("kkd102").toString().length()>12)
 		{
-			this.saveAttribute("usernameError", "请确保你的用户名长度在6-12位之间！");
+			this.setHint("失败", "请确保你的用户名长度在6-12位之间！");
 		}
 		else if(this.dto.get("kkd103").toString().length()<6 || this.dto.get("kkd103").toString().length()>16)
 		{
-			this.saveAttribute("passwordError", "请确保你的密码长度在6-16位之间！");
+			this.setHint("失败", "请确保你的密码长度在6-16位之间！");
 		}
 		else if(!this.dto.get("kkd103").equals(this.dto.get("kkd103-1")))
 		{
-			this.saveAttribute("checkPwdError", "请确保你输入的两次密码保持一致！");
+			this.setHint("失败", "请确保你输入的两次密码保持一致！");
 		}
 		else
 		{
 			if(this.executeMethod("userSignUp"))
 			{
-				this.saveAttribute("msg", "注册成功！");
+				this.setHint("成功", "注册成功！");
 			}
 			else
 			{
-				this.saveAttribute("usernameError", "此用户名已被使用，请换一个试试！");
+				this.setHint("失败", "此用户名已被使用，请换一个试试！");
 			}
 		}
 	}
@@ -188,12 +195,12 @@ public abstract class KdAbstractController implements ControllerInterface
 		Map<String, String> user=services.findById();
 		if(user==null)
 		{
-			this.saveAttribute("usernameError", "此账号不存在！");
+			this.setHint("失败", "此账号不存在！");
 			return "kd/login";
 		}
 		else if(!user.get("kkd103").equals(Tools.getMd5(dto.get("kkd103"))))
 		{
-			this.saveAttribute("error", "请确认你的用户名、密码正确！");
+			this.setHint("失败", "请确认你的用户名、密码正确！");
 			return "kd/login";
 		}
 		else
@@ -202,17 +209,13 @@ public abstract class KdAbstractController implements ControllerInterface
 			this.session.setAttribute("kkd101", user.get("kkd101"));
 			this.session.setAttribute("kkd104", user.get("kkd104"));
 			this.session.setAttribute("user", user);
-			if(user.get("kkd104").toString().equals("0"))
-			{
-				return "kd/rootadminpage_main";
-			}
-			else if(user.get("kkd104").toString().equals("4") || user.get("kkd104").toString().equals("5"))
+			if(user.get("kkd104").toString().equals("4") || user.get("kkd104").toString().equals("5"))
 			{
 				return "kd/userpage_main";
 			}
 			else
 			{
-				return "kd/login";
+				return "kd/adminpage_main";
 			}
 		}
 	}
@@ -231,11 +234,11 @@ public abstract class KdAbstractController implements ControllerInterface
 //		this.saveAttribute("user", user);
 //	}
 	//用户修改个人信息
-	protected final void modifyInfo()throws Exception
+	protected final String modifyInfo()throws Exception
 	{
 		if(this.executeMethod("modifyInfo"))
 		{
-			this.saveAttribute("msg", "修改成功");
+			this.setHint("成功", "个人信息修改成功！");
 			Map<String, String> user=services.findById();
 			user.remove("kkd103");
 			this.session.removeAttribute("user");
@@ -243,32 +246,48 @@ public abstract class KdAbstractController implements ControllerInterface
 		}
 		else
 		{
-			this.saveAttribute("msg", "修改失败，请稍后再试");
+			this.setHint("失败", "修改失败，请稍后再试！");
+		}
+		if("45".contains(this.session.getAttribute("kkd104").toString()))
+		{
+			return "kd/userpage_info";
+		}
+		else
+		{
+			return "kd/adminpage_info";
 		}
 	}
 	
 	//用户修改密码
-	protected final void modifyPwd()throws Exception
+	protected final String modifyPwd()throws Exception
 	{
 		if(!this.dto.get("kkd103").toString().equals(this.dto.get("kkd103-check")))
 		{
-			this.saveAttribute("msg", "两次密码不一致！");
+			this.setHint("失败", "两次输入的密码不一致！");
 		}
 		else if(this.dto.get("kkd103").toString().length()<6 || this.dto.get("kkd103").toString().length()>16)
 		{
-			this.saveAttribute("msg", "请确保你的密码长度在6-16位之间！");
+			this.setHint("失败", "请确保你的密码长度在6-16位之间！");
 		}
 		else
 		{
 			this.dto.put("kkd101", this.session.getAttribute("kkd101"));
 			if(this.executeMethod("modifyPwd"))
 			{
-				this.saveAttribute("msg", "密码修改成功！");
+				this.setHint("成功", "密码修改成功！");
 			}
 			else
 			{
-				this.saveAttribute("msg", "现在的密码不正确");
+				this.setHint("失败", "原密码输入不正确！");
 			}
+		}
+		if("45".contains(this.session.getAttribute("kkd104").toString()))
+		{
+			return "kd/userpage_pwd";
+		}
+		else
+		{
+			return "kd/adminpage_pwd";
 		}
 	}
 	
@@ -277,5 +296,60 @@ public abstract class KdAbstractController implements ControllerInterface
 	{
 		List<Map<String, String>> admins=this.services.queryByCondition();
 		this.saveAttribute("admins", admins);
+	}
+	
+	//添加管理员账号
+	protected final void addAdmin()throws Exception
+	{
+		if(this.executeMethod("addAdmin"))
+		{
+			this.setHint("操作成功", "成功添加了一个管理员账号！");
+		}
+		else
+		{
+			this.setHint("操作失败", "该用户名已被使用。");
+		}
+	}
+	
+	//查找某个管理员信息
+	protected final void findAdmin()throws Exception
+	{
+		Map<String, String> admin=this.services.findById();
+		this.saveAttribute("admin", admin);
+	}
+	
+	//删除管理员账号
+	protected final void delAdmin()throws Exception
+	{
+		if(this.executeMethod("delAdmin"))
+		{
+			this.setHint("操作成功", "该管理员账号已被删除！");
+		}
+		else
+		{
+			this.setHint("操作失败", "服务器可能出了一点小问题，请稍后再试！");
+		}
+		this.queryAdmin();
+	}
+	
+	//修改管理员信息
+	protected final void modifyAdmin()throws Exception
+	{
+		if(this.executeMethod("modifyAdmin"))
+		{
+			if(this.dto.get("flag").toString().equals("1"))
+			{
+				this.setHint("更新成功",	"该管理员的密码已被修改！");
+			}
+			else
+			{
+				this.setHint("更新成功",	"该管理员的权限已被修改！");
+			}
+		}
+		else
+		{
+			this.setHint("更新失败", "服务器可能出了一点小问题，请稍后再试！");
+		}
+		this.findAdmin();
 	}
 }

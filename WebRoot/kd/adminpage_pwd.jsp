@@ -51,18 +51,15 @@
 	
     <!-- 顶部头像菜单 -->
     <div class="idBadgerNeue">
-		<a class="avatar" href="<%=path%>/kd/userpage_main.jsp">
+		<a class="avatar" href="<%=path%>/kd/adminpage_main.jsp">
 			<img src="${sessionScope.user.kkd108}" onerror="this.src='<%=path %>/img/avatar/def_avatar.png'" class="port" width="33px" height="33px"/>
 		</a>
 		<ul id="badgeUserPanel">
-			<li><a href="<%=path%>/kd/userpage_main.jsp">时光机</a></li>                    
-       		<li><a href="http://bangumi.tv/user/481528/blog">作品</a></li>
-       		<li><a href="http://bangumi.tv/user/481528/mono">论坛</a></li>
-       		<li><a href="http://bangumi.tv/user/481528/index">商城</a></li>
-	    	
+			<li><a href="<%=path%>/kd/adminpage_main.jsp">账号</a></li>                    
+	    	<li class="row"><a href="<%= path %>/kd01QueryAdmin.kdhtml">管理员</a></li>
 	        <li class="row">
 		        <a href="http://bangumi.tv/pm">短信</a> | 
-		        <a href="<%=path%>/kd/userpage_info.jsp">设置</a> | 
+		        <a href="<%=path%>/kd/adminpage_info.jsp">设置</a> | 
 		        <a href="<%=path%>/logout.kdhtml">登出</a>
 	        </li>
     	</ul>	
@@ -96,8 +93,8 @@
 		<!-- 切换栏 -->
 			<div id="header">
 				<ul class="secTab rr">
-				<li><a href="<%=path %>/kd/userpage_info.jsp"><span>基本设置</span></a></li>
-				<li><a href="<%=path %>/kd/userpage_pwd.jsp" class="selected"><span>密码</span></a></li>
+				<li><a href="<%= path %>/kd/adminpage_info.jsp"><span>基本设置</span></a></li>
+				<li><a href="<%= path %>/kd/adminpage_pwd.jsp" class="selected"><span>密码</span></a></li>
 				</ul>
 				<h1>修改密码</h1>
 			</div>
@@ -123,7 +120,6 @@
 							</tr>
 							<tr>
 								<td valign="top" width="15%"><input class="inputBtn" value="修改密码" name="submit" type="submit"></td>
-								<td valign="top"><span class="green">${msg }</span></td>
 							</tr>
 						</table>
 					</span>
@@ -142,16 +138,15 @@
 <div id="dock">
     <div class="content">
          <ul class="clearit">
-        <li class="first"><a href="<%=path %>/kd/userpage_main.jsp">${sessionScope.user.kkd102 }</a></li>
+        <li class="first"><a href="<%= path %>/kd/adminpage_main.jsp">${sessionScope.user.kkd102 }</a></li>
         <li><a href="http://bangumi.tv/notify/all">提醒</a></li>
         <li><a href="http://bangumi.tv/pm">短信</a></li>
-        <li><a href="<%=path %>/kd/userpage_info.jsp">设置</a></li>
+        <li><a href="<%= path %>/kd/adminpage_info.jsp">设置</a></li>
         <li class="last"><a href="<%=path%>/logout.kdhtml">登出</a></li>
         </ul>
     </div>
 </div>
 <!-- 底部菜单栏 -->
-
 
 <!-- 展示 -->
 <div id="robot" >
@@ -169,7 +164,7 @@
 	</c:when>
 	<c:otherwise>
 		<strong>『${hint }』</strong><br />
-		${msg }<br />
+		${msg}<br />
 	</c:otherwise>
 </c:choose>
 </div>
@@ -179,7 +174,7 @@
 </div>
 </div>
 </div>
-<!-- 展示 -->
+<!-- 展示结束 -->
 
 </body>
 </html>

@@ -3,6 +3,7 @@ package com.subcircle.system.tools;
 import java.security.MessageDigest;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -47,7 +48,7 @@ public class Tools
 		ResultSet rs=null;
 		try
 		{
-			int pk=100000;
+			int pk=0;
 			String sql1="select s.pkvalue from sequence s where pkname=?";
 			pstm1=DBUtils.prepareStatement(sql1);
 			pstm1.setObject(1, pkname);

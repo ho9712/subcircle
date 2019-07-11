@@ -1,12 +1,13 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://org.wangxg/jsp/extl" prefix="e"%>
 <%String path=request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
-<title>${sessionScope.user.kkd102} 的主页</title>
+<title>Root管理员页面</title>
 
 <link rel="stylesheet" type="text/css" href="<%=path %>/css/bangumi.css" />
 </head>
@@ -52,18 +53,15 @@
 	
     <!-- 顶部头像菜单 -->
     <div class="idBadgerNeue">
-		<a class="avatar" href="<%=path%>/kd/userpage_main.jsp">
+		<a class="avatar" href="<%=path%>/kd/adminpage_main.jsp">
 			<img src="${sessionScope.user.kkd108}" onerror="this.src='<%=path %>/img/avatar/def_avatar.png'" class="port" width="33px" height="33px"/>
 		</a>
 		<ul id="badgeUserPanel">
-			<li><a href="<%=path%>/kd/userpage_main.jsp">时光机</a></li>                    
-       		<li><a href="http://bangumi.tv/user/481528/blog">作品</a></li>
-       		<li><a href="http://bangumi.tv/user/481528/mono">论坛</a></li>
-       		<li><a href="http://bangumi.tv/user/481528/index">商城</a></li>
-	    	
+			<li><a href="<%=path%>/kd/adminpage_main.jsp">账号</a></li>                    
+	    	<li class="row"><a href="<%= path %>/kd01QueryAdmin.kdhtml">管理员</a></li>
 	        <li class="row">
 		        <a href="http://bangumi.tv/pm">短信</a> | 
-		        <a href="<%=path%>/kd/userpage_info.jsp">设置</a> | 
+		        <a href="<%=path%>/kd/adminpage_info.jsp">设置</a> | 
 		        <a href="<%=path%>/logout.kdhtml">登出</a>
 	        </li>
     	</ul>	
@@ -103,11 +101,11 @@
             </div>
 
             <div class="headerAvatar">
-                <a href="<%=path%>/kd/userpage_main.jsp" class="avatar"><span class="avatarNeue avatarSize75" style="background-image:url('${sessionScope.user.kkd108}')"></span></a>
+                <a href="<%=path%>/kd/adminpage_main.jsp" class="avatar"><span class="avatarNeue avatarSize75" style="background-image:url('${sessionScope.user.kkd108}')"></span></a>
             </div>
 
             <div class="inner">
-                <a href="<%=path%>/kd/userpage_main.jsp">${sessionScope.user.kkd102 }</a> <small class="grey">@${sessionScope.user.kkd101 }</small>
+                <a href="<%=path%>/kd/adminpage_main.jsp">${sessionScope.user.kkd102 }</a> <small class="grey">@${sessionScope.user.kkd101 }</small>
                 <span id="friend_flag"></span>
             </div>
     	</h1>
@@ -117,17 +115,17 @@
     <!-- 主页导航栏 -->
     <div class="navTabsWrapper">
 		<ul class="navTabs">
-			<li><a href="<%=path%>/kd/userpage_main.jsp" class="focus">时光机</a></li>                    
-       		<li><a href="http://bangumi.tv/user/481528/blog">作品</a></li>
-       		<li><a href="http://bangumi.tv/user/481528/mono">论坛</a></li>
-       		<li><a href="http://bangumi.tv/user/481528/index">商城</a></li>
-       		<li><a href="http://bangumi.tv/user/481528/index">消息</a></li>
+			<li><a href="<%= path %>/kd/adminpage_main.jsp">账号</a></li>
+        	<li><a href="<%= path %>/kd01QueryAdmin.kdhtml" class="focus">管理员</a></li>
+        	<li><a href="http://bangumi.tv/user/481528/index">消息</a></li>
 		</ul>
 	</div>
 	<!-- 主页导航栏 -->
 	<!-- 子导航栏 -->
 	<div class="navSubTabsWrapper">
 		<ul class="navSubTabs">
+			<li><a href="<%= path %>/kd01QueryAdmin.kdhtml" class="focus"><span>现有管理员账号</span></a></li>
+  	 		<li><a href="<%= path %>/kd/rootadminpage_add.jsp" ><span>添加管理员账户</span></a></li>
 		</ul>
 	</div>
 	<!-- 子导航栏 -->
@@ -137,77 +135,77 @@
 <!-- 主页头部 -->
 
 <div class="mainWrapper">
-<div class="columns clearit">
-	<!-- 主页主体A栏 -->
+<!-- 顶部栏以下 -->
+	<div id="main" class="png_bg">
+		<!-- 顶部栏 -->
+			<div id="header">
+			<h1>编辑管理员信息</h1>
+			</div>
+		<!-- 顶部栏 -->
+		<hr class="board" />
+	<div class="columns clearit">
 		<div id="columnA" class="column">
-			<div id="user_home">
-				<div class="user_box clearit">
-					<ul class="network_service clearit">
-					<li><span class="service" style="background-color:#F09199;">SubCircle</span>
-					<span class="tip">${sessionScope.user.kkd106 } 加入</span></li>
-					</ul>    
-			        <div class="adminTools">
-				    	<a href="<%=path%>/kd/userpage_info.jsp" class="btnGraySmall"><span>编辑</span></a>           
-	                </div>
-				</div>
-			    <div id="blog" class="sort">
-					<h2 class="drag">&nbsp;</h2>
-					<div class="horizontalOptions clearit">
-						<ul class="">
-							<li class="title"><h2> 我的日志</h2></li>
-							<li style="float:right"><small><a href="/user/481528/blog">...more</a></small></li>
-						</ul>
-					</div>
-				
-					<div class="content_inner clearit" align="left">
-						<div align="center" class="clearit">
-							<span class="green">还没有发表过日志?</span>
-								<a href="/blog/create" class="l">>立即发表<</a><br />
-							<span class="tip_j">你甚至可以通过日志为 Bangumi 的会员提供新闻</span>
-						</div>
-					</div>
-				</div>
-			</div>
+			
+			<!-- 信息修改 -->
+		    <form name="set" method="post" action="<%=path %>/kd01ModifyAdmin.kdhtml?flag=1">
+				<span class="text">
+					<table align="center" width="98%" cellspacing="0" cellpadding="5" class="settings">
+						<tr>
+						<td valign="top" width="12%">头像</td>
+						<td valign="top">
+							<img src="${admin.kkd108}" onerror="this.src='<%=path %>/img/avatar/def_avatar.png'" class="port" width="75px" height="75px"/>
+							<img src="${admin.kkd108}" onerror="this.src='<%=path %>/img/avatar/def_avatar.png'" class="port" width="50px" height="50px"/>
+							<img src="${admin.kkd108}" onerror="this.src='<%=path %>/img/avatar/def_avatar.png'" class="port" width="35px" height="35px"/> <br /><br />
+						</td>
+						<tr>
+							<td valign="top" width="12%">UID</td>
+							<td valign="top"><input name="kkd101" class="inputtext" type="text" value="${admin.kkd101 }" readonly="readonly"></td>
+						</tr>
+						<tr>
+							<td valign="top" width="12%">用户名</td>
+							<td valign="top"><input name="kkd102" class="inputtext" type="text" value="${admin.kkd102 }" readonly="readonly"></td>
+						</tr>
+						<tr>
+							<td valign="top" width="12%">设置新密码</td>
+							<td valign="top"><input name="kkd103" class="inputtext" type="password" required="required"></td>
+						</tr>
+						<tr>
+							<td valign="top">
+							<input class="inputBtn" value="更新密码" name="submit" type="submit"/>
+							</td>
+							<td valign="top"></td>
+						</tr>
+						</table>
+				</span>
+			</form>  
+			 <form name="set" method="post" action="<%=path %>/kd01ModifyAdmin.kdhtml?flag=2">
+			 	<input name="kkd101" type="hidden" value="${admin.kkd101 }">
+				<span class="text">
+					<table align="center" width="98%" cellspacing="0" cellpadding="5" class="settings">
+						<tr>
+						<td valign="top" width="12%">用户权限</td>
+						<td valign="top">
+							<e:select value="作品管理员:1,商城管理员:2,论坛管理员:3" name="kkd104" defval="${admin.kkd104 }" style="height:30px;width:100px;"/>
+						</td>
+						</tr>
+						<tr>
+							<td valign="top">
+							<input class="inputBtn" value="修改权限" name="submit" type="submit" />
+							</td>
+							<td valign="top"></td>
+						</tr>
+					</table>
+				</span>
+			</form>    
+			<!-- 信息修改 -->
 		</div>
-	<!-- 主页主体A栏 -->
 	
-	<!-- 主页主体B栏 -->
 		<div id="columnB" class="column">
-			<div id="">
-				<div class="SidePanel png_bg">
-					<h2>/ 我的时间胶囊 <small><a href="/user/481528/timeline">...more</a></small></h2>
-				
-					<ul class="timeline">
-						<li>
-							<small class="feed">注册成为了 Bangumi 成员</small> 
-							<small class="time">2019-6-28 18:52</small>
-						</li>
-					</ul>
-				</div>
-			</div>
-			<div id="sideLayout">
-				<div id="friend" class="sort">
-					<div class="SidePanel png_bg" align="left">
-						<h2>/ 我的朋友 <small><a href="/user/481528/friends">...more</a></small></h2>
-						<hr class="board" />
-						<a href="/user/481528/rev_friends">+ 谁加我为好友</a>
-					</div>
-				</div>
-				<div id="group" class="sort">
-					<div class="SidePanel png_bg" align="left">
-					<h2>/ 我参加的小组 </h2>
-					    <ul class="groupsLine">
-					            </ul>
-					</div>
-				</div>
-			</div>
-			<div class="menu_inner">
-			    	<p> <a href="/feed/user/481528/interests" class="l">/ RSS2.0: 订阅我的收藏</a></p>
-			    	<p><a href="/user/481528/wiki" class="l">/ 我的维基编辑</a></p>
-			</div>
 		</div>
-	<!-- 主页主体B栏 -->
-</div>
+	</div>
+	</div>
+
+<!-- 页面主体到此结束 -->
 </div>
 </div>
 <!-- 页面主体到此结束 -->
@@ -217,10 +215,10 @@
 <div id="dock">
     <div class="content">
         <ul class="clearit">
-        <li class="first"><a href="<%=path%>/kd/userpage_main.jsp">${sessionScope.user.kkd102 }</a></li>
+        <li class="first"><a href="<%=path%>/kd/adminpage_main.jsp">${sessionScope.user.kkd102 }</a></li>
         <li><a href="http://bangumi.tv/notify/all">提醒</a></li>
         <li><a href="http://bangumi.tv/pm">短信</a></li>
-        <li><a href="<%=path%>/kd/userpage_info.jsp">设置</a></li>
+        <li><a href="<%=path%>/kd/adminpage_info.jsp">设置</a></li>
         <li class="last"><a href="<%=path%>/logout.kdhtml">登出</a></li>
         </ul>
     </div>
@@ -235,8 +233,16 @@
 <div class="tools"><a href="javascript:void(0);" id="ukagaka_menu"></a></div>    
 <div class="inner">
 <div id="robot_speech" class="speech" >
-<strong>『用户个人主页』</strong><br />
-欢迎你，普通用户  <span class="green"><strong>${user.kkd105 }</strong></span> <br />
+<c:choose>
+	<c:when test="${empty hint }">
+		<strong>『修改管理员信息』</strong><br />
+		在这里，你可以修改该管理员账号信息。<br />
+	</c:when>
+	<c:otherwise>
+		<strong>『${hint }』</strong><br />
+		${msg}<br />
+	</c:otherwise>
+</c:choose>
 </div>
 </div>
 <div class="ukagaka_balloon_pink_bottom"></div>	

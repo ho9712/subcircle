@@ -113,7 +113,7 @@ public class UploadAvatarServlet extends HttpServlet
 		String toPath=null;
 		if("0123".contains(request.getSession().getAttribute("kkd104").toString()))
 		{
-			toPath="/kd/rootadminpage_info.jsp";
+			toPath="/kd/adminpage_info.jsp";
 		}
 		else
 		{

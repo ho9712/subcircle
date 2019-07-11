@@ -7,7 +7,7 @@ public class Kd01QueryAdminServlet extends Kd01Controller
 	public String execute() throws Exception 
 	{
 		this.queryAdmin();
-		return "kd/rootadmin_page_query";
+		return "kd/rootadminpage_query";
 	}
 
 }

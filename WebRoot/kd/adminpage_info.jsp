@@ -51,18 +51,15 @@
 	
     <!-- 顶部头像菜单 -->
     <div class="idBadgerNeue">
-		<a class="avatar" href="<%=path%>/kd/userpage_main.jsp">
+		<a class="avatar" href="<%=path%>/kd/adminpage_main.jsp">
 			<img src="${sessionScope.user.kkd108}" onerror="this.src='<%=path %>/img/avatar/def_avatar.png'" class="port" width="33px" height="33px"/>
 		</a>
 		<ul id="badgeUserPanel">
-			<li><a href="<%=path%>/kd/userpage_main.jsp">时光机</a></li>                    
-       		<li><a href="http://bangumi.tv/user/481528/blog">作品</a></li>
-       		<li><a href="http://bangumi.tv/user/481528/mono">论坛</a></li>
-       		<li><a href="http://bangumi.tv/user/481528/index">商城</a></li>
-	    	
+			<li><a href="<%=path%>/kd/adminpage_main.jsp">账号</a></li>                    
+	    	<li class="row"><a href="<%= path %>/kd01QueryAdmin.kdhtml">管理员</a></li>
 	        <li class="row">
 		        <a href="http://bangumi.tv/pm">短信</a> | 
-		        <a href="<%=path%>/kd/userpage_info.jsp">设置</a> | 
+		        <a href="<%=path%>/kd/adminpage_info.jsp">设置</a> | 
 		        <a href="<%=path%>/logout.kdhtml">登出</a>
 	        </li>
     	</ul>	
@@ -96,8 +93,8 @@
 		<!-- 切换栏 -->
 			<div id="header">
 			<ul class="secTab rr">
-			<li><a href="<%=path %>/kd/userpage_info.jsp" class="selected"><span>基本设置</span></a></li>
-			<li><a href="<%=path %>/kd/userpage_pwd.jsp" ><span>密码</span></a></li>
+			<li><a href="<%= path %>/kd/adminpage_info.jsp" class="selected"><span>基本设置</span></a></li>
+			<li><a href="<%= path %>/kd/adminpage_pwd.jsp" ><span>密码</span></a></li>
 			</ul>
 			<h1>我的个人设置</h1>
 			</div>
@@ -142,7 +139,7 @@
 						</tr>
 						<tr>
 							<td valign="top" width="12%">密码</td>
-							<td valign="top"><a href="<%=path %>/kd/userpage_pwd.jsp" class="l">修改密码</a></td>
+							<td valign="top"><a href="<%=path %>/kd/adminpage_pwd.jsp" class="l">修改密码</a></td>
 						</tr>
 						<tr>
 						<td valign="top" width="12%">用户权限</td><td valign="top">
@@ -151,8 +148,6 @@
 								<c:when test="${sessionScope.user.kkd104==1}">作品管理员</c:when>
 								<c:when test="${sessionScope.user.kkd104==2}">商城管理员</c:when>
 								<c:when test="${sessionScope.user.kkd104==3}">论坛管理员</c:when>
-								<c:when test="${sessionScope.user.kkd104==4}">权限用户</c:when>
-								<c:otherwise>普通用户&nbsp;&nbsp;&nbsp;<a href="/settings/password" class="l">申请权限</a></c:otherwise>
 							</c:choose>
 						</td>
 						</tr>
@@ -167,18 +162,6 @@
 						<tr>
 							<td valign="top" width="12%">自我介绍</td>
 							<td valign="top"><textarea id="newbio" name="kkd109" cols="45" rows="5" class="quick" style="width:380px;">${sessionScope.user.kkd109 }</textarea>
-						</tr>
-						<tr>
-							<td valign="top" width="12%">收货地址</td>
-							<td valign="top"><input name="kkd110" class="inputtext" type="text" value="${sessionScope.user.kkd110 }"></td>
-						</tr>
-						<tr>
-							<td valign="top" width="12%">收货人</td>
-							<td valign="top"><input name="kkd111" class="inputtext" type="text" value="${sessionScope.user.kkd111 }"></td>
-						</tr>
-						<tr>
-							<td valign="top" width="12%">手机号</td>
-							<td valign="top"><input name="kkd112" class="inputtext" type="text" value="${sessionScope.user.kkd112 }"></td>
 						</tr>
 						<tr>
 							<td valign="top">
@@ -203,16 +186,15 @@
 <div id="dock">
     <div class="content">
          <ul class="clearit">
-        <li class="first"><a href="<%=path %>/kd/userpage_main.jsp">${sessionScope.user.kkd102 }</a></li>
+        <li class="first"><a href="<%=path%>/kd/adminpage_main.jsp">${sessionScope.user.kkd102 }</a></li>
         <li><a href="http://bangumi.tv/notify/all">提醒</a></li>
         <li><a href="http://bangumi.tv/pm">短信</a></li>
-        <li><a href="<%=path %>/kd/userpage_info.jsp">设置</a></li>
+        <li><a href="<%=path%>/kd/adminpage_info.jsp">设置</a></li>
         <li class="last"><a href="<%=path%>/logout.kdhtml">登出</a></li>
         </ul>
     </div>
 </div>
 <!-- 底部菜单栏 -->
-
 
 <!-- 展示 -->
 <div id="robot" >
@@ -225,14 +207,10 @@
 <div id="robot_speech" class="speech" >
 <c:choose>
 	<c:when test="${empty hint }">
-		<strong>关于『UID』</strong><br />
-		UID在你注册时自动生成，且无法更改。<br />
-		<strong>关于『用户名』</strong><br />
-		用户名在注册完成后不可更改，它将作为你的登录凭证。<br />
 		<strong>关于『昵称』</strong><br />
 		昵称可以随意修改，修改后在某些页面可能无法立即生效，请保持冷静。<br />
-		<strong>关于『用户权限』</strong><br />
-		用户权限分为普通用户与权限用户，权限用户有权限对作品信息进行修改完善，普通用户可通过申请获取权限。<br />
+		<strong>关于『用户名』</strong><br />
+		用户名设置后将作为你唯一的ID使用在你个人页面的URL中，你<strong>只有一次</strong>设置的机会，用户名允许使用以字母开头的包括字母、数字或下划线的字符串。<br />
 	</c:when>
 	<c:otherwise>
 		<strong>『${hint }』</strong><br />

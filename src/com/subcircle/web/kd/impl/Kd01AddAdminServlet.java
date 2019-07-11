@@ -1,12 +1,13 @@
 package com.subcircle.web.kd.impl;
 
-public class ModifyInfoServlet extends Kd01Controller 
+public class Kd01AddAdminServlet extends Kd01Controller 
 {
 
 	@Override
 	public String execute() throws Exception 
 	{
-		return this.modifyInfo();
+		this.addAdmin();
+		return "kd/rootadminpage_add";
 	}
 
 }

@@ -1,4 +1,6 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%String path=request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
@@ -12,7 +14,7 @@
 <body class="bangumi">
 <div id="wrapperNeue" class="wrapperNeue">
 
-<!-- 顶部栏 -->
+<%-- <!-- 顶部栏 -->
 	<div id="headerNeue2">
 	    <div class="headerNeueInner clearit">
 	         <div class="bg musume_4"></div>
@@ -178,7 +180,73 @@
 	</div>  
 	<!-- 顶部搜索栏 -->
 	    </div>
+	</div> --%>
+	
+<!-- 顶部栏 -->
+<div id="headerNeue2">
+    <div class="headerNeueInner clearit">
+         <div class="bg musume_4"></div>
+   		 <a href="/" class="logo">Bangumi 番组计划</a>
+        
+		<input type="checkbox" id="navMenuNeueToggle" />        
+		<label for="navMenuNeueToggle" class="menuCompact"></label>
+	<!-- 顶部导航 -->
+	<div id="navNeue2">
+		<div id="menuNeue">
+		<ul id="navMenuNeue" class="clearit">
+		<li><a href="/anime" class="top chl anime"><span>动画</span></a>
+		                <div class="clear"></div>
+		<ul class="clearit">
+		<li><a href="kc02ShowRank.kchtml" class="nav">排行榜</a></li>
+		</ul>
+		</li>
+		<li><a href="/book" class="top chl"><span>书籍</span></a>
+		<div class="clear"></div>
+		<ul class="clearit">
+		<li><a href="kc03ShowRank.kchtml" class="nav">排行榜</a></li>
+		</ul>
+		</li>
+		
+		<li><a href="/game" class="top chl game"><span>游戏</span></a>
+		<div class="clear"></div>
+		<ul class="clearit">
+		<li><a href="kc04ShowRank.kchtml" class="nav">排行榜</a></li>
+		</ul>
+		</li>
+		</ul>
+		</div>
 	</div>
+	<!-- 顶部导航 -->
+	
+    <!-- 顶部头像菜单 -->
+    <div class="idBadgerNeue">
+    	<div class="guest">
+	    	<a href="<%=path %>/kd/login.jsp" class="guest login">登录</a>
+    		<a href="<%=path %>/kd/signup.jsp" class="guest signup">注册</a>
+    	</div>
+	</div>
+	<!-- 顶部头像菜单 -->
+	
+	<!-- 顶部搜索栏 -->
+	<div id="headerSearchWrapper">
+		<div id="headerSearch">
+	        <form action="" method="post">
+			    <div class="inner">
+				<select name="cat" id="siteSearchSelect">
+					<option value="all">全部</option>
+					<option value="2">动画</option>
+					<option value="1">书籍</option>
+					<option value="4">游戏</option>         
+				</select>
+				<input id="search_text" name="search_text" class="textfield" type="text" />
+		        <input type="submit" name="submit" value="搜索" class="search" />
+			    </div>
+			</form>
+	    </div>   
+	</div>   
+	<!-- 顶部搜索栏 -->
+    </div>
+</div>
 <!-- 顶部栏 -->
 
 <!-- 页面主体 -->
@@ -188,14 +256,13 @@
 	    <div class="clearit">
 	        <div id="columnLoginA" class="column">
 	    		<form id="loginForm" method="post" name="login" action="<%=path %>/login.kdhtml">
-		    		<p class="title"><label for="email">你的用户名</label><span class="green">${usernameError }</span></p>
+		    		<p class="title"><label for="email">你的用户名</label></p>
 		    		<p><input id="email" name="kkd102" class="inputtext" type="text" /></p>
 		    		<p class="title"><label for="password">你的密码</label></p>
 		    		<p><input id="password" name="kkd103" class="inputtext" type="password"></p>
 		    		
 					<br><br>
 		    		<input class="inputBtn" type="submit" name="loginsubmit" value="登录">
-		    		<span class="green">${error }</span>
 	    		</form>
 	        </div>
 	        <div id="columnLoginB" class="column">
@@ -209,6 +276,46 @@
 </div>
 <!-- 页面主体 -->
 </div>
+
+<div class="homeBg"></div>
+<!-- 底部菜单栏 -->
+<div id="dock">
+    <div class="content">
+        <ul class="clearit">
+        <li class="first"><a href="<%=path %>/kd/login.jsp">登录</a></li>
+        <li class="last"><a href="<%=path %>/kd/signup.jsp">注册</a></li>
+        </ul>
+    </div>
+</div>
+<!-- 底部菜单栏 -->
+<!-- 展示 -->
+<div id="robot" >
+<div id="ukagaka_shell">
+<div class="ui_10 shell_1">
+<div id="ukagaka_voice"></div>
+<div id="robot_balloon" class="ukagaka_balloon_pink">
+<div class="tools"><a href="javascript:void(0);" id="ukagaka_menu"></a></div>    
+<div class="inner">
+<div id="robot_speech" class="speech" >
+<c:choose>
+	<c:when test="${empty hint }">
+		<strong>『登录』</strong><br />
+		使用你的SubCircle账号登录，体验网站完整服务。<br />
+	</c:when>
+	<c:otherwise>
+		<strong>『${hint }』</strong><br />
+		${msg }<br />
+	</c:otherwise>
+</c:choose>
+
+</div>
+</div>
+<div class="ukagaka_balloon_pink_bottom"></div>	
+</div>
+</div>
+</div>
+</div>
+<!-- 展示 -->
 
 </body>
 </html>
