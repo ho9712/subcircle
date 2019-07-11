@@ -93,4 +93,21 @@ public class Ka01Services extends JdbcServicesSupport
 	  		return this.queryForList(sql.toString(), args);
 	  }
   
+	  private boolean postForum()throws Exception
+	    {
+	    	//1.编写SQL语句
+	    	StringBuilder sql=new StringBuilder()
+	    			.append("insert into ka01(kkd101,kka102,kka103,kka104,kka105,kka106)")
+	    			.append("          values(?,?,?,?,CURRENT_TIMESTAMP,1)")
+	    			;
+	    	//2.编写参数数组
+	    	Object args[]=
+	    		{
+	    			"1",
+	    			this.get("kka102"),
+	    			this.get("kka103"),
+	    			this.get("kka104"),
+	    	    };
+	        return this.executeUpdate(sql.toString(), args)>0;	
+	    }
 }

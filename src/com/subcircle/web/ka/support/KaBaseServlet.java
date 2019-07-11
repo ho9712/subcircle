@@ -57,7 +57,7 @@ public class KaBaseServlet extends HttpServlet
 		}
 		else
 		{
-			request.getRequestDispatcher("/"+toPath+".jsp").forward(request, response);
+			request.getRequestDispatcher("/"+toPath).forward(request, response);
 		}
 	}
 

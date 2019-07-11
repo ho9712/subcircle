@@ -6,7 +6,7 @@ public class Ka01MainForumServlet extends Ka01Controller {
 	public String execute() throws Exception 
 	{
 		this.savePageData();
-		return "ka/forum";
+		return "ka/forum.jsp";
 	}
 
 }

@@ -6,7 +6,7 @@ public class Ka01AnimeForumServlet extends Ka01Controller {
 	public String execute() throws Exception 
 	{
 		this.forumToAnime();
-		return "ka/animeforum";
+		return "ka/animeForum.jsp";
 	}
 
 }

@@ -262,7 +262,7 @@
 </div>
 <div id="sideLayout"><div id="friend" class="sort">
 <div class="SidePanel png_bg" align="left">
-<h2>/ 我的朋友 <small><a href="/user/481528/friends">...more</a></small></h2><hr class="board" /><a href="#">+ 我要发贴</a>
+<h2>/ 我的朋友 <small><a href="/user/481528/friends">...more</a></small></h2><hr class="board" /><a href="postForum.jsp">+ 我要发贴</a>
 </div>
 </div>
 <div id="group" class="sort">
