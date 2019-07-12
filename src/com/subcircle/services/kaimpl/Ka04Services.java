@@ -41,6 +41,12 @@ public class Ka04Services extends JdbcServicesSupport
 	  				.append(" where x.kka103=b.fcode and b.fname='kka103'")
 	  				.append(" order by x.kka105 DESC")
 	  				//.append(" where a.kkd101=1")    //Ä£ÄâÓÃ»§1
+	  				//select b.kka102,s.fvalue cnkka103,b.kka104,c.kkd105,b.kka105
+	  			 // from ka04 a,ka01 b,kd01 c,syscode s
+	  			// where b.kka103=s.fcode and s.fname='kka103'
+	  			 //  and a.kka101 = b.kka101
+	  			 //  and a.kkd101 = c.kkd101
+	  			  // and c.kkd101 = 1
 	  				;
 	  		
 	  		

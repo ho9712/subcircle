@@ -3,45 +3,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%String path=request.getContextPath(); %>
-<script type="text/javascript">
-      var count=0;
-      function onSelect(vstate)
-      {
-    	  vstate?count++:count--;
-    	  var vdel=document.getElementById("del");
-    	  vdel.disabled=(count==0);
-      }
-      
-      function onEdit(vkka102)
-      {
-    	 var vform = document.getElementById("myform");
-    	 vform.action="<%=path%>/findByIdEmp.html?kka102="+vkka102;
-    	 //alert(vform.action);
-    	 vform.submit();
-      }
-</script>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
-<meta content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" name="viewport">
 <title>论坛</title>
-<meta name="keywords" content="登录至 Bangumi 番组计划,ACG,anime,comic,game,music,动漫,音乐,游戏,动画,漫画,番组,bangumi,chii,chobits" />
-<meta name="description" content="登录至 Bangumi 番组计划" />
-<link rel="search" type="application/opensearchdescription+xml" href="http://bangumi.tv/static/xml/opensearch_bgm.xml" title="Bangumi 番组计划" />
-<link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
-<link rel="apple-touch-icon-precomposed" href="/img/ico/ico_ios.png" />	
-
-</style>
-<!--[if lte IE 6]>
-<script src="/js/pngfixed.js" type="text/javascript"></script>
-<script>
-  DD_belatedPNG.fix('.png_bg,img,#wrapper');
-</script>
-<![endif]-->
 
 <link rel="stylesheet" type="text/css" href="<%=path %>/css/bangumi.css" >
-<script type="text/javascript">var SHOW_ROBOT = '0',CHOBITS_UID = 0, SITE_URL = 'http://bangumi.tv';</script>
 </head>
   <body class="bangumi">
     <div id="wrapperNeue" class="wrapperNeue">
@@ -201,15 +169,18 @@
                                 <!-- 论坛导航栏 -->
     <div class="subjectNav">
       <ul class="navTabs">
-        <li><a href="ka01AnimeForum.kahtml">番剧</a></li>
-        <li><a href="ka01BookForum.kahtml">书籍</a></li>
-        <li><a href="ka01GameForum.kahtml" >游戏</a></li>
+      <li><a href="ka01MainForum.kahtml?id=0" class="focus">全部</a></li>
+        <li><a href="ka01AnimeForum.kahtml?id=1">动画</a></li>
+        <li><a href="ka01BookForum.kahtml?id=2">书籍</a></li>
+        <li><a href="ka01GameForum.kahtml?id=3" >游戏</a></li>
         
       </ul>
     </div>
-                                <!-- 搜索框 -->
+    
+    <!-- 搜索框 -->
     <div id="forumSearch">
-      <form action="/subject_search" method="post">
+      <form action="<%=path %>/ka01SearchResult.kahtml" method="post">
+      	<input type="hidden" name="id" value="0">
         <div class="inner">
           <input id="search_text" name="search_text" class="textfield" type="text"  style="float:left;width:80%;height:40px;border:2px solid #34495E"/>
           <input type="submit" name="submit" value="搜索" class="search" style="float:left;width:10%;height:40px;border:2px solid #34495E;background-color:#34495E;color:#ffffff"/>
@@ -224,21 +195,24 @@
        <div class="SidePanel png_bg" style="width:85%;margin-left: 5px">
         <div id="columnA">
           <font size="3" style="width:80%;height:15px;margin-left: 10px">
-            <a href="#">
+            <a href="#" onclick="itemInfo(${ins.kka101 })">
               <b>
               ${ins.kka102 }
               </b>
             </a>
           </font>
         </div>
+        <br>
         <div  id="columnB" style="margin-left: 15px">
           ${ins.kka104 }
         </div>
+        <br>
         <div style="float:left;">
           <font size="2" style="width:10%;height:15px;margin-left: 15px">
               ${ins.kkd105 }
           </font>
         </div>
+        <br>
         <div style="margin-left: 20px" align="right">
           ${ins.kka105 }
         </div>
@@ -247,6 +221,7 @@
     </div>
   </div>
 </div>
+
 
 <div id="columnB" class="column">
 <div id="">
@@ -257,30 +232,27 @@
 <div class="SidePanel png_bg">
 <h2>/ 我的时间胶囊 <small><a href="/user/481528/timeline">...more</a></small></h2>
 
-<ul class="timeline"><li><small class="feed">注册成为了 Bangumi 成员</small> <small class="time">2019-6-28 18:52</small></li></ul>
+<ul class="timeline"><li><small class="feed">注册</small> <small class="time">2019-6-28 18:52</small></li></ul>
 </div>
 </div>
-<div id="sideLayout"><div id="friend" class="sort">
+<div id="sideLayout"><div id="post" class="sort">
 <div class="SidePanel png_bg" align="left">
-<h2>/ 我的朋友 <small><a href="/user/481528/friends">...more</a></small></h2><hr class="board" /><a href="postForum.jsp">+ 我要发贴</a>
+<h2><a href="<%=path %>/ka/posting.jsp">我要发贴</a></h2>
 </div>
 </div>
 <div id="group" class="sort">
 <div class="SidePanel png_bg" align="left">
 <h2>/ 我参加的小组 </h2>
     <ul class="groupsLine">
-            </ul>
-</div>
-</div>
-</div>
-<div class="menu_inner">
-    	<p> <a href="/feed/user/481528/interests" class="l">/ RSS2.0: 订阅我的收藏</a></p>
-    	<p><a href="/user/481528/wiki" class="l">/ 我的维基编辑</a></p>
+    </ul>
 </div>
 </div>
 </div>
 </div>
 </div>
+</div>
+</div>
+
 <div class="homeBg"></div>
 <div id="dock">
     <div class="content">
@@ -292,38 +264,11 @@
     </div>
 </div>
 
-<div id="robot"  style="display:none;">
-<div id="ukagaka_shell">
-<div class="ui_10 shell_1">
-<div id="ukagaka_voice"></div>
-<div id="robot_balloon" class="ukagaka_balloon_pink">
-<div class="tools"><a href="javascript:void(0);" id="ukagaka_menu"><img src="/img/ukagaka/menu.gif" /></a></div>    <div class="inner">
-<div id="robot_speech" class="speech" >
-必须守护的东西多的人容易操纵真是方便啊。</div>
-<div id="robot_speech_js" class="speech">
-    </div>
-</div>
-<div class="ukagaka_balloon_pink_bottom"></div>	
-</div>
-</div>
-</div>
-</div>
-
-
-<script src="js/bangumi.js" type="text/javascript"></script>
 <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-4049707-6']);
-    _gaq.push(['_setDomainName', 'none']);
-    _gaq.push(['_setAllowLinker', true]);
-    _gaq.push(['_trackPageview']);
-    
-    (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
+    function itemInfo(kka101)
+	{
+		window.location.href = "<%=path%>/ka01PostContent.kahtml?kka101=" + kka101;
+	}
 </script>
-<script type="text/javascript">chiiLib.login.init();</script>
 </body>
 </html>

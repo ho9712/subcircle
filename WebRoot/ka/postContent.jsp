@@ -3,15 +3,48 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%String path=request.getContextPath(); %>
+<script type="text/javascript">
+      var count=0;
+      function onSelect(vstate)
+      {
+    	  vstate?count++:count--;
+    	  var vdel=document.getElementById("del");
+    	  vdel.disabled=(count==0);
+      }
+      
+      function onEdit(vkka102)
+      {
+    	 var vform = document.getElementById("myform");
+    	 vform.action="<%=path%>/findByIdEmp.html?kka102="+vkka102;
+    	 //alert(vform.action);
+    	 vform.submit();
+      }
+</script>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
-<title>论坛</title>
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" name="viewport">
+<title>${ins.kka102 }</title>
+<meta name="keywords" content="登录至 Bangumi 番组计划,ACG,anime,comic,game,music,动漫,音乐,游戏,动画,漫画,番组,bangumi,chii,chobits" />
+<meta name="description" content="登录至 Bangumi 番组计划" />
+<link rel="search" type="application/opensearchdescription+xml" href="http://bangumi.tv/static/xml/opensearch_bgm.xml" title="Bangumi 番组计划" />
+<link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+<link rel="apple-touch-icon-precomposed" href="/img/ico/ico_ios.png" />	
+
+</style>
+<!--[if lte IE 6]>
+<script src="/js/pngfixed.js" type="text/javascript"></script>
+<script>
+  DD_belatedPNG.fix('.png_bg,img,#wrapper');
+</script>
+<![endif]-->
 
 <link rel="stylesheet" type="text/css" href="<%=path %>/css/bangumi.css" >
+<script type="text/javascript">var SHOW_ROBOT = '0',CHOBITS_UID = 0, SITE_URL = 'http://bangumi.tv';</script>
 </head>
   <body class="bangumi">
+${ins.kka101 }
     <div id="wrapperNeue" class="wrapperNeue">
       <div id="headerNeue2">
         <div class="headerNeueInner clearit">
@@ -165,62 +198,127 @@
 <div class="mainWrapper">
 <div class="columns clearit">
 <div id="columnA" class="column">
-  <div class="navTabsWrapper">
-                                <!-- 论坛导航栏 -->
-    <div class="subjectNav">
-      <ul class="navTabs">
-      <li><a href="ka01MainForum.kahtml?id=0" >全部</a></li>
-        <li><a href="ka01AnimeForum.kahtml?id=1" class="focus">动画</a></li>
-        <li><a href="ka01BookForum.kahtml?id=2">书籍</a></li>
-        <li><a href="ka01GameForum.kahtml?id=3" >游戏</a></li>
-        
-      </ul>
+                         <!-- 贴子主体（头部） -->
+  <div class="SidePanel png_bg" style="width:85%;margin-left: 5px">
+    <div id="columnA">
+      <font size="3" style="width:80%;height:15px;margin-left: 10px">
+        <a href="#">
+          <b>
+            ${ins.kka102 }
+          </b>
+        </a>
+      </font>
     </div>
-     
-     
-      <!-- 搜索框 -->
-    <div id="forumSearch">
-      <form action="<%=path %>/ka01SearchResult.kahtml" method="post">
-      	<input type="hidden" name="id" value="0">
-        <div class="inner">
-          <input id="search_text" name="search_text" class="textfield" type="text"  style="float:left;width:80%;height:40px;border:2px solid #34495E"/>
-          <input type="submit" name="submit" value="搜索" class="search" style="float:left;width:10%;height:40px;border:2px solid #34495E;background-color:#34495E;color:#ffffff"/>
-        </div>
-      </form>
-    </div> 
-      <br>
-    <div>
     <br>
+    <div  id="columnB" style="margin-left: 15px">
+      ${ins.kka104 }
+    </div>
     <br>
-      <c:forEach items="${rows }" var="ins">
-       <div class="SidePanel png_bg" style="width:85%;margin-left: 5px">
-        <div id="columnA">
-          <font size="3" style="width:80%;height:15px;margin-left: 10px">
-            <a href="#" onclick="itemInfo(${ins.kka101 })">
-              <b>
-              ${ins.kka102 }
-              </b>
-            </a>
-          </font>
-        </div>
-        <br>
-        <div  id="columnB" style="margin-left: 15px">
-          ${ins.kka104 }
-        </div>
-        <br>
-        <div style="float:left;">
-          <font size="2" style="width:10%;height:15px;margin-left: 15px">
+    <div style="float:left;">
+      <font size="2" style="width:10%;height:15px;margin-left: 15px">
               ${ins.kkd105 }
-          </font>
-        </div>
-        <br>
-        <div style="margin-left: 20px" align="right">
-          ${ins.kka105 }
-        </div>
-       </div>
-      </c:forEach>
+      </font>
+    </div>
+    <br>
+    <div style="margin-left: 20px" align="right">
+      ${ins.kka105 }
     </div>
   </div>
+  
+  <div id="timeline">
+  <ul>
+  <c:forEach items="${rows }" var="tempInS" varStatus="vs" >
+  <div class="menu_inner" style="width:85%;margin-left: 15px">
+   <li class="clearit tml_item">
+   <div style="width:85%;margin-left: 15px">
+   
+    <div  id="columnA" style="margin-left: 15px">
+      ${tempInS.kka202 }
+    </div>
+    <br>
+    <br>
+    <br>
+    <div style="float:left;">
+      <font size="2" style="width:10%;height:15px;margin-left: 15px">
+              ${tempInS.kkd105 }
+      </font>
+    </div>
+    <br>
+    
+   </div>
+   </li>
+   
+   <!-- 弹窗 -->
+   
+    
+  <div id="panel" style="display:none;">
+   <div class="collectBox clearit">
+    <form method="post" action="ka02PostAnswer.kahtml">
+    
+    <input type="hidden" name="kka201" value="${tempInS.kka201 }">
+      <div class="collectType cell">
+        <label><input value="1" id="wish" name="interest" onclick="GenInterestBox('wish')"  type="radio"> 举报</label>&nbsp;&nbsp;
+        <label><input value="2" id="collect" name="interest" onclick="GenInterestBox('collect')"  type="radio"> 回复</label>&nbsp;&nbsp;
+        
+      </div>
+      
+
+    <div class="cell">
+    <p class="tip"><label for="comment"> (回复，最多200字):</label></p>
+    <textarea rows="20" cols="70" name="kka202"></textarea>
+    </div>
+    <div class="clearit">
+    <div id="submitBtnO" class="ll">
+        <input class="inputBtn" 
+        type="submit" name="next" value="提交" 
+        formaction="ka02PostAnswerToAnswer.kahtml"/>
+    </div>
+    </div>
+	
+	<input type="hidden" name="kka101" value="${ins.kka101 }">
+    </form>
+    </div>
+   </div>
+   <hr class="board" />
+     <div id="SecTab">
+      <ul class="secTab tiny">
+        <li><a href="#TB_inline?height=350&amp;width=500&amp;inlineId=panel" title="举报理由"  onclick="GenInterestBox('wish')" class="thickbox"><span>举报</span></a></li>
+        <li><a href="#TB_inline?height=350&amp;width=500&amp;inlineId=panel" title="发表回复"  onclick="GenInterestBox('collect')" class="thickbox"><span>回复</span></a></li>
+        <li style="float: right;">
+          <div style="margin-left: 20px;margin-top: 6px;" >
+               ${tempInS.kka203 }
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="clear"></div>
+    
+     
+   
+   </div>
+   </c:forEach>
+ </ul>
+ </div>
+ 
+<div class="light_odd">
+<span class="tip">
+<form id="editTopicForm" name="new_comment" method="post" action="/PostForum.html">		
+
+  <input type="hidden" name="kka201" value="${param.kka201 }" />
+<script type="text/javascript">var CHOBITS_SID = 'aru27g'; var SCRIPT_URL = '/blog/upload_photo';</script> 
+<table align="center" width="99%" class="settings">
+  <tr><td valign="top" width="10%">评论</td><td valign="top"><textarea  id="tpc_content" name="kka202" cols="45" rows="5" style="width:550px;" class="quick newBlogEntry loadEditor" onKeyDown="seditor_ctlent(event,'editTopicForm');"></textarea>
+<tr>
+<td valign="top" width="10%"></td><td valign="top">
+<div id="submitBtnO"><input class="inputBtn" value="加上去" name="next" type="submit" formaction="ka02PostAnswer.kahtml?kka101=${ins.kka101 }"/> </div>
+</td>
+</tr>
+</table>
+<div id="related_value_list">
+</div>
+</form>
+</span>
+</div>
 </div>
 
 <div id="columnB" class="column">
@@ -232,10 +330,10 @@
 <div class="SidePanel png_bg">
 <h2>/ 我的时间胶囊 <small><a href="/user/481528/timeline">...more</a></small></h2>
 
-<ul class="timeline"><li><small class="feed">注册</small> <small class="time">2019-6-28 18:52</small></li></ul>
+<ul class="timeline"><li><small class="feed">注册成为了 Bangumi 成员</small> <small class="time">2019-6-28 18:52</small></li></ul>
 </div>
 </div>
-<div id="sideLayout"><div id="post" class="sort">
+<div id="sideLayout"><div id="friend" class="sort">
 <div class="SidePanel png_bg" align="left">
 <h2><a href="<%=path %>/ka/posting.jsp">我要发贴</a></h2>
 </div>
@@ -248,13 +346,14 @@
 </div>
 </div>
 </div>
+<div class="menu_inner">
+    	<p> <a href="/feed/user/481528/interests" class="l">/ RSS2.0: 订阅我的收藏</a></p>
+    	<p><a href="/user/481528/wiki" class="l">/ 我的维基编辑</a></p>
 </div>
 </div>
 </div>
 </div>
-
-
-
+</div>
 <div class="homeBg"></div>
 <div id="dock">
     <div class="content">
@@ -283,12 +382,29 @@
 </div>
 </div>
 
-<script type="text/javascript">
-    function itemInfo(kka101)
-	{
-		window.location.href = "<%=path%>/ka01PostContent.kahtml?kka101=" + kka101;
-	}
-</script>
 
+<script src="js/bangumi.js" type="text/javascript"></script>
+<script src="<%=path %>/js/bangumi.js" type="text/javascript"></script>
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4049707-6']);
+    _gaq.push(['_setDomainName', 'none']);
+    _gaq.push(['_setAllowLinker', true]);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    
+    function setKKa202() {
+    	var kka202 = document.getElementById("comment");
+    	kka202.value = kka202.innerHTML;
+    	alert(kka202.innerHTML)
+	}
+    
+</script>
+<script type="text/javascript">chiiLib.login.init();</script>
 </body>
 </html>

@@ -144,6 +144,8 @@
 </div>  
     </div>
 </div>
+                   
+                   
                     <!-- 以下为页面内容 -->
 <div id="main" class="png_bg"><div id="header">
 <h1>发表新贴~ </h1>
@@ -153,9 +155,8 @@
 <div id="columnA" class="column">
 <div class="light_odd">
 <span class="tip">
-<form id="editTopicForm" name="new_comment" method="post" action="/PostForum.html">		
-
-  <input type="hidden" name="kka101" value="${param.kka101 }" />
+<form id="editTopicForm" name="new_comment" method="post" action="<%=request.getContextPath()%>/ka01Posting.kahtml">		
+ <input type="hidden" name="kka101" value="${param.kka101 }" />
 <script type="text/javascript">var CHOBITS_SID = 'aru27g'; var SCRIPT_URL = '/blog/upload_photo';</script> 
 <table align="center" width="99%" class="settings">
   <tr><td valign="top" width="10%">标题</td><td valign="top"><input id="tpc_title" name="kka102" class="inputtext" type="text"> <span class="alarm"></span></td></tr>
@@ -163,7 +164,7 @@
   <tr><td valign="top" width="10%">板块</td><td><e:select name="kka103" value="番剧:1,书籍:2,游戏:3"/></td></tr>
 <tr>
 <td valign="top" width="10%"></td><td valign="top">
-<div id="submitBtnO"><input class="inputBtn" value="加上去" name="next" type="submit" formaction="ka01PostForum.kahtml"/> <span class="tip">&nbsp;&nbsp;使用 Ctrl+Enter 或 Alt+S 快速提交 | <a href="/help/bbcode" class="l" target="_blank">BBCode指南</a></span></div>
+<div id="submitBtnO"><input class="inputBtn" value="加上去" name="next" type="submit" formaction="ka01Posting.kahtml"/></div>
 </td>
 </tr>
 </table>
@@ -257,38 +258,6 @@
         </ul>
     </div>
 </div>
-
-<div id="robot"  style="display:none;">
-<div id="ukagaka_shell">
-<div class="ui_10 shell_1">
-<div id="ukagaka_voice"></div>
-<div id="robot_balloon" class="ukagaka_balloon_pink">
-<div class="tools"><a href="javascript:void(0);" id="ukagaka_menu"><img src="/img/ukagaka/menu.gif" /></a></div>    <div class="inner">
-<div id="robot_speech" class="speech" >
-美国的恐怖电影、我觉得不怎么可怕呢。几乎都是、主角自己捅出的篓子自己来收拾而已。难以移入感情吗？…因为多半是肢解(Supuratta)类型的片子对吧？嗯？</div>
-<div id="robot_speech_js" class="speech">
-    </div>
-</div>
-<div class="ukagaka_balloon_pink_bottom"></div>	
-</div>
-</div>
-</div>
-</div> 
-
-<script src="js/bangumi.js" type="text/javascript"></script>
-<script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-4049707-6']);
-    _gaq.push(['_setDomainName', 'none']);
-    _gaq.push(['_setAllowLinker', true]);
-    _gaq.push(['_trackPageview']);
-    
-    (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-</script>
 
 
 <script type="text/javascript">chiiLib.login.init();</script>

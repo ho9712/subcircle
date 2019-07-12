@@ -140,7 +140,7 @@
     <div class="headerContainer">
     	<h1 class="nameSingle">
             <div class="rr">
-                        </div>
+            </div>
 
             <div class="headerAvatar">
                 <a href="/user/481528" class="avatar"><span class="avatarNeue avatarSize75" style="background-image:url('<%=path %>/${user.kkd108}')"></span></a>
@@ -166,19 +166,18 @@
 <div class="columns clearit">
 <div id="columnA" class="column">
   <div class="navTabsWrapper">
-                                <!-- 论坛导航栏 -->
+  
+    <!-- 论坛导航栏 -->
     <div class="subjectNav">
       <ul class="navTabs">
       <li><a href="ka01MainForum.kahtml?id=0" >全部</a></li>
-        <li><a href="ka01AnimeForum.kahtml?id=1" class="focus">动画</a></li>
+        <li><a href="ka01AnimeForum.kahtml?id=1" >动画</a></li>
         <li><a href="ka01BookForum.kahtml?id=2">书籍</a></li>
-        <li><a href="ka01GameForum.kahtml?id=3" >游戏</a></li>
-        
+        <li><a href="ka01GameForum.kahtml?id=3"  class="focus">游戏</a></li>
       </ul>
     </div>
-     
-     
-      <!-- 搜索框 -->
+                              
+     <!-- 搜索框 -->
     <div id="forumSearch">
       <form action="<%=path %>/ka01SearchResult.kahtml" method="post">
       	<input type="hidden" name="id" value="0">
@@ -223,6 +222,7 @@
   </div>
 </div>
 
+
 <div id="columnB" class="column">
 <div id="">
 <br>
@@ -252,9 +252,7 @@
 </div>
 </div>
 </div>
-
-
-
+ 
 <div class="homeBg"></div>
 <div id="dock">
     <div class="content">
@@ -289,6 +287,7 @@
 		window.location.href = "<%=path%>/ka01PostContent.kahtml?kka101=" + kka101;
 	}
 </script>
+
 
 </body>
 </html>

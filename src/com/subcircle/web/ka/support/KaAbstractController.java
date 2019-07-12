@@ -136,7 +136,7 @@ public abstract class KaAbstractController implements ControllerInterface
 	/*********************************************************************
 	 * 						根据需要在此写方法
 	 *********************************************************************/
-	protected final void savePageData()throws Exception
+	protected final String queryByCondition()throws Exception
 	{
 		List<Map<String,String>> rows=this.services.queryByCondition();
 		if(rows.size()>0)
@@ -146,19 +146,61 @@ public abstract class KaAbstractController implements ControllerInterface
 		else
 		{
 			this.saveAttribute("msg", "没有符合条件的数据!");
-		}	
+		}
+		
+		if(this.dto.get("id").toString().equals("0"))
+		{
+			return "ka/mainForum.jsp";
+		}
+		else if(this.dto.get("id").toString().equals("1"))
+		{
+			return "ka/animeForum.jsp";
+		}
+		else if(this.dto.get("id").toString().equals("2"))
+		{
+			return "ka/bookForum.jsp";
+		}
+		else
+		{
+			return "ka/gameForum.jsp";
+		}
+	}
+
+	
+	
+	/**
+	 * 	显示贴子内容详情
+	 * @throws Exception
+	 */
+	protected final void showPostContent() throws Exception
+	{
+		Map<String, String> ins = this.services.findById();
+		this.saveAttribute("msg","该贴子不存在!");
+		if(ins != null) 
+		{
+			this.saveAttribute("msg","查询成功");
+		}
+		this.saveAttribute("ins", ins);
 	}
 	
-	protected final void forumToAnime()throws Exception
+	
+	
+	/**
+	 * 在贴子内容详情页  显示其他用户回复/评论列表
+	 * @throws Exception
+	 */
+	protected final void forumQueryAnswer()throws Exception
 	{
-		List<Map<String,String>> rows=this.services.queryAnimeForum();
-		if(rows.size()>0)
+		Map<String, Object> objMap =this.services.queryInMap();
+		if(objMap.size()>0)
 		{
-			this.saveAttribute("rows", rows);
+			this.saveAttribute("rows", objMap.get("queryForAnswer"));
 		}
 		else
 		{
 			this.saveAttribute("msg", "没有符合条件的数据!");
 		}	
 	}
+	
+	
 }

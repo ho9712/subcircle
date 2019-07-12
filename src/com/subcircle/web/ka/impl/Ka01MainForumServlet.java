@@ -5,8 +5,7 @@ public class Ka01MainForumServlet extends Ka01Controller {
 	@Override
 	public String execute() throws Exception 
 	{
-		this.savePageData();
-		return "ka/forum.jsp";
+		return this.queryByCondition();
 	}
 
 }

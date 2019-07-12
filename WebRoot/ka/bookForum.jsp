@@ -170,15 +170,13 @@
     <div class="subjectNav">
       <ul class="navTabs">
       <li><a href="ka01MainForum.kahtml?id=0" >全部</a></li>
-        <li><a href="ka01AnimeForum.kahtml?id=1" class="focus">动画</a></li>
-        <li><a href="ka01BookForum.kahtml?id=2">书籍</a></li>
-        <li><a href="ka01GameForum.kahtml?id=3" >游戏</a></li>
+        <li><a href="ka01AnimeForum.kahtml?id=1" >动画</a></li>
+        <li><a href="ka01BookForum.kahtml?id=2"  class="focus">书籍</a></li>
+        <li><a href="ka01GameForum.kahtml?id=3">游戏</a></li>
         
       </ul>
     </div>
-     
-     
-      <!-- 搜索框 -->
+                               <!-- 搜索框 -->
     <div id="forumSearch">
       <form action="<%=path %>/ka01SearchResult.kahtml" method="post">
       	<input type="hidden" name="id" value="0">
@@ -252,8 +250,6 @@
 </div>
 </div>
 </div>
-
-
 
 <div class="homeBg"></div>
 <div id="dock">
