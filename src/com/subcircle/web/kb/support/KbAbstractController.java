@@ -162,6 +162,7 @@ public abstract class KbAbstractController implements ControllerInterface
 	protected final void showMarketItemInfo() throws Exception
 	{
 		Map<String, String> ins = this.services.findById();
+		System.out.println(ins);
 		this.saveAttribute("msg","该商品已下架或禁止访问!");
 		if(ins != null) 
 		{
@@ -204,7 +205,7 @@ public abstract class KbAbstractController implements ControllerInterface
 //		}
 //	}
 	
-	//显示待支付订单
+	//显示待支付订单(从购物车页面提交的即时待支付订单)
 	protected final void queryAndShowOrderToPay()throws Exception
 	{
 		List<Map<String, String>> rows=(List<Map<String,String>>)this.services.queryInMap().get("orderTopay");
@@ -214,7 +215,7 @@ public abstract class KbAbstractController implements ControllerInterface
 		}
 		else
 		{
-			this.saveAttribute("msg", "购物车空空如也！");
+			this.saveAttribute("msg", "数据不存在或禁止访问");
 		}
 	}
 	

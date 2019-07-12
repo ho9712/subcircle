@@ -23,6 +23,15 @@
 	_bottom: expression(document.documentElement.clientHeight +  
 		 document.documentElement.scrollTop - this.offsetHeight);
 }
+
+
+/* #top_1 {
+	position: fixed;
+	left:16.7%;
+	_position: absolute;
+	_bottom: expression(document.documentElement.clientHeight +  
+		 document.documentElement.scrollTop - this.offsetHeight);
+} */
 </style>
 </head>
 <body>
@@ -56,7 +65,14 @@
 			<!-- 商城模块导航栏 -->
 			<ul class="nav nav-pills">
 				<li><a href="#" onclick="ToMyCart()">我的购物车</a></li>
-				<li><a href="#">我的订单</a></li>
+				<li class="dropdown"><a href="#" data-toggle="dropdown"
+					class="dropdown-toggle">我的订单 <strong class="caret"></strong></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">待支付订单</a></li>
+						<li><a href="#">待收货订单</a></li>
+						<li><a href="#">已完成订单</a></li>
+					</ul>
+				</li>
 				<li class="dropdown"><a href="#" data-toggle="dropdown"
 					class="dropdown-toggle">求购 <strong class="caret"></strong></a>
 					<ul class="dropdown-menu">

@@ -1,3 +1,4 @@
+<%@page import="com.sun.xml.internal.txw2.Document"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
@@ -88,7 +89,12 @@
 											  		onclick="onCollect(${ins.kkb101 })">收藏</button>
 											<button type="button" class="btn btn-warning"
 												onclick="onAddToCart(${ins.kkb101 })">加入购物车</button>
-											<button type="button" class="btn btn-danger">立即购买</button>
+											<a id="myModel" href="#modal-container" role="button" 
+												class="btn btn-danger" data-toggle="modal"
+												onclick = "passItemInfo('${ins.kkb102 }','${ins.kkb103 }','${ins.kkb105 }')">
+												立即购买
+											</a>
+											<!-- <button type="button" class="btn btn-danger">立即购买</button> -->
 										</div>
 									</div>
 								</div>
@@ -113,6 +119,71 @@
 					<button class="btn btn-success" contenteditable="true"
 						type="submit">跳转</button>
 				</div>
+				
+	
+				<!-- 遮罩窗体 -->
+				<div id="modal-container" class="modal hide fade modal-lg" role="dialog"
+				 aria-labelledby="myModalLabel" aria-hidden="true" style="height:70%">
+					
+					<div class="modal-header">
+						 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+						<h3 id="myModalLabel" style="color: maroon;">
+							生成订单
+						</h3>
+					</div>
+						
+					<div class="modal-body" >
+						
+						<div>
+							<table class="table table-hover">
+								<tbody>
+									<tr>
+										<td style="vertical-align: middle;">
+											<div align="center">
+												<img id = "simpleImg"
+													class="img-thumbnail" src="" width="100px"
+													height="100px" />
+												<hr>
+												<span style="font-size:20px;color:buttonshadow;">评分:</span>
+												<span style="font-size:30px;color:buttonshadow;">5</span>
+											</div>
+										</td>
+										<td style="vertical-align: middle;">
+											<div align="center" >
+												<h4 id="simpleName">商品名</h4>
+												<hr>
+												<span style="font-size:20px;color:red" >售价:¥</span>
+												<span id="simplePrice" style="font-size:30px;color:red">价格</span>
+												<hr>
+												<span style="font-size:20px;color:buttonshadow;">数量:</span>
+												<input type="number" min = "1" step = "1" 
+												style="width: 60px;font-size:15px" value = "1">
+											</div>	
+										</td>
+									</tr>
+									<tr >
+									<td style="vertical-align: middle;" colspan="2">
+										<div align="left">
+											<textarea rows="5" cols="30" 
+											style="overflow:auto;width:100%;"placeholder="订单备注...100字以内"></textarea> 
+										</div>
+									</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+							
+					</div>
+					
+					<div class="modal-footer">
+						<div class="btn-group btn-group-lg" align="center">
+						 	<button class="btn " data-dismiss="modal" aria-hidden="true">取消</button> 
+						 	<button class="btn btn-success">确定</button>
+						 </div>
+					</div>
+				</div>
+				<!-- 遮罩窗体 结束-->
+				
 			</div>
 			<!-- span10结束 -->
 		</div>
@@ -131,7 +202,7 @@
 		window.location.href = "<%=request.getContextPath()%>/kb01FindItemById.kbhtml?kkb101=" + kkb101;
 	}
 	
-	//根据商品id加入用户收藏李彪
+	//根据商品id加入用户收藏列表
 	function onCollect(kkb101)
 	{
 		window.location.href="<%=request.getContextPath()%>/kb03CollectItem.kbhtml?"
@@ -142,14 +213,23 @@
 	//根据商品id以及数量加入用户购物车中
 	function onAddToCart(kkb101)
 	{
-		var kkb402 = 1;
+		var kkb402 = 1;			//从周边商城模块加入购物车数量默认为1
 		window.location.href="<%=request.getContextPath()%>/kb04AddToMyCart.kbhtml?"
 				+"kkb101="+kkb101
 				+"&kkb402="+kkb402;
 		alert("加入购物车成功");
 	}
-
 	
+	//点击立即购买传递kkb101给遮罩窗体
+	function passItemInfo(kkb102,kkb103,kkb105)
+	{
+		document.getElementById("simpleName").innerHTML = kkb102;
+		document.getElementById("simplePrice").innerHTML = kkb103;
+		
+		document.getElementById("simpleImg").src = kkb105;
+	}
+	
+
 	</script>
 </body>
 </html>

@@ -79,6 +79,11 @@
 							</tr>
 						</tbody>
 					</table>
+					
+					
+					<!-- 隐藏域传输数据  页面加载完成改变value值-->
+					<input type="hidden" id = "kkb507" name="kkb507" value="0"/>
+					
 				</form>
 			</div>
 			<!-- col-END -->
@@ -162,18 +167,22 @@
 		var selectAllList = document.getElementsByName("selectAll");
         if(vsstate)
         {
-            for(var i = 0; i < checklist.length ;i++)
-            {
-            	checklist[i].checked = true;
+        	if(checklist.length > 0)
+        	{
+            	for(var i = 0; i < checklist.length ;i++)
+            	{
+            		checklist[i].checked = true;
+            	}
+            	
+            	document.getElementById("pay").disabled = false;
             }
-            document.getElementById("pay").disabled = false;
+            
            
             for(var i = 0; i < selectAllList.length ;i++)
             {
             	selectAllList[i].checked = true;
             }
 
-            document.getElementById("pay").disabled = false;
         }
         else
         {
@@ -320,9 +329,26 @@
 			+"&kkb402="+updateCount;
 	} --%>
 	
+	
+	//通过时间获取唯一的商户订单号
+	function GetDateNow() {
+		var vNow = new Date();
+		var sNow = "";
+		sNow += String(vNow.getFullYear());
+		sNow += String(vNow.getMonth() + 1);
+		sNow += String(vNow.getDate());
+		sNow += String(vNow.getHours());
+		sNow += String(vNow.getMinutes());
+		sNow += String(vNow.getSeconds());
+		sNow += String(vNow.getMilliseconds());
+		document.getElementById("kkb507").value = sNow;
+	}
+	
+	
 	 window.onload = function()
 	 {
 		onSelectAll(true);
+		GetDateNow();
 	 } 
 	</script>
 	

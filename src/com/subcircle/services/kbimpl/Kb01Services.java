@@ -29,7 +29,8 @@ public class Kb01Services extends JdbcServicesSupport
 	public List<Map<String, String>> queryByCondition() throws Exception
 	{
 		StringBuilder sql = new StringBuilder()
-				.append(" select k.kkb101,k.kkb102,k.kkb103,k.kkb104,k.kkb105")
+				.append(" select k.kkb101,k.kkb102,k.kkb103,k.kkb104,k.kkb105,")
+				.append("        k.kkb106,k.kkb107,k.kkb108,k.kkb109")
 				.append("	from kb01 k")
 				.append("	where k.kkb110 = 1 limit 12")
 				;

@@ -9,6 +9,7 @@
 </head>
 <body>
 
+
 	<div class="container-fluid">
 		<!-- 容器 -->
 		<div class="row-fluid">
@@ -29,6 +30,8 @@
 				
 				</table>
 				
+				
+			<form action="<%=request.getContextPath()%>/kb/alipay.trade.page.pay.jsp" method="post">
 				<table class="table table-hover">
 						<!-- 订单列表 -->
 					<thead>
@@ -40,8 +43,12 @@
 							</tr>
 					</thead>
 				
-					<tbody>
+				
+					<tbody>	
 						<c:forEach items="${rows }" var="ins" varStatus="vs">
+							<!-- 订单中商品ID -->
+							<input type="hidden" name="orderItemId" value="${ins.kkb101 }"/>
+
 							<tr>
 								<td style="vertical-align: middle;"><img
 									class="img-thumbnail"
@@ -49,14 +56,16 @@
 									width="100" height="100" /></td>
 
 								<td style="vertical-align: middle;">${ins.kkb102 }</td><!-- 商品名 -->
-					
-								<td style="vertical-align: middle;" name = "orderItemCount">
-									¥<em>${ins.kkb504 }</em>
-								</td> <!-- 订单商品数量 -->
+						
 								
 								<td style="vertical-align: middle;" name = "orderItemPrice">
-									<em>${ins.kkb505 }</em>
+									¥<em>${ins.kkb505 }</em>
 								</td><!-- 订单商品单价 -->
+								
+								<td style="vertical-align: middle;" name = "orderItemCount">
+									<em>${ins.kkb504 }</em>
+								</td> <!-- 订单商品数量 -->
+							
 							</tr>
 							<tr>
 								<td></td>
@@ -66,30 +75,39 @@
 						<tr>
 							<td style="vertical-align: middle;"></td>
 							<td style="vertical-align: middle;" name = "orderCount">商品总件数:<em>0</em></td>
-							<td style="vertical-align: middle;" name= "orderPrice">商品总金额¥:<em>0</em></td>
+							<td style="vertical-align: middle;" name= "orderPrice">
+								商品总金额¥:<em>0</em>
+							</td>
 							<td style="vertical-align: middle;">
 								<div class="btn-group btn-group-sm">
-									<button class="btn btn-success" href="#" onclick="deleteOrderToPay()">
-										返回购物车
-									</button>
-									<button class="btn btn-warning" href="#">
-										提交订单
-									</button>
-									
+									<input type = "submit"  class="btn btn-success" href="#" 
+										formaction="<%=request.getContextPath()%>/kb05DelOrderToPay.kbhtml"
+											value="返回购物车"
+										>
+									<input type = "submit" class="btn btn-warning" href="#" 
+											value="提交订单">
 								</div>
 							</td>
 						</tr>
 					</tbody>
-				
 				</table>
-
-
+				<!-- 隐藏域传输数据 -->
+				<!-- 传输订单总商品数给servlet updateSummaryInfo()方法会设置该控件value-->
+				<input type="hidden" id = "totalCount" name="totalCount" value="0"/>
+				<!-- 商户订单号-->							
+				<input type="hidden" id = "WIDout_trade_no" name="WIDout_trade_no" value="${rows[0].kkb507 }"/>
+				<!-- 传输订单描述 -->
+				<input type="hidden" id = "WIDsubject" name="WIDsubject" value="0"/>
+				<!-- 传输订单总金额给servlet updateSummaryInfo()方法会设置该控件value-->
+				<input type="hidden" id = "WIDtotal_amount" name="WIDtotal_amount" value="0"/>
+			</form>		
 			</div>
 			<!-- col-END -->
 		</div>
 		<!-- row-END -->
 	</div>
 	<!-- 容器END -->
+
 
 <script type="text/javascript">
 
@@ -104,7 +122,7 @@
 	var orderItemPrice = document.getElementsByName("orderItemPrice");
 	
 
-	//订单中商品总件数和总金额
+	//显示订单中商品总件数和总金额
 	function updateSummaryInfo()
 	{
 		var price = 0;
@@ -122,19 +140,22 @@
 
 		orderCount.innerHTML = count;
 		orderPrice.innerHTML = price;
+	
+		
+		//设置传输给servlet的订单总金额,总商品数量,订单描述
+		document.getElementById("totalCount").value = count;
+		document.getElementById("WIDtotal_amount").value = price;
+		document.getElementById("WIDsubject").value = "向翟种付款";
 	}
+	
+	
+	
 	
 	window.onload = function()
 	{
 		updateSummaryInfo();
 	}
 	
-	
-	//返回购物车(从订单表中删除该用户待支付订单)
-	function deleteOrderToPay ()
-	{
-		window.location.href="<%=request.getContextPath()%>/kb05DelOrderToPay.kbhtml";
-	}
 	
 </script>
 
