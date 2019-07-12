@@ -195,12 +195,12 @@ public abstract class KdAbstractController implements ControllerInterface
 		Map<String, String> user=services.findById();
 		if(user==null)
 		{
-			this.setHint("失败", "此账号不存在！");
+			this.setHint("登录失败", "此账号不存在！");
 			return "kd/login";
 		}
 		else if(!user.get("kkd103").equals(Tools.getMd5(dto.get("kkd103"))))
 		{
-			this.setHint("失败", "请确认你的用户名、密码正确！");
+			this.setHint("登录失败", "请确认你的用户名、密码正确！");
 			return "kd/login";
 		}
 		else
@@ -227,12 +227,7 @@ public abstract class KdAbstractController implements ControllerInterface
 		this.session.removeAttribute("kkd104");
 		this.session.removeAttribute("kkd101");
 	}
-//	protected final void findById()throws Exception
-//	{
-//		this.dto.put("kkd101", this.session.getAttribute("kkd101"));
-//		Map<String, String> user=this.services.findById();
-//		this.saveAttribute("user", user);
-//	}
+
 	//用户修改个人信息
 	protected final String modifyInfo()throws Exception
 	{
@@ -350,6 +345,94 @@ public abstract class KdAbstractController implements ControllerInterface
 		{
 			this.setHint("更新失败", "服务器可能出了一点小问题，请稍后再试！");
 		}
-		this.findAdmin();
+		this.queryAdmin();
 	}
+	
+	//查询自己的申请
+	protected final void findApp()throws Exception
+	{
+		this.dto.put("kkd101", this.session.getAttribute("kkd101"));
+		Map<String, String> app=this.services.findById();
+		this.saveAttribute("app", app);
+	}
+	
+	//用户申请权限
+	protected final void commitApp()throws Exception
+	{
+		if(this.dto.get("kkd302").toString().length()<21)
+		{
+			this.dto.put("kkd101", this.session.getAttribute("kkd101"));
+			if(this.executeMethod("commitApp"))
+			{
+				this.setHint("申请提交成功",	"请等待管理员的处理！");
+			}
+			else
+			{
+				this.setHint("申请提交失败", "服务器可能出了一点小问题，请稍后再试！");
+			}
+			this.findApp();
+		}
+		else
+		{
+			this.setHint("申请提交失败",	"标题字数大于20字！");
+		}
+	}
+	
+	//查询所有权限用户
+	protected final void queryUser()throws Exception
+	{
+		this.dto.put("qkkd104", "4");
+		List<Map<String, String>> users=this.services.queryByCondition();
+		this.saveAttribute("users", users);
+	}
+	
+	//修改用户权限
+	protected final void revokePermission()throws Exception
+	{
+		if(this.executeMethod("revokePermission"))
+		{
+			this.setHint("操作成功", "该用户权限已被撤销！");	
+		}
+		else
+		{
+			this.setHint("操作失败", "服务器可能出现了一点小问题，请稍后再试！");
+		}
+		this.queryUser();
+	}
+	
+	//查询用户权限申请
+	protected final void queryApp()throws Exception
+	{
+		List<Map<String, String>> apps=this.services.queryByCondition();
+		this.saveAttribute("apps", apps);
+	}
+	
+	//删除用户权限申请
+	protected final void delApp()throws Exception
+	{
+		if(this.executeMethod("delApp"))
+		{
+			this.setHint("操作成功", "已删除该权限申请！");
+		}
+		else
+		{
+			this.setHint("操作失败", "服务器可能出现了一点小问题，请稍后再试！");
+		}
+		this.queryApp();
+	}
+	
+	//处理用户权限申请
+	protected final void dealApp()throws Exception
+	{
+		if(this.executeMethod("dealApp"))
+		{
+			this.setHint("操作成功", "已处理该用户权限！");
+		}
+		else
+		{
+			this.setHint("操作失败", "服务器可能出现了一点小问题，请稍后再试！");
+		}
+		this.queryApp();
+	}
+	
 }

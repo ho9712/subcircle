@@ -1,13 +1,13 @@
 package com.subcircle.web.kd.impl;
 
-public class UserSignUpServlet extends Kd01Controller 
+public class Kd03FindAppServlet extends Kd03Controller 
 {
 
 	@Override
 	public String execute() throws Exception 
 	{
-		this.userSignUp();
-		return "kd/login";
+		this.findApp();
+		return "kd/userpage_per";
 	}
 
 }

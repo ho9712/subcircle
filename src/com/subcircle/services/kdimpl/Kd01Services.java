@@ -36,7 +36,7 @@ public class Kd01Services extends JdbcServicesSupport
 	{
 		StringBuilder sql=new StringBuilder()
 				.append("select kkd101,kkd102,kkd103,kkd104,kkd105,")
-				.append("		date_format(kkd106,'%Y-%m-%d') kkd106,kkd107,kkd108,kkd109,kkd110,")
+				.append("		date_format(kkd106,'%Y-%m-%d %H:%i:%S') kkd106,kkd107,kkd108,kkd109,kkd110,")
 				.append("		kkd111,kkd112")
 				.append("  from kd01")
 				
@@ -103,13 +103,16 @@ public class Kd01Services extends JdbcServicesSupport
 		Object order=this.get("order");
 		
 		StringBuilder sql=new StringBuilder()
-				.append("select k.kkd101,k.kkd102,s.fvalue admin,k.kkd105,date_format(k.kkd106,'%Y-%m-%d') kkd106,k.kkd107,k.kkd108")
+				.append("select k.kkd101,k.kkd102,k.kkd104,s.fvalue admin,k.kkd105,date_format(k.kkd106,'%Y-%m-%d %H:%i:%S') kkd106,k.kkd107,k.kkd108")
 				.append("	from kd01 k,syscode s")
-				.append(" where k.kkd104>0 and k.kkd104<4")
-				.append("   and s.fname='kkd104'")
+				.append(" where s.fname='kkd104'")
 				.append("	 and k.kkd104=s.fcode ")
 				;
 		List<Object> paraList=new ArrayList<>();
+		if(qkkd104==null || "123".contains(qkkd104.toString()))
+		{
+			sql.append(" and k.kkd104>0 and k.kkd104<4");
+		}
 		if(qkkd104!=null && !qkkd104.equals(""))
 		{
 			sql.append(" and k.kkd104=?");
@@ -184,5 +187,12 @@ public class Kd01Services extends JdbcServicesSupport
 		paras.add(this.get("kkd101"));
 		return this.executeUpdate(sql.toString(), paras.toArray())>0;
 	}
+	
+	public boolean revokePermission()throws Exception
+	{
+		String sql="update kd01 set kkd104='4' where kkd101=?";
+		return this.executeUpdate(sql,this.get("kkd101"))>0;
+	}
+	
 	
 }

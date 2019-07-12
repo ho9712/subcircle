@@ -9,6 +9,7 @@
 <title>登录至 Bangumi 番组计划</title>
 
 <link rel="stylesheet" type="text/css" href="<%=path %>/css/bangumi.css" >
+<script src="<%=path %>/js/bangumi.js" type="text/javascript"></script>
 </head>
 
 <body class="bangumi">
@@ -283,7 +284,8 @@
     <div class="content">
         <ul class="clearit">
         <li class="first"><a href="<%=path %>/kd/login.jsp">登录</a></li>
-        <li class="last"><a href="<%=path %>/kd/signup.jsp">注册</a></li>
+        <li><a href="<%=path %>/kd/signup.jsp">注册</a></li>
+        <li class="last"><a href="javascript:void(0);" id="showrobot">&nbsp;</a></li>
         </ul>
     </div>
 </div>

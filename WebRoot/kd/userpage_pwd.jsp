@@ -9,6 +9,7 @@
 <title>${sessionScope.user.kkd102} 的个人设置</title>
 
 <link rel="stylesheet" type="text/css" href="<%=path %>/css/bangumi.css" />
+<script src="<%=path %>/js/bangumi.js" type="text/javascript"></script>
 </head>
 
 <body class="bangumi">
@@ -56,12 +57,12 @@
 		</a>
 		<ul id="badgeUserPanel">
 			<li><a href="<%=path%>/kd/userpage_main.jsp">时光机</a></li>                    
-       		<li><a href="http://bangumi.tv/user/481528/blog">作品</a></li>
-       		<li><a href="http://bangumi.tv/user/481528/mono">论坛</a></li>
-       		<li><a href="http://bangumi.tv/user/481528/index">商城</a></li>
+       		<li><a href="#">作品</a></li>
+       		<li><a href="#">论坛</a></li>
+       		<li><a href="#">商城</a></li>
 	    	
 	        <li class="row">
-		        <a href="http://bangumi.tv/pm">短信</a> | 
+		        <a href="#">短信</a> | 
 		        <a href="<%=path%>/kd/userpage_info.jsp">设置</a> | 
 		        <a href="<%=path%>/logout.kdhtml">登出</a>
 	        </li>
@@ -97,6 +98,9 @@
 			<div id="header">
 				<ul class="secTab rr">
 				<li><a href="<%=path %>/kd/userpage_info.jsp"><span>基本设置</span></a></li>
+				<c:if test="${sessionScope.kkd104==5 }">
+					<li><a href="<%= path %>/kd03FindApp.kdhtml"><span>权限申请</span></a></li>
+				</c:if>
 				<li><a href="<%=path %>/kd/userpage_pwd.jsp" class="selected"><span>密码</span></a></li>
 				</ul>
 				<h1>修改密码</h1>
@@ -143,10 +147,11 @@
     <div class="content">
          <ul class="clearit">
         <li class="first"><a href="<%=path %>/kd/userpage_main.jsp">${sessionScope.user.kkd102 }</a></li>
-        <li><a href="http://bangumi.tv/notify/all">提醒</a></li>
-        <li><a href="http://bangumi.tv/pm">短信</a></li>
+        <li><a href="#">提醒</a></li>
+        <li><a href="#">短信</a></li>
         <li><a href="<%=path %>/kd/userpage_info.jsp">设置</a></li>
-        <li class="last"><a href="<%=path%>/logout.kdhtml">登出</a></li>
+        <li><a href="<%=path%>/logout.kdhtml">登出</a></li>
+        <li class="last"><a href="javascript:void(0);" id="showrobot">&nbsp;</a></li>
         </ul>
     </div>
 </div>

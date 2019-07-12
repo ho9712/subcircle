@@ -11,18 +11,18 @@
 	function onClickSort(vorder)
 	{
 		var vform=document.getElementById("myform");
-		vform.action="<%= path %>/kd01QueryAdmin.kdhtml?order="+vorder;
+		vform.action="<%= path %>/kd03QueryApp.kdhtml?order="+vorder;
 		vform.submit();
 	}
-	function modifyAdmin(kkd108,kkd101,kkd102,kkd104)
+	function modifyAdmin(kkd101,kkd102,kkd105,kkd108,kkd304,kkd302,kkd303)
 	{
-		document.getElementById("img1").src=kkd108;
-		document.getElementById("img2").src=kkd108;
-		document.getElementById("img3").src=kkd108;
-		document.getElementById("uid").value=kkd101;
+		document.getElementById("img").src=kkd108;
 		document.getElementById("kkd101-hide").value=kkd101;
-		document.getElementById("username").value=kkd102;
-		document.getElementById("permit").value=kkd104;
+		document.getElementById("nickname").innerHTML=kkd105;
+		document.getElementById("username").innerHTML=kkd102;
+		document.getElementById("time").innerHTML=kkd304;
+		document.getElementById("title").value=kkd302;
+		document.getElementById("content").innerHTML=kkd303;
 	}
 </script>
 <title>Root管理员页面</title>
@@ -136,7 +136,7 @@
     <div class="navTabsWrapper">
 		<ul class="navTabs">
 			<li><a href="<%= path %>/kd/adminpage_main.jsp">账号</a></li>
-        	<li><a href="<%= path %>/kd01QueryAdmin.kdhtml" class="focus">Root管理员</a></li>
+        	<li><a href="<%= path %>/kd01QueryUser.kdhtml" class="focus">作品管理员</a></li>
         	<li><a href="#">消息</a></li>
 		</ul>
 	</div>
@@ -144,8 +144,8 @@
 	<!-- 子导航栏 -->
 	<div class="navSubTabsWrapper">
 		<ul class="navSubTabs">
-			<li><a href="<%= path %>/kd01QueryAdmin.kdhtml" class="focus"><span>现有管理员账号</span></a></li>
-  	 		<li><a href="<%= path %>/kd/rootadminpage_add.jsp" ><span>添加管理员账户</span></a></li>
+			<li><a href="<%= path %>/kd01QueryUser.kdhtml"><span>管理权限用户</span></a></li>
+  	 		<li><a href="<%= path %>/kd03QueryApp.kdhtml" class="focus"><span>管理权限申请</span></a></li>
 		</ul>
 	</div>
 	<!-- 子导航栏 -->
@@ -162,34 +162,43 @@
         
         	按 <a href="#" onclick="onClickSort()" class="btnGraySmall"><span>默认</span></a> · 
         	<a href="#" onclick="onClickSort(1)" class="btnGraySmall" ><span>时间</span></a> · 
-        	<a href="#" onclick="onClickSort(2)" class="btnGraySmall" ><span>权限</span></a> · 
-        	<a href="#" onclick="onClickSort(3)" class="btnGraySmall" ><span>昵称</span></a> 排序
+        	<a href="#" onclick="onClickSort(2)" class="btnGraySmall" ><span>昵称</span></a> 排序
         
 		</div>    
 			<ul id="browserItemList" class="browserList">
-				<c:forEach items="${admins }" var="admin">
+				<c:forEach items="${apps }" var="app">
 					<li id="item_9912" class="item odd clearit">
-				   	<a href="<%= path %>/kd01FindAdmin.kdhtml?kkd101=${admin.kkd101}" class="subjectCover cover ll">       
+				   	<a href="<%= path %>/kd01FindAdmin.kdhtml?kkd101=${user.kkd101}" class="subjectCover cover ll">       
 			           	<span class="image">
-		             	<img src="${admin.kkd108 }" onerror="this.src='<%=path %>/img/avatar/def_avatar.png'" class="cover" />
+		             	<img src="${app.kkd108 }" onerror="this.src='<%=path %>/img/avatar/def_avatar.png'" class="cover" />
 			       		</span>
 				       	<span class="overlay"></span>
 				   	</a>
 				    <div class="inner">
 				       	<div id="collectBlock_9912" class="collectBlock tip_i">
 					    <p class="collectModify">
-					    <a href="#TB_inline?height=350&amp;width=500&amp;inlineId=panel" 
-					    	onclick="modifyAdmin('${admin.kkd108}','${admin.kkd101}','${admin.kkd102}','${admin.kkd104}')" 
-					    	title="修改" class="thickbox l">修改</a> | 
-					    <a href="<%= path %>/kd01DelAdmin.kdhtml?kkd101=${admin.kkd101}" class="l">删除</a>
+					    <c:choose>
+					    	<c:when test="${app.kkd305 eq '0' }">
+					    		<a href="#TB_inline?height=350&amp;width=500&amp;inlineId=panel" 
+						    	onclick="modifyAdmin('${app.kkd101}','${app.kkd102}','${app.kkd105}','${app.kkd108}','${app.kkd304}','${app.kkd302}','${app.kkd303}')" 
+						    	title="处理权限申请" class="thickbox l">处理申请</a> | 
+					    	</c:when>
+					    	<c:when test="${app.kkd305 eq '1' }">
+					    		<a href="#" class="l">已接受</a> | 
+					    	</c:when>
+					    	<c:when test="${app.kkd305 eq '2' }">
+					    		<a href="#" class="l">已拒绝</a> | 
+					    	</c:when>
+					    </c:choose>
+					    <a href="<%= path %>/kd03DelApp.kdhtml?kkd301=${app.kkd301}" class="l">删除</a>
 					    </p>
 				    	</div>
 					       <h3>
-					           <a href="<%= path %>/kd01FindAdmin.kdhtml?kkd101=${admin.kkd101}" class="l">${admin.kkd105 }</a> 
+					           <a href="<%= path %>/kd01FindAdmin.kdhtml?kkd101=${user.kkd101}" class="l">${app.kkd105 }</a> 
 					       </h3>
-				       <p class="info tip"><small class="grey">${admin.admin }</small></p>
+				       <p class="info tip"><small class="grey">${app.kkd104 }</small></p>
 				       <p class="collectInfo">
-						<span class="tip_j">${admin.kkd106 }</span> 
+						<span class="tip_j">${app.kkd302 }</span> 
 						</p>
 				   	</div>
 					</li>
@@ -200,53 +209,43 @@
 		<div id="panel" style="display:none;">
 			<div class="collectBox clearit">
 			    <!-- 信息修改 -->
-			    <form name="set" method="post" action="<%=path %>/kd01ModifyAdmin.kdhtml?flag=1">
-					<span class="text">
-						<table align="center" width="98%" cellspacing="0" cellpadding="5" class="settings">
-							<tr>
-							<td valign="top" width="12%">头像</td>
-							<td valign="top">
-								<img id="img1" src="" onerror="this.src='<%=path %>/img/avatar/def_avatar.png'" class="port" width="50px" height="50px"/>
-								<img id="img2" src="" onerror="this.src='<%=path %>/img/avatar/def_avatar.png'" class="port" width="40px" height="40px"/>
-								<img id="img3" src="" onerror="this.src='<%=path %>/img/avatar/def_avatar.png'" class="port" width="30px" height="30px"/>
-							</td>
-							</tr>
-							<tr>
-								<td valign="top" width="12%">UID</td>
-								<td valign="top"><input id="uid" name="kkd101" class="inputtext" type="text" readonly="readonly"></td>
-							</tr>
-							<tr>
-								<td valign="top" width="12%">用户名</td>
-								<td valign="top"><input id="username" name="kkd102" class="inputtext" type="text" readonly="readonly"></td>
-							</tr>
-							<tr>
-								<td valign="top" width="12%">设置新密码</td>
-								<td valign="top"><input name="kkd103" class="inputtext" type="password" required="required"></td>
-							</tr>
-							<tr>
-								<td valign="top">
-								<input class="inputBtn" value="更新密码" name="submit" type="submit"/>
-								</td>
-								<td valign="top"></td>
-							</tr>
-							</table>
-					</span>
-				</form>  
-				 <form name="set" method="post" action="<%=path %>/kd01ModifyAdmin.kdhtml?flag=2">
+				 <form name="set" method="post" action="">
 				 	<input id="kkd101-hide" name="kkd101" type="hidden" >
 					<span class="text">
 						<table align="center" width="98%" cellspacing="0" cellpadding="5" class="settings">
 							<tr>
-							<td valign="top" width="12%">用户权限</td>
-							<td valign="top">
-								<e:select value="作品管理员:1,商城管理员:2,论坛管理员:3" id="permit" name="kkd104" style="height:30px;width:100px;"/>
-							</td>
+								<td valign="top" align="center">
+								<img id="img" src="" onerror="this.src='<%=path %>/img/avatar/def_avatar.png'" class="port" width="50px" height="50px"/>
+								</td>
+								<td></td>
 							</tr>
 							<tr>
-								<td valign="top">
-								<input class="inputBtn" value="修改权限" name="submit" type="submit" />
+								<td valign="top" width="12%"><span style="font-size:15px">昵称:</span></td>
+								<td valign="top"><span id="nickname" style="font-size:20px;color:#0000ff"></span></td>
+							</tr>
+							<tr>
+								<td valign="top" width="12%"><span style="font-size:15px">用户名:</span></td>
+								<td valign="top"><span id="username" style="font-size:20px;color:#0000ff"></span></td>
+							</tr>
+							<tr>
+								<td valign="top" width="12%"><span style="font-size:15px">申请时间:</span></td>
+								<td valign="top"><span id="time" style="font-size:20px;color:#0000ff"></span></td>
+							</tr>
+							<tr>
+								<td valign="top" width="12%"><span style="font-size:15px">标题:</span></td>
+								<td valign="top"><input id="title" class="inputtext" type="text" readonly="readonly"></td>
+							</tr>
+							<tr>
+								<td valign="top" width="12%"><span style="font-size:15px">内容:</span></td>
+								<td valign="top"><textarea id="content" rows="10" cols="50" readonly="readonly"></textarea></td>
+							</tr>
+							<tr>
+								<td valign="middle" align="center">
+								<input class="inputBtn" value="授予权限" name="submit" type="submit" formaction="<%=path %>/kd03DealApp.kdhtml?flag=accept"/>
 								</td>
-								<td valign="top"></td>
+								<td valign="middle" align="left">
+								<input class="inputBtn" value="拒绝申请" name="submit" type="submit" formaction="<%=path %>/kd03DealApp.kdhtml?flag=refuse"/>
+								</td>
 							</tr>
 						</table>
 					</span>
@@ -265,22 +264,16 @@
 			<div id="columnSubjectInBrowserB" class="clearit">
 				<div class="SidePanel png_bg">
 					<h2>/ 根据条件检索 </h2>
-					<form id="myform" name="set" method="post" action="<%= path %>/kd01QueryAdmin.kdhtml">
+					<form id="myform" name="set" method="post" action="<%= path %>/kd03QueryApp.kdhtml">
 						<span class="text">
 							<table align="center" width="98%" cellspacing="0" cellpadding="5" class="settings">
 								<tr>
-									<td valign="top" width="15%">关键字</td>
+									<td valign="top" width="5%">关键字</td>
 									<td valign="top">
 										<e:text name="keyword" style="border:1px
 											solid #BEB4A7;padding:1px
 											4px;width:120px;height:20px;padding:3px
 											5px;text-align:left;font-size:14px;line-height:130%"/>
-									</td>
-								</tr>
-								<tr>
-									<td valign="top" width="15%">管理员权限</td>
-									<td valign="top">
-										<e:select value="作品管理员:1,商城管理员:2,论坛管理员:3" name="qkkd104" style="height:30px;width:100px;" header="true"/>
 									</td>
 								</tr>
 								<tr>
@@ -327,8 +320,8 @@
 <div id="robot_speech" class="speech" >
 <c:choose>
 	<c:when test="${empty hint }">
-		<strong>『Root管理员功能页面』</strong><br />
-		在这里，你可以管理各模块管理员账号。<br />
+		<strong>『权限申请管理页面』</strong><br />
+		在这里，你可以管理所有来自用户的权限申请。<br />
 	</c:when>
 	<c:otherwise>
 		<strong>『${hint }』</strong><br />

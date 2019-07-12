@@ -9,6 +9,7 @@
 <title>管理员页面</title>
 
 <link rel="stylesheet" type="text/css" href="<%=path %>/css/bangumi.css" />
+<script src="<%=path %>/js/bangumi.js" type="text/javascript"></script>
 </head>
 
 <body class="bangumi">
@@ -58,7 +59,7 @@
 			<li><a href="<%=path%>/kd/adminpage_main.jsp">账号</a></li>                    
 	    	<li class="row"><a href="<%= path %>/kd01QueryAdmin.kdhtml">管理员</a></li>
 	        <li class="row">
-		        <a href="http://bangumi.tv/pm">短信</a> | 
+		        <a href="#">短信</a> | 
 		        <a href="<%=path%>/kd/adminpage_info.jsp">设置</a> | 
 		        <a href="<%=path%>/logout.kdhtml">登出</a>
 	        </li>
@@ -116,8 +117,21 @@
     <div class="navTabsWrapper">
 		<ul class="navTabs">
 			<li><a href="<%= path %>/kd/adminpage_main.jsp" class="focus">账号</a></li>
-        	<li><a href="<%= path %>/kd01QueryAdmin.kdhtml">管理员</a></li>
-       		<li><a href="http://bangumi.tv/user/481528/index">消息</a></li>
+			<c:choose>
+				<c:when test="${sessionScope.kkd104 eq '0' }">
+					<li><a href="<%= path %>/kd01QueryAdmin.kdhtml">Root管理员</a></li>
+				</c:when>
+				<c:when test="${sessionScope.kkd104 eq '1' }">
+					<li><a href="<%= path %>/kd01QueryUser.kdhtml">作品管理员</a></li>
+				</c:when>
+				<c:when test="${sessionScope.kkd104 eq '2' }">
+					<li><a href="<%= path %>/kd01QueryAdmin.kdhtml">商城管理员</a></li>
+				</c:when>
+				<c:when test="${sessionScope.kkd104 eq '3' }">
+					<li><a href="<%= path %>/kd01QueryAdmin.kdhtml">论坛管理员</a></li>
+				</c:when>
+			</c:choose>
+       		<li><a href="#">消息</a></li>
 		</ul>
 	</div>
 	<!-- 主页导航栏 -->
@@ -159,7 +173,7 @@
 						<div align="center" class="clearit">
 							<span class="green">还没有发表过日志?</span>
 								<a href="/blog/create" class="l">>立即发表<</a><br />
-							<span class="tip_j">你甚至可以通过日志为 Bangumi 的会员提供新闻</span>
+							<span class="tip_j">你甚至可以通过日志为 SubCircle 的会员提供新闻</span>
 						</div>
 					</div>
 				</div>
@@ -171,12 +185,12 @@
 		<div id="columnB" class="column">
 			<div id="">
 				<div class="SidePanel png_bg">
-					<h2>/ 我的时间胶囊 <small><a href="/user/481528/timeline">...more</a></small></h2>
+					<h2>/ 我的... <small><a href="/user/481528/timeline">...more</a></small></h2>
 				
 					<ul class="timeline">
 						<li>
-							<small class="feed">注册成为了 Bangumi 成员</small> 
-							<small class="time">2019-6-28 18:52</small>
+							<small class="feed">注册成为了 SubCircle 成员</small> 
+							<small class="time">${sessionScope.user.kkd106 }</small>
 						</li>
 					</ul>
 				</div>
@@ -184,22 +198,18 @@
 			<div id="sideLayout">
 				<div id="friend" class="sort">
 					<div class="SidePanel png_bg" align="left">
-						<h2>/ 我的朋友 <small><a href="/user/481528/friends">...more</a></small></h2>
+						<h2>/ 我的... <small><a href="/user/481528/friends">...more</a></small></h2>
 						<hr class="board" />
 						<a href="/user/481528/rev_friends">+ 谁加我为好友</a>
 					</div>
 				</div>
 				<div id="group" class="sort">
 					<div class="SidePanel png_bg" align="left">
-					<h2>/ 我参加的小组 </h2>
+					<h2>/ 我的... </h2>
 					    <ul class="groupsLine">
 					            </ul>
 					</div>
 				</div>
-			</div>
-			<div class="menu_inner">
-			    	<p> <a href="/feed/user/481528/interests" class="l">/ RSS2.0: 订阅我的收藏</a></p>
-			    	<p><a href="/user/481528/wiki" class="l">/ 我的维基编辑</a></p>
 			</div>
 		</div>
 	<!-- 主页主体B栏 -->
@@ -214,10 +224,11 @@
     <div class="content">
         <ul class="clearit">
         <li class="first"><a href="<%= path %>/kd/adminpage_main.jsp">${sessionScope.user.kkd102 }</a></li>
-        <li><a href="http://bangumi.tv/notify/all">提醒</a></li>
-        <li><a href="http://bangumi.tv/pm">短信</a></li>
+        <li><a href="#">提醒</a></li>
+        <li><a href="#">短信</a></li>
         <li><a href="<%= path %>/kd/adminpage_info.jsp">设置</a></li>
-        <li class="last"><a href="<%=path%>/logout.kdhtml">登出</a></li>
+        <li><a href="<%=path%>/logout.kdhtml">登出</a></li>
+        <li class="last"><a href="javascript:void(0);" id="showrobot">&nbsp;</a></li>
         </ul>
     </div>
 </div>
@@ -242,5 +253,31 @@
 </div>
 <!-- 展示 -->
 
+<%-- <script src="<%=path %>/js/bangumi.js" type="text/javascript"></script>
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4049707-6']);
+    _gaq.push(['_setDomainName', 'none']);
+    _gaq.push(['_setAllowLinker', true]);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function () {
+    $(document).share({
+        title: '「カウボーイビバップ」(来自 Bangumi 番组计划)',
+        content: "",
+        url: document.URL    });
+});
+</script>
+<script type="text/javascript">chiiLib.subject.init();</script> --%>
 </body>
 </html>

@@ -7,7 +7,7 @@ public class Kd01ModifyAdminServlet extends Kd01Controller
 	public String execute() throws Exception 
 	{
 		this.modifyAdmin();
-		return "kd/rootadminpage_modify";
+		return "kd/rootadminpage_query";
 	}
 
 }

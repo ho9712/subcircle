@@ -7,7 +7,23 @@
 <html>
 <head>
 <meta charset="utf-8" />
+<script type="text/javascript">
+	function onClickSort(vorder)
+	{
+		var vform=document.getElementById("myform");
+		vform.action="<%= path %>/kd01QueryUser.kdhtml?order="+vorder;
+		vform.submit();
+	}
+	function modifyAdmin(kkd101,kkd102,kkd105,kkd108)
+	{
+		document.getElementById("img").src=kkd108;
+		document.getElementById("kkd101-hide").value=kkd101;
+		document.getElementById("nickname").innerHTML=kkd105;
+		document.getElementById("username").innerHTML=kkd102;
+	}
+</script>
 <title>Root管理员页面</title>
+
 
 <link rel="stylesheet" type="text/css" href="<%=path %>/css/bangumi.css" />
 <script src="<%=path %>/js/bangumi.js" type="text/javascript"></script>
@@ -117,7 +133,7 @@
     <div class="navTabsWrapper">
 		<ul class="navTabs">
 			<li><a href="<%= path %>/kd/adminpage_main.jsp">账号</a></li>
-        	<li><a href="<%= path %>/kd01QueryAdmin.kdhtml" class="focus">管理员</a></li>
+        	<li><a href="<%= path %>/kd01QueryUser.kdhtml" class="focus">作品管理员</a></li>
         	<li><a href="#">消息</a></li>
 		</ul>
 	</div>
@@ -125,8 +141,8 @@
 	<!-- 子导航栏 -->
 	<div class="navSubTabsWrapper">
 		<ul class="navSubTabs">
-			<li><a href="<%= path %>/kd01QueryAdmin.kdhtml" class="focus"><span>现有管理员账号</span></a></li>
-  	 		<li><a href="<%= path %>/kd/rootadminpage_add.jsp" ><span>添加管理员账户</span></a></li>
+			<li><a href="<%= path %>/kd01QueryUser.kdhtml" class="focus"><span>管理权限用户</span></a></li>
+  	 		<li><a href="<%= path %>/kd03QueryApp.kdhtml" ><span>管理权限申请</span></a></li>
 		</ul>
 	</div>
 	<!-- 子导航栏 -->
@@ -134,79 +150,123 @@
 	</div>
 </div>
 <!-- 主页头部 -->
-
 <div class="mainWrapper">
-<!-- 顶部栏以下 -->
-	<div id="main" class="png_bg">
-		<!-- 顶部栏 -->
-			<div id="header">
-			<h1>编辑管理员信息</h1>
-			</div>
-		<!-- 顶部栏 -->
-		<hr class="board" />
-	<div class="columns clearit">
-		<div id="columnA" class="column">
-			
-			<!-- 信息修改 -->
-		    <form name="set" method="post" action="<%=path %>/kd01ModifyAdmin.kdhtml?flag=1">
-				<span class="text">
-					<table align="center" width="98%" cellspacing="0" cellpadding="5" class="settings">
-						<tr>
-						<td valign="top" width="12%">头像</td>
-						<td valign="top">
-							<img src="${admin.kkd108}" onerror="this.src='<%=path %>/img/avatar/def_avatar.png'" class="port" width="75px" height="75px"/>
-							<img src="${admin.kkd108}" onerror="this.src='<%=path %>/img/avatar/def_avatar.png'" class="port" width="50px" height="50px"/>
-							<img src="${admin.kkd108}" onerror="this.src='<%=path %>/img/avatar/def_avatar.png'" class="port" width="35px" height="35px"/> <br /><br />
-						</td>
-						<tr>
-							<td valign="top" width="12%">UID</td>
-							<td valign="top"><input name="kkd101" class="inputtext" type="text" value="${admin.kkd101 }" readonly="readonly"></td>
-						</tr>
-						<tr>
-							<td valign="top" width="12%">用户名</td>
-							<td valign="top"><input name="kkd102" class="inputtext" type="text" value="${admin.kkd102 }" readonly="readonly"></td>
-						</tr>
-						<tr>
-							<td valign="top" width="12%">设置新密码</td>
-							<td valign="top"><input name="kkd103" class="inputtext" type="password" required="required"></td>
-						</tr>
-						<tr>
-							<td valign="top">
-							<input class="inputBtn" value="更新密码" name="submit" type="submit"/>
+<div class="columns clearit" xmlns:v="http://rdf.data-vocabulary.org/#">
+	<!-- 主页主体A栏 -->
+		
+		<div id="columnSubjectBrowserA" class="column">
+    	<div id="browserTools" class="clearit">
+        
+        	按 <a href="#" onclick="onClickSort()" class="btnGraySmall"><span>默认</span></a> · 
+        	<a href="#" onclick="onClickSort(1)" class="btnGraySmall" ><span>时间</span></a> · 
+        	<a href="#" onclick="onClickSort(2)" class="btnGraySmall" ><span>权限</span></a> · 
+        	<a href="#" onclick="onClickSort(3)" class="btnGraySmall" ><span>昵称</span></a> 排序
+        
+		</div>    
+			<ul id="browserItemList" class="browserList">
+				<c:forEach items="${users }" var="user">
+					<li id="item_9912" class="item odd clearit">
+				   	<a href="<%= path %>/kd01FindAdmin.kdhtml?kkd101=${user.kkd101}" class="subjectCover cover ll">       
+			           	<span class="image">
+		             	<img src="${user.kkd108 }" onerror="this.src='<%=path %>/img/avatar/def_avatar.png'" class="cover" />
+			       		</span>
+				       	<span class="overlay"></span>
+				   	</a>
+				    <div class="inner">
+				       	<div id="collectBlock_9912" class="collectBlock tip_i">
+					    <p class="collectModify">
+					    <a href="#TB_inline?height=350&amp;width=500&amp;inlineId=panel" 
+					    	onclick="modifyAdmin('${user.kkd101}','${user.kkd102}','${user.kkd105}','${user.kkd108}')" 
+					    	title="修改" class="thickbox l">取消权限</a> 
+					    </p>
+				    	</div>
+					       <h3>
+					           <a href="<%= path %>/kd01FindAdmin.kdhtml?kkd101=${user.kkd101}" class="l">${user.kkd105 }</a> 
+					       </h3>
+				       <p class="info tip"><small class="grey">${user.admin }</small></p>
+				       <p class="collectInfo">
+						<span class="tip_j">${user.kkd106 }</span> 
+						</p>
+				   	</div>
+					</li>
+				</c:forEach>
+			</ul>
+			<div id="multipage"></div>
+			<!-- 弹窗 -->
+		<div id="panel" style="display:none;">
+			<div class="collectBox clearit">
+			    <!-- 信息修改 -->
+				 <form name="set" method="post" action="<%=path %>/kd01RevokePermission.kdhtml">
+				 	<input id="kkd101-hide" name="kkd101" type="hidden" >
+					<span class="text">
+						<table align="center" width="98%" cellspacing="0" cellpadding="5" class="settings">
+							<tr>
+								<td valign="top" align="center">
+								<img id="img" src="" onerror="this.src='<%=path %>/img/avatar/def_avatar.png'" class="port" width="50px" height="50px"/>
+								</td>
+							</tr>
+							<tr>
+							<td valign="middle" align="center">
+								<span style="font-size:15px">昵称:</span><span id="nickname" style="font-size:20px;color:#0000ff"></span>
 							</td>
-							<td valign="top"></td>
-						</tr>
+							</tr>
+							<tr>
+							<td valign="middle" align="center">
+								<span style="font-size:12px">用户名:</span><span id="username" style="font-size:15px;color:#0000ff"></span>
+							</td>
+							</tr>
+							<tr>
+							<td valign="middle" align="center">
+								<span style="font-size:25px;color:#ff0000">确定要取消该用户权限？</span>
+							</td>
+							</tr>
+							<tr>
+								<td valign="middle" align="center">
+								<input class="inputBtn" value="取消权限" name="submit" type="submit" />
+								</td>
+							</tr>
 						</table>
-				</span>
-			</form>  
-			 <form name="set" method="post" action="<%=path %>/kd01ModifyAdmin.kdhtml?flag=2">
-			 	<input name="kkd101" type="hidden" value="${admin.kkd101 }">
-				<span class="text">
-					<table align="center" width="98%" cellspacing="0" cellpadding="5" class="settings">
-						<tr>
-						<td valign="top" width="12%">用户权限</td>
-						<td valign="top">
-							<e:select value="作品管理员:1,商城管理员:2,论坛管理员:3" name="kkd104" defval="${admin.kkd104 }" style="height:30px;width:100px;"/>
-						</td>
-						</tr>
-						<tr>
-							<td valign="top">
-							<input class="inputBtn" value="修改权限" name="submit" type="submit" />
-							</td>
-							<td valign="top"></td>
-						</tr>
-					</table>
-				</span>
-			</form>    
-			<!-- 信息修改 -->
+					</span>
+				</form>    
+				<!-- 信息修改 -->
+			</div>
 		</div>
+		<!-- 弹窗 -->
+		</div>
+		
+		
+	<!-- 主页主体A栏 -->
 	
-		<div id="columnB" class="column">
+	<!-- 主页主体B栏 -->
+		<div id="columnSubjectBrowserB" class="column">
+			<div id="columnSubjectInBrowserB" class="clearit">
+				<div class="SidePanel png_bg">
+					<h2>/ 根据条件检索 </h2>
+					<form id="myform" name="set" method="post" action="<%= path %>/kd01QueryUser.kdhtml">
+						<span class="text">
+							<table align="center" width="98%" cellspacing="0" cellpadding="5" class="settings">
+								<tr>
+									<td valign="top" width="5%">关键字</td>
+									<td valign="top">
+										<e:text name="keyword" style="border:1px
+											solid #BEB4A7;padding:1px
+											4px;width:120px;height:20px;padding:3px
+											5px;text-align:left;font-size:14px;line-height:130%"/>
+									</td>
+								</tr>
+								<tr>
+									<td valign="top" width="15%"><input class="inputBtn" value="点击搜索" name="next" type="submit"></td>
+								</tr>
+							</table>
+						</span>
+					</form>
+				</div>
+			</div>
+			
 		</div>
-	</div>
-	</div>
-
-<!-- 页面主体到此结束 -->
+	<!-- 主页主体B栏 -->
+	
+</div>
 </div>
 </div>
 <!-- 页面主体到此结束 -->
@@ -226,19 +286,20 @@
     </div>
 </div>
 <!-- 底部菜单栏 -->
+
 <!-- 展示 -->
 <div id="robot" >
 <div id="ukagaka_shell">
 <div class="ui_10 shell_1">
 <div id="ukagaka_voice"></div>
 <div id="robot_balloon" class="ukagaka_balloon_pink">
-<div class="tools"><a href="javascript:void(0);" id="ukagaka_menu"></a></div>    
+<div class="tools"><a href="#" id="ukagaka_menu"></a></div>    
 <div class="inner">
 <div id="robot_speech" class="speech" >
 <c:choose>
 	<c:when test="${empty hint }">
-		<strong>『修改管理员信息』</strong><br />
-		在这里，你可以修改该管理员账号信息。<br />
+		<strong>『作品管理员功能页面』</strong><br />
+		在这里，你可以管理所有权限用户的权限。<br />
 	</c:when>
 	<c:otherwise>
 		<strong>『${hint }』</strong><br />

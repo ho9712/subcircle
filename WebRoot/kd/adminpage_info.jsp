@@ -9,6 +9,7 @@
 <title>${sessionScope.user.kkd102} 的个人设置</title>
 
 <link rel="stylesheet" type="text/css" href="<%=path %>/css/bangumi.css" />
+<script src="<%=path %>/js/bangumi.js" type="text/javascript"></script>
 </head>
 
 <body class="bangumi">
@@ -58,7 +59,7 @@
 			<li><a href="<%=path%>/kd/adminpage_main.jsp">账号</a></li>                    
 	    	<li class="row"><a href="<%= path %>/kd01QueryAdmin.kdhtml">管理员</a></li>
 	        <li class="row">
-		        <a href="http://bangumi.tv/pm">短信</a> | 
+		        <a href="#">短信</a> | 
 		        <a href="<%=path%>/kd/adminpage_info.jsp">设置</a> | 
 		        <a href="<%=path%>/logout.kdhtml">登出</a>
 	        </li>
@@ -187,10 +188,11 @@
     <div class="content">
          <ul class="clearit">
         <li class="first"><a href="<%=path%>/kd/adminpage_main.jsp">${sessionScope.user.kkd102 }</a></li>
-        <li><a href="http://bangumi.tv/notify/all">提醒</a></li>
-        <li><a href="http://bangumi.tv/pm">短信</a></li>
+        <li><a href="#">提醒</a></li>
+        <li><a href="#">短信</a></li>
         <li><a href="<%=path%>/kd/adminpage_info.jsp">设置</a></li>
-        <li class="last"><a href="<%=path%>/logout.kdhtml">登出</a></li>
+        <li><a href="<%=path%>/logout.kdhtml">登出</a></li>
+        <li class="last"><a href="javascript:void(0);" id="showrobot">&nbsp;</a></li>
         </ul>
     </div>
 </div>

@@ -9,6 +9,7 @@
 <title>登录至 Bangumi 番组计划</title>
 
 <link rel="stylesheet" type="text/css" href="<%=path %>/css/bangumi.css" >
+<script src="<%=path %>/js/bangumi.js" type="text/javascript"></script>
 </head>
 
 <body class="bangumi">
@@ -90,13 +91,13 @@
             <div id="signupFormWrapper">
                 <form id="signupForm" method="post" name="signup" action="<%=path %>/userSignUp.kdhtml">
                 <p class="title"><label for="email">你的用户名(6-12位)</label></p>
-                <p><input id="email" name="kkd102" class="inputtext" type="text" required="required" onfocus="SetTips('RegEmail');" /></p>
+                <p><input id="email" name="kkd102" class="inputtext" type="text" required="required" /></p>
                 <p class="title"><label for="password">设置一个密码(6-16位)</label></p>
                 <p><input id="password" name="kkd103" class="inputtext" type="password" required="required" /></p>
                 <p class="title"><label for="password2">确认密码 </label></p>
                 <p><input id="password2" name="kkd103-1" class="inputtext" type="password" required="required" /></p>
                 <p class="title"><label for="nickname">设置一个昵称</label></p>
-                <p><input id="nickname" name="kkd105" class="inputtext" type="text" required="required" onfocus="regSetNickName();" /></p>
+                <p><input id="nickname" name="kkd105" class="inputtext" type="text" required="required" /></p>
                 <div id="rechaptcha_form"></div>
                 <p class="title"><input class="inputBtn" type="submit" name="regsubmit" value="注册会员" /></p>
                 </form>
@@ -120,7 +121,8 @@
     <div class="content">
         <ul class="clearit">
         <li class="first"><a href="<%=path %>/kd/login.jsp">登录</a></li>
-        <li class="last"><a href="<%=path %>/kd/signup.jsp">注册</a></li>
+        <li><a href="<%=path %>/kd/signup.jsp">注册</a></li>
+        <li class="last"><a href="javascript:void(0);" id="showrobot">&nbsp;</a></li>
         </ul>
     </div>
 </div>
