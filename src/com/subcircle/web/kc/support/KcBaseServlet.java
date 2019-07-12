@@ -21,7 +21,7 @@ public class KcBaseServlet extends HttpServlet
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		String toPath=null;
+		String toPath="";//避免NPE
 		try 
 		{
 			//包名
@@ -35,6 +35,8 @@ public class KcBaseServlet extends HttpServlet
 			
 			//通过反射机制实例化目标Controller类
 			ControllerInterface controller=(ControllerInterface)Class.forName(packageName+controllerName+"Servlet").newInstance();
+			//将session植入controller中
+			controller.setSession(request.getSession());
 			//将DTO植入controller中
 			controller.setDto(this.createDto(request));
 			//由具体的Controller对象执行处理
@@ -48,6 +50,11 @@ public class KcBaseServlet extends HttpServlet
 		{
 			request.setAttribute("msg", "提示：网络故障！");
 			e.printStackTrace();
+		}
+		
+		if(toPath.equals("back"))
+		{
+			response.sendRedirect(request.getHeader("Referer"));
 		}
 		//避免NPE
 		if(toPath != null && toPath.equals(""))

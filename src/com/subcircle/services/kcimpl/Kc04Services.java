@@ -21,4 +21,22 @@ public  class Kc04Services extends JdbcServicesSupport {
 		
 	}
 	
+	
+public  Map<String,String> findById()throws Exception
+	
+	{
+		
+		
+		StringBuilder sql = new StringBuilder()
+				.append("select k.kkc402,k.kkc404,k.kkc406,k.kkc407,k.kkc408,")
+				.append("       k.kkc409,k.kkc410,k.kkc411,k.kkc412 ")
+				.append("from kc04 k ")
+				.append("where k.kkc101=?")
+				;
+		
+		
+		return this.queryForMap(sql.toString(),this.get("kkc101"));
+		
+	}
+	
 }

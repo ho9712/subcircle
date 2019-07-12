@@ -4,8 +4,8 @@ public class Kc04ShowDetailServlet extends Kc04Controller {
 
 	@Override
 	public String execute() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		this.ShowGameDetail();
+		return "kc/GameDetail";
 	}
 
 }
