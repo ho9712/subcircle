@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import com.subcircle.services.support.ServicesInterface;
 import com.subcircle.web.ControllerInterface;
 
@@ -34,6 +36,18 @@ public abstract class KcAbstractController implements ControllerInterface
 		this.dto=dto;
 		//为Services传递DTO
 		this.services.setServicesDto(dto);
+	}
+	
+	/***********************************************************
+	 * 					保存Session
+	 ***********************************************************/
+	
+	private HttpSession session=null;
+	
+	@Override
+	public void setSession(HttpSession session) 
+	{
+		this.session=session;
 	}
 	
 	/***********************************************************
@@ -196,7 +210,10 @@ public abstract class KcAbstractController implements ControllerInterface
 		}
 	}
 	
-	
+	/**
+	 * 用于kc02，显示条目详细信息
+	 * @throws Exception
+	 */
 	
 	protected final void ShowAnimeDetail() throws Exception
 	{
@@ -214,5 +231,49 @@ public abstract class KcAbstractController implements ControllerInterface
 	
 	
 	
+	/**
+	 * 用于kc03，显示条目详细信息
+	 * @throws Exception
+	 */
+	protected final void ShowBookDetail() throws Exception
+	{
+		Map<String,String> ins = this.services.findById();
+		if(ins!=null)
+		{
+			this.saveAttribute("ins", ins);
+		}
+		else
+		{
+			this.saveAttribute("msg", "提示：该条目已被删除或禁止访问！");
+		}
+		
+	}
+	
 
+	/**
+	 * 用于kc04，显示条目详细信息
+	 * @throws Exception
+	 */
+	protected final void ShowGameDetail() throws Exception
+	{
+		Map<String,String> ins = this.services.findById();
+		if(ins!=null)
+		{
+			this.saveAttribute("ins", ins);
+		}
+		else
+		{
+			this.saveAttribute("msg", "提示：该条目已被删除或禁止访问！");
+		}
+		
+	}
+	
+	
+	protected final void AnimeRankAndComment() throws Exception
+	{
+		this.update("addAnimeComment", "");
+		
+	}
+
+	
 }

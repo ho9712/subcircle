@@ -44,8 +44,32 @@
 </div>
 </div>
         
-    <div class="idBadgerNeue">
-    <div class="guest"><a href="" class="guest login">登录</a><a href="" class="guest signup">注册</a></div>
+       <div class="idBadgerNeue">
+    <c:choose>
+    <c:when test="${sessionScope.user.kkd101!=null }">
+     <div class="idBadgerNeue">
+		<a class="avatar" href="<%=path%>/kd/userpage_main.jsp">
+			<img src="${sessionScope.user.kkd108}" onerror="this.src='<%=path %>/img/avatar/def_avatar.png'" class="port" width="33px" height="33px"/>
+		</a>
+		<ul id="badgeUserPanel">
+			<li><a href="<%=path%>/kd/userpage_main.jsp">时光机</a></li>                    
+       		<li><a href="http://bangumi.tv/user/481528/blog">作品</a></li>
+       		<li><a href="http://bangumi.tv/user/481528/mono">论坛</a></li>
+       		<li><a href="http://bangumi.tv/user/481528/index">商城</a></li>
+	    	
+	        <li class="row">
+		        <a href="http://bangumi.tv/pm">短信</a> | 
+		        <a href="<%=path%>/kd/userpage_info.jsp">设置</a> | 
+		        <a href="<%=path%>/logout.kdhtml">登出</a>
+	        </li>
+    	</ul>	
+    </div>
+    </c:when>
+    <c:otherwise>
+    <div class="guest"><a href="<%=path %>/kd/login.jsp" class="guest login">登录</a><a href="<%=path %>/kd/signup.jsp" class="guest signup">注册</a></div>
+    </c:otherwise>
+    </c:choose>
+    
     
 </div><div id="headerSearchWrapper">
 <div id="headerSearch">
@@ -116,7 +140,7 @@
     </a>
     <div class="inner">
                                 <h3>
-                    <a href="Kc04ShowDetail.kchtml?kkc101=${ins.kkc101}\" class="l">${ins.kkc402 }</a> 
+                    <a href="Kc04ShowDetail.kchtml?kkc101=${ins.kkc101}" class="l">${ins.kkc402 }</a> 
                 				</h3>
                 
         <span class="rank"><small>Rank ${ins.kkc408 }</small></span>        
