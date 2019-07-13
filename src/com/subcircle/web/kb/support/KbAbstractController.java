@@ -165,7 +165,6 @@ public abstract class KbAbstractController implements ControllerInterface
 	protected final void showMarketItemInfo() throws Exception
 	{
 		Map<String, String> ins = this.services.findById();
-		System.out.println(ins);
 		this.saveAttribute("msg","该商品已下架或禁止访问!");
 		if(ins != null) 
 		{

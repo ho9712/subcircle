@@ -55,15 +55,27 @@
 						</tr>
 					</tbody>
 				</table>
+				
+				<form id="myForm" action="" method="post">
 				<label> 数量: <input type="number" step="1" min="1" value="1"
-							style="width: 60px;" id="kkb402">
-				</label>	
+							style="width: 60px;" id="kkb402" name = "kkb504">
+				</label>
+				
+					<!-- 隐藏域传输数据  -->
+					<input type="hidden" id="kkb101" name="kkb101" value="${ins.kkb101 }" /> 
+					<input type="hidden" id="kkb505" name="kkb505" value="${ins.kkb103 }" /> 
+					<input type="hidden" id="kkb507" name="kkb507" value="" />
+				</form>
+					
 				<div class="btn-group btn-group-sm">
 					<button type="button" class="btn btn-success"
 						onclick="onCollect(${ins.kkb101 })">收藏</button>
 					<button type="button" class="btn btn-warning"
 							onclick="onAddToCart(${ins.kkb101 })">加入购物车</button>
-					<button type="button" class="btn btn-danger">立即购买</button>
+					<button type="button" class="btn btn-danger"
+							onclick="submitForm();">
+						立即购买
+					</button>
 				</div>
 			</div>
 			<!-- row1右边结束--商品信息区-->
@@ -97,24 +109,59 @@
 	<!-- 容器结束 -->
 <script type="text/javascript">
 
-	//根据商品id加入用户收藏列表
-	function onCollect(kkb101)
-	{
-		window.location.href="<%=request.getContextPath()%>/kb03CollectItem.kbhtml?"
-					+"kkb101="+kkb101;
-		alert("收藏成功");
+//从购物车中加入该商品至用户收藏列表
+function onCollect(kkb101)
+{
+	 $.ajax({
+            type: "POST",
+            url: "${pageContext.request.contextPath}/kb03CollectItem.kbhtml?"
+    			+"kkb101="+kkb101,
+            dataType: "text",
+            success: function (data)
+            {
+            	if(data)
+            	{
+            		alert("收藏成功");
+            	}
+            }//endsuccess
+        });//endajax
 	}
 	
 	//根据商品id以及数量加入用户购物车中
 	function onAddToCart(kkb101)
 	{
-		var kkb402 = document.getElementById('kkb402').value
+		var kkb402 = document.getElementById('kkb402').value;
 		window.location.href="<%=request.getContextPath()%>/kb04AddToMyCart.kbhtml?"
 				+"kkb101="+kkb101
 				+"&kkb402="+kkb402;
 		alert("加入购物车成功");
 	}
 
+	//通过时间获取唯一的商户订单号
+	function GetDateNow() 
+	{
+		var vNow = new Date();
+		var sNow = "";
+		sNow += String(vNow.getFullYear());
+		sNow += String(vNow.getMonth() + 1);
+		sNow += String(vNow.getDate());
+		sNow += String(vNow.getHours());
+		sNow += String(vNow.getMinutes());
+		sNow += String(vNow.getSeconds());
+		sNow += String(vNow.getMilliseconds());
+		
+		return sNow;
+	}
+	
+	function submitForm()
+	{
+		alert("111111");
+		var kkb507 = GetDateNow();
+		alert(kkb507);
+		document.getElementById("kkb507").value = kkb507;
+		 $("#myForm").attr("action","<%=request.getContextPath()%>/kb05CreateOrder.kbhtml");
+		 $("#myForm").submit();
+	}
 </script>
 
 <script src="js/jquery.js"></script>

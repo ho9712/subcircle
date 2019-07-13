@@ -36,6 +36,7 @@
 </head>
 <body>
 
+<% String path = request.getContextPath();%>
 	<div class="row-fluid" align="center">
 		<!--站点导航栏-商城导航栏 ()-->
 
@@ -47,7 +48,7 @@
 					<hr>
 					<li><a href="#">迷你论坛</a></li>
 					<hr>
-					<li class="active"><a href="#">周边商城</a></li>
+					<li class="active"><a href="#" onclick="marketCenter()">周边商城</a></li>
 					<hr>
 					<li><a href="#">个人空间</a></li>
 				</ul>
@@ -90,15 +91,19 @@
 
 	function ToMyCart() 
 	{
-		window.location.href="<%=request.getContextPath()%>/kb04MyCartCenter.kbhtml";
+		window.location.href="<%=path%>/kb04MyCartCenter.kbhtml";
 	}
 	
 	function showOrderToPay(orderState)
 	{
-		window.location.href="<%=request.getContextPath()%>/kb05QueryAllOrder.kbhtml?"
+		window.location.href="<%=path%>/kb05QueryAllOrder.kbhtml?"
 			+"kkb502=" + orderState;
 	}
 	
+	function marketCenter()
+	{
+		window.location.href="<%=path%>/kb01QueryItems.kbhtml";
+	}
 </script>
 
 </body>

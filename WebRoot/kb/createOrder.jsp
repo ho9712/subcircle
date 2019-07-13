@@ -34,53 +34,62 @@
 				<table class="table table-hover">
 						<!-- 订单列表 -->
 					<thead>
-						<tr>
+						<tr  class = "error">
 							<th></th>
-							<th style="vertical-align: middle;">商品名</th>
-							<th style="vertical-align: middle;">单价</th>
-							<th style="vertical-align: middle;">数量</th>
+							<th style="font-size: 25px;font:bold;">商品名</th>
+							<th style="font-size: 25px;font:bold;">单价</th>
+							<th style="font-size: 25px;font:bold;">数量</th>
 							</tr>
 					</thead>
-				
+					<hr>
 				
 					<tbody>	
 						<c:forEach items="${rows }" var="ins" varStatus="vs">
 							<!-- 订单中商品ID -->
 							<input type="hidden" name="orderItemId" value="${ins.kkb101 }"/>
 
-							<tr>
+							<tr class= "warning">
 								<td style="vertical-align: middle;"><img
 									class="img-thumbnail"
 									src="${ins.kkb105 }"
 									width="100" height="100" /></td>
 
-								<td style="vertical-align: middle;">${ins.kkb102 }</td><!-- 商品名 -->
+								<td style="vertical-align: middle;font-size: 20px;">${ins.kkb102 }</td><!-- 商品名 -->
 						
 								
-								<td style="vertical-align: middle;" name = "orderItemPrice">
+								<td style="vertical-align: middle;font-size: 20px;" name = "orderItemPrice">
 									¥<em>${ins.kkb505 }</em>
 								</td><!-- 订单商品单价 -->
 								
-								<td style="vertical-align: middle;" name = "orderItemCount">
+								<td style="vertical-align:middle;font-size: 20px;" name = "orderItemCount">
 									<em>${ins.kkb504 }</em>
 								</td> <!-- 订单商品数量 -->
 							
 							</tr>
-							<tr>
-								<td></td>
-								<td style="vertical-align: middle;" colspan="3">备注${ins.kkb506 }</td>
+							<tr class="info">
+								<td>
+									<div align="center" style="font-size:20px;">
+									备注
+									</div>
+														
+								</td>
+								<td colspan="3">
+								<textarea placeholder="订单备注...100字以内" style="width: 80%;overflow:auto;" rows="2" cols="20">
+									${ins.kkb506 }
+								</textarea>
+								</td>
 							</tr>
 						</c:forEach>
-						<tr>
+						<tr class = "success">
 							<td style="vertical-align: middle;"></td>
-							<td style="vertical-align: middle;" name = "orderCount">商品总件数:<em>0</em></td>
-							<td style="vertical-align: middle;" name= "orderPrice">
-								商品总金额¥:<em>0</em>
+							<td style="vertical-align: middle;" name = "orderCount">商品总件数:<em style="font-size: 30px;">0</em></td>
+							<td style="vertical-align: middle;font-size: 20px;" name= "orderPrice">
+								商品总金额¥:<em style="font-size: 30px;">0</em>
 							</td>
 							<td style="vertical-align: middle;">
 								<div class="btn-group btn-group-sm">
 									<input type = "submit"  class="btn btn-success" href="#" 
-										formaction="<%=request.getContextPath()%>/kb05DelOrderToPay.kbhtml"
+										formaction="<%=request.getContextPath()%>/kb05DelOrderBackCart.kbhtml"
 											value="返回购物车"
 										>
 									<input type = "submit" class="btn btn-warning" href="#" 
@@ -95,6 +104,8 @@
 				<input type="hidden" id = "totalCount" name="totalCount" value="0"/>
 				<!-- 商户订单号-->							
 				<input type="hidden" id = "WIDout_trade_no" name="WIDout_trade_no" value="${rows[0].kkb507 }"/>
+				<!-- 商户订单号-->							
+				<input type="hidden" id = "kkb507" name="kkb507" value="${rows[0].kkb507 }"/>
 				<!-- 传输订单描述 -->
 				<input type="hidden" id = "WIDsubject" name="WIDsubject" value="0"/>
 				<!-- 传输订单总金额给servlet updateSummaryInfo()方法会设置该控件value-->

@@ -24,23 +24,37 @@ public class Kb05Services extends JdbcServicesSupport
 			.append("   from kb01 k1,kb04 k4")
 			.append("  where k1.kkb101 = k4.kkb101 and k1.kkb101 = ?")
 			;
-		Object idlist[] = this.getIdlist("idlist");
-		System.out.println(idlist);
+		
+		Object idlist[] = null;
+		//getIdlist该方法返回的size至少为1(从购物车页面传过来)
+		if(this.getIdlist("idlist")[0] != null) 
+		{
+			idlist = this.getIdlist("idlist");
+		}
 		List<Map<String, String>> rows = new ArrayList<>();
 		Map<String, String> ins = null;
 		int initSize = (int)(5/0.75)+1;
-		if(idlist.length > 0) 
+		if(idlist != null && idlist.length > 0) 
 		{
 			for(Object kkb101 : idlist) 
 			{
-				System.out.println(kkb101);
 				ins = new HashMap<>(initSize);
 				ins = this.queryForMap(sql.toString(), kkb101);
 				rows.add(ins);
 			}
-	
 		}
 		return rows;
+	}
+	
+	//服务订单创建,点击立即购买时查询出所选商品的信息
+	private Map<String, String> findSelectItemInfo() throws Exception
+	{
+		StringBuilder sql = new StringBuilder()
+				.append(" select k1.kkb101,k1.kkb102, k1.kkb103,k1.kkb105")
+				.append("   from kb01 k1")
+				.append("  where k1.kkb101 = ?")
+				;
+		return this.queryForMap(sql.toString(), this.get("kkb101"));
 	}
 
 	/**
@@ -51,25 +65,51 @@ public class Kb05Services extends JdbcServicesSupport
 	private boolean createOrder() throws Exception
 	{
 		StringBuilder sql = new StringBuilder()
-				.append("insert into kb05(kkb101,kkd101,kkb502,kkb503,kkb504,kkb505,kkb507)")
-				.append("		 values (?,?,?,current_timestamp,?,?,?)")
+				.append("insert into kb05(kkb101,kkd101,kkb502,kkb503,kkb504,")
+				.append("                 kkb505,kkb506,kkb507)")
+				.append("		 values (?,?,?,current_timestamp,?,")
+				.append("                ?,?,?)")
 				;
-			
-		List<Map<String, String>> rows = this.findSelectItemsInfo();
-		for(Map<String, String > ins: rows) 
+
+		//点击立即购买按钮创建订单的情况
+		if (this.get("kkb101") != null)
 		{
 			Object args[]= 
 				{
-					ins.get("kkb101"),
+					this.get("kkb101"),
 					"1",	//用户id待修改
 					"0",	//订单状态,0表示待支付
-			        ins.get("kkb402"),
-			        ins.get("kkb103"),
+			        this.get("kkb504"),	//商品数量
+			        this.get("kkb505"),	//商品单价
+			        this.get("kkb506"),	//订单备注（首页的立即购买按钮才会在订单创建时有值）
 			        this.get("kkb507")	//商户订单号
 				};
-			 this.appendSql(sql.toString(), args);
+			this.appendSql(sql.toString(), args);
 		}
-		
+		//从购物车中选中商品创建订单
+		else
+		{
+			List<Map<String, String>> rows = this.findSelectItemsInfo();
+
+			if (rows.size() > 0) 
+			{
+				for(Map<String, String > ins: rows) 
+				{
+					Object args[]= 
+						{
+							ins.get("kkb101"),
+							"1",	//用户id待修改
+							"0",	//订单状态,0表示待支付
+					        ins.get("kkb402"),
+					        ins.get("kkb103"),
+					        this.get("kkb506"),	//订单备注（立即购买才会在订单创建时有值）
+					        this.get("kkb507")	//商户订单号
+						};
+					 this.appendSql(sql.toString(), args);
+				}
+			}
+
+		}
 		 return this.executeTransaction();
 	}
 	
@@ -123,7 +163,7 @@ public class Kb05Services extends JdbcServicesSupport
 	private List<Map<String, String>> queryOrderByState(String userId,String state,String kkb507) throws Exception
 	{
 		StringBuilder sql = new StringBuilder()
-				.append("  select k1.kkb101,k1.kkb105,k1.kkb102,k5.kkb504,k5.kkb505,k5.kkb507")
+				.append("  select k1.kkb101,k1.kkb105,k1.kkb102,k5.kkb504,k5.kkb505,k5.kkb506,k5.kkb507")
 				.append("    from kb01 k1, kb05 k5")
 				.append("	where k5.kkd101 = ?  and k5.kkb502 = ?")
 				.append("     and k1.kkb101 = k5.kkb101")
@@ -165,7 +205,6 @@ public class Kb05Services extends JdbcServicesSupport
 		}
 		
 		
-		System.out.println(dealOrderNumber);
 		//每一个订单号下的所有记录封装在一个List<Map<String, String>>中
 		int i = 0;
 		for (String temp: dealOrderNumber.keySet()) 
@@ -196,7 +235,6 @@ public class Kb05Services extends JdbcServicesSupport
 		}
 		
 		
-		System.out.println(dealOrderNumber);
 		//每一个订单号下的所有记录封装在一个List<Map<String, String>>中
 		for (String temp: dealOrderNumber.keySet()) 
 		{
@@ -217,9 +255,8 @@ public class Kb05Services extends JdbcServicesSupport
 		Object args[] = 
 			{
 				"1",   		//用户id待修改
-				this.get("WIDout_trade_no")
+				this.get("kkb507")
 			};
-		System.out.println("待删除订单编号:" + this.get("WIDout_trade_no"));
 		return this.executeUpdate(sql, args) > 0;
 	}
 	
@@ -229,6 +266,7 @@ public class Kb05Services extends JdbcServicesSupport
 	 * @return
 	 * @throws Exception
 	 */
+	//	供paySuccessServlet使用
 	//(绕开核心控制器的操作无法获取dto通过参数传递解决,访问权限设为public)
 	public boolean updateOrderState(String state,String kkb507,String kkd101) throws Exception
 	{
@@ -242,4 +280,15 @@ public class Kb05Services extends JdbcServicesSupport
 		
 		return this.executeUpdate(sql, args) >0;
 	}
+	
+	
+	//供Kb05UpdateOrderServlet使用
+	private boolean UpdateOrderState() throws Exception
+	{
+		String state = (String)this.get("kkb502");		//订单改变后的状态
+		String num = (String)this.get("kkb507");		//商户订单号
+		String userID = "1"; 							//用户ID待修改
+		return updateOrderState(state,num,userID);
+	}
+	
 }

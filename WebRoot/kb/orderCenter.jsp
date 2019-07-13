@@ -29,11 +29,14 @@
 					</c:when>
 				</c:choose>
 				<hr>
-				<!-- 循环显示每一笔订单 -->
-				<c:forEach items="${objList }" var="rows" varStatus="objVs">
-					<c:set var="orderPrice"  value="${0 }"/>	<!-- 订单总金额 -->
-					<c:set var="orderCount"  value="${0 }"/>	<!-- 订单总商品数 -->
-					<c:set var="itemCount"  value="${0 }"/>		<!-- 订单总商品种类数 -->
+					<!-- 循环显示每一笔订单 -->
+					<c:forEach items="${objList }" var="rows" varStatus="objVs">
+						<c:set var="orderPrice" value="${0 }" />
+						<!-- 订单总金额 -->
+						<c:set var="orderCount" value="${0 }" />
+						<!-- 订单总商品数 -->
+						<c:set var="itemCount" value="${0 }" />
+						<!-- 订单总商品种类数 -->
 						<table style="width: 100%">
 							<tbody>
 								<tr>
@@ -189,14 +192,31 @@
 											<c:choose>
 												<c:when test="${flag == 0}">
 													<div class="btn-group btn-group-sm" style="float: right;">
-														<button type="button" class="btn btn-success" onclick="">取消订单</button>
-														<button type="button" class="btn btn-warning" onclick="">去支付</button>
+														
+														<button type="button" 
+															class="btn btn-success"
+															onclick = "submitForm(${orderPrice},${rows[0].kkb507 },'<%=request.getContextPath()%>/kb05DelOrderToPay.kbhtml')">
+															取消订单
+														</button>
+														
+														<button type="button" 
+															class="btn btn-warning"
+															onclick = "submitForm(${orderPrice},${rows[0].kkb507 },'<%=request.getContextPath()%>/kb/alipay.trade.page.pay.jsp')">
+															去支付
+														</button>
+												
 													</div>
 												</c:when>
 												<c:when test="${flag == 1}">
 													<div class="btn-group btn-group-sm" style="float: right;">
 														<button type="button" class="btn btn-success" onclick="">申请退款</button>
-														<button type="button" class="btn btn-warning" onclick="">确认收货</button>
+														
+														<button type="button" 
+															class="btn btn-warning"
+															onclick = "submitForm(${orderPrice},${rows[0].kkb507 },'<%=request.getContextPath()%>/kb05UpdateOrderState.kbhtml?kkb502=2')">
+															确认收货
+														</button>
+														
 													</div>
 												</c:when>
 												<c:when test="${flag == 2}">
@@ -206,29 +226,31 @@
 													</div>
 												</c:when>
 											</c:choose>
-
 										</div>
 									</td>
 								</tr>
-
 							</tbody>
 						</table>
 						<hr>
-						
-									
-					<form id="myForm${rows[0].kkb507 }">
+					</c:forEach>
+					
+					<!-- form表单动态获取数据 -->
+					<form id="myForm" method="post">
 						<!-- 隐藏域传输数据 -->
-						<!-- 商户订单号-->
+						<!-- 商户订单号 传给支付接口-->
 						<input type="hidden" id="WIDout_trade_no" name="WIDout_trade_no"
-							value="${rows[0].kkb507 }" />
+							value="" />
+						<!-- 商户订单号 传给servlet-->
+						<input type="hidden" id="kkb507" name="kkb507"
+							value="" />
 						<!-- 传输订单描述 -->
-						<input type="hidden" id="WIDsubject" name="WIDsubject" value="向翟种付款" />
-						<!-- 传输订单总金额给servlet updateSummaryInfo()方法会设置该控件value-->
+						<input type="hidden" id="WIDsubject" name="WIDsubject"
+							value="向翟种付款" />
+						<!-- 传输订单总金额-->
 						<input type="hidden" id="WIDtotal_amount" name="WIDtotal_amount"
-							value="${orderPrice }" />
-					</form>
-						
-				</c:forEach>
+							value="" />
+				</form>
+					
 			</div>
 			<!-- col-END -->
 		</div>
@@ -248,10 +270,23 @@
 	{
 		window.location.href = "<%=request.getContextPath()%>/kb05QueryOrderInfo.kbhtml?kkb507=" + kkb507;
 	}
+	
+	
+	function submitForm(orderPrice,kkb507,target)
+	{
+		 $("#WIDout_trade_no").attr("value",kkb507);
+		 $("#kkb507").attr("value",kkb507);
+		 $("#WIDtotal_amount").attr("value",orderPrice);
+		 $("#myForm").attr("action",target);
+		 $("#myForm").submit();
+	}
+	
 	</script>
+	
+	
 
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
-	
+
 </body>
 </html>

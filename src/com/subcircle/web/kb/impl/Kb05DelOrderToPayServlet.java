@@ -2,12 +2,13 @@ package com.subcircle.web.kb.impl;
 
 public class Kb05DelOrderToPayServlet extends Kb05Controller 
 {
-	//从待支付订单页面返回购物车页面同时从订单表中删除待支付订单
+	//从订单中心(orderCenter)取消待支付订单并返回orderCenter
 	@Override
 	public String execute() throws Exception 
 	{
-		this.update("deleteOrderToPay", "返回购物车页面");
-		return "kb04MyCartCenter.kbhtml";	
+		System.out.println("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
+		this.update("deleteOrderToPay", "删除订单成功");
+		return "back";	
 	}
 
 }

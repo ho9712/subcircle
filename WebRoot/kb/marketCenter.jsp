@@ -91,7 +91,7 @@
 												onclick="onAddToCart(${ins.kkb101 })">加入购物车</button>
 											<a id="myModel" href="#modal-container" role="button" 
 												class="btn btn-danger" data-toggle="modal"
-												onclick = "passItemInfo('${ins.kkb102 }','${ins.kkb103 }','${ins.kkb105 }')">
+												onclick = "passItemInfo('${ins.kkb101 }','${ins.kkb102 }','${ins.kkb103 }','${ins.kkb105 }')">
 												立即购买
 											</a>
 											<!-- <button type="button" class="btn btn-danger">立即购买</button> -->
@@ -124,7 +124,7 @@
 				<!-- 遮罩窗体 -->
 				<div id="modal-container" class="modal hide fade modal-lg" role="dialog"
 				 aria-labelledby="myModalLabel" aria-hidden="true" style="height:70%">
-					
+				<form action="<%=request.getContextPath()%>/kb05CreateOrder.kbhtml" method="post">
 					<div class="modal-header">
 						 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 						<h3 id="myModalLabel" style="color: maroon;">
@@ -133,7 +133,6 @@
 					</div>
 						
 					<div class="modal-body" >
-						
 						<div>
 							<table class="table table-hover">
 								<tbody>
@@ -153,10 +152,10 @@
 												<h4 id="simpleName">商品名</h4>
 												<hr>
 												<span style="font-size:20px;color:red" >售价:¥</span>
-												<span id="simplePrice" style="font-size:30px;color:red">价格</span>
+												<span  id="simplePrice" style="font-size:30px;color:red">价格</span>
 												<hr>
 												<span style="font-size:20px;color:buttonshadow;">数量:</span>
-												<input type="number" min = "1" step = "1" 
+												<input type="number" min = "1" step = "1" name="kkb504"
 												style="width: 60px;font-size:15px" value = "1">
 											</div>	
 										</td>
@@ -164,7 +163,7 @@
 									<tr >
 									<td style="vertical-align: middle;" colspan="2">
 										<div align="left">
-											<textarea rows="5" cols="30" 
+											<textarea rows="5" cols="30" name="kkb506"
 											style="overflow:auto;width:100%;"placeholder="订单备注...100字以内"></textarea> 
 										</div>
 									</td>
@@ -172,15 +171,21 @@
 								</tbody>
 							</table>
 						</div>
-							
 					</div>
 					
 					<div class="modal-footer">
 						<div class="btn-group btn-group-lg" align="center">
 						 	<button class="btn " data-dismiss="modal" aria-hidden="true">取消</button> 
-						 	<button class="btn btn-success">确定</button>
+						 	<input type="submit" class="btn btn-success"  value="购买">
 						 </div>
 					</div>
+					
+					<!-- 隐藏域传输数据 -->
+					<input type="hidden" id="kkb101" name="kkb101" value="" /> 
+					<input type="hidden" id="kkb505" name="kkb505" value="" /> 
+					<input type="hidden" id="kkb507" name="kkb507" value="" />
+
+					</form>
 				</div>
 				<!-- 遮罩窗体 结束-->
 				
@@ -191,9 +196,6 @@
 	</div>
 	<!-- 容器结束 -->
 
-	<script src="js/jquery.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-
 	<script type="text/javascript">
 
 	//根据商品id查看相应商品详情并为登入用户生成浏览记录
@@ -202,12 +204,26 @@
 		window.location.href = "<%=request.getContextPath()%>/kb01FindItemById.kbhtml?kkb101=" + kkb101;
 	}
 	
-	//根据商品id加入用户收藏列表
+	//从购物车中加入该商品至用户收藏列表
 	function onCollect(kkb101)
 	{
-		window.location.href="<%=request.getContextPath()%>/kb03CollectItem.kbhtml?"
+		 $.ajax({
+	            type: "POST",
+	            url: "${pageContext.request.contextPath}/kb03CollectItem.kbhtml?"
+	    			+"kkb101="+kkb101,
+	            dataType: "text",
+	            success: function (data)
+	            {
+	            	if(data)
+	            	{
+	            		alert("收藏成功");
+	            	}
+	            }//endsuccess
+	        });//endajax
+		
+	<%-- window.location.href="<%=request.getContextPath()%>/kb03CollectItem.kbhtml?"
 					+"kkb101="+kkb101;
-		alert("收藏成功");
+		alert("收藏成功"); --%>
 	}
 	
 	//根据商品id以及数量加入用户购物车中
@@ -221,14 +237,37 @@
 	}
 	
 	//点击立即购买传递info给遮罩窗体
-	function passItemInfo(kkb102,kkb103,kkb105)
+	function passItemInfo(kkb101,kkb102,kkb103,kkb105)
 	{
 		document.getElementById("simpleName").innerHTML = kkb102;
 		document.getElementById("simplePrice").innerHTML = kkb103;
 		document.getElementById("simpleImg").src = kkb105;
+		
+		var kkb507 = GetDateNow();
+		document.getElementById("kkb101").value = kkb101;
+		document.getElementById("kkb505").value = kkb103;
+		document.getElementById("kkb507").value = kkb507; 
+		
 	}
 	
-
+	//通过时间获取唯一的商户订单号
+	function GetDateNow() {
+		var vNow = new Date();
+		var sNow = "";
+		sNow += String(vNow.getFullYear());
+		sNow += String(vNow.getMonth() + 1);
+		sNow += String(vNow.getDate());
+		sNow += String(vNow.getHours());
+		sNow += String(vNow.getMinutes());
+		sNow += String(vNow.getSeconds());
+		sNow += String(vNow.getMilliseconds());
+		return sNow;
+	}
+	
 	</script>
+	
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	
 </body>
 </html>
