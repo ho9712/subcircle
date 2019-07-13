@@ -52,12 +52,36 @@
 	
     <!-- 顶部头像菜单 -->
     <div class="idBadgerNeue">
-		<a class="avatar" href="<%=path%>/kd/adminpage_main.jsp">
-			<img src="${sessionScope.user.kkd108}" onerror="this.src='<%=path %>/img/avatar/def_avatar.png'" class="port" width="33px" height="33px"/>
-		</a>
+		<c:choose>
+            	<c:when test="${!empty sessionScope.user.kkd108}">
+                <a class="avatar" href="<%=path%>/kd/adminpage_main.jsp">
+				<span class="avatarNeue avatarSize32 ll" 
+					style="background-image:url('${sessionScope.user.kkd108}');background-size: 100% auto;"></span>
+				</a>
+            	</c:when>
+            	<c:otherwise>
+                <a class="avatar" href="<%=path%>/kd/adminpage_main.jsp">
+				<span class="avatarNeue avatarSize32 ll" 
+					style="background-image:url('<%=path%>/img/avatar/def_avatar.png');background-size: 100% auto;"></span>
+				</a>
+            	</c:otherwise>
+            </c:choose>
 		<ul id="badgeUserPanel">
 			<li><a href="<%=path%>/kd/adminpage_main.jsp">账号</a></li>                    
-	    	<li class="row"><a href="<%= path %>/kd01QueryAdmin.kdhtml">管理员</a></li>
+	    	<c:choose>
+				<c:when test="${sessionScope.kkd104 eq '0' }">
+					<li><a href="<%= path %>/kd01QueryAdmin.kdhtml">Root管理员</a></li>
+				</c:when>
+				<c:when test="${sessionScope.kkd104 eq '1' }">
+					<li><a href="<%= path %>/kd01QueryUser.kdhtml">作品管理员</a></li>
+				</c:when>
+				<c:when test="${sessionScope.kkd104 eq '2' }">
+					<li><a href="<%= path %>/kd01QueryAdmin.kdhtml">商城管理员</a></li>
+				</c:when>
+				<c:when test="${sessionScope.kkd104 eq '3' }">
+					<li><a href="<%= path %>/kd01QueryAdmin.kdhtml">论坛管理员</a></li>
+				</c:when>
+			</c:choose>
 	        <li class="row">
 		        <a href="#">短信</a> | 
 		        <a href="<%=path%>/kd/adminpage_info.jsp">设置</a> | 
@@ -110,9 +134,20 @@
 						<tr>
 						<td valign="top" width="12%">头像</td>
 						<td valign="top">
-							<img src="${sessionScope.user.kkd108}" onerror="this.src='<%=path %>/img/avatar/def_avatar.png'" class="port" width="75px" height="75px"/>
-							<img src="${sessionScope.user.kkd108}" onerror="this.src='<%=path %>/img/avatar/def_avatar.png'" class="port" width="50px" height="50px"/>
-							<img src="${sessionScope.user.kkd108}" onerror="this.src='<%=path %>/img/avatar/def_avatar.png'" class="port" width="35px" height="35px"/> <br /><br />
+							<c:choose>
+			            	<c:when test="${!empty sessionScope.user.kkd108}">
+			                	<span class="avatarNeue avatarSize75" style="background-image:url('${sessionScope.user.kkd108}');background-size: 100% auto;"></span>&nbsp;&nbsp;&nbsp;
+			                	<span class="avatarNeue avatarSize48" style="background-image:url('${sessionScope.user.kkd108}');background-size: 100% auto;"></span>&nbsp;&nbsp;&nbsp;
+			                	<span class="avatarNeue avatarReSize40" style="background-image:url('${sessionScope.user.kkd108}');background-size: 100% auto;"></span>&nbsp;&nbsp;&nbsp;
+			                	<br><br>
+			            	</c:when>
+			            	<c:otherwise>
+			                	<span class="avatarNeue avatarSize75" style="background-image:url('<%=path%>/img/avatar/def_avatar.png');background-size: 100% auto;"></span>&nbsp;&nbsp;&nbsp;
+			                	<span class="avatarNeue avatarSize48" style="background-image:url('<%=path%>/img/avatar/def_avatar.png');background-size: 100% auto;"></span>&nbsp;&nbsp;&nbsp;
+			                	<span class="avatarNeue avatarReSize40" style="background-image:url('<%=path%>/img/avatar/def_avatar.png');background-size: 100% auto;"></span>&nbsp;&nbsp;&nbsp;
+			                	<br><br>
+			            	</c:otherwise>
+			            </c:choose>
 							<input type="file" name="avatar" size="25" /><br>
 							<small class="grey">仅支持上传.jpg或.png格式文件</small>
 						</td>

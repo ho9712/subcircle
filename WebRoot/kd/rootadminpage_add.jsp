@@ -53,12 +53,23 @@
 	
     <!-- 顶部头像菜单 -->
     <div class="idBadgerNeue">
-		<a class="avatar" href="<%=path%>/kd/adminpage_main.jsp">
-			<img src="${sessionScope.user.kkd108}" onerror="this.src='<%=path %>/img/avatar/def_avatar.png'" class="port" width="33px" height="33px"/>
-		</a>
+		<c:choose>
+            	<c:when test="${!empty sessionScope.user.kkd108}">
+                <a class="avatar" href="<%=path%>/kd/adminpage_main.jsp">
+				<span class="avatarNeue avatarSize32 ll" 
+					style="background-image:url('${sessionScope.user.kkd108}');background-size: 100% auto;"></span>
+				</a>
+            	</c:when>
+            	<c:otherwise>
+                <a class="avatar" href="<%=path%>/kd/adminpage_main.jsp">
+				<span class="avatarNeue avatarSize32 ll" 
+					style="background-image:url('<%=path%>/img/avatar/def_avatar.png');background-size: 100% auto;"></span>
+				</a>
+            	</c:otherwise>
+            </c:choose>
 		<ul id="badgeUserPanel">
 			<li><a href="<%=path%>/kd/adminpage_main.jsp">账号</a></li>                    
-	    	<li class="row"><a href="<%= path %>/kd01QueryAdmin.kdhtml">管理员</a></li>
+	    	<li><a href="<%= path %>/kd01QueryAdmin.kdhtml">管理员</a></li>
 	        <li class="row">
 		        <a href="#">短信</a> | 
 		        <a href="<%=path%>/kd/adminpage_info.jsp">设置</a> | 
@@ -144,7 +155,7 @@
             <div id="signupFormWrapper">
                 <form id="signupForm" method="post" name="signup" action="<%=path %>/kd01AddAdmin.kdhtml">
                 <p class="title"><label for="email">登录账号</label></p>
-                <p><input id="email" name="kkd102" class="inputtext" type="text" required="required" onfocus="SetTips('RegEmail');" /></p>
+                <p><input id="email" name="kkd102" class="inputtext" type="text" required="required" /></p>
                 <p class="title"><label for="password">设置一个密码</label></p>
                 <p><input id="password" name="kkd103" class="inputtext" type="password" required="required" /></p>
                 <p class="title"><label for="password2">确认密码 </label></p>
@@ -158,7 +169,7 @@
                 	</select>
 				</p>
                 <p class="title"><label for="nickname">设置一个昵称</label></p>
-                <p><input id="nickname" name="kkd105" class="inputtext" type="text" required="required" onfocus="regSetNickName();" /></p>
+                <p><input id="nickname" name="kkd105" class="inputtext" type="text" required="required" /></p>
                 <div id="rechaptcha_form"></div>
                 <p class="title"><input class="inputBtn" type="submit" name="regsubmit" value="添加管理员账号" /></p>
                 </form>

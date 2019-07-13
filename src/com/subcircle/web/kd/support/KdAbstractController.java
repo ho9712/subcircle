@@ -426,7 +426,7 @@ public abstract class KdAbstractController implements ControllerInterface
 	{
 		if(this.executeMethod("dealApp"))
 		{
-			this.setHint("操作成功", "已处理该用户权限！");
+			this.setHint("操作成功", "已处理该用户权限申请！");
 		}
 		else
 		{

@@ -14,7 +14,7 @@
 		vform.action="<%= path %>/kd03QueryApp.kdhtml?order="+vorder;
 		vform.submit();
 	}
-	function modifyAdmin(kkd101,kkd102,kkd105,kkd108,kkd304,kkd302,kkd303)
+	function dealApp(kkd101,kkd102,kkd105,kkd108,kkd304,kkd302,kkd303)
 	{
 		document.getElementById("img").src=kkd108;
 		document.getElementById("kkd101-hide").value=kkd101;
@@ -73,12 +73,23 @@
 	
     <!-- 顶部头像菜单 -->
     <div class="idBadgerNeue">
-		<a class="avatar" href="<%=path%>/kd/adminpage_main.jsp">
-			<img src="${sessionScope.user.kkd108}" onerror="this.src='<%=path %>/img/avatar/def_avatar.png'" class="port" width="33px" height="33px"/>
-		</a>
+		<c:choose>
+            	<c:when test="${!empty sessionScope.user.kkd108}">
+                <a class="avatar" href="<%=path%>/kd/adminpage_main.jsp">
+				<span class="avatarNeue avatarSize32 ll" 
+					style="background-image:url('${sessionScope.user.kkd108}');background-size: 100% auto;"></span>
+				</a>
+            	</c:when>
+            	<c:otherwise>
+                <a class="avatar" href="<%=path%>/kd/adminpage_main.jsp">
+				<span class="avatarNeue avatarSize32 ll" 
+					style="background-image:url('<%=path%>/img/avatar/def_avatar.png');background-size: 100% auto;"></span>
+				</a>
+            	</c:otherwise>
+            </c:choose>
 		<ul id="badgeUserPanel">
 			<li><a href="<%=path%>/kd/adminpage_main.jsp">账号</a></li>                    
-	    	<li class="row"><a href="<%= path %>/kd01QueryAdmin.kdhtml">管理员</a></li>
+	    	<li><a href="<%= path %>/kd01QueryUser.kdhtml">作品管理员</a></li>
 	        <li class="row">
 		        <a href="#">短信</a> | 
 		        <a href="<%=path%>/kd/adminpage_info.jsp">设置</a> | 
@@ -146,6 +157,7 @@
 		<ul class="navSubTabs">
 			<li><a href="<%= path %>/kd01QueryUser.kdhtml"><span>管理权限用户</span></a></li>
   	 		<li><a href="<%= path %>/kd03QueryApp.kdhtml" class="focus"><span>管理权限申请</span></a></li>
+  	 		<li><a href="#"><span>添加作品</span></a></li>
 		</ul>
 	</div>
 	<!-- 子导航栏 -->
@@ -165,22 +177,26 @@
         	<a href="#" onclick="onClickSort(2)" class="btnGraySmall" ><span>昵称</span></a> 排序
         
 		</div>    
+			<!-- 查询所有权限申请 -->
 			<ul id="browserItemList" class="browserList">
 				<c:forEach items="${apps }" var="app">
 					<li id="item_9912" class="item odd clearit">
-				   	<a href="<%= path %>/kd01FindAdmin.kdhtml?kkd101=${user.kkd101}" class="subjectCover cover ll">       
-			           	<span class="image">
-		             	<img src="${app.kkd108 }" onerror="this.src='<%=path %>/img/avatar/def_avatar.png'" class="cover" />
-			       		</span>
-				       	<span class="overlay"></span>
-				   	</a>
+					<!-- 头像 -->
+					   	<a href="<%= path %>/kd01FindAdmin.kdhtml?kkd101=${user.kkd101}" class="subjectCover cover ll">       
+				           	<span class="image">
+			             	<img src="${app.kkd108 }" onerror="this.src='<%=path %>/img/avatar/def_avatar.png'" class="cover" />
+				       		</span>
+					       	<span class="overlay"></span>
+					   	</a>
+				   	<!-- 头像 -->
 				    <div class="inner">
+			    	<!-- 右边按钮 -->
 				       	<div id="collectBlock_9912" class="collectBlock tip_i">
 					    <p class="collectModify">
 					    <c:choose>
 					    	<c:when test="${app.kkd305 eq '0' }">
 					    		<a href="#TB_inline?height=350&amp;width=500&amp;inlineId=panel" 
-						    	onclick="modifyAdmin('${app.kkd101}','${app.kkd102}','${app.kkd105}','${app.kkd108}','${app.kkd304}','${app.kkd302}','${app.kkd303}')" 
+						    	onclick="dealApp('${app.kkd101}','${app.kkd102}','${app.kkd105}','${app.kkd108}','${app.kkd304}','${app.kkd302}','${app.kkd303}')" 
 						    	title="处理权限申请" class="thickbox l">处理申请</a> | 
 					    	</c:when>
 					    	<c:when test="${app.kkd305 eq '1' }">
@@ -193,17 +209,32 @@
 					    <a href="<%= path %>/kd03DelApp.kdhtml?kkd301=${app.kkd301}" class="l">删除</a>
 					    </p>
 				    	</div>
-					       <h3>
-					           <a href="<%= path %>/kd01FindAdmin.kdhtml?kkd101=${user.kkd101}" class="l">${app.kkd105 }</a> 
-					       </h3>
-				       <p class="info tip"><small class="grey">${app.kkd104 }</small></p>
+			    	<!-- 右边按钮 -->
+			    	<!-- 用户信息 -->
+				    <span class="userInfo">
+				    	<strong><a href="/user/hexsix" class="l">${app.kkd105 }</a></strong>
+			    		<a href="#"  class="tip_i icons_cmt">发消息</a>  
+			    		<span class="tip_j">(${app.kkd107 })</span>
+			    	</span>
+				    		<c:choose>
+				    			<c:when test="${app.kkd104 eq '权限用户'}">
+				    				<small style="color:#ff8f8f"><strong>${app.kkd104 }</strong></small>
+				    			</c:when>
+				    			<c:when test="${app.kkd104 eq '普通用户'}">
+				    				<small class="grey"><strong>${app.kkd104 }</strong></small>
+				    			</c:when>
+				    		</c:choose>
+				       <p class="info tip"><small style="color:#6faf0f">申请时间：${app.kkd304 }</small></p>
 				       <p class="collectInfo">
-						<span class="tip_j">${app.kkd302 }</span> 
+						<div class="message">${app.kkd302 }</div> 
+					<!-- 用户信息 -->
 						</p>
 				   	</div>
 					</li>
 				</c:forEach>
 			</ul>
+			<!-- 查询所有权限申请 -->
+			
 			<div id="multipage"></div>
 			<!-- 弹窗 -->
 		<div id="panel" style="display:none;">
@@ -220,30 +251,28 @@
 								<td></td>
 							</tr>
 							<tr>
-								<td valign="top" width="12%"><span style="font-size:15px">昵称:</span></td>
-								<td valign="top"><span id="nickname" style="font-size:20px;color:#0000ff"></span></td>
+								<td valign="top" width="12%"><span style="font-size:12px">昵称:</span></td>
+								<td valign="top"><span id="nickname" style="font-size:15px;color:#8f8fff"></span></td>
 							</tr>
 							<tr>
-								<td valign="top" width="12%"><span style="font-size:15px">用户名:</span></td>
-								<td valign="top"><span id="username" style="font-size:20px;color:#0000ff"></span></td>
+								<td valign="top" width="12%"><span style="font-size:12px">用户名:</span></td>
+								<td valign="top"><span id="username" style="font-size:15px;color:#8f8fff"></span></td>
 							</tr>
 							<tr>
-								<td valign="top" width="12%"><span style="font-size:15px">申请时间:</span></td>
-								<td valign="top"><span id="time" style="font-size:20px;color:#0000ff"></span></td>
+								<td valign="top" width="12%"><span style="font-size:12px">申请时间:</span></td>
+								<td valign="top"><span id="time" style="font-size:15px;color:#8f8fff"></span></td>
 							</tr>
 							<tr>
-								<td valign="top" width="12%"><span style="font-size:15px">标题:</span></td>
+								<td valign="top" width="12%"><span style="font-size:12px">标题:</span></td>
 								<td valign="top"><input id="title" class="inputtext" type="text" readonly="readonly"></td>
 							</tr>
 							<tr>
-								<td valign="top" width="12%"><span style="font-size:15px">内容:</span></td>
+								<td valign="top" width="12%"><span style="font-size:12px">内容:</span></td>
 								<td valign="top"><textarea id="content" rows="10" cols="50" readonly="readonly"></textarea></td>
 							</tr>
 							<tr>
-								<td valign="middle" align="center">
+								<td valign="middle" align="center" colspan="2">
 								<input class="inputBtn" value="授予权限" name="submit" type="submit" formaction="<%=path %>/kd03DealApp.kdhtml?flag=accept"/>
-								</td>
-								<td valign="middle" align="left">
 								<input class="inputBtn" value="拒绝申请" name="submit" type="submit" formaction="<%=path %>/kd03DealApp.kdhtml?flag=refuse"/>
 								</td>
 							</tr>
@@ -274,6 +303,12 @@
 											solid #BEB4A7;padding:1px
 											4px;width:120px;height:20px;padding:3px
 											5px;text-align:left;font-size:14px;line-height:130%"/>
+									</td>
+								</tr>
+								<tr>
+									<td valign="top" width="15%">审核状态</td>
+									<td valign="top">
+										<e:select value="待审核:0,审核通过:1,审核拒绝:2" name="state" style="height:30px;width:100px;" header="true"/>
 									</td>
 								</tr>
 								<tr>

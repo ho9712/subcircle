@@ -70,12 +70,23 @@
 	
     <!-- 顶部头像菜单 -->
     <div class="idBadgerNeue">
-		<a class="avatar" href="<%=path%>/kd/adminpage_main.jsp">
-			<img src="${sessionScope.user.kkd108}" onerror="this.src='<%=path %>/img/avatar/def_avatar.png'" class="port" width="33px" height="33px"/>
-		</a>
+		<c:choose>
+            	<c:when test="${!empty sessionScope.user.kkd108}">
+                <a class="avatar" href="<%=path%>/kd/adminpage_main.jsp">
+				<span class="avatarNeue avatarSize32 ll" 
+					style="background-image:url('${sessionScope.user.kkd108}');background-size: 100% auto;"></span>
+				</a>
+            	</c:when>
+            	<c:otherwise>
+                <a class="avatar" href="<%=path%>/kd/adminpage_main.jsp">
+				<span class="avatarNeue avatarSize32 ll" 
+					style="background-image:url('<%=path%>/img/avatar/def_avatar.png');background-size: 100% auto;"></span>
+				</a>
+            	</c:otherwise>
+            </c:choose>
 		<ul id="badgeUserPanel">
 			<li><a href="<%=path%>/kd/adminpage_main.jsp">账号</a></li>                    
-	    	<li class="row"><a href="<%= path %>/kd01QueryAdmin.kdhtml">管理员</a></li>
+	    	<li><a href="<%= path %>/kd01QueryUser.kdhtml">作品管理员</a></li>
 	        <li class="row">
 		        <a href="#">短信</a> | 
 		        <a href="<%=path%>/kd/adminpage_info.jsp">设置</a> | 
@@ -143,6 +154,7 @@
 		<ul class="navSubTabs">
 			<li><a href="<%= path %>/kd01QueryUser.kdhtml" class="focus"><span>管理权限用户</span></a></li>
   	 		<li><a href="<%= path %>/kd03QueryApp.kdhtml" ><span>管理权限申请</span></a></li>
+  	 		<li><a href="#"><span>添加作品</span></a></li>
 		</ul>
 	</div>
 	<!-- 子导航栏 -->
@@ -159,38 +171,50 @@
         
         	按 <a href="#" onclick="onClickSort()" class="btnGraySmall"><span>默认</span></a> · 
         	<a href="#" onclick="onClickSort(1)" class="btnGraySmall" ><span>时间</span></a> · 
-        	<a href="#" onclick="onClickSort(2)" class="btnGraySmall" ><span>权限</span></a> · 
         	<a href="#" onclick="onClickSort(3)" class="btnGraySmall" ><span>昵称</span></a> 排序
         
 		</div>    
+			<!-- 查询所有权限用户 -->
 			<ul id="browserItemList" class="browserList">
 				<c:forEach items="${users }" var="user">
 					<li id="item_9912" class="item odd clearit">
-				   	<a href="<%= path %>/kd01FindAdmin.kdhtml?kkd101=${user.kkd101}" class="subjectCover cover ll">       
-			           	<span class="image">
-		             	<img src="${user.kkd108 }" onerror="this.src='<%=path %>/img/avatar/def_avatar.png'" class="cover" />
-			       		</span>
-				       	<span class="overlay"></span>
-				   	</a>
+					<!-- 头像 -->
+					   	<a href="<%= path %>/kd01FindAdmin.kdhtml?kkd101=${user.kkd101}" class="subjectCover cover ll">       
+				           	<span class="image">
+			             	<img src="${user.kkd108 }" onerror="this.src='<%=path %>/img/avatar/def_avatar.png'" class="cover" />
+				       		</span>
+					       	<span class="overlay"></span>
+					   	</a>
+				   	<!-- 头像 -->
 				    <div class="inner">
-				       	<div id="collectBlock_9912" class="collectBlock tip_i">
-					    <p class="collectModify">
-					    <a href="#TB_inline?height=350&amp;width=500&amp;inlineId=panel" 
-					    	onclick="modifyAdmin('${user.kkd101}','${user.kkd102}','${user.kkd105}','${user.kkd108}')" 
-					    	title="修改" class="thickbox l">取消权限</a> 
-					    </p>
-				    	</div>
-					       <h3>
-					           <a href="<%= path %>/kd01FindAdmin.kdhtml?kkd101=${user.kkd101}" class="l">${user.kkd105 }</a> 
-					       </h3>
-				       <p class="info tip"><small class="grey">${user.admin }</small></p>
+				    	<!-- 用户信息 -->
+				    	<span class="userInfo">
+					    	<strong><a href="/user/hexsix" class="l">${user.kkd105 }</a></strong>
+				    		<a href="#"  class="tip_i icons_cmt">发消息</a>  
+				    		<span class="tip_j">(${user.kkd107 })</span>
+				    	</span>
+				       <p class="info tip">
+				       	<small style="color:#ff8f8f">${user.admin }</small>
+				       </p>
 				       <p class="collectInfo">
 						<span class="tip_j">${user.kkd106 }</span> 
 						</p>
+						<!-- 用户信息 -->
+						<!-- 右边按钮 -->
+				       	<div id="collectBlock_9912" class="collectBlock tip_i">
+						    <p class="collectModify">
+						    <a href="#TB_inline?height=350&amp;width=500&amp;inlineId=panel" 
+						    	onclick="modifyAdmin('${user.kkd101}','${user.kkd102}','${user.kkd105}','${user.kkd108}')" 
+						    	title="修改" class="thickbox l">取消权限</a> 
+						    </p>
+				    	</div>
+				    	<!-- 右边按钮 -->
 				   	</div>
 					</li>
 				</c:forEach>
 			</ul>
+			<!-- 查询所有权限用户 -->
+			
 			<div id="multipage"></div>
 			<!-- 弹窗 -->
 		<div id="panel" style="display:none;">
@@ -201,27 +225,29 @@
 					<span class="text">
 						<table align="center" width="98%" cellspacing="0" cellpadding="5" class="settings">
 							<tr>
-								<td valign="top" align="center">
+								<td valign="top" align="center" colspan="2">
 								<img id="img" src="" onerror="this.src='<%=path %>/img/avatar/def_avatar.png'" class="port" width="50px" height="50px"/>
 								</td>
 							</tr>
 							<tr>
-							<td valign="middle" align="center">
-								<span style="font-size:15px">昵称:</span><span id="nickname" style="font-size:20px;color:#0000ff"></span>
+							<td align="center" width="30%" ><span style="font-size:12px">昵称:</span></td>
+							<td valign="middle" align="left">
+								<span id="nickname" style="font-size:20px;color:#8f8fff"></span>
 							</td>
 							</tr>
 							<tr>
-							<td valign="middle" align="center">
-								<span style="font-size:12px">用户名:</span><span id="username" style="font-size:15px;color:#0000ff"></span>
+							<td align="center" width="30%"><span style="font-size:12px">用户名:</span></td>
+							<td valign="middle" align="left">
+								<span id="username" style="font-size:15px;color:#8f8fff"></span>
 							</td>
 							</tr>
 							<tr>
-							<td valign="middle" align="center">
-								<span style="font-size:25px;color:#ff0000">确定要取消该用户权限？</span>
+							<td valign="middle" align="center" colspan="2">
+								<span style="font-size:25px;color:#ff8f8f">确定要取消该用户权限？</span>
 							</td>
 							</tr>
 							<tr>
-								<td valign="middle" align="center">
+								<td valign="middle" align="center" colspan="2">
 								<input class="inputBtn" value="取消权限" name="submit" type="submit" />
 								</td>
 							</tr>

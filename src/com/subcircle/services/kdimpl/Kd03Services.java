@@ -38,9 +38,10 @@ public class Kd03Services extends JdbcServicesSupport
 	{
 		Object keyword=this.get("keyword");
 		Object order=this.get("order");
+		Object state=this.get("state");
 		
 		StringBuilder sql=new StringBuilder()
-				.append("select a.kkd301,b.kkd101,b.kkd102,s.fvalue kkd104,b.kkd105,b.kkd108,a.kkd302,")
+				.append("select a.kkd301,b.kkd101,b.kkd102,s.fvalue kkd104,b.kkd105,b.kkd107,b.kkd108,a.kkd302,")
 				.append("			 a.kkd303,date_format(a.kkd304,'%Y-%m-%d %H:%i:%S') kkd304,a.kkd305")
 				.append("  from kd03 a,kd01 b,syscode s")
 				.append(" where a.kkd101=b.kkd101 and s.fname='kkd104' and s.fcode=b.kkd104")
@@ -53,6 +54,11 @@ public class Kd03Services extends JdbcServicesSupport
 			paraList.add("%"+keyword+"%");
 			paraList.add("%"+keyword+"%");
 			paraList.add("%"+keyword+"%");
+		}
+		if(state!=null && !state.equals(""))
+		{
+			sql.append(" and a.kkd305=?");
+			paraList.add(state);
 		}
 		if(order!=null && order.toString().equals("1"))
 		{

@@ -53,9 +53,20 @@
 	
     <!-- 顶部头像菜单 -->
     <div class="idBadgerNeue">
-		<a class="avatar" href="<%=path%>/kd/userpage_main.jsp">
-			<img src="${sessionScope.user.kkd108}" onerror="this.src='<%=path %>/img/avatar/def_avatar.png'" class="port" width="33px" height="33px"/>
-		</a>
+			<c:choose>
+            	<c:when test="${!empty sessionScope.user.kkd108}">
+                <a class="avatar" href="<%=path%>/kd/userpage_main.jsp">
+				<span class="avatarNeue avatarSize32 ll" 
+					style="background-image:url('${sessionScope.user.kkd108}');background-size: 100% auto;"></span>
+				</a>
+            	</c:when>
+            	<c:otherwise>
+                <a class="avatar" href="<%=path%>/kd/userpage_main.jsp">
+				<span class="avatarNeue avatarSize32 ll" 
+					style="background-image:url('<%=path%>/img/avatar/def_avatar.png');background-size: 100% auto;"></span>
+				</a>
+            	</c:otherwise>
+            </c:choose>
 		<ul id="badgeUserPanel">
 			<li><a href="<%=path%>/kd/userpage_main.jsp">时光机</a></li>                    
        		<li><a href="#">作品</a></li>
@@ -104,7 +115,18 @@
             </div>
 
             <div class="headerAvatar">
-                <a href="<%=path%>/kd/userpage_main.jsp" class="avatar"><span class="avatarNeue avatarSize75" style="background-image:url('${sessionScope.user.kkd108}')"></span></a>
+            <c:choose>
+            	<c:when test="${!empty sessionScope.user.kkd108}">
+           		 <a href="<%=path%>/kd/userpage_main.jsp" class="avatar">
+                	<span class="avatarNeue avatarSize75" style="background-image:url('${sessionScope.user.kkd108}')"></span>
+                </a>
+            	</c:when>
+            	<c:otherwise>
+           		<a href="<%=path%>/kd/userpage_main.jsp" class="avatar">
+                	<span class="avatarNeue avatarSize75" style="background-image:url('<%=path%>/img/avatar/def_avatar.png')"></span>
+                </a>
+            	</c:otherwise>
+            </c:choose>
             </div>
 
             <div class="inner">

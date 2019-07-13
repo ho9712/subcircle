@@ -190,7 +190,7 @@ public class Kd01Services extends JdbcServicesSupport
 	
 	public boolean revokePermission()throws Exception
 	{
-		String sql="update kd01 set kkd104='4' where kkd101=?";
+		String sql="update kd01 set kkd104='5' where kkd101=?";
 		return this.executeUpdate(sql,this.get("kkd101"))>0;
 	}
 	
