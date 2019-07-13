@@ -5,7 +5,8 @@ public class Kc02AddCommentServlet extends Kc02Controller {
 	@Override
 	public String execute() throws Exception {
 		this.AnimeRankAndComment();
-		return "back";
+		
+		return "Kc02ShowDetail.kchtml";
 	}
 
 }

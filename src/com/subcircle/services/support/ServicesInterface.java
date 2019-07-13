@@ -27,4 +27,9 @@ public interface ServicesInterface
 	{
 		return null;
 	}
+	
+	default List<Map<String, String>> queryAnimeComment()throws Exception	
+	{
+		return null;
+	}
 }

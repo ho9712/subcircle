@@ -5,7 +5,7 @@ public class Kc04ShowRankServlet extends Kc04Controller {
 	@Override
 	public String execute() throws Exception {
 		this.ShowGamebyRank();
-		return "kc/GameList";
+		return "kc/GameList.jsp";
 	}
 
 }

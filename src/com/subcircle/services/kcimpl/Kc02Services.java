@@ -49,35 +49,6 @@ public class Kc02Services extends JdbcServicesSupport {
 	
     public boolean addAnimeComment()throws Exception
     {
-//    	//获取当前员工编号
-//    	String aab103=Tools.getEmpNumber();
-//    	//向DTO添加员工编号
-//    	this.put("aab103", aab103);
-//    	
-//    	//1.编写SQL语句
-//    	StringBuilder sql=new StringBuilder()
-//    			.append("insert into ab01(aab102,aab103,aab104,aab105,aab106,")
-//    			.append("                 aab107,aab108,aab109,aab110,aab111,")
-//    			.append("                 aab112,aab113)")
-//    			.append("          values(?,?,?,?,?,")
-//    			.append("                 ?,?,?,?,?,")
-//    			.append("                 ?,?)")
-//    			;
-//    	//2.编写参数数组
-//    	Object args[]={
-//    			this.get("aab102"),
-//    			aab103,
-//    			this.get("aab104"),
-//    			this.get("aab105"),
-//    			this.get("aab106"),
-//    			this.get("aab107"),
-//    			this.get("aab108"),
-//    			this.get("aab109"),
-//    			this.get("aab110"),
-//    			Tools.joinArray(this.get("aab111")),
-//    			Tools.joinArray(this.get("aab112")),
-//    			this.get("aab113")
-//    	};
     	
     	StringBuilder sql1 = new StringBuilder()
     			
@@ -90,24 +61,44 @@ public class Kc02Services extends JdbcServicesSupport {
     			
     			
     			;
-    	Object args[]={
+    	Object args1[]={
     			this.get("kkd101"),
-    			this.get("kkc101"),
+    			this.get("kkc101")
+    					};
+    	
+    	Object args2[]={
     			this.get("kkc101"),
     			this.get("kkd101"),
     			this.get("kkc702"),
     			this.get("kkc703")
-    			
-    			
-    			
     	};
     	
     	
-    	this.appendSql(sql1.toString(), args);
-    	this.appendSql(sql2.toString(), args);
-//        return this.executeUpdate(sql1.toString(), args)>0;	
+    	this.appendSql(sql1.toString(), args1);
+    	this.appendSql(sql2.toString(), args2);
         return this.executeTransaction();
     }
     
+    
+    
+    
+    public List<Map<String,String>> queryAnimeComment () throws Exception
+    
+   
+    {
+    	String kkc101 = this.get("kkc101").toString();
+    	StringBuilder sql = new StringBuilder()
+    			.append("SELECT a.kkd101,a.kkd105,a.kkd108,b.kkc702,b.kkc703,b.kkc704 ")
+    			.append("FROM kd01 a,kc07 b ")
+    			.append("where b.kkc101=")
+    			.append(kkc101)
+    			.append(" AND a.kkd101 = b.kkd101 ")
+    			.append("ORDER BY b.kkc704 DESC ")
+    			;
+    	Object args[] = {};
+    	
+    	
+    	return this.queryForList(sql.toString(), args);
+    }
 	
 }

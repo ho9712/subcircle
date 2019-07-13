@@ -163,7 +163,9 @@
 <!-- 评分 -->
 
 <div id="panel" style="display:none;"><div class="collectBox clearit">
-    <form id="collectBoxForm" name="collectBoxForm" method="post" action="kc02AddComment.kchtml">	
+    <form id="collectBoxForm" name="collectBoxForm" method="post" action="kc02AddComment.kchtml">
+    <input  type="hidden" name="kkc101" value="${param.kkc101 }"/>
+    <input  type="hidden" name="kkd101" value="${sessionScope.user.kkd101 }"/>
     <input type="hidden" name="referer" value="subject">
     <div class="collectType cell">
         <label><input value="1" id="wish" name="interest" onclick="GenInterestBox('wish')"  type="radio"> 收藏</label>&nbsp;&nbsp;
@@ -175,20 +177,20 @@
 <span class="tip">我的评价:</span> <span class="alarm" id="rating-tip"></span>
         <div class="clearit">
             <input style="display: none;" id="rating" name="rating" type="radio" class="star rating" value="1" title="不忍直视 1 "  />
-                <input style="display: none;" id="rating" name="rating" type="radio" class="star rating" value="2" title="很差 2 "  />
-                <input style="display: none;" id="rating" name="rating" type="radio" class="star rating" value="3" title="差 3 "  />
-                <input style="display: none;" id="rating" name="rating" type="radio" class="star rating" value="4" title="较差 4 "  />
-                <input style="display: none;" id="rating" name="rating" type="radio" class="star rating" value="5" title="不过不失 5 "  />
-                <input style="display: none;" id="rating" name="rating" type="radio" class="star rating" value="6" title="还行 6 "  />
-                <input style="display: none;" id="rating" name="rating" type="radio" class="star rating" value="7" title="推荐 7 "  />
-                <input style="display: none;" id="rating" name="rating" type="radio" class="star rating" value="8" title="力荐 8 "  />
-                <input style="display: none;" id="rating" name="rating" type="radio" class="star rating" value="9" title="神作 9 "  />
-                <input style="display: none;" id="rating" name="rating" type="radio" class="star rating" value="10" title="超神作 10 (请谨慎评价)"  />
+                <input style="display: none;" id="rating" name="kkc702" type="radio" class="star rating" value="2" title="很差 2 "  />
+                <input style="display: none;" id="rating" name="kkc702" type="radio" class="star rating" value="3" title="差 3 "  />
+                <input style="display: none;" id="rating" name="kkc702" type="radio" class="star rating" value="4" title="较差 4 "  />
+                <input style="display: none;" id="rating" name="kkc702" type="radio" class="star rating" value="5" title="不过不失 5 "  />
+                <input style="display: none;" id="rating" name="kkc702" type="radio" class="star rating" value="6" title="还行 6 "  />
+                <input style="display: none;" id="rating" name="kkc702" type="radio" class="star rating" value="7" title="推荐 7 "  />
+                <input style="display: none;" id="rating" name="kkc702" type="radio" class="star rating" value="8" title="力荐 8 "  />
+                <input style="display: none;" id="rating" name="kkc702" type="radio" class="star rating" value="9" title="神作 9 "  />
+                <input style="display: none;" id="rating" name="kkc702" type="radio" class="star rating" value="10" title="超神作 10 (请谨慎评价)"  />
                 </div>
 </div>
     <div class="cell">
     <p class="tip"><label for="comment">吐槽 (简评，最多200字):</label></p>
-    <textarea name="comment" id="comment" cols="32" rows="3" class="quick"></textarea>
+    <textarea name="kkc703" id="comment" cols="32" rows="3" class="quick"></textarea>
     </div>
     <div class="clearit">
     <div id="submitBtnO" class="ll">
@@ -298,8 +300,23 @@
 
 <div class="subject_section">
 <h2 class="subtitle">吐槽箱</h2><div id="comment_box">
+
+
+
+
+<c:choose>
+			<c:when test="${rows!=null }">
+			<c:forEach items="${rows }" var="comments" varStatus="vs">
+			<c:choose>
+			<c:when test="${(vs.count)%2 ==1 }">
+
+
+
+
 <div class="item clearit">
-<a href="" class="avatar"><span class="avatarNeue avatarSize32 ll" style="background-image:url('')"></span></a>
+<a href="" class="avatar">
+<span class="avatarNeue avatarSize32 ll" style="background-image:url('${comments.kkd108 }');background-size: 100% auto; "></span>
+</a>
 <div class="text_main_even">
 <div class="text">
 
@@ -309,18 +326,44 @@ sstars1-10即评分 根据数据读取即可
 图片复用个人中心的头像
 用户ID
  -->
-            <a href="" class="l">  </a> <small class="grey">     </small> <span class="sstars10 starsinfo"></span>         <p></p>
+ 
+ 
+            <a href="" class="l">${comments.kkd105 }</a> <small class="grey">${comments.kkc704 }</small> <span class="sstars${comments.kkc702 } starsinfo"></span>         <p>${comments.kkc703 }</p>
 </div>
 </div>
 </div>
+
+
+</c:when>
+<c:otherwise>
 <div class="item clearit">
-<a href="" class="avatar"><span class="avatarNeue avatarSize32 rr" style="background-image:url('')"></span></a>
+<a href="" class="avatar"><span class="avatarNeue avatarSize32 rr" style="background-image:url('${comments.kkd108 }');background-size: 100% auto;"></span></a>
 <div class="text_main_odd">
 <div class="text">
-            <a href="/" class="l">  </a> <small class="grey"></small> <span class="sstars10 starsinfo"></span>           <p></p>
+
+<!-- 注意此处的星星样式以及评分
+sstars1-10即评分 根据数据读取即可
+链接里是用户个人中心的链接
+图片复用个人中心的头像
+用户ID
+ -->
+ 
+ 
+            <a href="" class="l">${comments.kkd105 }</a> <small class="grey">${comments.kkc704 }</small> <span class="sstars${comments.kkc702 } starsinfo"></span>         <p>${comments.kkc703 }</p>
 </div>
 </div>
-</div></div><a href="/subject/253/comments" class="more">更多吐槽 »</a>
+</div>
+</c:otherwise>
+</c:choose>
+</c:forEach>
+</c:when>
+</c:choose>
+
+
+
+
+
+</div><a href="/subject/253/comments" class="more">更多吐槽 »</a>
 </div>  
 </div>      
 </div>
