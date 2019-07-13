@@ -1,5 +1,6 @@
 package com.subcircle.services.support;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -21,5 +22,9 @@ public interface ServicesInterface
 	{
 		return null;
 	}
-
+	
+	default List<Object> queryInList() throws Exception
+	{
+		return null;
+	}
 }

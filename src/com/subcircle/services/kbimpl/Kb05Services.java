@@ -2,13 +2,11 @@ package com.subcircle.services.kbimpl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.management.Query;
-
 import com.subcircle.services.support.JdbcServicesSupport;
-import com.sun.org.apache.bcel.internal.generic.NEW;
 
 public class Kb05Services extends JdbcServicesSupport 
 {
@@ -77,37 +75,29 @@ public class Kb05Services extends JdbcServicesSupport
 	
 	
 	/**
-	 *	查询该用户所有状态的订单 
+	 *	返回用户最新的待支付订单
+	 *	从购物车跳转到支付页面只显示当前订单
 	 */
 	@Override
 	public List<Map<String, String>> queryByCondition() throws Exception
 	{
-		StringBuilder sql = new StringBuilder()
-			.append("  select k1.kkb101,k1.kkb105,k1.kkb102,k5.kkb504,k5.kkb505")
-			.append("    from kb01 k1, kb05 k5")
-			.append("	where k5.kkd101 = ?")
-			.append("     and k1.kkb101 = k5.kkb101")
-			;
-		
-		Object args[] = 
-			{
-				"1"		//用户id待修改	
-			};
-		return this.queryForList(sql.toString(), args);
+		String userId = "1"; //用户Id待修改
+		List<Map<String, String>> orderToPay = queryOrderByState(userId, "0",(String)this.get("kkb507"));
+		return orderToPay;
 	}
 	
 	
 	/**
-	 * 	查询该用户的某一状态的订单
+	 * 	查询该用户的某一状态的所有订单号
 	 * @param userId
 	 * @param tag
 	 * @return
 	 * @throws Exception
 	 */
-	private List<Map<String, String>> queryOrderByState(String userId,String tag) throws Exception
+	private List<Map<String, String>> queryOrderNumByState(String userId,String state) throws Exception
 	{
 		StringBuilder sql = new StringBuilder()
-				.append("  select k1.kkb101,k1.kkb105,k1.kkb102,k5.kkb504,k5.kkb505,k5.kkb507")
+				.append("  select k5.kkb507")
 				.append("    from kb01 k1, kb05 k5")
 				.append("	where k5.kkd101 = ?  and k5.kkb502 = ?")
 				.append("     and k1.kkb101 = k5.kkb101")
@@ -116,7 +106,7 @@ public class Kb05Services extends JdbcServicesSupport
 		Object args[] = 
 			{
 				userId,
-				tag
+				state
 			};
 		return this.queryForList(sql.toString(), args);
 		
@@ -124,13 +114,13 @@ public class Kb05Services extends JdbcServicesSupport
 	
 	
 	/**
-	 * 	查询该用户的某一状态的订单(用于显示用户从购物车提交的待支付的订单)
+	 * 	查询该用户的某一状态下某一订单号对应的所有订单记录
 	 * @param userId
 	 * @param tag
 	 * @return
 	 * @throws Exception
 	 */
-	private List<Map<String, String>> queryOrderByState(String userId,String tag,String kkb507) throws Exception
+	private List<Map<String, String>> queryOrderByState(String userId,String state,String kkb507) throws Exception
 	{
 		StringBuilder sql = new StringBuilder()
 				.append("  select k1.kkb101,k1.kkb105,k1.kkb102,k5.kkb504,k5.kkb505,k5.kkb507")
@@ -143,7 +133,7 @@ public class Kb05Services extends JdbcServicesSupport
 		Object args[] = 
 			{
 				userId,
-				tag,
+				state,
 				kkb507
 			};
 		return this.queryForList(sql.toString(), args);
@@ -153,18 +143,66 @@ public class Kb05Services extends JdbcServicesSupport
 	
 
 	/**
-	 * 	查询该用户不同状态的订单存在不同的List中在用objMap返回
-	 * 
+	 * 	查询该用户不同状态的订单
+	 * 	存在List中再用objMap返回
 	 */
 	@Override
 	public Map<String, Object> queryInMap() throws Exception 
 	{
 		Map<String, Object> objMap = new HashMap<>();
 		String userId = "1"; //用户Id待修改
-		List<Map<String, String>> orderToPay = queryOrderByState(userId, "0",(String)this.get("kkb507"));
-		objMap.put("orderTopay",orderToPay);
+		//查询出某一状态下的订单的所有的订单号
+		List<Map<String, String>> orderNumber = queryOrderNumByState(userId,(String)this.get("kkb502"));
 		
+		//LinkedHashMap保存加入的顺序
+		Map<String, String> dealOrderNumber = new LinkedHashMap<>();
+		
+		//每一个订单号保留一个
+		for(Map<String, String> tempMap : orderNumber) 
+		{
+			String kkb507 = tempMap.get("kkb507");
+			dealOrderNumber.put(kkb507, kkb507);
+		}
+		
+		
+		System.out.println(dealOrderNumber);
+		//每一个订单号下的所有记录封装在一个List<Map<String, String>>中
+		int i = 0;
+		for (String temp: dealOrderNumber.keySet()) 
+		{
+			i++;
+			objMap.put("order"+i,queryOrderByState(userId,(String)this.get("kkb502"),temp));
+		}		
 		return objMap;
+	
+	}
+	
+	@Override
+	public List<Object> queryInList() throws Exception 
+	{
+		List<Object> objList = new ArrayList<>();
+		String userId = "1"; //用户Id待修改
+		//查询出某一状态下的订单的所有的订单号
+		List<Map<String, String>> orderNumber = queryOrderNumByState(userId,(String)this.get("kkb502"));
+		
+		//LinkedHashMap保存加入的顺序
+		Map<String, String> dealOrderNumber = new LinkedHashMap<>();
+		
+		//每一个订单号保留一个
+		for(Map<String, String> tempMap : orderNumber) 
+		{
+			String kkb507 = tempMap.get("kkb507");
+			dealOrderNumber.put(kkb507, kkb507);
+		}
+		
+		
+		System.out.println(dealOrderNumber);
+		//每一个订单号下的所有记录封装在一个List<Map<String, String>>中
+		for (String temp: dealOrderNumber.keySet()) 
+		{
+			objList.add(queryOrderByState(userId,(String)this.get("kkb502"),temp));
+		}		
+		return objList;
 	}
 	
 	

@@ -1,9 +1,12 @@
 package com.subcircle.web.kb.support;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.sql.RowSet;
 
 import com.subcircle.services.support.ServicesInterface;
 import com.subcircle.web.ControllerInterface;
@@ -205,10 +208,13 @@ public abstract class KbAbstractController implements ControllerInterface
 //		}
 //	}
 	
-	//显示待支付订单(从购物车页面提交的即时待支付订单)
-	protected final void queryAndShowOrderToPay()throws Exception
+	/**
+	 *	根据订单号显示订单详情 
+	 * @throws Exception
+	 */
+	protected final void queryAndShowOrderByNum()throws Exception
 	{
-		List<Map<String, String>> rows=(List<Map<String,String>>)this.services.queryInMap().get("orderTopay");
+		List<Map<String, String>> rows=(List<Map<String,String>>)this.services.queryByCondition();
 		if(rows.size()>0)
 		{
 			this.saveAttribute("rows", rows);
@@ -219,5 +225,24 @@ public abstract class KbAbstractController implements ControllerInterface
 		}
 	}
 	
-	
+	/**
+	 * 	返回所查询的状态的订单
+	 * 	如用户查看待支付订单则返回待支付订单列表
+	 */
+	protected final void queryAllOrderByState()throws Exception
+	{
+		List<Object> objList = this.services.queryInList();
+		if(objList.size()>0)
+		{
+			this.saveAttribute("objList",objList);
+			
+		}
+		else
+		{
+			this.saveAttribute("msg", "数据不存在或禁止访问");
+		}
+		
+		String orderState =(String)this.dto.get("kkb502");
+		this.saveAttribute("flag", orderState);
+	}
 }

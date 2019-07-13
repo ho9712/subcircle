@@ -220,12 +220,11 @@
 		alert("加入购物车成功");
 	}
 	
-	//点击立即购买传递kkb101给遮罩窗体
+	//点击立即购买传递info给遮罩窗体
 	function passItemInfo(kkb102,kkb103,kkb105)
 	{
 		document.getElementById("simpleName").innerHTML = kkb102;
 		document.getElementById("simplePrice").innerHTML = kkb103;
-		
 		document.getElementById("simpleImg").src = kkb105;
 	}
 	

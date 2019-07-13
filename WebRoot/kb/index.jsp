@@ -68,9 +68,9 @@
 				<li class="dropdown"><a href="#" data-toggle="dropdown"
 					class="dropdown-toggle">我的订单 <strong class="caret"></strong></a>
 					<ul class="dropdown-menu">
-						<li><a href="#">待支付订单</a></li>
-						<li><a href="#">待收货订单</a></li>
-						<li><a href="#">已完成订单</a></li>
+						<li><a href="#" onclick="showOrderToPay('0')">待支付订单</a></li>
+						<li><a href="#" onclick="showOrderToPay('1')">待收货订单</a></li>
+						<li><a href="#" onclick="showOrderToPay('2')">已完成订单</a></li>
 					</ul>
 				</li>
 				<li class="dropdown"><a href="#" data-toggle="dropdown"
@@ -90,7 +90,13 @@
 
 	function ToMyCart() 
 	{
-		window.location.href="<%=request.getContextPath()%>/Kb04MyCartCenter.kbhtml";
+		window.location.href="<%=request.getContextPath()%>/kb04MyCartCenter.kbhtml";
+	}
+	
+	function showOrderToPay(orderState)
+	{
+		window.location.href="<%=request.getContextPath()%>/kb05QueryAllOrder.kbhtml?"
+			+"kkb502=" + orderState;
 	}
 	
 </script>
