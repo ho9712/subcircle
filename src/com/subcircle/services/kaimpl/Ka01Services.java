@@ -10,7 +10,7 @@ public class Ka01Services extends JdbcServicesSupport
 {
 	
 	/**
-     * 根据贴子流水号查询贴子详情
+     * 根据贴子流水号查询贴子详情，用于显示某贴子详情
      * @return
      * @throws Exception
      */
@@ -27,6 +27,7 @@ public class Ka01Services extends JdbcServicesSupport
     	Object args[] = {this.get("kka101")};
     	return this.queryForMap(sql.toString(), args);
     }
+	
 	
 	/**
      * 条件查询，根据类型选择和搜索框输入内容的模糊匹配  检索贴子列表
@@ -105,14 +106,12 @@ public class Ka01Services extends JdbcServicesSupport
 	     */
 	 private List<Map<String,String>> query02Services()throws Exception
 	  {
-		 // Object kka101=this.get("kka101");
 	  		//定义SQL主体
-		 StringBuilder sql=new StringBuilder()
-	  				.append("select x.kka201,x.kka202,x.kka203,x.kka204,x.ka02_kka201,a.kkd105,b.kka101")
+	  		StringBuilder sql=new StringBuilder()
+	  				.append("select x.kka201,x.kka202,x.kka203,a.kkd105,b.kka101")
 	  				.append(" from ka02 x,kd01 a,ka01 b ")
 	  				.append(" where x.kkd101 = a.kkd101 and b.kka101 = x.kka101 and b.kka101 =? ")
 	  				.append(" order by x.kka203")
-	  				//.append(" where a.kkd101=1")    //模拟用户1
 	  				;
 	  		Object args[] =
 	  			{
@@ -129,7 +128,7 @@ public class Ka01Services extends JdbcServicesSupport
 	     * @throws Exception
 	     */
 	   public Map<String, Object> queryInMap() throws Exception 
-	    {
+	     {
 		  Map<String, Object> objMap = new HashMap<>();
 		  List<Map<String,String>> queryForAnswer = query02Services();
 		  objMap.put("queryForAnswer", queryForAnswer);

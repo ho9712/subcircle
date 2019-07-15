@@ -17,10 +17,9 @@ public class Tools
 
 	public static void main(String[] args) 
 	{
-		String pwd="root";
 		try 
 		{
-			System.out.println(Tools.getMd5(pwd));
+			System.out.println(Tools.getReplyId("16"));
 		} 
 		catch (Exception e) 
 		{
@@ -78,7 +77,7 @@ public class Tools
 			DBUtils.close(pstm2);
 		}
 	}
-	
+
 	/**
 	 * 获取贴子回复流水号
 	 * @param postId  ---  贴子流水号
@@ -111,7 +110,7 @@ public class Tools
 		}
 	}
 
-
+	
 	/**
 	 * 将dto中的字符串数组转换成连接起来的字符串
 	 * @param value
