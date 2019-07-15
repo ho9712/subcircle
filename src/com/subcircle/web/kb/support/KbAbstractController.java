@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
 import javax.sql.RowSet;
 
 import com.subcircle.services.support.ServicesInterface;
@@ -35,8 +36,23 @@ public abstract class KbAbstractController implements ControllerInterface
 	public final void setDto(Map<String, Object> dto) 
 	{
 		this.dto=dto;
+		//从session拿出用户id和权限交给dto
+		this.dto.put("kkd101",this.session.getAttribute("kkd101"));
+		this.dto.put("kkd104",this.session.getAttribute("kkd104"));
 		//为Services传递DTO
 		this.services.setServicesDto(dto);
+	}
+	
+	/***********************************************************
+	 * 					保存Session
+	 ***********************************************************/
+	
+	private HttpSession session=null;
+	
+	@Override
+	public void setSession(HttpSession session) 
+	{
+		this.session=session;
 	}
 	
 	/***********************************************************
@@ -267,5 +283,18 @@ public abstract class KbAbstractController implements ControllerInterface
 		
 		String orderState =(String)this.dto.get("kkb502");
 		this.saveAttribute("flag", orderState);
+	}
+	
+	protected final void showItemInfo() throws Exception
+	{
+		List<Object> objList = this.services.queryInList();
+		if (objList.size() > 0)
+		{
+			this.saveAttribute("objList", objList);
+		}
+		else
+		{
+			this.saveAttribute("msg", "数据不存在或禁止访问");
+		}
 	}
 }

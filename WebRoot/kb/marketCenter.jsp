@@ -1,4 +1,3 @@
-<%@page import="com.sun.xml.internal.txw2.Document"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
@@ -9,6 +8,7 @@
 <jsp:include page="index.jsp" flush="true" /><!-- 引入导航栏 -->
 </head>
 <body>
+${sessionScope.user }
 	<%-- ${rows.get(1) } --%>
 	<%-- ${hotItems } --%>
 	<div class="container-fluid">
@@ -144,7 +144,7 @@
 													height="100px" />
 												<hr>
 												<span style="font-size:20px;color:buttonshadow;">评分:</span>
-												<span style="font-size:30px;color:buttonshadow;">5</span>
+												<span id="modalScore" style="font-size:20px;color:buttonshadow;">暂无评分信息</span>
 											</div>
 										</td>
 										<td style="vertical-align: middle;">
@@ -257,6 +257,24 @@
 		document.getElementById("kkb505").value = kkb103;
 		document.getElementById("kkb507").value = kkb507; 
 		
+		$.ajax({
+            type: "POST",
+            url: "${pageContext.request.contextPath}/getRateByIdServlet?"
+            	+"kkb101="+kkb101,
+            dataType: "text",
+            success: function (data)
+            {
+            	 if(data != "")
+            	 {
+				 	document.getElementById("modalScore").innerHTML = data;        
+				 }
+            	 else
+            	 {
+            		 document.getElementById("modalScore").innerHTML = "暂无评分信息";
+            	 }
+            }//endsuccess
+       });//endajax
+				
 	}
 	
 	//通过时间获取唯一的商户订单号

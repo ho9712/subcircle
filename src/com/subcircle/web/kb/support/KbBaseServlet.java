@@ -36,6 +36,8 @@ public class KbBaseServlet extends HttpServlet
 			
 			//通过反射机制实例化目标Controller类
 			ControllerInterface controller=(ControllerInterface)Class.forName(packageName+controllerName+"Servlet").newInstance();
+			//将Session植入controller中
+			controller.setSession(request.getSession());
 			//将DTO植入controller中
 			controller.setDto(this.createDto(request));
 			//由具体的Controller对象执行处理

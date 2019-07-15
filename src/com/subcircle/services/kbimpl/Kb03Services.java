@@ -20,7 +20,7 @@ public class Kb03Services extends JdbcServicesSupport
 		Object args[] =
 		{
 			this.get("kkb101"),
-			"1"		//用户ID之后修正
+			this.get("kkd101")		//用户ID
 		};
 		return this.executeUpdate(sql.toString(), args) > 0;
 	}
