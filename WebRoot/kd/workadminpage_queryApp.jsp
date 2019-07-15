@@ -88,10 +88,10 @@
             	</c:otherwise>
             </c:choose>
 		<ul id="badgeUserPanel">
-			<li><a href="<%=path%>/kd/adminpage_main.jsp">账号</a></li>                    
+			<li><a href="<%=path%>/kd/adminpage_main.jsp">个人主页</a></li>                    
 	    	<li><a href="<%= path %>/kd01QueryUser.kdhtml">作品管理员</a></li>
 	        <li class="row">
-		        <a href="#">短信</a> | 
+		        <a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a> | 
 		        <a href="<%=path%>/kd/adminpage_info.jsp">设置</a> | 
 		        <a href="<%=path%>/logout.kdhtml">登出</a>
 	        </li>
@@ -136,7 +136,7 @@
             </div>
 
             <div class="inner">
-                <a href="<%=path%>/kd/adminpage_main.jsp">${sessionScope.user.kkd102 }</a> <small class="grey">@${sessionScope.user.kkd101 }</small>
+                <a href="<%=path%>/kd/adminpage_main.jsp">${sessionScope.user.kkd105 }</a> <small class="grey">@${sessionScope.user.kkd102 }</small>
                 <span id="friend_flag"></span>
             </div>
     	</h1>
@@ -146,9 +146,9 @@
     <!-- 主页导航栏 -->
     <div class="navTabsWrapper">
 		<ul class="navTabs">
-			<li><a href="<%= path %>/kd/adminpage_main.jsp">账号</a></li>
+			<li><a href="<%= path %>/kd/adminpage_main.jsp">主页</a></li>
         	<li><a href="<%= path %>/kd01QueryUser.kdhtml" class="focus">作品管理员</a></li>
-        	<li><a href="#">消息</a></li>
+        	<li><a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">消息</a></li>
 		</ul>
 	</div>
 	<!-- 主页导航栏 -->
@@ -182,14 +182,44 @@
 				<c:forEach items="${apps }" var="app">
 					<li id="item_9912" class="item odd clearit">
 					<!-- 头像 -->
-					   	<a href="<%= path %>/kd01FindAdmin.kdhtml?kkd101=${user.kkd101}" class="subjectCover cover ll">       
+					   	<%-- <a href="<%= path %>/kd01FindAdmin.kdhtml?kkd101=${user.kkd101}" class="subjectCover cover ll">       
 				           	<span class="image">
 			             	<img src="${app.kkd108 }" onerror="this.src='<%=path %>/img/avatar/def_avatar.png'" class="cover" />
 				       		</span>
 					       	<span class="overlay"></span>
-					   	</a>
+					   	</a> --%>
+					   	<c:choose>
+			            	<c:when test="${!empty app.kkd108}">
+			           		 <a href="<%=path%>/kd01FindOther.kdhtml?kkd101=${app.kkd101 }" class="avatar">
+			                	<span class="avatarNeue avatarSize48 ll" style="background-image:url('${app.kkd108}');background-size:100% auto;"></span>
+			                </a>
+			            	</c:when>
+			            	<c:otherwise>
+			           		<a href="<%=path%>/kd01FindOther.kdhtml?kkd101=${app.kkd101 }" class="avatar">
+			                	<span class="avatarNeue avatarSize48 ll" style="background-image:url('<%=path%>/img/avatar/def_avatar.png');background-size:100% auto;"></span>
+			                </a>
+			            	</c:otherwise>
+			            </c:choose>
 				   	<!-- 头像 -->
 				    <div class="inner">
+				    <!-- 用户信息 -->
+				    <span class="userInfo">
+				    	<strong><a href="<%=path%>/kd01FindOther.kdhtml?kkd101=${app.kkd101 }" class="l">${app.kkd105 }</a></strong>
+			    		<a href="<%=path%>/kd/message_send.jsp?kkd102=${app.kkd102 }"  class="tip_i icons_cmt">发消息</a>  
+			    		<span class="tip_j">(${app.kkd107 })</span>
+			    	</span>
+				    		<c:choose>
+				    			<c:when test="${app.kkd104 eq '权限用户'}">
+				    				<small style="color:#ff8f8f"><strong>${app.kkd104 }</strong></small>
+				    			</c:when>
+				    			<c:when test="${app.kkd104 eq '普通用户'}">
+				    				<small class="grey"><strong>${app.kkd104 }</strong></small>
+				    			</c:when>
+				    		</c:choose>
+				       <p class="info tip"><small style="color:#6faf0f">申请时间：${app.kkd304 }</small></p>
+				       <p class="collectInfo">
+						<div class="message">${app.kkd302 }</div> 
+					<!-- 用户信息 -->
 			    	<!-- 右边按钮 -->
 				       	<div id="collectBlock_9912" class="collectBlock tip_i">
 					    <p class="collectModify">
@@ -210,24 +240,6 @@
 					    </p>
 				    	</div>
 			    	<!-- 右边按钮 -->
-			    	<!-- 用户信息 -->
-				    <span class="userInfo">
-				    	<strong><a href="/user/hexsix" class="l">${app.kkd105 }</a></strong>
-			    		<a href="#"  class="tip_i icons_cmt">发消息</a>  
-			    		<span class="tip_j">(${app.kkd107 })</span>
-			    	</span>
-				    		<c:choose>
-				    			<c:when test="${app.kkd104 eq '权限用户'}">
-				    				<small style="color:#ff8f8f"><strong>${app.kkd104 }</strong></small>
-				    			</c:when>
-				    			<c:when test="${app.kkd104 eq '普通用户'}">
-				    				<small class="grey"><strong>${app.kkd104 }</strong></small>
-				    			</c:when>
-				    		</c:choose>
-				       <p class="info tip"><small style="color:#6faf0f">申请时间：${app.kkd304 }</small></p>
-				       <p class="collectInfo">
-						<div class="message">${app.kkd302 }</div> 
-					<!-- 用户信息 -->
 						</p>
 				   	</div>
 					</li>
@@ -312,6 +324,24 @@
 									</td>
 								</tr>
 								<tr>
+									<td valign="top" width="15%">申请时间[B]</td>
+									<td valign="top">
+										<e:date name="bkkd304" style="border:1px
+											solid #BEB4A7;padding:1px
+											4px;width:120px;height:20px;padding:3px
+											5px;text-align:left;font-size:14px;line-height:130%"/>
+									</td>
+								</tr>
+								<tr>
+									<td valign="top" width="15%">申请时间[E]</td>
+									<td valign="top">
+										<e:date name="ekkd304" style="border:1px
+											solid #BEB4A7;padding:1px
+											4px;width:120px;height:20px;padding:3px
+											5px;text-align:left;font-size:14px;line-height:130%"/>
+									</td>
+								</tr>
+								<tr>
 									<td valign="top" width="15%"><input class="inputBtn" value="点击搜索" name="next" type="submit"></td>
 								</tr>
 							</table>
@@ -335,7 +365,7 @@
         <ul class="clearit">
         <li class="first"><a href="<%=path%>/kd/adminpage_main.jsp">${sessionScope.user.kkd102 }</a></li>
         <li><a href="#">提醒</a></li>
-        <li><a href="#">短信</a></li>
+        <li><a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a></li>
         <li><a href="<%=path%>/kd/adminpage_info.jsp">设置</a></li>
         <li><a href="<%=path%>/logout.kdhtml">登出</a></li>
         <li class="last"><a href="javascript:void(0);" id="showrobot">&nbsp;</a></li>

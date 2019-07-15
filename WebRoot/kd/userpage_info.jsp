@@ -67,13 +67,13 @@
            	</c:otherwise>
         </c:choose>
 		<ul id="badgeUserPanel">
-			<li><a href="<%=path%>/kd/userpage_main.jsp">时光机</a></li>                    
+			<li><a href="<%=path%>/kd/userpage_main.jsp">个人主页</a></li>                    
        		<li><a href="#">作品</a></li>
        		<li><a href="#">论坛</a></li>
        		<li><a href="#">商城</a></li>
 	    	
 	        <li class="row">
-		        <a href="#">短信</a> | 
+		        <a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a> | 
 		        <a href="<%=path%>/kd/userpage_info.jsp">设置</a> | 
 		        <a href="<%=path%>/logout.kdhtml">登出</a>
 	        </li>
@@ -173,11 +173,7 @@
 						<tr>
 						<td valign="top" width="12%">用户权限</td><td valign="top">
 							<c:choose>
-								<c:when test="${sessionScope.user.kkd104==0}">超级管理员</c:when>
-								<c:when test="${sessionScope.user.kkd104==1}">作品管理员</c:when>
-								<c:when test="${sessionScope.user.kkd104==2}">商城管理员</c:when>
-								<c:when test="${sessionScope.user.kkd104==3}">论坛管理员</c:when>
-								<c:when test="${sessionScope.user.kkd104==4}">权限用户</c:when>
+								<c:when test="${sessionScope.user.kkd104==4}"><span style="color:#0000ff">权限用户</span></c:when>
 								<c:otherwise>普通用户&nbsp;&nbsp;&nbsp;<a href="<%= path %>/kd03FindApp.kdhtml" class="l">申请权限</a></c:otherwise>
 							</c:choose>
 						</td>
@@ -231,7 +227,7 @@
          <ul class="clearit">
         <li class="first"><a href="<%=path %>/kd/userpage_main.jsp">${sessionScope.user.kkd102 }</a></li>
         <li><a href="#">提醒</a></li>
-        <li><a href="#">短信</a></li>
+        <li><a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a></li>
         <li><a href="<%=path %>/kd/userpage_info.jsp">设置</a></li>
         <li><a href="<%=path%>/logout.kdhtml">登出</a></li>
         <li class="last"><a href="javascript:void(0);" id="showrobot">&nbsp;</a></li>

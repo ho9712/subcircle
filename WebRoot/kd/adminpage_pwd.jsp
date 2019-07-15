@@ -67,7 +67,7 @@
             	</c:otherwise>
             </c:choose>
 		<ul id="badgeUserPanel">
-			<li><a href="<%=path%>/kd/adminpage_main.jsp">账号</a></li>                    
+			<li><a href="<%=path%>/kd/adminpage_main.jsp">个人主页</a></li>                    
 	    	<c:choose>
 				<c:when test="${sessionScope.kkd104 eq '0' }">
 					<li><a href="<%= path %>/kd01QueryAdmin.kdhtml">Root管理员</a></li>
@@ -83,7 +83,7 @@
 				</c:when>
 			</c:choose>
 	        <li class="row">
-		        <a href="#">短信</a> | 
+		        <a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a> | 
 		        <a href="<%=path%>/kd/adminpage_info.jsp">设置</a> | 
 		        <a href="<%=path%>/logout.kdhtml">登出</a>
 	        </li>
@@ -165,7 +165,7 @@
          <ul class="clearit">
         <li class="first"><a href="<%= path %>/kd/adminpage_main.jsp">${sessionScope.user.kkd102 }</a></li>
         <li><a href="#">提醒</a></li>
-        <li><a href="#">短信</a></li>
+        <li><a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a></li>
         <li><a href="<%= path %>/kd/adminpage_info.jsp">设置</a></li>
         <li><a href="<%=path%>/logout.kdhtml">登出</a></li>
         <li class="last"><a href="javascript:void(0);" id="showrobot">&nbsp;</a></li>

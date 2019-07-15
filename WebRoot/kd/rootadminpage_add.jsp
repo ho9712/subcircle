@@ -68,10 +68,10 @@
             	</c:otherwise>
             </c:choose>
 		<ul id="badgeUserPanel">
-			<li><a href="<%=path%>/kd/adminpage_main.jsp">账号</a></li>                    
-	    	<li><a href="<%= path %>/kd01QueryAdmin.kdhtml">管理员</a></li>
+			<li><a href="<%=path%>/kd/adminpage_main.jsp">个人主页</a></li>                    
+	    	<li><a href="<%= path %>/kd01QueryAdmin.kdhtml">Root管理员</a></li>
 	        <li class="row">
-		        <a href="#">短信</a> | 
+		        <a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a> | 
 		        <a href="<%=path%>/kd/adminpage_info.jsp">设置</a> | 
 		        <a href="<%=path%>/logout.kdhtml">登出</a>
 	        </li>
@@ -116,7 +116,7 @@
             </div>
 
             <div class="inner">
-                <a href="<%=path%>/kd/adminpage_main.jsp">${sessionScope.user.kkd102 }</a> <small class="grey">@${sessionScope.user.kkd101 }</small>
+                <a href="<%=path%>/kd/adminpage_main.jsp">${sessionScope.user.kkd105 }</a> <small class="grey">@${sessionScope.user.kkd102 }</small>
                 <span id="friend_flag"></span>
             </div>
     	</h1>
@@ -128,7 +128,7 @@
 		<ul class="navTabs">
 			<li><a href="<%= path %>/kd/adminpage_main.jsp">账号</a></li>
         	<li><a href="<%= path %>/kd/rootadminpage_add.jsp" class="focus">Root管理员</a></li>
-        	<li><a href="#">消息</a></li>
+        	<li><a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">消息</a></li>
 		</ul>
 	</div>
 	<!-- 主页导航栏 -->
@@ -195,7 +195,7 @@
         <ul class="clearit">
         <li class="first"><a href="<%=path%>/kd/adminpage_main.jsp">${sessionScope.user.kkd102 }</a></li>
         <li><a href="#">提醒</a></li>
-        <li><a href="#">短信</a></li>
+        <li><a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a></li>
         <li><a href="<%=path%>/kd/adminpage_info.jsp">设置</a></li>
         <li><a href="<%=path%>/logout.kdhtml">登出</a></li>
         <li class="last"><a href="javascript:void(0);" id="showrobot">&nbsp;</a></li>

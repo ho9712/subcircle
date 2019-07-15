@@ -85,10 +85,10 @@
             	</c:otherwise>
             </c:choose>
 		<ul id="badgeUserPanel">
-			<li><a href="<%=path%>/kd/adminpage_main.jsp">账号</a></li>                    
+			<li><a href="<%=path%>/kd/adminpage_main.jsp">个人主页</a></li>                    
 	    	<li><a href="<%= path %>/kd01QueryUser.kdhtml">作品管理员</a></li>
 	        <li class="row">
-		        <a href="#">短信</a> | 
+		        <a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a> | 
 		        <a href="<%=path%>/kd/adminpage_info.jsp">设置</a> | 
 		        <a href="<%=path%>/logout.kdhtml">登出</a>
 	        </li>
@@ -133,7 +133,7 @@
             </div>
 
             <div class="inner">
-                <a href="<%=path%>/kd/adminpage_main.jsp">${sessionScope.user.kkd102 }</a> <small class="grey">@${sessionScope.user.kkd101 }</small>
+                <a href="<%=path%>/kd/adminpage_main.jsp">${sessionScope.user.kkd105 }</a> <small class="grey">@${sessionScope.user.kkd102 }</small>
                 <span id="friend_flag"></span>
             </div>
     	</h1>
@@ -143,9 +143,9 @@
     <!-- 主页导航栏 -->
     <div class="navTabsWrapper">
 		<ul class="navTabs">
-			<li><a href="<%= path %>/kd/adminpage_main.jsp">账号</a></li>
+			<li><a href="<%= path %>/kd/adminpage_main.jsp">主页</a></li>
         	<li><a href="<%= path %>/kd01QueryUser.kdhtml" class="focus">作品管理员</a></li>
-        	<li><a href="#">消息</a></li>
+        	<li><a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">消息</a></li>
 		</ul>
 	</div>
 	<!-- 主页导航栏 -->
@@ -179,18 +179,30 @@
 				<c:forEach items="${users }" var="user">
 					<li id="item_9912" class="item odd clearit">
 					<!-- 头像 -->
-					   	<a href="<%= path %>/kd01FindAdmin.kdhtml?kkd101=${user.kkd101}" class="subjectCover cover ll">       
+					   	<%-- <a href="<%= path %>/kd01FindAdmin.kdhtml?kkd101=${user.kkd101}" class="subjectCover cover ll">       
 				           	<span class="image">
 			             	<img src="${user.kkd108 }" onerror="this.src='<%=path %>/img/avatar/def_avatar.png'" class="cover" />
 				       		</span>
 					       	<span class="overlay"></span>
-					   	</a>
+					   	</a> --%>
+					   	<c:choose>
+			            	<c:when test="${!empty user.kkd108}">
+			           		 <a href="<%=path%>/kd01FindOther.kdhtml?kkd101=${user.kkd101 }" class="avatar">
+			                	<span class="avatarNeue avatarSize48 ll" style="background-image:url('${user.kkd108}');background-size:100% auto;"></span>
+			                </a>
+			            	</c:when>
+			            	<c:otherwise>
+			           		<a href="<%=path%>/kd01FindOther.kdhtml?kkd101=${user.kkd101 }" class="avatar">
+			                	<span class="avatarNeue avatarSize48 ll" style="background-image:url('<%=path%>/img/avatar/def_avatar.png');background-size:100% auto;"></span>
+			                </a>
+			            	</c:otherwise>
+			            </c:choose>
 				   	<!-- 头像 -->
 				    <div class="inner">
 				    	<!-- 用户信息 -->
 				    	<span class="userInfo">
-					    	<strong><a href="/user/hexsix" class="l">${user.kkd105 }</a></strong>
-				    		<a href="#"  class="tip_i icons_cmt">发消息</a>  
+					    	<strong><a href="<%=path%>/kd01FindOther.kdhtml?kkd101=${user.kkd101 }" class="l">${user.kkd105 }</a></strong>
+				    		<a href="<%=path%>/kd/message_send.jsp?kkd102=${user.kkd102 }"  class="tip_i icons_cmt">发消息</a>  
 				    		<span class="tip_j">(${user.kkd107 })</span>
 				    	</span>
 				       <p class="info tip">
@@ -304,7 +316,7 @@
         <ul class="clearit">
         <li class="first"><a href="<%=path%>/kd/adminpage_main.jsp">${sessionScope.user.kkd102 }</a></li>
         <li><a href="#">提醒</a></li>
-        <li><a href="#">短信</a></li>
+        <li><a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a></li>
         <li><a href="<%=path%>/kd/adminpage_info.jsp">设置</a></li>
         <li><a href="<%=path%>/logout.kdhtml">登出</a></li>
         <li class="last"><a href="javascript:void(0);" id="showrobot">&nbsp;</a></li>

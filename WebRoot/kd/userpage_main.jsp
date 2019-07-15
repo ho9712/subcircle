@@ -68,13 +68,13 @@
             	</c:otherwise>
             </c:choose>
 		<ul id="badgeUserPanel">
-			<li><a href="<%=path%>/kd/userpage_main.jsp">时光机</a></li>                    
+			<li><a href="<%=path%>/kd/userpage_main.jsp">个人主页</a></li>                    
        		<li><a href="#">作品</a></li>
        		<li><a href="#">论坛</a></li>
        		<li><a href="#">商城</a></li>
 	    	
 	        <li class="row">
-		        <a href="#">短信</a> | 
+		        <a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a> | 
 		        <a href="<%=path%>/kd/userpage_info.jsp">设置</a> | 
 		        <a href="<%=path%>/logout.kdhtml">登出</a>
 	        </li>
@@ -130,7 +130,7 @@
             </div>
 
             <div class="inner">
-                <a href="<%=path%>/kd/userpage_main.jsp">${sessionScope.user.kkd102 }</a> <small class="grey">@${sessionScope.user.kkd101 }</small>
+                <a href="<%=path%>/kd/userpage_main.jsp">${sessionScope.user.kkd105 }</a> <small class="grey">@${sessionScope.user.kkd102 }</small>
                 <span id="friend_flag"></span>
             </div>
     	</h1>
@@ -140,11 +140,11 @@
     <!-- 主页导航栏 -->
     <div class="navTabsWrapper">
 		<ul class="navTabs">
-			<li><a href="<%=path%>/kd/userpage_main.jsp" class="focus">时光机</a></li>                    
+			<li><a href="<%=path%>/kd/userpage_main.jsp" class="focus">主页</a></li>                    
        		<li><a href="#">作品</a></li>
        		<li><a href="#">论坛</a></li>
        		<li><a href="#">商城</a></li>
-       		<li><a href="#">消息</a></li>
+       		<li><a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">消息</a></li>
 		</ul>
 	</div>
 	<!-- 主页导航栏 -->
@@ -242,7 +242,7 @@
         <ul class="clearit">
         <li class="first"><a href="<%=path%>/kd/userpage_main.jsp">${sessionScope.user.kkd102 }</a></li>
         <li><a href="#">提醒</a></li>
-        <li><a href="#">短信</a></li>
+        <li><a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a></li>
         <li><a href="<%=path%>/kd/userpage_info.jsp">设置</a></li>
         <li><a href="<%=path%>/logout.kdhtml">登出</a></li>
         <li class="last"><a href="javascript:void(0);" id="showrobot">&nbsp;</a></li>
@@ -269,7 +269,13 @@
 		欢迎你，权限用户  <span class="green"><strong>${user.kkd105 }</strong></span> <br />
 	</c:when>
 </c:choose>
-
+<br>
+<c:if test="${!empty msgs }">
+	你收到了${fn:length(msgs) }封新的短消息~点击下面的链接前往查看<br>
+	<c:forEach items="${msgs }" var="msg">
+		<span style="color:#8f8fff">${msg.sender }:</span> <a href="">${msg.title }</a><br>
+	</c:forEach>
+</c:if>
 </div>
 </div>
 <div class="ukagaka_balloon_pink_bottom"></div>	

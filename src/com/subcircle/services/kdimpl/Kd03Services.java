@@ -39,6 +39,8 @@ public class Kd03Services extends JdbcServicesSupport
 		Object keyword=this.get("keyword");
 		Object order=this.get("order");
 		Object state=this.get("state");
+		Object bkkd304=this.get("bkkd304");
+		Object ekkd304=this.get("ekkd304");
 		
 		StringBuilder sql=new StringBuilder()
 				.append("select a.kkd301,b.kkd101,b.kkd102,s.fvalue kkd104,b.kkd105,b.kkd107,b.kkd108,a.kkd302,")
@@ -59,6 +61,16 @@ public class Kd03Services extends JdbcServicesSupport
 		{
 			sql.append(" and a.kkd305=?");
 			paraList.add(state);
+		}
+		if(isNotNull(bkkd304))
+		{
+			sql.append(" and a.kkd304>?");
+			paraList.add(bkkd304);
+		}
+		if(isNotNull(ekkd304))
+		{
+			sql.append(" and a.kkd304<?");
+			paraList.add(ekkd304);
 		}
 		if(order!=null && order.toString().equals("1"))
 		{

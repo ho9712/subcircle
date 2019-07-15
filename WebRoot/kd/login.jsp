@@ -258,9 +258,9 @@
 	        <div id="columnLoginA" class="column">
 	    		<form id="loginForm" method="post" name="login" action="<%=path %>/login.kdhtml">
 		    		<p class="title"><label for="email">你的用户名</label></p>
-		    		<p><input id="email" name="kkd102" class="inputtext" type="text" /></p>
+		    		<p><input id="email" name="kkd102" class="inputtext" type="text" required="required"/></p>
 		    		<p class="title"><label for="password">你的密码</label></p>
-		    		<p><input id="password" name="kkd103" class="inputtext" type="password"></p>
+		    		<p><input id="password" name="kkd103" class="inputtext" type="password" required="required"></p>
 		    		
 					<br><br>
 		    		<input class="inputBtn" type="submit" name="loginsubmit" value="登录">

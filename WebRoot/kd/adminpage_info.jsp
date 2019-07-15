@@ -67,7 +67,7 @@
             	</c:otherwise>
             </c:choose>
 		<ul id="badgeUserPanel">
-			<li><a href="<%=path%>/kd/adminpage_main.jsp">账号</a></li>                    
+			<li><a href="<%=path%>/kd/adminpage_main.jsp">个人主页</a></li>                    
 	    	<c:choose>
 				<c:when test="${sessionScope.kkd104 eq '0' }">
 					<li><a href="<%= path %>/kd01QueryAdmin.kdhtml">Root管理员</a></li>
@@ -83,7 +83,7 @@
 				</c:when>
 			</c:choose>
 	        <li class="row">
-		        <a href="#">短信</a> | 
+		        <a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a> | 
 		        <a href="<%=path%>/kd/adminpage_info.jsp">设置</a> | 
 		        <a href="<%=path%>/logout.kdhtml">登出</a>
 	        </li>
@@ -147,7 +147,7 @@
 			                	<span class="avatarNeue avatarReSize40" style="background-image:url('<%=path%>/img/avatar/def_avatar.png');background-size: 100% auto;"></span>&nbsp;&nbsp;&nbsp;
 			                	<br><br>
 			            	</c:otherwise>
-			            </c:choose>
+			            	</c:choose>
 							<input type="file" name="avatar" size="25" /><br>
 							<small class="grey">仅支持上传.jpg或.png格式文件</small>
 						</td>
@@ -180,10 +180,10 @@
 						<tr>
 						<td valign="top" width="12%">用户权限</td><td valign="top">
 							<c:choose>
-								<c:when test="${sessionScope.user.kkd104==0}">超级管理员</c:when>
-								<c:when test="${sessionScope.user.kkd104==1}">作品管理员</c:when>
-								<c:when test="${sessionScope.user.kkd104==2}">商城管理员</c:when>
-								<c:when test="${sessionScope.user.kkd104==3}">论坛管理员</c:when>
+								<c:when test="${sessionScope.user.kkd104==0}"><span style="color:#ff0000">超级管理员</span></c:when>
+								<c:when test="${sessionScope.user.kkd104==1}"><span style="color:#ff8f8f">作品管理员</span></c:when>
+								<c:when test="${sessionScope.user.kkd104==2}"><span style="color:#6faf0f">商城管理员</span></c:when>
+								<c:when test="${sessionScope.user.kkd104==3}"><span style="color:#8f8fff">论坛管理员</span></c:when>
 							</c:choose>
 						</td>
 						</tr>
@@ -224,7 +224,7 @@
          <ul class="clearit">
         <li class="first"><a href="<%=path%>/kd/adminpage_main.jsp">${sessionScope.user.kkd102 }</a></li>
         <li><a href="#">提醒</a></li>
-        <li><a href="#">短信</a></li>
+        <li><a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a></li>
         <li><a href="<%=path%>/kd/adminpage_info.jsp">设置</a></li>
         <li><a href="<%=path%>/logout.kdhtml">登出</a></li>
         <li class="last"><a href="javascript:void(0);" id="showrobot">&nbsp;</a></li>

@@ -135,6 +135,13 @@ public abstract class KdAbstractController implements ControllerInterface
 		return (boolean)method.invoke(this.services);
 	}
 	
+	private List<Map<String, String>> executeQueryForList(String methodName)throws Exception
+	{
+		Method method=this.services.getClass().getDeclaredMethod(methodName);
+		//设置访问权限，使能够访问private方法
+		method.setAccessible(true);
+		return (List<Map<String, String>>)method.invoke(this.services);
+	}
 
 	/**
 	 * 更新操作后重新查询
@@ -209,6 +216,9 @@ public abstract class KdAbstractController implements ControllerInterface
 			this.session.setAttribute("kkd101", user.get("kkd101"));
 			this.session.setAttribute("kkd104", user.get("kkd104"));
 			this.session.setAttribute("user", user);
+			this.dto.put("username", user.get("kkd102"));
+			List<Map<String, String>> msgs=this.executeQueryForList("queryMsg");
+			this.session.setAttribute("msgs", msgs);
 			if(user.get("kkd104").toString().equals("4") || user.get("kkd104").toString().equals("5"))
 			{
 				return "kd/userpage_main";
@@ -226,6 +236,7 @@ public abstract class KdAbstractController implements ControllerInterface
 		this.session.removeAttribute("user");
 		this.session.removeAttribute("kkd104");
 		this.session.removeAttribute("kkd101");
+		this.session.removeAttribute("msgs");
 	}
 
 	//用户修改个人信息
@@ -435,4 +446,77 @@ public abstract class KdAbstractController implements ControllerInterface
 		this.queryApp();
 	}
 	
+	//查看他人主页
+	protected final void findOther()throws Exception
+	{
+		Map<String, String> other=this.services.findById();
+		this.saveAttribute("other", other);
+	}
+	
+	//发送消息
+	protected final void sendMsg()throws Exception
+	{
+		if(this.dto.get("kkd204").toString().length()<21)
+		{
+			if(this.executeMethod("sendMsg"))
+			{
+				this.setHint("发送成功", "短信已发送至该用户，等待对方查看！");
+			}
+			else
+			{
+				this.setHint("发送失败", "服务器可能出现了一点小问题，请稍后再试！");
+			}
+		}
+		else
+		{
+			this.setHint("发送失败", "你的短信标题超过了20字！");
+		}
+	}
+	
+	//查询所有接收消息
+	protected final void queryReceive()throws Exception
+	{
+		this.dto.put("flag", "receive");
+		List<Map<String, String>> receives=this.services.queryByCondition();
+		this.saveAttribute("receives", receives);
+	}
+	
+	//查询所有发送的消息
+	protected final void querySend()throws Exception
+	{
+		this.dto.put("flag", "send");
+		List<Map<String, String>> sends=this.services.queryByCondition();
+		this.saveAttribute("sends", sends);
+	}
+	
+	//删除消息
+	protected final String delMsg()throws Exception
+	{
+		if(this.dto.get("flag").toString().equals("sender"))
+		{
+			if(this.executeMethod("senderDelMsg"))
+			{
+				this.setHint("删除成功", "该消息已被删除！");
+			}
+			else
+			{
+				this.setHint("删除失败", "服务器可能出现了一点小问题，请稍后再试！");
+			}
+			this.querySend();
+			return "kd/message_to";
+		}
+		else
+		{
+			if(this.executeMethod("receiverDelMsg"))
+			{
+				this.setHint("删除成功", "该消息已被删除！");
+			}
+			else
+			{
+				this.setHint("删除失败", "服务器可能出现了一点小问题，请稍后再试！");
+			}
+			this.queryReceive();
+			return "kd/message_receive";
+		}
+	}
 }
