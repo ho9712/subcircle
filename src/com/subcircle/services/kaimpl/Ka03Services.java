@@ -22,10 +22,13 @@ public class Ka03Services extends JdbcServicesSupport
 	    		{  
 	    		    //此处硬编码用户流水号为1，以后通过获取用户流水号动态更新。
 	    			this.get("kka101"),
-	    			this.get("kka201"),
-	    			this.get("kka302")	
+	    			this.get("kka201-1"),
+	    			this.get("kka302"),	
 	    	    };
-            System.out.println(args);
+            System.out.println(args[0]);
+            System.out.println(args[1]);
+            System.out.println(args[2]);
+            
 	        return this.executeUpdate(sql.toString(), args)>0;	
 	    }
 }

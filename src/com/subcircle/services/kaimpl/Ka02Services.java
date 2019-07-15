@@ -22,8 +22,6 @@ public class Ka02Services extends JdbcServicesSupport
     			.append("  from ka01 x,kd01 a")
     			.append(" where x.kka106=1 and x.kka101=?")
     			;
-    	//执行查询
-    	//System.out.println("ceshi :"+this.get("kka101"));
     	Object args[] = {this.get("kka101")};
     	return this.queryForMap(sql.toString(), args);
     }
@@ -47,6 +45,7 @@ public class Ka02Services extends JdbcServicesSupport
 	  		return this.queryForList(sql.toString(), args);
 	  }
 	
+
 	/**
      * 在贴子详情页面回复/评论贴子
      * @return
@@ -67,7 +66,6 @@ public class Ka02Services extends JdbcServicesSupport
     			Tools.getReplyId(this.get("kka101").toString()),
     			this.get("kka202"),
     	    };
-    	System.out.println("ceshi :"+this.get("kka101"));
         return this.executeUpdate(sql.toString(), args)>0;	
     }
 	
@@ -85,16 +83,18 @@ public class Ka02Services extends JdbcServicesSupport
     			.append("insert into ka02(ka02_kka201,kkd101,kka101,kka201,kka202,kka203,kka204)")
     			.append("          values(?,?,?,?,?,CURRENT_TIMESTAMP,1)")
     			;
+    	System.out.println(this.get("kka101"));
     	//2.编写参数数组
     	Object args[]=
     		{
-    			this.get("kka201"),
+    			this.get("kka201-2"),
     			"1",
     			this.get("kka101"),
     			Tools.getReplyId(this.get("kka101").toString()),
     			this.get("kka202"),
     	    };
-    	System.out.println("kka201 :"+this.get("kka201"));
         return this.executeUpdate(sql.toString(), args)>0;	
     }
 }
+
+

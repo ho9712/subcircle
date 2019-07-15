@@ -208,4 +208,16 @@ public abstract class KaAbstractController implements ControllerInterface
 		}	
 	}
 	
+	protected final void postReport()throws Exception
+	{
+		if(this.executeMethod("report"))
+		{
+			this.saveAttribute("msg", "举报成功");
+		}
+		else
+		{
+			this.saveAttribute("msg", "举报失败");
+		}
+	}
+	
 }

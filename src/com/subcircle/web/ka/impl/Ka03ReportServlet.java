@@ -6,7 +6,7 @@ public class Ka03ReportServlet extends Ka03Controller
 		@Override
 		public String execute() throws Exception 
 		{
-			this.update("Report","¾Ù±¨");
+			this.postReport();
 			return "ka01PostContent.kahtml";
 		}
 }

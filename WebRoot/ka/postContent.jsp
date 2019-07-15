@@ -7,10 +7,14 @@
 <html>
 <head>
 <script type="text/javascript">
-	function onClickReply(kka101,kka201)
+	function onClickReport(kka201)
 	{
-		document.getElementById("kka101").value=kka101;
-		document.getElementById("kka201").value=kka201;
+		document.getElementById("kka201-1").value=kka201;
+	}
+	
+	function onClickReply(kka201)
+	{
+		document.getElementById("kka201-2").value=kka201;
 	}
 </script>
 <meta charset="utf-8" />
@@ -94,7 +98,7 @@ ${ins.kka101 }
 <li><a href="/real/browser/platform/en" class="nav">欧美剧</a></li>
 </ul>
 </li>
-            <li><a href="/mono" class="top"><span>人物</span></a>
+<li><a href="/mono" class="top"><span>人物</span></a>
 <div class="clear"></div>
 <ul class="clearit">
 <li><a href="/character" class="nav">虚构人物</a></li>
@@ -188,18 +192,20 @@ ${ins.kka101 }
 <div class="mainWrapper">
 <div class="columns clearit">
 <div id="columnA" class="column">
-                         <!-- 贴子主体（头部） -->
-                         
+               
   <div class="SidePanel png_bg" style="width:85%;margin-left: 5px">
     <div  id="columnA">
       <font size="3" style="width:80%;height:15px;margin-left: 10px">
-        <a href="#">
+          <a href="#">
           <b>
             ${ins.kka102 }
           </b>
-        </a>
+          </a>
       </font>
-    </div>
+      <font size="3" style="width:80%;height:15px;margin-left: 70% ">
+            <a href="#" onclick="itemInfo(${ins.kka101 })">收藏 </a>
+      </font> 
+      </div>
     <br>
     <div  id="columnB" style="margin-left: 15px">
       ${ins.kka104 }
@@ -218,16 +224,17 @@ ${ins.kka101 }
   
   <div id="timeline">
   <ul>
-
-	<c:forEach items="${rows }" var="ins">
-	<c:if test="${ins.kka204 == 1 }">
+    
+    
+	<c:forEach items="${rows }" var="ansins">
+	<c:if test="${ansins.kka204 == 1 }">
 		<div class="menu_inner" style="width:85%;margin-left: 15px">
    <li class="clearit tml_item">
    <div style="width:85%;margin-left: 15px">
-   	<c:if test="${ins.ka02_kka201 ne 0}">
+   	<c:if test="${ansins.ka02_kka201 ne 0}">
    		<div>
 	      <span>
-	              回复 ${ins.ka02_kka201 }楼
+	              回复 ${ansins.ka02_kka201 }楼
 	      </span>
     	</div>
     	<div>
@@ -238,14 +245,14 @@ ${ins.kka101 }
    	</c:if>
    
     <div  id="columnA" style="margin-left: 15px">
-      ${ins.kka202 }
+      ${ansins.kka202 }
     </div>
     <br>
     <br>
     <br>
     <div style="float:left;">
       <font size="2" style="width:10%;height:15px;margin-left: 15px">
-              ${ins.kkd105 }
+              ${ansins.kkd105 }
       </font>
     </div>
     <br>
@@ -257,73 +264,83 @@ ${ins.kka101 }
      <div id="SecTab">
       <ul class="secTab tiny">
         <li>
-        <a href="#TB_inline?height=350&amp;width=500&amp;inlineId=panel" title="举报理由" 
-         onclick="GenInterestBox('wish')" class="thickbox">
+        <a href="#TB_inline?height=350&amp;width=500&amp;inlineId=panel1" title="举报理由" 
+         onclick="onClickReport('${ansins.kka201}')" class="thickbox">
         <span>举报</span>
         </a>
         </li>
         <li>
-        <a href="#TB_inline?height=350&amp;width=500&amp;inlineId=panel" title="发表回复" 
-         onclick="onClickReply('${ins.kka101}','${ins.kka201}')" class="thickbox">
+        <a href="#TB_inline?height=350&amp;width=500&amp;inlineId=panel2" title="发表回复" 
+         onclick="onClickReply('${ansins.kka201}')" class="thickbox">
          <span>回复</span>
          </a>
          </li>
         <li style="float: right;">
           <div style="margin-left: 20px;margin-top: 6px;" >
-               ${ins.kka203 }
+               ${ansins.kka203 }
           </div>
         </li>
         <li style="float: right;">
           <div style="margin-top: 6px;float: right;">
-             ${ins.kka201 }楼
+             ${ansins.kka201 }楼
           </div>
         </li>
       </ul>
     </div>
     <div class="clear"></div>
-    
-     
-   
-   </div>
+    </div>
    </c:if>
 	</c:forEach>
 	
-	<!-- 弹窗 -->
-	<div id="panel" style="display:none;">
-   <div class="collectBox clearit">
-    <form method="post" action="ka02PostAnswer.kahtml">
-    <input type="hidden" id="kka101" name="kka101" value="">
-    <input type="hidden" id="kka201" name="kka201" value="">
-      <div class="collectType cell">
-        <label><input value="1" id="wish" name="interest" onclick="GenInterestBox('wish')"  type="radio"> 举报</label>&nbsp;&nbsp;
-        <label><input value="2" id="collect" name="interest" onclick="GenInterestBox('collect')"  type="radio"> 回复</label>&nbsp;&nbsp;
-        
-      </div>
-      
-
+	<!-- 举报弹窗 -->
+	<div id="panel1" style="display:none;">
+    <div class="collectBox clearit">
+    <form method="post" action="ka03Report.kahtml?kka101=${ins.kka101 }">
+    ${ins.kka101 }
+    <input type="hidden" id="kka201-1" name="kka201-1" value="">
     <div class="cell">
-    <p class="tip"><label for="comment"> (回复，最多200字):</label></p>
+    <p class="tip"><label for="comment">举报(最多200字):</label></p>
+    <p>${ansins.kka101 }  ${ansins.kka201 }</p>
+    <br/><br/>
+    <textarea rows="20" cols="70" name="kka302"></textarea>
+    </div>
+    <div class="clearit">
+    <div id="submitBtnO" class="ll">
+        <input class="inputBtn" 
+        type="submit" name="next" value="举报" />
+    </div>
+    </div>
+   </form>
+   </div>
+   </div>
+   
+   <!-- 回复弹窗 -->
+	<div id="panel2" style="display:none;">
+    <div class="collectBox clearit">
+    <form method="post" action="ka02PostAnswerToAnswer.kahtml?kka101=${ins.kka101 }">
+    <input type="hidden" id="kka201-2" name="kka201-2" value="">
+    ${ins.kka101 }
+    <div class="cell">
+    <p class="tip"><label for="comment"> 回复(最多200字): </label></p>
+    <p>${ansins.kka101 }  ${ansins.kka201 }</p>
+    <br/><br/>
     <textarea rows="20" cols="70" name="kka202"></textarea>
     </div>
     <div class="clearit">
     <div id="submitBtnO" class="ll">
         <input class="inputBtn" 
-        type="submit" name="next" value="提交" 
-        formaction="ka02PostAnswerToAnswer.kahtml"/>
+        type="submit" name="next" value="提交" />
     </div>
     </div>
-	
-    </form>
-    </div>
+   </form>
    </div>
-   
- </ul>
+   </div>
+  
+   </ul>
  </div>
- 
 <div class="light_odd">
 <span class="tip">
 <form id="editTopicForm" name="new_comment" method="post" action="/PostForum.html">		
-
   <input type="hidden" name="kka201" value="${param.kka201 }" />
 <script type="text/javascript">var CHOBITS_SID = 'aru27g'; var SCRIPT_URL = '/blog/upload_photo';</script> 
 <table align="center" width="99%" class="settings">
@@ -355,14 +372,14 @@ ${ins.kka101 }
 </div>
 <div id="sideLayout"><div id="friend" class="sort">
 <div class="SidePanel png_bg" align="left">
-<h2>/ 我的朋友 <small><a href="/user/481528/friends">...more</a></small></h2><hr class="board" /><a href="postForum.jsp">+ 我要发贴</a>
+<h2><a href="<%=path %>/ka/posting.jsp">我要发贴</a></h2>
 </div>
 </div>
 <div id="group" class="sort">
 <div class="SidePanel png_bg" align="left">
 <h2>/ 我参加的小组 </h2>
     <ul class="groupsLine">
-            </ul>
+    </ul>
 </div>
 </div>
 </div>
@@ -385,23 +402,6 @@ ${ins.kka101 }
     </div>
 </div>
 
-<div id="robot"  style="display:none;">
-<div id="ukagaka_shell">
-<div class="ui_10 shell_1">
-<div id="ukagaka_voice"></div>
-<div id="robot_balloon" class="ukagaka_balloon_pink">
-<div class="tools"><a href="javascript:void(0);" id="ukagaka_menu"><img src="/img/ukagaka/menu.gif" /></a></div>    <div class="inner">
-<div id="robot_speech" class="speech" >
-必须守护的东西多的人容易操纵真是方便啊。</div>
-<div id="robot_speech_js" class="speech">
-    </div>
-</div>
-<div class="ukagaka_balloon_pink_bottom"></div>	
-</div>
-</div>
-</div>
-</div>
-
 
 <script src="js/bangumi.js" type="text/javascript"></script>
 <script src="<%=path %>/js/bangumi.js" type="text/javascript"></script>
@@ -422,9 +422,15 @@ ${ins.kka101 }
     	var kka202 = document.getElementById("comment");
     	kka202.value = kka202.innerHTML;
     	alert(kka202.innerHTML)
-	}
+}
     
 </script>
 <script type="text/javascript">chiiLib.login.init();</script>
+<script type="text/javascript">
+function itemInfo(kka101)
+{
+	window.location.href = "<%=path%>/ka04AddCollection.kahtml?kka101=" + kka101;
+}
+</script>
 </body>
 </html>

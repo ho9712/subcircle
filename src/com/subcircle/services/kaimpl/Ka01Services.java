@@ -116,7 +116,7 @@ public class Ka01Services extends JdbcServicesSupport
 	     * @throws Exception
 	     */
 	 private List<Map<String,String>> query02Services()throws Exception
-	  {// Object kka101=this.get("kka101");
+	 {
 	  		//定义SQL主体
 	  		StringBuilder sql=new StringBuilder()
 	  				.append("select x.kka201,x.kka202,x.kka203,x.kka204,x.ka02_kka201,a.kkd105,b.kka101")

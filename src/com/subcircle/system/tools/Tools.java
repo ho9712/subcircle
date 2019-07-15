@@ -80,8 +80,10 @@ public class Tools
 	}
    
 
+	
+
 	/**
-	 * 获取某贴子回复数量
+	 * 获取贴子回复流水号
 	 * @param postId  ---  贴子流水号
 	 * @return
 	 * @throws Exception
@@ -111,9 +113,8 @@ public class Tools
 			DBUtils.close(pstm2);
 		}
 	}
-	
-	
 
+	
 	/**
 	 * 将dto中的字符串数组转换成连接起来的字符串
 	 * @param value
