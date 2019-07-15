@@ -19,6 +19,12 @@
     	 //alert(vform.action);
     	 vform.submit();
       }
+      
+      function onClickReply(kka101,kka201)
+  	{
+  		document.getElementById("kka101").value=kka101;
+  		document.getElementById("kka201").value=kka201;
+  	}
 </script>
 <!DOCTYPE html>
 <html>
@@ -225,22 +231,36 @@ ${ins.kka101 }
     </div>
   </div>
   
-  <div id="timeline">
+ <div id="timeline">
   <ul>
-  <c:forEach items="${rows }" var="tempInS" varStatus="vs" >
-  <div class="menu_inner" style="width:85%;margin-left: 15px">
+
+	<c:forEach items="${rows }" var="ins">
+	<c:if test="${ins.kka204 == 1 }">
+		<div class="menu_inner" style="width:85%;margin-left: 15px">
    <li class="clearit tml_item">
    <div style="width:85%;margin-left: 15px">
+   	<c:if test="${ins.ka02_kka201 ne 0}">
+   		<div>
+	      <span>
+	              回复 ${ins.ka02_kka201 }楼
+	      </span>
+    	</div>
+    	<div>
+    	  <span>
+    	   
+    	  </span>
+    	</div>
+   	</c:if>
    
     <div  id="columnA" style="margin-left: 15px">
-      ${tempInS.kka202 }
+      ${ins.kka202 }
     </div>
     <br>
     <br>
     <br>
     <div style="float:left;">
       <font size="2" style="width:10%;height:15px;margin-left: 15px">
-              ${tempInS.kkd105 }
+              ${ins.kkd105 }
       </font>
     </div>
     <br>
@@ -248,14 +268,47 @@ ${ins.kka101 }
    </div>
    </li>
    
-   <!-- 弹窗 -->
-   
+   <hr class="board" />
+     <div id="SecTab">
+      <ul class="secTab tiny">
+        <li>
+        <a href="#TB_inline?height=350&amp;width=500&amp;inlineId=panel" title="举报理由" 
+         onclick="GenInterestBox('wish')" class="thickbox">
+        <span>举报</span>
+        </a>
+        </li>
+        <li>
+        <a href="#TB_inline?height=350&amp;width=500&amp;inlineId=panel" title="发表回复" 
+         onclick="onClickReply('${ins.kka101}','${ins.kka201}')" class="thickbox">
+         <span>回复</span>
+         </a>
+         </li>
+        <li style="float: right;">
+          <div style="margin-left: 20px;margin-top: 6px;" >
+               ${ins.kka203 }
+          </div>
+        </li>
+        <li style="float: right;">
+          <div style="margin-top: 6px;float: right;">
+             ${ins.kka201 }楼
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="clear"></div>
     
-  <div id="panel" style="display:none;">
+     
+   
+   </div>
+   </c:if>
+	</c:forEach>
+	
+	<!-- 弹窗 -->
+	<div id="panel" style="display:none;">
    <div class="collectBox clearit">
     <form method="post" action="ka02PostAnswer.kahtml">
-    
-    <input type="hidden" name="kka201" value="${tempInS.kka201 }">
+    <input type="hidden" id="kka101" name="kka101" value="">
+    <input type="hidden" id="kka201" name="kka201" value="">
       <div class="collectType cell">
         <label><input value="1" id="wish" name="interest" onclick="GenInterestBox('wish')"  type="radio"> 举报</label>&nbsp;&nbsp;
         <label><input value="2" id="collect" name="interest" onclick="GenInterestBox('collect')"  type="radio"> 回复</label>&nbsp;&nbsp;
@@ -275,28 +328,10 @@ ${ins.kka101 }
     </div>
     </div>
 	
-	<input type="hidden" name="kka101" value="${ins.kka101 }">
     </form>
     </div>
    </div>
-   <hr class="board" />
-     <div id="SecTab">
-      <ul class="secTab tiny">
-        <li><a href="#TB_inline?height=350&amp;width=500&amp;inlineId=panel" title="举报理由"  onclick="GenInterestBox('wish')" class="thickbox"><span>举报</span></a></li>
-        <li><a href="#TB_inline?height=350&amp;width=500&amp;inlineId=panel" title="发表回复"  onclick="GenInterestBox('collect')" class="thickbox"><span>回复</span></a></li>
-        <li style="float: right;">
-          <div style="margin-left: 20px;margin-top: 6px;" >
-               ${tempInS.kka203 }
-          </div>
-        </li>
-      </ul>
-    </div>
-    <div class="clear"></div>
-    
-     
    
-   </div>
-   </c:forEach>
  </ul>
  </div>
  

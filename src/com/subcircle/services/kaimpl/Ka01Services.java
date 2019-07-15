@@ -107,11 +107,12 @@ public class Ka01Services extends JdbcServicesSupport
 	  {
 		 // Object kka101=this.get("kka101");
 	  		//定义SQL主体
-	  		StringBuilder sql=new StringBuilder()
-	  				.append("select x.kka201,x.kka202,x.kka203,a.kkd105,b.kka101")
+		 StringBuilder sql=new StringBuilder()
+	  				.append("select x.kka201,x.kka202,x.kka203,x.kka204,x.ka02_kka201,a.kkd105,b.kka101")
 	  				.append(" from ka02 x,kd01 a,ka01 b ")
 	  				.append(" where x.kkd101 = a.kkd101 and b.kka101 = x.kka101 and b.kka101 =? ")
 	  				.append(" order by x.kka203")
+	  				//.append(" where a.kkd101=1")    //模拟用户1
 	  				;
 	  		Object args[] =
 	  			{

@@ -41,14 +41,15 @@ public class Ka02Services extends JdbcServicesSupport
     {
     	//1.编写SQL语句
     	StringBuilder sql=new StringBuilder()
-    			.append("insert into ka02(kkd101,kka101,kka202,kka203,kka204,ka02_kka201)")
-    			.append("          values(?,?,?,CURRENT_TIMESTAMP,1,0)")
+    			.append("insert into ka02(kkd101,kka101,kka201,kka202,kka203,kka204,ka02_kka201)")
+    			.append("          values(?,?,?,?,CURRENT_TIMESTAMP,1,0)")
     			;
     	//2.编写参数数组
     	Object args[]=
     		{
     			"1",
     			this.get("kka101"),
+    			Tools.getReplyId(this.get("kka101").toString()),
     			this.get("kka202"),
     	    };
     	System.out.println("ceshi :"+this.get("kka101"));
@@ -60,18 +61,19 @@ public class Ka02Services extends JdbcServicesSupport
 		
     	//1.编写SQL语句
     	StringBuilder sql=new StringBuilder()
-    			.append("insert into ka02(kkd101,kka101,kka202,kka203,kka204,ka02_kka201)")
-    			.append("          values(?,?,?,CURRENT_TIMESTAMP,1,?)")
+    			.append("insert into ka02(ka02_kka201,kkd101,kka101,kka201,kka202,kka203,kka204)")
+    			.append("          values(?,?,?,?,?,CURRENT_TIMESTAMP,1)")
     			;
     	//2.编写参数数组
     	Object args[]=
     		{
+    			this.get("kka201"),
     			"1",
     			this.get("kka101"),
+    			Tools.getReplyId(this.get("kka101").toString()),
     			this.get("kka202"),
-    			this.get("kka201"),
     	    };
-    	System.out.println("ceshi :"+this.get("kka201"));
+    	System.out.println("kka201 :"+this.get("kka201"));
         return this.executeUpdate(sql.toString(), args)>0;	
     }
 }
