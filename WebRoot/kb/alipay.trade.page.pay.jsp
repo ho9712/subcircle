@@ -21,10 +21,10 @@
 	alipayRequest.setNotifyUrl(AlipayConfig.notify_url);
 	
 	 //从页面获取dto
-	//Map<String,Object> dto = Tools.createDto(request);
-	//System.out.println(dto);
-	//String orderItemId = Tools.joinStringArray(dto.get("orderItemId"));
-	//System.out.println("商品id编号:"+orderItemId);
+	Map<String,Object> dto = Tools.createDto(request);
+	System.out.println(dto);
+	String orderItemId = Tools.joinStringArray(dto.get("orderItemId"));
+	System.out.println("商品id编号:"+orderItemId);
 	
 	//request.setAttribute("orderItemsId",dto.get("orderItemId"));
 	

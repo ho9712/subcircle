@@ -6,6 +6,6 @@ public class Kb05UpdateOrderStateServlet extends Kb05Controller
 	public String execute() throws Exception 
 	{
 		this.update("UpdateOrderState", "¸üÐÂ¶©µ¥×´Ì¬");
-		return "back";
+		return "kb05QueryAllOrder.kbhtml";
 	}
 }

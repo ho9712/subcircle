@@ -65,6 +65,10 @@
 					<input type="hidden" id="kkb101" name="kkb101" value="${ins.kkb101 }" /> 
 					<input type="hidden" id="kkb505" name="kkb505" value="${ins.kkb103 }" /> 
 					<input type="hidden" id="kkb507" name="kkb507" value="" />
+					<!-- 生成的是待支付订单kkb502的状态是0 -->
+					<input type="hidden" id="kkb502" name="kkb502" value="0" />
+					<!-- 用于定位订单来源  取消订单返回的位置标识-->
+					<input type="hidden" id="backLocation" name="backLocation" value="2" />
 				</form>
 					
 				<div class="btn-group btn-group-sm">
@@ -131,10 +135,20 @@ function onCollect(kkb101)
 	function onAddToCart(kkb101)
 	{
 		var kkb402 = document.getElementById('kkb402').value;
-		window.location.href="<%=request.getContextPath()%>/kb04AddToMyCart.kbhtml?"
-				+"kkb101="+kkb101
-				+"&kkb402="+kkb402;
-		alert("加入购物车成功");
+		 $.ajax({
+	            type: "POST",
+	            url: "${pageContext.request.contextPath}/kb04AddToMyCart.kbhtml?"
+	            	+"kkb101="+kkb101
+					+"&kkb402="+kkb402,
+	            dataType: "text",
+	            success: function (data)
+	            {
+	            	if(data)
+	            	{
+	            		alert("加入购物车成功");
+	            	}
+	            }//endsuccess
+	       });//endajax
 	}
 
 	//通过时间获取唯一的商户订单号
@@ -149,15 +163,12 @@ function onCollect(kkb101)
 		sNow += String(vNow.getMinutes());
 		sNow += String(vNow.getSeconds());
 		sNow += String(vNow.getMilliseconds());
-		
 		return sNow;
 	}
 	
 	function submitForm()
 	{
-		alert("111111");
 		var kkb507 = GetDateNow();
-		alert(kkb507);
 		document.getElementById("kkb507").value = kkb507;
 		 $("#myForm").attr("action","<%=request.getContextPath()%>/kb05CreateOrder.kbhtml");
 		 $("#myForm").submit();

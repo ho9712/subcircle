@@ -46,17 +46,6 @@ public class Kb05Services extends JdbcServicesSupport
 		return rows;
 	}
 	
-	//服务订单创建,点击立即购买时查询出所选商品的信息
-	private Map<String, String> findSelectItemInfo() throws Exception
-	{
-		StringBuilder sql = new StringBuilder()
-				.append(" select k1.kkb101,k1.kkb102, k1.kkb103,k1.kkb105")
-				.append("   from kb01 k1")
-				.append("  where k1.kkb101 = ?")
-				;
-		return this.queryForMap(sql.toString(), this.get("kkb101"));
-	}
-
 	/**
 	 *	 为用户选中的每一个商品生成一个订单
 	 * @return
@@ -78,7 +67,7 @@ public class Kb05Services extends JdbcServicesSupport
 				{
 					this.get("kkb101"),
 					"1",	//用户id待修改
-					"0",	//订单状态,0表示待支付
+					this.get("kkb502"),	//订单状态,0表示待支付
 			        this.get("kkb504"),	//商品数量
 			        this.get("kkb505"),	//商品单价
 			        this.get("kkb506"),	//订单备注（首页的立即购买按钮才会在订单创建时有值）
@@ -99,7 +88,7 @@ public class Kb05Services extends JdbcServicesSupport
 						{
 							ins.get("kkb101"),
 							"1",	//用户id待修改
-							"0",	//订单状态,0表示待支付
+							this.get("kkb502"),	//订单状态,0表示待支付
 					        ins.get("kkb402"),
 					        ins.get("kkb103"),
 					        this.get("kkb506"),	//订单备注（立即购买才会在订单创建时有值）
@@ -115,14 +104,14 @@ public class Kb05Services extends JdbcServicesSupport
 	
 	
 	/**
-	 *	返回用户最新的待支付订单
-	 *	从购物车跳转到支付页面只显示当前订单
+	 *	根据订单号显示订单详情
+	 *	
 	 */
 	@Override
 	public List<Map<String, String>> queryByCondition() throws Exception
 	{
 		String userId = "1"; //用户Id待修改
-		List<Map<String, String>> orderToPay = queryOrderByState(userId, "0",(String)this.get("kkb507"));
+		List<Map<String, String>> orderToPay = queryOrderByNum(userId,(String)this.get("kkb507"));
 		return orderToPay;
 	}
 	
@@ -154,18 +143,18 @@ public class Kb05Services extends JdbcServicesSupport
 	
 	
 	/**
-	 * 	查询该用户的某一状态下某一订单号对应的所有订单记录
+	 * 	查询该用户的某一订单号对应的所有订单记录
 	 * @param userId
 	 * @param tag
 	 * @return
 	 * @throws Exception
 	 */
-	private List<Map<String, String>> queryOrderByState(String userId,String state,String kkb507) throws Exception
+	private List<Map<String, String>> queryOrderByNum(String userId,String kkb507) throws Exception
 	{
 		StringBuilder sql = new StringBuilder()
 				.append("  select k1.kkb101,k1.kkb105,k1.kkb102,k5.kkb504,k5.kkb505,k5.kkb506,k5.kkb507")
 				.append("    from kb01 k1, kb05 k5")
-				.append("	where k5.kkd101 = ?  and k5.kkb502 = ?")
+				.append("	where k5.kkd101 = ?")
 				.append("     and k1.kkb101 = k5.kkb101")
 				.append("     and k5.kkb507 = ?")
 				;
@@ -173,7 +162,6 @@ public class Kb05Services extends JdbcServicesSupport
 		Object args[] = 
 			{
 				userId,
-				state,
 				kkb507
 			};
 		return this.queryForList(sql.toString(), args);
@@ -210,7 +198,7 @@ public class Kb05Services extends JdbcServicesSupport
 		for (String temp: dealOrderNumber.keySet()) 
 		{
 			i++;
-			objMap.put("order"+i,queryOrderByState(userId,(String)this.get("kkb502"),temp));
+			objMap.put("order"+i,queryOrderByNum(userId,temp));
 		}		
 		return objMap;
 	
@@ -238,7 +226,7 @@ public class Kb05Services extends JdbcServicesSupport
 		//每一个订单号下的所有记录封装在一个List<Map<String, String>>中
 		for (String temp: dealOrderNumber.keySet()) 
 		{
-			objList.add(queryOrderByState(userId,(String)this.get("kkb502"),temp));
+			objList.add(queryOrderByNum(userId,temp));
 		}		
 		return objList;
 	}
@@ -249,15 +237,42 @@ public class Kb05Services extends JdbcServicesSupport
 	 * @return
 	 * @throws Exception
 	 */
-	private boolean deleteOrderToPay() throws Exception
+	private String deleteOrderToPay() throws Exception
 	{
-		String sql = "delete from kb05 where kkd101 = ? and kkb502 = 0 and kkb507 = ?";
+		String sql = "delete from kb05 where kkd101 = ? and kkb507 = ?";
 		Object args[] = 
 			{
 				"1",   		//用户id待修改
 				this.get("kkb507")
 			};
-		return this.executeUpdate(sql, args) > 0;
+		String result = null;
+		
+		//删除订单后返回到原位置
+		if (this.executeUpdate(sql, args) > 0)
+		{
+			//返回到商城主界面
+			if (this.get("backLocation").equals("1"))
+			{
+				result = "kb01QueryItems.kbhtml";
+			}
+			//返回到商品详情页面
+			else if (this.get("backLocation").equals("2"))
+			{
+				result = "kb01FindItemById.kbhtml";
+			}
+			//返回到购物车页面
+			else if (this.get("backLocation").equals("3"))
+			{
+				result = "kb04MyCartCenter.kbhtml";
+			}
+			//返回到订单管理中心
+			else if (this.get("backLocation").equals("4"))
+			{
+				result = "kb05QueryAllOrder.kbhtml";
+			}
+		} 
+		
+		return result;
 	}
 	
 	
@@ -266,7 +281,7 @@ public class Kb05Services extends JdbcServicesSupport
 	 * @return
 	 * @throws Exception
 	 */
-	//	供paySuccessServlet使用
+	//	供paySuccessServlet使用(供支付订单后将订单状态由0改为1使用)
 	//(绕开核心控制器的操作无法获取dto通过参数传递解决,访问权限设为public)
 	public boolean updateOrderState(String state,String kkb507,String kkd101) throws Exception
 	{
@@ -282,10 +297,10 @@ public class Kb05Services extends JdbcServicesSupport
 	}
 	
 	
-	//供Kb05UpdateOrderServlet使用
+	//供Kb05UpdateOrderServlet使用(负责确认收货把订单状态从1改为2)
 	private boolean UpdateOrderState() throws Exception
 	{
-		String state = (String)this.get("kkb502");		//订单改变后的状态
+		String state = "2";								//订单改变后的状态(确认收货)
 		String num = (String)this.get("kkb507");		//商户订单号
 		String userID = "1"; 							//用户ID待修改
 		return updateOrderState(state,num,userID);

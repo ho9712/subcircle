@@ -184,7 +184,10 @@
 					<input type="hidden" id="kkb101" name="kkb101" value="" /> 
 					<input type="hidden" id="kkb505" name="kkb505" value="" /> 
 					<input type="hidden" id="kkb507" name="kkb507" value="" />
-
+					<!-- 生成的是待支付订单 kkb502状态为0 -->
+					<input type="hidden" id="kkb502" name="kkb502" value="0" />
+					<!-- 用于定位订单来源  取消订单返回的位置标识-->
+					<input type="hidden" id="backLocation" name="backLocation" value="1" />
 					</form>
 				</div>
 				<!-- 遮罩窗体 结束-->
@@ -219,21 +222,27 @@
 	            		alert("收藏成功");
 	            	}
 	            }//endsuccess
-	        });//endajax
-		
-	<%-- window.location.href="<%=request.getContextPath()%>/kb03CollectItem.kbhtml?"
-					+"kkb101="+kkb101;
-		alert("收藏成功"); --%>
+	       });//endajax
 	}
 	
 	//根据商品id以及数量加入用户购物车中
 	function onAddToCart(kkb101)
 	{
 		var kkb402 = 1;			//从周边商城模块加入购物车数量默认为1
-		window.location.href="<%=request.getContextPath()%>/kb04AddToMyCart.kbhtml?"
-				+"kkb101="+kkb101
-				+"&kkb402="+kkb402;
-		alert("加入购物车成功");
+		 $.ajax({
+	            type: "POST",
+	            url: "${pageContext.request.contextPath}/kb04AddToMyCart.kbhtml?"
+	            	+"kkb101="+kkb101
+					+"&kkb402="+kkb402,
+	            dataType: "text",
+	            success: function (data)
+	            {
+	            	if(data)
+	            	{
+	            		alert("加入购物车成功");
+	            	}
+	            }//endsuccess
+	       });//endajax
 	}
 	
 	//点击立即购买传递info给遮罩窗体

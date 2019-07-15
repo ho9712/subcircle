@@ -113,6 +113,26 @@ public abstract class KbAbstractController implements ControllerInterface
 		this.saveAttribute("msg", msg);
 	}
 	
+	protected String updateRtn(String methodName,String typeMsg) throws Exception
+	{	
+		String result = null;
+		Method method=this.services.getClass().getDeclaredMethod(methodName);
+		//设置访问权限，使能够访问private方法
+		method.setAccessible(true);
+		result = (String) method.invoke(this.services);
+
+		if (result != null) 
+		{
+			this.saveAttribute("msg",typeMsg + "成功");
+		}
+		else 
+		{
+			this.saveAttribute("msg",typeMsg + "失败");
+		}
+		
+		return result;
+	}
+	
 	//通过反射机制，传递方法名执行Services中的方法
 	private boolean executeMethod(String methodName)throws Exception
 	{
@@ -222,6 +242,11 @@ public abstract class KbAbstractController implements ControllerInterface
 		{
 			this.saveAttribute("msg", "数据不存在或禁止访问");
 		}
+		
+		String orderState =(String)this.dto.get("kkb502");
+		String backLocation =(String)this.dto.get("backLocation");
+		this.saveAttribute("flag", orderState);
+		this.saveAttribute("backLocation",backLocation);
 	}
 	
 	/**
@@ -234,7 +259,6 @@ public abstract class KbAbstractController implements ControllerInterface
 		if(objList.size()>0)
 		{
 			this.saveAttribute("objList",objList);
-			
 		}
 		else
 		{

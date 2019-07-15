@@ -43,7 +43,7 @@
 									<td>
 										<div>
 											<span style="font-size: 20px; color: buttonshadow;">订单号:</span>
-											<a href="#" onclick="queryOrderByNum(${rows[0].kkb507 })">
+											<a href="#" onclick="queryOrderByNum('${flag }','${rows[0].kkb507 }')">
 												<span style="font-size: 20px; color: red;">
 													&nbsp;${rows[0].kkb507 }</span>
 											</a>
@@ -75,7 +75,7 @@
 																	<c:set var="orderCount"
 																		value="${orderCount + ins.kkb504 }"></c:set>
 																	<c:set var="orderPrice"
-																		value="${orderPrice + ins.kkb505 }"></c:set>
+																		value="${orderPrice + ins.kkb504*ins.kkb505 }"></c:set>
 																	<c:set var="itemCount" value="${itemCount + 1 }"></c:set>
 
 																	<img src="${ins.kkb105 }"
@@ -90,7 +90,7 @@
 															<div class="carousel-caption" style="height: 10px">
 																<h4 align="center">
 																	<a href="#"
-																		onclick="queryOrderByNum(${rows[0].kkb507 })">
+																		onclick="queryOrderByNum('${flag }','${rows[0].kkb507 }')">
 																		订单号:${rows[0].kkb507 } </a>
 																</h4>
 															</div>
@@ -108,7 +108,7 @@
 																	<c:set var="orderCount"
 																		value="${orderCount + ins.kkb504 }"></c:set>
 																	<c:set var="orderPrice"
-																		value="${orderPrice + ins.kkb505 }"></c:set>
+																		value="${orderPrice + ins.kkb504*ins.kkb505 }"></c:set>
 																	<c:set var="itemCount" value="${itemCount + 1 }"></c:set>
 
 																	<img src="${ins.kkb105 }"
@@ -122,7 +122,7 @@
 															<div class="carousel-caption" style="height: 10px">
 																<h4 align="center">
 																	<a href="#"
-																		onclick="queryOrderByNum(${rows[0].kkb507 })">
+																		onclick="queryOrderByNum('${flag }','${rows[0].kkb507 }')">
 																		订单号:${rows[0].kkb507 } </a>
 																</h4>
 															</div>
@@ -140,7 +140,7 @@
 																		<c:set var="orderCount"
 																			value="${orderCount + ins.kkb504 }"></c:set>
 																		<c:set var="orderPrice"
-																			value="${orderPrice + ins.kkb505 }"></c:set>
+																			value="${orderPrice + ins.kkb504*ins.kkb505 }"></c:set>
 																		<c:set var="itemCount" value="${itemCount + 1 }"></c:set>
 
 																		<img src="${ins.kkb105 }"
@@ -154,7 +154,7 @@
 																<div class="carousel-caption" style="height: 10px">
 																	<h4 align="center">
 																		<a href="#"
-																			onclick="queryOrderByNum(${rows[0].kkb507 })">
+																			onclick="queryOrderByNum('${flag }','${rows[0].kkb507 }')">
 																			订单号:${rows[0].kkb507 } </a>
 																	</h4>
 																</div>
@@ -213,7 +213,7 @@
 														
 														<button type="button" 
 															class="btn btn-warning"
-															onclick = "submitForm(${orderPrice},${rows[0].kkb507 },'<%=request.getContextPath()%>/kb05UpdateOrderState.kbhtml?kkb502=2')">
+															onclick = "submitForm(${orderPrice},${rows[0].kkb507 },'<%=request.getContextPath()%>/kb05UpdateOrderState.kbhtml')">
 															确认收货
 														</button>
 														
@@ -221,8 +221,11 @@
 												</c:when>
 												<c:when test="${flag == 2}">
 													<div class="btn-group btn-group-sm" style="float: right;">
-														<button type="button" class="btn btn-success" onclick="">删除订单</button>
-														<button type="button" class="btn btn-warning" onclick="">去评价</button>
+														<button type="button" class="btn btn-success" 
+															onclick = "submitForm(${orderPrice},${rows[0].kkb507 },'<%=request.getContextPath()%>/kb05DelOrderToPay.kbhtml')">
+														删除订单</button>
+														<button type="button" class="btn btn-warning"
+															 onclick="queryOrderByNum('${flag }','${rows[0].kkb507 }')">去评价</button>
 													</div>
 												</c:when>
 											</c:choose>
@@ -249,6 +252,12 @@
 						<!-- 传输订单总金额-->
 						<input type="hidden" id="WIDtotal_amount" name="WIDtotal_amount"
 							value="" />
+						<!-- 用于定位订单来源  取消订单返回的位置标识 -->
+						<input type="hidden" id="backLocation" name="backLocation" value="4" />
+						<!-- 取消订单返回的位置标识 -->
+						<input type="hidden" id="kkb502" name="kkb502"
+							value="${flag }" />
+						
 				</form>
 					
 			</div>
@@ -266,9 +275,13 @@
 	}
 	
 	//根据商户订单号查询订单详情
-	function queryOrderByNum(kkb507)
+	function queryOrderByNum(kkb502,kkb507)
 	{
-		window.location.href = "<%=request.getContextPath()%>/kb05QueryOrderInfo.kbhtml?kkb507=" + kkb507;
+		 /*backLocation用于定位订单来源  取消订单返回的位置标识 */
+		window.location.href = "<%=request.getContextPath()%>/kb05QueryOrderInfo.kbhtml?"
+				+"backLocation=4"
+				+"&kkb502=" + kkb502
+				+"&kkb507=" + kkb507;
 	}
 	
 	
@@ -283,8 +296,6 @@
 	
 	</script>
 	
-	
-
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 

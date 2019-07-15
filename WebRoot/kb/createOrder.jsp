@@ -8,7 +8,9 @@
 <jsp:include page="index.jsp" flush="true" /><!-- 引入导航栏 -->
 </head>
 <body>
-
+<%-- ${flag }
+${backLocation }
+${rows } --%>
 	<div class="container-fluid">
 		<!-- 容器 -->
 		<div class="row-fluid">
@@ -28,8 +30,6 @@
 					</tbody>
 				
 				</table>
-				
-				
 			<form action="<%=request.getContextPath()%>/kb/alipay.trade.page.pay.jsp" method="post">
 				<table class="table table-hover">
 						<!-- 订单列表 -->
@@ -67,17 +67,39 @@
 							
 							</tr>
 							<tr class="info">
-								<td>
-									<div align="center" style="font-size:20px;">
-									备注
-									</div>
-														
-								</td>
-								<td colspan="3">
-								<textarea placeholder="订单备注...100字以内" style="width: 80%;overflow:auto;" rows="2" cols="20">
-									${ins.kkb506 }
-								</textarea>
-								</td>
+								<c:choose>
+									<c:when test="${flag == 0 || flag == 1}">
+										<td>
+											<div style="font-size: 20px;padding-left: 30px;padding-top:15px;">备注</div>
+										</td>
+										<td colspan="3">
+											<textarea placeholder="订单备注...100字以内"
+												style="width: 80%; overflow: auto;" rows="2" cols="20">${ins.kkb506 }</textarea>
+										</td>
+									</c:when>
+									<c:when test="${flag == 2}">
+										<td>
+											<div style="font-size: 20px;padding-left: 30px;">
+												<span>评分</span>
+												<br>
+												<br>
+												<select name = "kkb602">
+													<option value="5.0" selected="selected">5.0</option>
+													<option value="4.0">4.0</option>
+													<option value="3.0">3.0</option>
+													<option value="2.0">2.0</option>
+													<option value="1.0">1.0</option>
+												</select>
+											</div>
+										</td>
+										<td colspan="3">
+											<textarea placeholder="订单评价...100字以内"
+												style="width: 80%; overflow: auto;" rows="3" cols="20"></textarea>
+										</td>
+									</c:when>
+								</c:choose>
+
+									
 							</tr>
 						</c:forEach>
 						<tr class = "success">
@@ -88,17 +110,37 @@
 							</td>
 							<td style="vertical-align: middle;">
 								<div class="btn-group btn-group-sm">
-									<input type = "submit"  class="btn btn-success" href="#" 
-										formaction="<%=request.getContextPath()%>/kb05DelOrderBackCart.kbhtml"
-											value="返回购物车"
-										>
-									<input type = "submit" class="btn btn-warning" href="#" 
-											value="提交订单">
-								</div>
+										<!-- 根据不同订单状态的详情显示不同的操作 -->
+										<c:choose>
+											<c:when test="${flag == 0}">
+												<input type="submit" class="btn btn-success" href="#"
+													formaction="<%=request.getContextPath()%>/kb05DelOrderToPay.kbhtml"
+													value="取消订单">
+												<input type="submit" class="btn btn-warning" href="#"
+													value="提交订单">
+											</c:when>
+											<c:when test="${flag == 1}">
+												<input type="submit" class="btn btn-success" href="#"
+													formaction=""
+													value="申请退款">
+												<input type="submit" class="btn btn-warning" href="#"
+													formaction="<%=request.getContextPath()%>/kb05UpdateOrderState.kbhtml"
+													value="确认收货" >
+											</c:when>
+											<c:when test="${flag == 2}">
+												<input type="submit" class="btn btn-success" href="#"
+													formaction="<%=request.getContextPath()%>/kb05DelOrderToPay.kbhtml"
+													value="删除订单">
+												<input type="submit" class="btn btn-warning" href="#"
+													value="评价">
+											</c:when>
+										</c:choose>
+									</div>
 							</td>
 						</tr>
 					</tbody>
 				</table>
+				
 				<!-- 隐藏域传输数据 -->
 				<!-- 传输订单总商品数给servlet updateSummaryInfo()方法会设置该控件value-->
 				<input type="hidden" id = "totalCount" name="totalCount" value="0"/>
@@ -106,10 +148,20 @@
 				<input type="hidden" id = "WIDout_trade_no" name="WIDout_trade_no" value="${rows[0].kkb507 }"/>
 				<!-- 商户订单号-->							
 				<input type="hidden" id = "kkb507" name="kkb507" value="${rows[0].kkb507 }"/>
+				
+				<!-- 订单状态-->							
+				<input type="hidden" id = "kkb502" name="kkb502" value="${flag }"/>
+				
 				<!-- 传输订单描述 -->
 				<input type="hidden" id = "WIDsubject" name="WIDsubject" value="0"/>
 				<!-- 传输订单总金额给servlet updateSummaryInfo()方法会设置该控件value-->
 				<input type="hidden" id = "WIDtotal_amount" name="WIDtotal_amount" value="0"/>
+				
+				<!-- 用于取消订单时标识返回页面位置-->
+				<input type="hidden" id = "backLocation" name="backLocation" value="${backLocation }"/>
+				
+				<!-- 从itemInfo创建的订单用于取消时传递该商品id-->							
+				<input type="hidden" id = "kkb101" name="kkb101" value="${rows[0].kkb101 }"/>
 			</form>		
 			</div>
 			<!-- col-END -->
@@ -157,8 +209,6 @@
 		document.getElementById("WIDtotal_amount").value = price;
 		document.getElementById("WIDsubject").value = "向翟种付款";
 	}
-	
-	
 	
 	
 	window.onload = function()

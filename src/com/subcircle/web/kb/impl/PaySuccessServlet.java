@@ -99,6 +99,7 @@ public class PaySuccessServlet extends HttpServlet
 		//获取支付宝GET过来反馈信息
 		Map<String,String> params = new HashMap<String,String>();
 		Map<String,String[]> requestParams = request.getParameterMap();
+		
 		for (Iterator<String> iter = requestParams.keySet().iterator(); iter.hasNext();) {
 			String name = (String) iter.next();
 			String[] values = (String[]) requestParams.get(name);

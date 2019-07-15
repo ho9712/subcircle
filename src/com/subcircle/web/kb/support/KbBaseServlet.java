@@ -50,7 +50,6 @@ public class KbBaseServlet extends HttpServlet
 			request.setAttribute("msg", "ÌáÊ¾£ºÍøÂç¹ÊÕÏ£¡");
 			e.printStackTrace();
 		}
-		
 		if(toPath.equals("back"))
 		{
 			response.sendRedirect(request.getHeader("Referer"));

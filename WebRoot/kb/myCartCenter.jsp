@@ -37,22 +37,26 @@
 									<td style="vertical-align: middle;">
 										<input type="checkbox" name = "idlist" 
 										onclick="onSelect(this.checked);" value = "${ins.kkb101 }">  
-										<img
-											class="img-thumbnail" src="${ins.kkb105 }" width="100"
-											height="100" />
+										<img 
+											class="img-thumbnail" src="${ins.kkb105 }" 
+											width="100" height="100"
+											onclick="itemInfo(${ins.kkb101 })"/>
 									</td>
-									<td style="vertical-align: middle;">${ins.kkb102 }</td>
 									<td style="vertical-align: middle;">
-											￥<span>${ins.kkb103 }</span>
+										<a href="#" onclick="itemInfo(${ins.kkb101 })">
+												${ins.kkb102 }</a>
+									</td>
+									<td style="vertical-align: middle;">
+											￥<span style="font-size:20px">${ins.kkb103 }</span>
 									</td>
 									<td style="vertical-align: middle;">
 										<input type="number" min="1" step="1" style="width: 60px;" 
 											name = "itemCount" id="itemCount${ins.kkb101 }" 
-											onchange = "updateItemCount(${ins.kkb101 },${ins.kkb103 });" 
+											onchange = "updateItemCount('${ins.kkb101 }','${ins.kkb103 }');" 
 											value="${ins.kkb402 }">
 									</td>
 									<td style="vertical-align: middle;" name ="itemPrice${ins.kkb101 }">
-										￥<em>${ins.kkb103*ins.kkb402 }</em>
+										￥<em style="font-size:20px">${ins.kkb103*ins.kkb402 }</em>
 									</td>
 									<td style="vertical-align: middle;">
 									<a class="btn btn-success" href="#" 
@@ -70,8 +74,12 @@
 								</td>
 								<td></td>
 								<td></td>
-								<td style="vertical-align: middle;" name = "itemsCount">已选 <em>0</em> 件商品</td>
-								<td style="vertical-align: middle;" name = "itemsPrice">总计 <em>0</em> 元</td>
+								<td style="vertical-align: middle;" name = "itemsCount">
+									已选 <em style="font-size: 25px;font:bold;">0</em> 件商品
+								</td>
+								<td style="vertical-align: middle;" name = "itemsPrice">
+									总计 <em style="font-size: 25px;font:bold;">0</em> 元
+								</td>
 								<td style="vertical-align: middle;">
 									<input type="submit" class="btn btn-warning" 
 										disabled="disabled" id = "pay" value = "去结算">
@@ -83,6 +91,11 @@
 					
 					<!-- 隐藏域传输数据  页面加载完成改变value值-->
 					<input type="hidden" id = "kkb507" name="kkb507" value="0"/>
+					<!-- 生成待支付订单  value值为0表示订单状态为未支付-->
+					<input type="hidden" id = "kkb502" name="kkb502" value="0"/>
+					
+					<!-- 用于定位订单来源  取消订单返回的位置标识-->
+					<input type="hidden" id="backLocation" name="backLocation" value="3" />
 					
 				</form>
 			</div>
@@ -94,6 +107,12 @@
 	
 
 	<script type="text/javascript">
+	
+	//根据商品id查看相应商品详情并为登入用户生成浏览记录
+	function itemInfo(kkb101)
+	{
+		window.location.href = "<%=request.getContextPath()%>/kb01FindItemById.kbhtml?kkb101=" + kkb101;
+	}
 	
 	//idlist的checkbox的调用方法
 	
@@ -250,10 +269,6 @@
 	            	}
 	            }//endsuccess
 	        });//endajax
-		
-	<%-- window.location.href="<%=request.getContextPath()%>/kb03CollectItem.kbhtml?"
-					+"kkb101="+kkb101;
-		alert("收藏成功"); --%>
 	}
 	
 	//显示选中商品总金额和总件数的控件
@@ -317,18 +332,6 @@
 	            }//endsuccess
 	        });//endajax
 		}
-	
-	
-	//更新数量控件的值
- 	<%-- function updateItemCount(kkb101)
-	{
-		var countID = "itemCount" + kkb101; //countID表示数量的控件的id(唯一)
-		var updateCount = document.getElementById(countID).value;
-		window.location.href="<%=request.getContextPath()%>/kb04UpdateMyCart.kbhtml?"
-			+"kkb101="+kkb101
-			+"&kkb402="+updateCount;
-	} --%>
-	
 	
 	//通过时间获取唯一的商户订单号
 	function GetDateNow() {
