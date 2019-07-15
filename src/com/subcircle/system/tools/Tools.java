@@ -17,16 +17,16 @@ public class Tools
 
 	public static void main(String[] args) 
 	{
-		String pwd="root";
 		try 
 		{
-			System.out.println(Tools.getMd5(pwd));
+			System.out.println(Tools.getReplyId("16"));
 		} 
 		catch (Exception e) 
 		{
 			e.printStackTrace();
 		}
 	}
+	
 	
 	/**
 	 * 私有化构造器，防止该类被实例化
@@ -78,6 +78,41 @@ public class Tools
 			DBUtils.close(pstm2);
 		}
 	}
+   
+
+	/**
+	 * 获取某贴子回复数量
+	 * @param postId  ---  贴子流水号
+	 * @return
+	 * @throws Exception
+	 */
+	public static int getReplyId(String postId)throws Exception
+	{
+		PreparedStatement pstm1=null;  //查询对应主键名是否存在主键值
+		PreparedStatement pstm2=null;  //更新主键值或插入新主键值
+		ResultSet rs=null;
+		try
+		{
+			int replyId=0;
+			String sql1="select count(kka201) from ka02  where kka101=?";
+			pstm1=DBUtils.prepareStatement(sql1);
+			pstm1.setObject(1, postId);
+			rs=pstm1.executeQuery();
+			while(rs.next())
+			{
+				replyId=rs.getInt(1);
+			}
+			return replyId;
+		}
+		finally
+		{
+			DBUtils.close(rs);
+			DBUtils.close(pstm1);
+			DBUtils.close(pstm2);
+		}
+	}
+	
+	
 
 	/**
 	 * 将dto中的字符串数组转换成连接起来的字符串

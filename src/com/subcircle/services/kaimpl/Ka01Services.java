@@ -80,21 +80,32 @@ public class Ka01Services extends JdbcServicesSupport
      */
 	 private boolean posting() throws Exception
 	    {
+			int kka101=Tools.getPk("kka101");
 	    	//1.编写SQL语句
-	    	StringBuilder sql=new StringBuilder()
-	    			.append("insert into ka01(kkd101,kka102,kka103,kka104,kka105,kka106)")
-	    			.append("          values(?,?,?,?,CURRENT_TIMESTAMP,1)")
+	    	StringBuilder sql1=new StringBuilder()
+	    			.append("insert into ka01(kka101,kkd101,kka102,kka103,kka104,kka105,kka106)")
+	    			.append("          values(?,?,?,?,?,CURRENT_TIMESTAMP,1)")
 	    			;
 	    	//2.编写参数数组
 	    	Object args[]=
-	    		{  
-	    		    //此处硬编码用户流水号为1，以后通过获取用户流水号动态更新。
-	    			"1",
+	    		{
+	    			kka101,
+	    			"2",
 	    			this.get("kka102"),
 	    			this.get("kka103"),
 	    			this.get("kka104"),
 	    	    };
-	        return this.executeUpdate(sql.toString(), args)>0;	
+	    	this.appendSql(sql1.toString(), args);
+	    	StringBuilder sql2=new StringBuilder()
+	    			.append("insert into ka02(kka201,kka101,kkd101,kka202,kka203,kka204,ka02_kka201)")
+	    			.append(" values(0,?,?,'1',current_timestamp,1,0)")
+	    			;
+	    	Object[] args2={
+	    			kka101,
+	    			1,
+	    	};
+	    	this.appendSql(sql2.toString(), args2);
+	    	return this.executeTransaction();
 	    }
 	 
 	 
@@ -105,19 +116,24 @@ public class Ka01Services extends JdbcServicesSupport
 	     * @throws Exception
 	     */
 	 private List<Map<String,String>> query02Services()throws Exception
-	  {
+	  {// Object kka101=this.get("kka101");
 	  		//定义SQL主体
 	  		StringBuilder sql=new StringBuilder()
-	  				.append("select x.kka201,x.kka202,x.kka203,a.kkd105,b.kka101")
+	  				.append("select x.kka201,x.kka202,x.kka203,x.kka204,x.ka02_kka201,a.kkd105,b.kka101")
 	  				.append(" from ka02 x,kd01 a,ka01 b ")
 	  				.append(" where x.kkd101 = a.kkd101 and b.kka101 = x.kka101 and b.kka101 =? ")
 	  				.append(" order by x.kka203")
+	  				//.append(" where a.kkd101=1")    //模拟用户1
 	  				;
+
 	  		Object args[] =
 	  			{
-	  				this.get("kka101")
+	  				this.get("kka101"),
+	  				//this.get("kka101"),
 	  		    };
-	  		return this.queryForList(sql.toString(), args);
+	  		List<Map<String,String>> rows=this.queryForList(sql.toString(), args);
+	  		rows.remove(0);
+	  		return rows;
 	  }
 	  
 	

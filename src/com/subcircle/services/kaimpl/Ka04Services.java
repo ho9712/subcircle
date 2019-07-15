@@ -8,7 +8,11 @@ import com.subcircle.services.support.JdbcServicesSupport;
 
 public class Ka04Services extends JdbcServicesSupport 
 {
-	@Override
+	/**
+     * 目前无用
+     * @return
+     * @throws Exception
+     */
 	public Map<String,String> findById()throws Exception
     {
     	StringBuilder sql=new StringBuilder()
@@ -22,7 +26,7 @@ public class Ka04Services extends JdbcServicesSupport
 	
 	
 	/**
-     * 不定条件查询
+     * 目前无用
      * @return
      * @throws Exception
      */

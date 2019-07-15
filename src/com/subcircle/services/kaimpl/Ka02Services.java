@@ -3,6 +3,7 @@ package com.subcircle.services.kaimpl;
 import java.util.List;
 import java.util.Map;
 import com.subcircle.services.support.JdbcServicesSupport;
+import com.subcircle.system.tools.Tools;
 
 public class Ka02Services extends JdbcServicesSupport
 {   
@@ -21,6 +22,8 @@ public class Ka02Services extends JdbcServicesSupport
     			.append("  from ka01 x,kd01 a")
     			.append(" where x.kka106=1 and x.kka101=?")
     			;
+    	//Ö´ÐÐ²éÑ¯
+    	//System.out.println("ceshi :"+this.get("kka101"));
     	Object args[] = {this.get("kka101")};
     	return this.queryForMap(sql.toString(), args);
     }
@@ -44,7 +47,6 @@ public class Ka02Services extends JdbcServicesSupport
 	  		return this.queryForList(sql.toString(), args);
 	  }
 	
-	
 	/**
      * ÔÚÌù×ÓÏêÇéÒ³Ãæ»Ø¸´/ÆÀÂÛÌù×Ó
      * @return
@@ -52,18 +54,20 @@ public class Ka02Services extends JdbcServicesSupport
      */
 	private boolean postContent()throws Exception
     {
-    	//1.±àÐ´SQLÓï¾ä
+		//1.±àÐ´SQLÓï¾ä
     	StringBuilder sql=new StringBuilder()
-    			.append("insert into ka02(kkd101,kka101,kka202,kka203,kka204,ka02_kka201)")
-    			.append("          values(?,?,?,CURRENT_TIMESTAMP,1,0)")
+    			.append("insert into ka02(kkd101,kka101,kka201,kka202,kka203,kka204,ka02_kka201)")
+    			.append("          values(?,?,?,?,CURRENT_TIMESTAMP,1,0)")
     			;
     	//2.±àÐ´²ÎÊýÊý×é
     	Object args[]=
     		{
     			"1",
     			this.get("kka101"),
+    			Tools.getReplyId(this.get("kka101").toString()),
     			this.get("kka202"),
     	    };
+    	System.out.println("ceshi :"+this.get("kka101"));
         return this.executeUpdate(sql.toString(), args)>0;	
     }
 	
@@ -76,20 +80,21 @@ public class Ka02Services extends JdbcServicesSupport
 	private boolean postAnswer()throws Exception
     {
 		
-    	//1.±àÐ´SQLÓï¾ä
+		//1.±àÐ´SQLÓï¾ä
     	StringBuilder sql=new StringBuilder()
-    			.append("insert into ka02(kkd101,kka101,kka202,kka203,kka204,ka02_kka201)")
-    			.append("          values(?,?,?,CURRENT_TIMESTAMP,1,?)")
+    			.append("insert into ka02(ka02_kka201,kkd101,kka101,kka201,kka202,kka203,kka204)")
+    			.append("          values(?,?,?,?,?,CURRENT_TIMESTAMP,1)")
     			;
     	//2.±àÐ´²ÎÊýÊý×é
     	Object args[]=
     		{
+    			this.get("kka201"),
     			"1",
     			this.get("kka101"),
+    			Tools.getReplyId(this.get("kka101").toString()),
     			this.get("kka202"),
-    			this.get("kka201"),
     	    };
-    	System.out.println("ceshi :"+this.get("kka201"));
+    	System.out.println("kka201 :"+this.get("kka201"));
         return this.executeUpdate(sql.toString(), args)>0;	
     }
 }
