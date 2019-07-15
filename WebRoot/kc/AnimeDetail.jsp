@@ -21,20 +21,20 @@
 <div id="navNeue2">
 <div id="menuNeue">
 <ul id="navMenuNeue" class="clearit">
-<li><a href="/anime" class="top chl anime"><span>动画</span></a>
+<li><a href="" class="top chl anime"><span>动画</span></a>
                 <div class="clear"></div>
 <ul class="clearit">
 <li><a href="kc02ShowRank.kchtml" class="nav">排行榜</a></li>
 </ul>
 </li>
-<li><a href="/book" class="top chl"><span>书籍</span></a>
+<li><a href="" class="top chl"><span>书籍</span></a>
 <div class="clear"></div>
 <ul class="clearit">
 <li><a href="kc03ShowRank.kchtml" class="nav">排行榜</a></li>
 </ul>
 </li>
 
-<li><a href="/game" class="top chl game"><span>游戏</span></a>
+<li><a href="" class="top chl game"><span>游戏</span></a>
 <div class="clear"></div>
 <ul class="clearit">
 <li><a href="kc04ShowRank.kchtml" class="nav">排行榜</a></li>
@@ -48,9 +48,20 @@
     <c:choose>
     <c:when test="${sessionScope.user.kkd101!=null }">
      <div class="idBadgerNeue">
-		<a class="avatar" href="<%=path%>/kd/userpage_main.jsp">
-			<img src="${sessionScope.user.kkd108}" onerror="this.src='<%=path %>/img/avatar/def_avatar.png'" class="port" width="33px" height="33px"/>
-		</a>
+		<c:choose>
+            	<c:when test="${!empty sessionScope.user.kkd108}">
+                <a class="avatar" href="<%=path%>/kd/userpage_main.jsp">
+				<span class="avatarNeue avatarSize32 ll" 
+					style="background-image:url('${sessionScope.user.kkd108}');background-size: 100% auto;"></span>
+				</a>
+            	</c:when>
+            	<c:otherwise>
+                <a class="avatar" href="<%=path%>/kd/userpage_main.jsp">
+				<span class="avatarNeue avatarSize32 ll" 
+					style="background-image:url('<%=path%>/img/avatar/def_avatar.png');background-size: 100% auto;"></span>
+				</a>
+            	</c:otherwise>
+            </c:choose>
 		<ul id="badgeUserPanel">
 			<li><a href="<%=path%>/kd/userpage_main.jsp">时光机</a></li>                    
        		<li><a href="http://bangumi.tv/user/481528/blog">作品</a></li>
@@ -73,7 +84,7 @@
     
 </div><div id="headerSearchWrapper">
 <div id="headerSearch">
-        <form action="" method="post">
+        <form action="kc02Search.kchtml" method="post">
     <div class="inner">
 <select name="cat" id="siteSearchSelect">
 <option value="all">全部</option>
@@ -81,7 +92,7 @@
 <option value="1">书籍</option>
 <option value="4">游戏</option>         
 </select>
-<input id="search_text" name="search_text" class="textfield" type="text" />
+<input id="search_text" name="kksk" class="textfield" type="text" />
         <input type="submit" name="submit" value="搜索" class="search" />
     </div>
 </form>
@@ -104,7 +115,7 @@
     <div class="subjectNav">
 <ul class="navTabs clearit">
         <li><a href="${ins.kkc203}" class="focus">概览</a></li>       
-        <li><a href="" >评论</a></li>
+        <li><a href="kc02ShowComments.kchtml?kkc101=${param.kkc101 }">评论</a></li>
         <li><a href="" >讨论版</a></li>
         </ul>
 	
@@ -363,7 +374,7 @@ sstars1-10即评分 根据数据读取即可
 
 
 
-</div><a href="/subject/253/comments" class="more">更多吐槽 »</a>
+</div><a href="kc02ShowComments.kchtml?kkc101='${param.kkc101 }'" class="more">更多吐槽 »</a>
 </div>  
 </div>      
 </div>

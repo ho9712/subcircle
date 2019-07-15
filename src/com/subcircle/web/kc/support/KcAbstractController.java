@@ -272,9 +272,52 @@ public abstract class KcAbstractController implements ControllerInterface
 	}
 	
 	
+	/**
+	 * 用于kc02，用户进行评分和收藏
+	 * @throws Exception
+	 */
+	
 	protected final void AnimeRankAndComment() throws Exception
 	{
 		this.update("addAnimeComment", "");
+		
+	}
+	
+	
+	
+	/**
+	 * 显示评论详情页面
+	 * @throws Exception
+	 */
+	protected final void ShowAllComments() throws Exception
+	{
+		List<Map<String, String>> rows=this.services.queryAnimeCommentAll();
+		if(rows.size()>0)
+		{
+			this.saveAttribute("rows", rows);
+		}
+		else
+		{
+			this.saveAttribute("msg", "没有评论！");
+		}
+		
+	}
+	
+	
+	/**
+	 * 查询动画
+	 * @throws Exception
+	 */
+	protected final void SearchinAnime() throws Exception {
+		List<Map<String, String>> rows=this.services.searchinAnime();
+		if(rows.size()>0)
+		{
+			this.saveAttribute("rows", rows);
+		}
+		else
+		{
+			this.saveAttribute("msg", "没有匹配信息！");
+		}
 		
 	}
 

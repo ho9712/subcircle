@@ -32,4 +32,12 @@ public interface ServicesInterface
 	{
 		return null;
 	}
+	default List<Map<String, String>> queryAnimeCommentAll()throws Exception	
+	{
+		return null;
+	}
+	default List<Map<String, String>> searchinAnime()throws Exception	
+	{
+		return null;
+	}
 }
