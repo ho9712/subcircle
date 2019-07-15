@@ -66,7 +66,7 @@ public class Kb05Services extends JdbcServicesSupport
 			Object args[]= 
 				{
 					this.get("kkb101"),
-					"1",	//用户id待修改
+					this.get("kkd101"),		//用户ID
 					this.get("kkb502"),	//订单状态,0表示待支付
 			        this.get("kkb504"),	//商品数量
 			        this.get("kkb505"),	//商品单价
@@ -87,7 +87,7 @@ public class Kb05Services extends JdbcServicesSupport
 					Object args[]= 
 						{
 							ins.get("kkb101"),
-							"1",	//用户id待修改
+							this.get("kkd101"),		//用户ID
 							this.get("kkb502"),	//订单状态,0表示待支付
 					        ins.get("kkb402"),
 					        ins.get("kkb103"),
@@ -110,7 +110,7 @@ public class Kb05Services extends JdbcServicesSupport
 	@Override
 	public List<Map<String, String>> queryByCondition() throws Exception
 	{
-		String userId = "1"; //用户Id待修改
+		String userId = (String)this.get("kkd101");		//用户ID
 		List<Map<String, String>> orderToPay = queryOrderByNum(userId,(String)this.get("kkb507"));
 		return orderToPay;
 	}
@@ -126,7 +126,7 @@ public class Kb05Services extends JdbcServicesSupport
 	private List<Map<String, String>> queryOrderNumByState(String userId,String state) throws Exception
 	{
 		StringBuilder sql = new StringBuilder()
-				.append("  select k5.kkb507")
+				.append("  select k5.kkb507,k5.kkb508")
 				.append("    from kb01 k1, kb05 k5")
 				.append("	where k5.kkd101 = ?  and k5.kkb502 = ?")
 				.append("     and k1.kkb101 = k5.kkb101")
@@ -152,10 +152,11 @@ public class Kb05Services extends JdbcServicesSupport
 	private List<Map<String, String>> queryOrderByNum(String userId,String kkb507) throws Exception
 	{
 		StringBuilder sql = new StringBuilder()
-				.append("  select k1.kkb101,k1.kkb105,k1.kkb102,k5.kkb504,k5.kkb505,k5.kkb506,k5.kkb507")
+				.append("  select k1.kkb101,k1.kkb105,k1.kkb102,k5.kkb501,k5.kkb504,")
+				.append("         k5.kkb505,k5.kkb506,k5.kkb507,k5.kkb508")
 				.append("    from kb01 k1, kb05 k5")
 				.append("	where k5.kkd101 = ?")
-				.append("     and k1.kkb101 = k5.kkb101")
+				.append("     and k5.kkb101 = k1.kkb101")
 				.append("     and k5.kkb507 = ?")
 				;
 		
@@ -164,8 +165,26 @@ public class Kb05Services extends JdbcServicesSupport
 				userId,
 				kkb507
 			};
-		return this.queryForList(sql.toString(), args);
 		
+		List<Map<String, String>> result = new ArrayList<>(); 
+		result = this.queryForList(sql.toString(), args);
+		//一笔订单记录下kkb508始终是同步的
+		if (result.get(0).get("kkb508").equals("1"))
+		{
+			StringBuilder sql_1 = new StringBuilder()
+				.append("  select k1.kkb101,k1.kkb105,k1.kkb102,k5.kkb501,k5.kkb504,")
+			  	.append("         k5.kkb505,k5.kkb506,k5.kkb507,k5.kkb508,k6.kkb602,")
+			  	.append("         k6.kkb603")
+				.append("    from kb01 k1, kb05 k5,kb06 k6")
+				.append("	where k5.kkd101 = ?")
+				.append("     and k5.kkb101 = k1.kkb101")
+				.append("	  and k5.kkb501 = k6.kkb501")
+				.append("     and k5.kkb507 = ?")
+				;
+			 result = this.queryForList(sql_1.toString(), args);
+		}
+		
+		return result;
 	}
 
 	
@@ -178,7 +197,7 @@ public class Kb05Services extends JdbcServicesSupport
 	public Map<String, Object> queryInMap() throws Exception 
 	{
 		Map<String, Object> objMap = new HashMap<>();
-		String userId = "1"; //用户Id待修改
+		String userId = (String)this.get("kkd101");		//用户ID
 		//查询出某一状态下的订单的所有的订单号
 		List<Map<String, String>> orderNumber = queryOrderNumByState(userId,(String)this.get("kkb502"));
 		
@@ -208,13 +227,13 @@ public class Kb05Services extends JdbcServicesSupport
 	public List<Object> queryInList() throws Exception 
 	{
 		List<Object> objList = new ArrayList<>();
-		String userId = "1"; //用户Id待修改
+		String userId =(String)this.get("kkd101");		//用户ID
 		//查询出某一状态下的订单的所有的订单号
 		List<Map<String, String>> orderNumber = queryOrderNumByState(userId,(String)this.get("kkb502"));
 		
 		//LinkedHashMap保存加入的顺序
 		Map<String, String> dealOrderNumber = new LinkedHashMap<>();
-		
+
 		//每一个订单号保留一个
 		for(Map<String, String> tempMap : orderNumber) 
 		{
@@ -242,7 +261,7 @@ public class Kb05Services extends JdbcServicesSupport
 		String sql = "delete from kb05 where kkd101 = ? and kkb507 = ?";
 		Object args[] = 
 			{
-				"1",   		//用户id待修改
+				this.get("kkd101"),	//用户ID
 				this.get("kkb507")
 			};
 		String result = null;
@@ -283,14 +302,14 @@ public class Kb05Services extends JdbcServicesSupport
 	 */
 	//	供paySuccessServlet使用(供支付订单后将订单状态由0改为1使用)
 	//(绕开核心控制器的操作无法获取dto通过参数传递解决,访问权限设为public)
-	public boolean updateOrderState(String state,String kkb507,String kkd101) throws Exception
+	public boolean updateOrderState(String state,String kkb507,String userId) throws Exception
 	{
 		String sql = "update kb05 set kkb502 = ? where kkb507 =  ? and kkd101 = ?";
 		Object args[] = 
 			{
 				state,		//订单改变后的状态
 				kkb507,		//商户订单号
-				kkd101 		//用户ID
+				userId		//用户ID
 			};
 		
 		return this.executeUpdate(sql, args) >0;
@@ -302,8 +321,28 @@ public class Kb05Services extends JdbcServicesSupport
 	{
 		String state = "2";								//订单改变后的状态(确认收货)
 		String num = (String)this.get("kkb507");		//商户订单号
-		String userID = "1"; 							//用户ID待修改
-		return updateOrderState(state,num,userID);
+		String userId = (String)this.get("kkd101");
+		return updateOrderState(state,num,userId);
+	}
+	
+	
+	//支付订单前修改订单备注
+	private boolean updateOrderInfo() throws Exception
+	{
+		String sql = "update kb05 set kkb506 = ? where  kkb501 = ?";
+		Object kkb501List[] = this.getIdlist("kkb501List");
+		Object kkb506List[] = this.getIdlist("kkb506List");
+		
+		for(int i = 0; i < kkb501List.length; i++) 
+		{
+			Object args[] = 
+				{
+					kkb506List[i],
+					kkb501List[i],
+				};
+			this.appendSql(sql, args);
+		}
+		return this.executeTransaction();
 	}
 	
 }

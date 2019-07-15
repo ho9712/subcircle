@@ -224,8 +224,15 @@
 														<button type="button" class="btn btn-success" 
 															onclick = "submitForm(${orderPrice},${rows[0].kkb507 },'<%=request.getContextPath()%>/kb05DelOrderToPay.kbhtml')">
 														删除订单</button>
+														<c:choose>
+															<c:when test="${rows[0].kkb508 == 0 }">
 														<button type="button" class="btn btn-warning"
 															 onclick="queryOrderByNum('${flag }','${rows[0].kkb507 }')">去评价</button>
+															</c:when>
+															<c:otherwise>
+																<button type="button" class="btn btn-warning">已评价</button>
+															</c:otherwise>
+														</c:choose>
 													</div>
 												</c:when>
 											</c:choose>

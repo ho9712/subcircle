@@ -25,6 +25,7 @@ public class PaySuccessServlet extends HttpServlet
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		
+		String userId = (String)request.getSession().getAttribute("kkd101");
 		Map<String, String> params = new HashMap<>();
 		try
 		{
@@ -62,15 +63,15 @@ public class PaySuccessServlet extends HttpServlet
 			//付款成功后从用户购物车移除该订单商品并更新该订单状态为1(待收货)
 			String mString_1 = "从购物车中移除该订单商品";
 			String mString_2 = "更改订单状态";
-			String userID = "1";		//用户ID待修改
+			
 			Kb04Services kb04Services = new Kb04Services();
 			Kb05Services kb05Services = new Kb05Services();
 			//System.out.println("=============");
 			try 
 			{
 				//System.out.println("hhhhh");
-				mString_1 += kb04Services.deleteCartItemsAfterPay(out_trade_no,userID)?"成功":"失败";
-				mString_2 += kb05Services.updateOrderState("1",out_trade_no,userID)?"成功":"失败";
+				mString_1 += kb04Services.deleteCartItemsAfterPay(out_trade_no,userId)?"成功":"失败";
+				mString_2 += kb05Services.updateOrderState("1",out_trade_no,userId)?"成功":"失败";
 				//System.out.println(mString_1);
 				//System.out.println(mString_2);
 				

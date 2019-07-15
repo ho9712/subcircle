@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://org.wangxg/jsp/extl" prefix="e" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,7 +31,7 @@ ${rows } --%>
 					</tbody>
 				
 				</table>
-			<form action="<%=request.getContextPath()%>/kb/alipay.trade.page.pay.jsp" method="post">
+			<form id = "myForm" action="" method="post">
 				<table class="table table-hover">
 						<!-- 订单列表 -->
 					<thead>
@@ -45,8 +46,12 @@ ${rows } --%>
 				
 					<tbody>	
 						<c:forEach items="${rows }" var="ins" varStatus="vs">
-							<!-- 订单中商品ID -->
-							<input type="hidden" name="orderItemId" value="${ins.kkb101 }"/>
+							<!-- 订单流水号-->
+							<input type="hidden" name="kkb501List" value="${ins.kkb501 }"/>
+
+							<!-- 订单中商品id-->
+							<input type="hidden" name="kkb101List" value="${ins.kkb101 }"/>
+
 
 							<tr class= "warning">
 								<td style="vertical-align: middle;"><img
@@ -68,34 +73,58 @@ ${rows } --%>
 							</tr>
 							<tr class="info">
 								<c:choose>
-									<c:when test="${flag == 0 || flag == 1}">
+									<c:when test="${flag == 0}">
 										<td>
 											<div style="font-size: 20px;padding-left: 30px;padding-top:15px;">备注</div>
 										</td>
 										<td colspan="3">
-											<textarea placeholder="订单备注...100字以内"
+											<textarea placeholder="订单备注...100字以内"  name = "kkb506List"
 												style="width: 80%; overflow: auto;" rows="2" cols="20">${ins.kkb506 }</textarea>
 										</td>
 									</c:when>
-									<c:when test="${flag == 2}">
+									<c:when test="${flag == 1}">
 										<td>
-											<div style="font-size: 20px;padding-left: 30px;">
-												<span>评分</span>
-												<br>
-												<br>
-												<select name = "kkb602">
-													<option value="5.0" selected="selected">5.0</option>
-													<option value="4.0">4.0</option>
-													<option value="3.0">3.0</option>
-													<option value="2.0">2.0</option>
-													<option value="1.0">1.0</option>
-												</select>
-											</div>
+											<div style="font-size: 20px;padding-left: 30px;padding-top:15px;">备注</div>
 										</td>
 										<td colspan="3">
-											<textarea placeholder="订单评价...100字以内"
-												style="width: 80%; overflow: auto;" rows="3" cols="20"></textarea>
+											<textarea placeholder="订单备注...100字以内"  name = "kkb506List" readonly="readonly"
+												style="width: 80%; overflow: auto;" rows="2" cols="20">${ins.kkb506 }</textarea>
 										</td>
+									</c:when>
+									
+									<c:when test="${flag == 2}">
+										<c:choose>
+										<c:when test="${rows[0].kkb508 == 0 }">
+											<td>
+												<div style="font-size: 20px;padding-left: 30px;">
+													<span>评分</span>
+													<br>
+													<br>
+													<e:select name="kkb602"
+														value="5:5,4:4,3:3,2:2,1:1" defval="${ins.kkb602 }"/>
+												</div>
+											</td>
+											<td colspan="3">
+												<textarea placeholder="订单评价...100字以内" name = "kkb603" 
+													style="width: 80%; overflow: auto;" rows="3" cols="20">${ins.kkb603 }</textarea>
+											</td>
+										</c:when>
+										<c:otherwise>
+											<td>
+												<div style="font-size: 20px;padding-left: 30px;">
+													<span>评分</span>
+													<br>
+													<br>
+													<e:select name="kkb602" readonly="true"
+														value="5:5,4:4,3:3,2:2,1:1" defval="${ins.kkb602 }"/>
+												</div>
+											</td>
+											<td colspan="3">
+												<textarea placeholder="订单评价...100字以内" name = "kkb603"  readonly="readonly"
+													style="width: 80%; overflow: auto;" rows="3" cols="20">${ins.kkb603 }</textarea>
+											</td>
+										</c:otherwise>
+										</c:choose>
 									</c:when>
 								</c:choose>
 
@@ -116,7 +145,8 @@ ${rows } --%>
 												<input type="submit" class="btn btn-success" href="#"
 													formaction="<%=request.getContextPath()%>/kb05DelOrderToPay.kbhtml"
 													value="取消订单">
-												<input type="submit" class="btn btn-warning" href="#"
+												<input type="button" class="btn btn-warning" href="#"
+													onclick = "dealOrder();"
 													value="提交订单">
 											</c:when>
 											<c:when test="${flag == 1}">
@@ -131,8 +161,16 @@ ${rows } --%>
 												<input type="submit" class="btn btn-success" href="#"
 													formaction="<%=request.getContextPath()%>/kb05DelOrderToPay.kbhtml"
 													value="删除订单">
-												<input type="submit" class="btn btn-warning" href="#"
-													value="评价">
+												<c:choose>
+													<c:when test="${rows[0].kkb508 == 0 }">
+														<input type="submit" class="btn btn-warning" href="#"
+															formaction="<%=request.getContextPath()%>/kb06CreateRate.kbhtml"
+															value="评价">
+													</c:when>
+													<c:otherwise>
+														<button type="button" class="btn btn-warning">已评价</button>
+													</c:otherwise>
+												</c:choose>
 											</c:when>
 										</c:choose>
 									</div>
@@ -210,6 +248,22 @@ ${rows } --%>
 		document.getElementById("WIDsubject").value = "向翟种付款";
 	}
 	
+	//先更新订单信息(备注)再前往支付
+	function dealOrder()
+	{
+		$("#myForm").attr("action","<%=request.getContextPath()%>/kb05UpdateOrderInfo.kbhtml")
+		$("#myForm").ajaxSubmit({
+	            type: "POST",
+	            success: function (data)
+	            {
+	            	if(data)
+	            	{
+	            		$("#myForm").attr("action","<%=request.getContextPath()%>/kb/alipay.trade.page.pay.jsp");
+	            		 $("#myForm").submit();	//前往支付
+	            	}
+	            }//endsuccess
+	       });//endajax
+	}
 	
 	window.onload = function()
 	{
@@ -221,6 +275,7 @@ ${rows } --%>
 
 
 <script src="js/jquery.js"></script>
+<script src="https://cdn.bootcss.com/jquery.form/4.2.1/jquery.form.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 
 </body>

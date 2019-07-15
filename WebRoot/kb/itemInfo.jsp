@@ -8,21 +8,20 @@
 <jsp:include page="index.jsp" flush="true"/>	<!-- 引入导航栏 -->
 </head>
 <body>
-<%-- ${msg } --%>
 	<div class="container-fluid">
 		<!-- 容器 -->
 		<div class="row-fluid" height="400px">
 			<!-- row1 商品展示区-->
 			<div class="span3 offset2" align="center">
 				<!-- row1左--商品图片区-->
-				<img class="img-thumbnail" src="${ins.kkb105 }" width="300"
+				<img class="img-thumbnail" src="${objList[0].kkb105 }" width="300"
 					height="300" />
 			</div>
 			<!-- row1左边结束--商品图片区-->
 
 			<div class="span7" align="left">
 				<!-- row1右边--商品信息区-->
-				<h3>${ins.kkb102 }</h3>
+				<h3>${objList[0].kkb102 }</h3>
 				<table class="table">
 					<!-- <thead>
 						<tr>
@@ -35,23 +34,23 @@
 					<tbody>
 						<tr>
 							<td>售价</td>
-							<td>${ins.kkb103 }</td>
+							<td>${objList[0].kkb103 }</td>
 						</tr>
 						<tr class="success">
 							<td>商品类型</td>
-							<td>${ins.kkb106 }</td>
+							<td>${objList[0].kkb106 }</td>
 						</tr>
 						<tr class="error">
 							<td>关联作品</td>
-							<td>${ins.kkb107 }</td>
+							<td>${objList[0].kkb107 }</td>
 						</tr>
 						<tr class="warning">
 							<td>商品描述</td>
-							<td>${ins.kkb104 }</td>
+							<td>${objList[0].kkb104 }</td>
 						</tr>
 						<tr class="info">
 							<td>商品库存</td>
-							<td>${ins.kkb108 }</td>
+							<td>${objList[0].kkb108 }</td>
 						</tr>
 					</tbody>
 				</table>
@@ -62,8 +61,8 @@
 				</label>
 				
 					<!-- 隐藏域传输数据  -->
-					<input type="hidden" id="kkb101" name="kkb101" value="${ins.kkb101 }" /> 
-					<input type="hidden" id="kkb505" name="kkb505" value="${ins.kkb103 }" /> 
+					<input type="hidden" id="kkb101" name="kkb101" value="${objList[0].kkb101 }" /> 
+					<input type="hidden" id="kkb505" name="kkb505" value="${objList[0].kkb103 }" /> 
 					<input type="hidden" id="kkb507" name="kkb507" value="" />
 					<!-- 生成的是待支付订单kkb502的状态是0 -->
 					<input type="hidden" id="kkb502" name="kkb502" value="0" />
@@ -73,9 +72,9 @@
 					
 				<div class="btn-group btn-group-sm">
 					<button type="button" class="btn btn-success"
-						onclick="onCollect(${ins.kkb101 })">收藏</button>
+						onclick="onCollect(${objList[0].kkb101 })">收藏</button>
 					<button type="button" class="btn btn-warning"
-							onclick="onAddToCart(${ins.kkb101 })">加入购物车</button>
+							onclick="onAddToCart(${objList[0].kkb101 })">加入购物车</button>
 					<button type="button" class="btn btn-danger"
 							onclick="submitForm();">
 						立即购买
@@ -95,13 +94,30 @@
 				<table class="table">
 					<tbody>
 						<tr class="error">
+						<c:set var="score" value=""/>
+						<c:set var="count" value="${0}"/>
+						<c:forEach items="${objList[1] }" var="rateInfo" varStatus="vs">
+							<c:set var="score" value="${rateInfo.kkb602 + score}"/>
+							<c:set var="count" value="${1 + count}"/>
+						</c:forEach>
 							<td>评分</td>
-							<td>5</td>
+							<td>
+							<c:choose>
+								<c:when test="${count != 0 }">							
+									${score/count }
+								</c:when>
+								<c:otherwise>
+									暂无评分信息
+								</c:otherwise>
+							</c:choose>
+							</td>
+							<td></td>
 						</tr>
-						<c:forEach begin="1" step="1" end="15" varStatus="vs">
+						<c:forEach items="${objList[1] }" var="rateInfo" varStatus="vs">
 							<tr class="info">
-								<td>用户${vs.count }</td>
-								<td>干得漂亮${vs.count }</td>
+								<td>用户${rateInfo.kkd101 }</td>
+								<td>${rateInfo.kkb602 }</td>
+								<td>${rateInfo.kkb603 }</td>
 							</tr>
 						</c:forEach>
 					</tbody>

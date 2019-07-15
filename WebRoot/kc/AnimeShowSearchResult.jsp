@@ -88,7 +88,7 @@
     
 </div><div id="headerSearchWrapper">
 <div id="headerSearch">
-        <form action="kc02Search.kchtml" method="post">
+        <form action="" method="post">
     <div class="inner">
 <select name="cat" id="siteSearchSelect">
 <option value="all">全部</option>
@@ -96,7 +96,7 @@
 <option value="1">书籍</option>
 <option value="4">游戏</option>         
 </select>
-<input id="search_text" name="kksk" class="textfield" type="text" />
+<input id="search_text" name="search_text" class="textfield" type="text" />
         <input type="submit" name="submit" value="搜索" class="search" />
     </div>
 </form>
@@ -111,6 +111,19 @@
 <div id="header">
     <h1>全部动画</h1>
 </div>	
+	
+	
+	<div id="columnSearch">
+    <div class="searchBox clearit">
+        <h1>动画搜索</h1>
+                <form action="/subject_search" method="post">
+            <input name="cat" value="2" type="hidden" />
+            <input value="" name="search_text" class="searchInputL" type="text" />
+            <input class="searchBtnL" title="Search" value="搜索" type="submit" />
+        </form>
+        
+            </div>    
+</div>
 	
 	<div class="row-fluid">
 		<div class="span12">

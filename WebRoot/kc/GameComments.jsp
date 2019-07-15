@@ -4,7 +4,7 @@
 <html>
 <head>
 
-<title>AnimeList</title>
+<title>评论们~</title>
 <link href="<%=path %>/css/bangumi.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -43,12 +43,8 @@
 </ul>
 </div>
 </div>
-
-<!-- 
-登录模块和头像导航栏的判断
- -->
         
-    <div class="idBadgerNeue">
+        <div class="idBadgerNeue">
     <c:choose>
     <c:when test="${sessionScope.user.kkd101!=null }">
      <div class="idBadgerNeue">
@@ -88,7 +84,7 @@
     
 </div><div id="headerSearchWrapper">
 <div id="headerSearch">
-        <form action="kc02Search.kchtml" method="post">
+        <form action="" method="post">
     <div class="inner">
 <select name="cat" id="siteSearchSelect">
 <option value="all">全部</option>
@@ -96,7 +92,7 @@
 <option value="1">书籍</option>
 <option value="4">游戏</option>         
 </select>
-<input id="search_text" name="kksk" class="textfield" type="text" />
+<input id="search_text" name="search_text" class="textfield" type="text" />
         <input type="submit" name="submit" value="搜索" class="search" />
     </div>
 </form>
@@ -107,75 +103,126 @@
 
 
 
-<div id="main" class="png_bg">
-<div id="header">
-    <h1>全部动画</h1>
-</div>	
+<div id="main" class="png_bg"></div>
+<div id="headerSubject" class="clearit" xmlns:v="http://rdf.data-vocabulary.org/#" typeof="v:Movie">       
+    <div class="subjectNav">
+<ul class="navTabs clearit">
+        <li><a href="kc04ShowDetail.kchtml?kkc101=${param.kkc101}">概览</a></li>       
+        <li><a href=""   class="focus">评论</a></li>
+        <li><a href="" >讨论版</a></li>
+        </ul>
 	
-	<div class="row-fluid">
-		<div class="span12">
-			<ul id="browserItemList" class="browserFull">
-			<c:choose>
+</div>
+</div>
+<div class="mainWrapper"><div class="columns clearit">
+<div id="columnInSubjectA" class="column">
+<div class="content_inner clearit"><div id="comment_box"><div class="item clearit">
+
+    </div>
+    
+
+<div class="subject_section">
+
+
+
+
+
+<c:choose>
 			<c:when test="${rows!=null }">
-			<c:forEach items="${rows }" var="ins" varStatus="vs">
+			<c:forEach items="${rows }" var="comments" varStatus="vs">
 			<c:choose>
 			<c:when test="${(vs.count)%2 ==1 }">
-			<li id="${ins.kkc101}" class="item odd clearit">
-    <a href="Kc02ShowDetail.kchtml?kkc101=${ins.kkc101}" class="subjectCover cover ll">       
-            <span class="image">
-                        <img src="${ins.kkc204 }" class="cover" />
-                        
-        </span>
-        <span class="overlay"></span>
-        
-    </a>
-    <div class="inner">
-                                <h3>
-                    <a href="Kc02ShowDetail.kchtml?kkc101=${ins.kkc101}" class="l">${ins.kkc202 }</a> 
-                				</h3>
-                
-        <span class="rank"><small>Rank ${ins.kkc208 }</small></span>        
-        <p class="info tip">${ins.kkc205 }
-                                             </p>
-                <p class="rateInfo">
-                        <span class="sstars9 starsinfo"></span> <small class="fade">${ins.kkc206 }</small> <span class="tip_j">(${ins.kkc207 }人评分)</span>
-                    </p>             
-    </div>
-</li>
+
+
+
+
+<div class="item clearit">
+<a href="" class="avatar">
+<span class="avatarNeue avatarSize32 ll" style="background-image:url('${comments.kkd108 }');background-size: 100% auto; "></span>
+</a>
+<div class="text_main_even">
+<div class="text">
+
+<!-- 注意此处的星星样式以及评分
+sstars1-10即评分 根据数据读取即可
+链接里是用户个人中心的链接
+图片复用个人中心的头像
+用户ID
+ -->
+ 
+ 
+            <a href="" class="l">${comments.kkd105 }</a> <small class="grey">${comments.kkc704 }</small> <span class="sstars${comments.kkc702 } starsinfo"></span>         <p>${comments.kkc703 }</p>
+</div>
+</div>
+</div>
+
+
 </c:when>
 <c:otherwise>
-<li id="${ins.kkc101}" class="item even clearit">
-    <a href="Kc02ShowDetail.kchtml?kkc101=${ins.kkc101}" class="subjectCover cover ll">       
-            <span class="image">
-                        <img src="${ins.kkc204 }" class="cover" />
-                        
-        </span>
-        <span class="overlay"></span>
-        
-    </a>
-    <div class="inner">
-                                <h3>
-                    <a href="Kc02ShowDetail.kchtml?kkc101=${ins.kkc101}" class="l">${ins.kkc202 }</a> 
-                				</h3>
-                
-        <span class="rank"><small>Rank ${ins.kkc208 }</small></span>        
-        <p class="info tip">${ins.kkc205 }
-                                             </p>
-                <p class="rateInfo">
-                        <span class="sstars9 starsinfo"></span> <small class="fade">${ins.kkc206 }</small> <span class="tip_j">(${ins.kkc207 }人评分)</span>
-                    </p>             
-    </div>
-</li>
+<div class="item clearit">
+<a href="" class="avatar"><span class="avatarNeue avatarSize32 rr" style="background-image:url('${comments.kkd108 }');background-size: 100% auto;"></span></a>
+<div class="text_main_odd">
+<div class="text">
+
+<!-- 注意此处的星星样式以及评分
+sstars1-10即评分 根据数据读取即可
+链接里是用户个人中心的链接
+图片复用个人中心的头像
+用户ID
+ -->
+ 
+ 
+            <a href="" class="l">${comments.kkd105 }</a> <small class="grey">${comments.kkc704 }</small> <span class="sstars${comments.kkc702 } starsinfo"></span>         <p>${comments.kkc703 }</p>
+</div>
+</div>
+</div>
 </c:otherwise>
 </c:choose>
 </c:forEach>
 </c:when>
-</c:choose>								
-			</ul>
-		</div>
-	</div>
-	</div>
-	<script type="text/javascript" src="<%=path %>/js/jquery.js"></script>
+</c:choose>
+
+
+
+
+
+</div>
+</div>  
+</div>      
+</div>
+
+</div>
+</div>
+
+<!-- <script type="text/javascript" src="<%=path %>/js/jquery.js"></script>
 <script type="text/javascript" src="<%=path %>/js/bootstrap.min.js"></script>
+ -->
+	
+
+<script src="<%=path %>/js/bangumi.js" type="text/javascript"></script>
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4049707-6']);
+    _gaq.push(['_setDomainName', 'none']);
+    _gaq.push(['_setAllowLinker', true]);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function () {
+    $(document).share({
+        title: '「カウボーイビバップ」(来自 Bangumi 番组计划)',
+        content: "",
+        url: document.URL    });
+});
+</script>
+<script type="text/javascript">chiiLib.subject.init();</script>
 </body>
 </html>

@@ -21,7 +21,7 @@ public class Kb04Services extends JdbcServicesSupport
 		Object args[] = 
 			{
 				this.get("kkb101"),
-				"1" 	//用户id待修改
+				this.get("kkd101")		//用户ID
 			};
 		return this.queryForMap(sql.toString(),args);
 	}
@@ -55,7 +55,7 @@ public class Kb04Services extends JdbcServicesSupport
 			{
 				this.get("kkb402"),
 				this.get("kkb101"),
-				"1"		//用户ID之后修正
+				this.get("kkd101")		//用户ID
 			};
 		
 		return this.executeUpdate(sql_2.toString(), args_2) > 0;
@@ -80,7 +80,7 @@ public class Kb04Services extends JdbcServicesSupport
 		
 		Object args[] = 
 		{
-			"1" //用户id待替换	
+			this.get("kkd101")		//用户ID	
 		};
 		return  this.queryForList(sql.toString(), args);
 	}
@@ -96,7 +96,7 @@ public class Kb04Services extends JdbcServicesSupport
 		Object args[] = 
 			{
 				this.get("kkb101"),
-				"1"			//用户id待修改
+				this.get("kkd101")		//用户ID
 			};
 		return this.executeUpdate(sql, args) > 0;
 	}
@@ -113,7 +113,7 @@ public class Kb04Services extends JdbcServicesSupport
 			{
 				this.get("kkb402"),
 				this.get("kkb101"),
-				"1"			//用户id待修改
+				this.get("kkd101")		//用户ID
 			};
 		return this.executeUpdate(sql, args) > 0;
 	}
@@ -123,7 +123,7 @@ public class Kb04Services extends JdbcServicesSupport
 	 * @param kkb507
 	 */
 	//(绕开核心控制器的操作无法获取dto通过参数传递解决,访问权限设为public)
-	public boolean deleteCartItemsAfterPay(String kkb507,String userID)throws Exception
+	public boolean deleteCartItemsAfterPay(String kkb507,String UserId)throws Exception
 	{
 		StringBuilder sql = new StringBuilder()
 			.append(" delete ")
@@ -138,7 +138,7 @@ public class Kb04Services extends JdbcServicesSupport
 		Object args[] = 
 			{
 				kkb507,		//商户订单号
-				userID  		//用户id待修改
+				UserId		//用户ID
 			};
 		return this.executeUpdate(sql.toString(), args)  > 0;
 	}

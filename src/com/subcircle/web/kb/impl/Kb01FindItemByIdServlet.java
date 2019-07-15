@@ -8,7 +8,7 @@ public class Kb01FindItemByIdServlet extends Kb01Controller
 	@Override
 	public String execute() throws Exception 
 	{
-		this.showMarketItemInfo();		//查询商品信息
+		this.showItemInfo();		//查询商品信息
 		this.update("insertBrowse", "找到该商品并生成新的浏览记录");	//生成用户的浏览记录
 		return "kb/itemInfo.jsp";
 	}
