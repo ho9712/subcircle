@@ -146,7 +146,7 @@
 </div>
                    
                    
-                    <!-- 以下为页面内容 -->
+<!-- 以下为页面内容 -->
 <div id="main" class="png_bg"><div id="header">
 <h1>发表新贴~ </h1>
 </div>

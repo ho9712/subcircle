@@ -6,7 +6,7 @@ public class Ka02PostAnswerToAnswerServlet extends Ka02Controller
 	@Override
 	public String execute() throws Exception 
 	{
-		this.update("postAnswer","1");
+		this.update("postAnswer","»Ø¸´");
 		return "ka01PostContent.kahtml";
 	}
 }

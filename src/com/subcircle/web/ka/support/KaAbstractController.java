@@ -136,6 +136,11 @@ public abstract class KaAbstractController implements ControllerInterface
 	/*********************************************************************
 	 * 						根据需要在此写方法
 	 *********************************************************************/
+	
+	/**
+	 *  处理类型查询及搜索框模糊匹配查询
+	 * @throws Exception
+	 */
 	protected final String queryByCondition()throws Exception
 	{
 		List<Map<String,String>> rows=this.services.queryByCondition();
@@ -148,6 +153,7 @@ public abstract class KaAbstractController implements ControllerInterface
 			this.saveAttribute("msg", "没有符合条件的数据!");
 		}
 		
+		System.out.println(this.dto.get("id"));
 		if(this.dto.get("id").toString().equals("0"))
 		{
 			return "ka/mainForum.jsp";
@@ -201,6 +207,5 @@ public abstract class KaAbstractController implements ControllerInterface
 			this.saveAttribute("msg", "没有符合条件的数据!");
 		}	
 	}
-	
 	
 }

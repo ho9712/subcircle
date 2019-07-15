@@ -180,7 +180,7 @@
      <!-- 搜索框 -->
     <div id="forumSearch">
       <form action="<%=path %>/ka01SearchResult.kahtml" method="post">
-      	<input type="hidden" name="id" value="0">
+      	<input type="hidden" name="id" value="3">
         <div class="inner">
           <input id="search_text" name="search_text" class="textfield" type="text"  style="float:left;width:80%;height:40px;border:2px solid #34495E"/>
           <input type="submit" name="submit" value="搜索" class="search" style="float:left;width:10%;height:40px;border:2px solid #34495E;background-color:#34495E;color:#ffffff"/>

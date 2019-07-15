@@ -11,7 +11,6 @@ public class Ka04Services extends JdbcServicesSupport
 	@Override
 	public Map<String,String> findById()throws Exception
     {
-    	//1.编写SQL语句
     	StringBuilder sql=new StringBuilder()
     			.append("select x.kka102,x.kka103,a.kkd105,x.kka105")
     			.append("  from ka01 x,kd01 a")
@@ -20,6 +19,8 @@ public class Ka04Services extends JdbcServicesSupport
     	//执行查询
     	return this.queryForMap(sql.toString(), this.get("kka101"));
     }
+	
+	
 	/**
      * 不定条件查询
      * @return
@@ -40,13 +41,6 @@ public class Ka04Services extends JdbcServicesSupport
 	  				.append(" from ka01 x,kd01 a,syscode b ")
 	  				.append(" where x.kka103=b.fcode and b.fname='kka103'")
 	  				.append(" order by x.kka105 DESC")
-	  				//.append(" where a.kkd101=1")    //模拟用户1
-	  				//select b.kka102,s.fvalue cnkka103,b.kka104,c.kkd105,b.kka105
-	  			 // from ka04 a,ka01 b,kd01 c,syscode s
-	  			// where b.kka103=s.fcode and s.fname='kka103'
-	  			 //  and a.kka101 = b.kka101
-	  			 //  and a.kkd101 = c.kkd101
-	  			  // and c.kkd101 = 1
 	  				;
 	  		
 	  		
@@ -83,5 +77,30 @@ public class Ka04Services extends JdbcServicesSupport
 	  		Object args[] ={};
 	  		return this.queryForList(sql.toString(), args);
 	  }
+	  
+	  
+	  
+	    /**
+	     * 收藏喜爱贴子，向收藏表录入数据
+	     * @return
+	     * @throws Exception
+	     */
+		 private boolean addCollection() throws Exception
+		    {
+		    	//1.编写SQL语句
+		    	StringBuilder sql=new StringBuilder()
+		    			.append("insert into ka04(kkd101,kka101,kka402,kka403)")
+		    			.append("          values(?,?,CURRENT_TIMESTAMP,1)")
+		    			;
+		    	
+		    	//2.编写参数数组
+		    	Object args[]=
+		    		{  
+		    		    //此处硬编码用户流水号为1，以后通过获取用户流水号动态更新。
+		    			"1",
+		    			this.get("kka101")	
+		    	    };
+		        return this.executeUpdate(sql.toString(), args)>0;	
+		    }
   
 }

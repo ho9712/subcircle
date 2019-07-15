@@ -104,7 +104,7 @@ ${ins.kka101 }
 <li><a href="/real/browser/platform/en" class="nav">欧美剧</a></li>
 </ul>
 </li>
-            <li><a href="/mono" class="top"><span>人物</span></a>
+<li><a href="/mono" class="top"><span>人物</span></a>
 <div class="clear"></div>
 <ul class="clearit">
 <li><a href="/character" class="nav">虚构人物</a></li>
@@ -198,17 +198,21 @@ ${ins.kka101 }
 <div class="mainWrapper">
 <div class="columns clearit">
 <div id="columnA" class="column">
-                         <!-- 贴子主体（头部） -->
+                        
+  <!-- 贴子主体（头部） -->
   <div class="SidePanel png_bg" style="width:85%;margin-left: 5px">
     <div id="columnA">
       <font size="3" style="width:80%;height:15px;margin-left: 10px">
-        <a href="#">
+          <a href="#">
           <b>
             ${ins.kka102 }
           </b>
-        </a>
+          </a>
       </font>
-    </div>
+      <font size="3" style="width:80%;height:15px;margin-left: 70% ">
+            <a href="#" onclick="itemInfo(${ins.kka101 })">收藏 </a>
+      </font> 
+      </div>
     <br>
     <div  id="columnB" style="margin-left: 15px">
       ${ins.kka104 }
@@ -254,12 +258,10 @@ ${ins.kka101 }
   <div id="panel" style="display:none;">
    <div class="collectBox clearit">
     <form method="post" action="ka02PostAnswer.kahtml">
-    
     <input type="hidden" name="kka201" value="${tempInS.kka201 }">
       <div class="collectType cell">
         <label><input value="1" id="wish" name="interest" onclick="GenInterestBox('wish')"  type="radio"> 举报</label>&nbsp;&nbsp;
         <label><input value="2" id="collect" name="interest" onclick="GenInterestBox('collect')"  type="radio"> 回复</label>&nbsp;&nbsp;
-        
       </div>
       
 
@@ -342,7 +344,7 @@ ${ins.kka101 }
 <div class="SidePanel png_bg" align="left">
 <h2>/ 我参加的小组 </h2>
     <ul class="groupsLine">
-            </ul>
+    </ul>
 </div>
 </div>
 </div>
@@ -365,23 +367,6 @@ ${ins.kka101 }
     </div>
 </div>
 
-<div id="robot"  style="display:none;">
-<div id="ukagaka_shell">
-<div class="ui_10 shell_1">
-<div id="ukagaka_voice"></div>
-<div id="robot_balloon" class="ukagaka_balloon_pink">
-<div class="tools"><a href="javascript:void(0);" id="ukagaka_menu"><img src="/img/ukagaka/menu.gif" /></a></div>    <div class="inner">
-<div id="robot_speech" class="speech" >
-必须守护的东西多的人容易操纵真是方便啊。</div>
-<div id="robot_speech_js" class="speech">
-    </div>
-</div>
-<div class="ukagaka_balloon_pink_bottom"></div>	
-</div>
-</div>
-</div>
-</div>
-
 
 <script src="js/bangumi.js" type="text/javascript"></script>
 <script src="<%=path %>/js/bangumi.js" type="text/javascript"></script>
@@ -402,9 +387,15 @@ ${ins.kka101 }
     	var kka202 = document.getElementById("comment");
     	kka202.value = kka202.innerHTML;
     	alert(kka202.innerHTML)
-	}
+}
     
 </script>
 <script type="text/javascript">chiiLib.login.init();</script>
+<script type="text/javascript">
+function itemInfo(kka101)
+{
+	window.location.href = "<%=path%>/ka04AddCollection.kahtml?kka101=" + kka101;
+}
+</script>
 </body>
 </html>
