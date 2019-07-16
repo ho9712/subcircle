@@ -88,15 +88,15 @@
     
 </div><div id="headerSearchWrapper">
 <div id="headerSearch">
-        <form action="" method="post">
+        <form action="kc02Search.kchtml" method="post">
     <div class="inner">
-<select name="cat" id="siteSearchSelect">
+    <select name="kkcs" id="siteSearchSelect">
 <option value="all">全部</option>
 <option value="2">动画</option>
 <option value="1">书籍</option>
-<option value="4">游戏</option>         
+<option value="4">游戏</option> 
 </select>
-<input id="search_text" name="search_text" class="textfield" type="text" />
+<input id="search_text" name="kksk" class="textfield" type="text" />
         <input type="submit" name="submit" value="搜索" class="search" />
     </div>
 </form>
@@ -108,17 +108,15 @@
 
 
 <div id="main" class="png_bg">
-<div id="header">
-    <h1>全部动画</h1>
-</div>	
+
 	
 	
 	<div id="columnSearch">
     <div class="searchBox clearit">
-        <h1>动画搜索</h1>
-                <form action="/subject_search" method="post">
-            <input name="cat" value="2" type="hidden" />
-            <input value="" name="search_text" class="searchInputL" type="text" />
+        <h1>条目搜索</h1>
+                <form action="kc02Search.kchtml" method="post">
+            <input name="kkcs" value="all" type="hidden" />
+            <input value="" name="kksk" class="searchInputL" type="text" />
             <input class="searchBtnL" title="Search" value="搜索" type="submit" />
         </form>
         
@@ -133,7 +131,8 @@
 			<c:forEach items="${rows }" var="ins" varStatus="vs">
 			<c:choose>
 			<c:when test="${(vs.count)%2 ==1 }">
-			<li id="${ins.kkc101}" class="item odd clearit">
+			<c:choose>
+			<c:when test="${ins.kkc202!=null}"><li id="${ins.kkc101}" class="item odd clearit">
     <a href="Kc02ShowDetail.kchtml?kkc101=${ins.kkc101}" class="subjectCover cover ll">       
             <span class="image">
                         <img src="${ins.kkc204 }" class="cover" />
@@ -157,7 +156,77 @@
 </li>
 </c:when>
 <c:otherwise>
-<li id="${ins.kkc101}" class="item even clearit">
+<c:choose>
+<c:when test="${ins.kkc302!=null}">
+
+<li id="${ins.kkc101}" class="item odd clearit">
+    <a href="Kc03ShowDetail.kchtml?kkc101=${ins.kkc101}" class="subjectCover cover ll">       
+            <span class="image">
+                        <img src="${ins.kkc304 }" class="cover" />
+                        
+        </span>
+        <span class="overlay"></span>
+        
+    </a>
+    <div class="inner">
+                                <h3>
+                    <a href="Kc03ShowDetail.kchtml?kkc101=${ins.kkc101}" class="l">${ins.kkc302 }</a> 
+                				</h3>
+                
+        <span class="rank"><small>Rank ${ins.kkc308 }</small></span>        
+        <p class="info tip">${ins.kkc305 }
+                                             </p>
+                <p class="rateInfo">
+                        <span class="sstars9 starsinfo"></span> <small class="fade">${ins.kkc306 }</small> <span class="tip_j">(${ins.kkc307 }人评分)</span>
+                    </p>             
+    </div>
+</li>
+
+</c:when>
+<c:otherwise>
+<c:choose>
+<c:when test="${ins.kkc402!=null}">
+
+<li id="${ins.kkc101}" class="item odd clearit">
+    <a href="Kc04ShowDetail.kchtml?kkc101=${ins.kkc101}" class="subjectCover cover ll">       
+            <span class="image">
+                        <img src="${ins.kkc404 }" class="cover" />
+                        
+        </span>
+        <span class="overlay"></span>
+        
+    </a>
+    <div class="inner">
+                                <h3>
+                    <a href="Kc04ShowDetail.kchtml?kkc101=${ins.kkc101}" class="l">${ins.kkc402 }</a> 
+                				</h3>
+                
+        <span class="rank"><small>Rank ${ins.kkc408 }</small></span>        
+        <p class="info tip">${ins.kkc405 }
+                                             </p>
+                <p class="rateInfo">
+                        <span class="sstars9 starsinfo"></span> <small class="fade">${ins.kkc406 }</small> <span class="tip_j">(${ins.kkc407 }人评分)</span>
+                    </p>             
+    </div>
+</li>
+</c:when>
+</c:choose>
+</c:otherwise>
+
+
+
+</c:choose>
+
+
+</c:otherwise>
+
+
+			
+			</c:choose>
+</c:when>
+<c:otherwise>
+			<c:choose>
+			<c:when test="${ins.kkc202!=null}"><li id="${ins.kkc101}" class="item even clearit">
     <a href="Kc02ShowDetail.kchtml?kkc101=${ins.kkc101}" class="subjectCover cover ll">       
             <span class="image">
                         <img src="${ins.kkc204 }" class="cover" />
@@ -179,6 +248,75 @@
                     </p>             
     </div>
 </li>
+</c:when>
+<c:otherwise>
+<c:choose>
+<c:when test="${ins.kkc302!=null}">
+
+<li id="${ins.kkc101}" class="item even clearit">
+    <a href="Kc03ShowDetail.kchtml?kkc101=${ins.kkc101}" class="subjectCover cover ll">       
+            <span class="image">
+                        <img src="${ins.kkc304 }" class="cover" />
+                        
+        </span>
+        <span class="overlay"></span>
+        
+    </a>
+    <div class="inner">
+                                <h3>
+                    <a href="Kc03ShowDetail.kchtml?kkc101=${ins.kkc101}" class="l">${ins.kkc302 }</a> 
+                				</h3>
+                
+        <span class="rank"><small>Rank ${ins.kkc308 }</small></span>        
+        <p class="info tip">${ins.kkc305 }
+                                             </p>
+                <p class="rateInfo">
+                        <span class="sstars9 starsinfo"></span> <small class="fade">${ins.kkc306 }</small> <span class="tip_j">(${ins.kkc307 }人评分)</span>
+                    </p>             
+    </div>
+</li>
+
+</c:when>
+<c:otherwise>
+<c:choose>
+<c:when test="${ins.kkc402!=null}">
+
+<li id="${ins.kkc101}" class="item even clearit">
+    <a href="Kc04ShowDetail.kchtml?kkc101=${ins.kkc101}" class="subjectCover cover ll">       
+            <span class="image">
+                        <img src="${ins.kkc404 }" class="cover" />
+                        
+        </span>
+        <span class="overlay"></span>
+        
+    </a>
+    <div class="inner">
+                                <h3>
+                    <a href="Kc04ShowDetail.kchtml?kkc101=${ins.kkc101}" class="l">${ins.kkc402 }</a> 
+                				</h3>
+                
+        <span class="rank"><small>Rank ${ins.kkc408 }</small></span>        
+        <p class="info tip">${ins.kkc405 }
+                                             </p>
+                <p class="rateInfo">
+                        <span class="sstars9 starsinfo"></span> <small class="fade">${ins.kkc406 }</small> <span class="tip_j">(${ins.kkc407 }人评分)</span>
+                    </p>             
+    </div>
+</li>
+</c:when>
+</c:choose>
+</c:otherwise>
+
+
+
+</c:choose>
+
+
+</c:otherwise>
+
+
+			
+			</c:choose>
 </c:otherwise>
 </c:choose>
 </c:forEach>

@@ -86,11 +86,11 @@
 <div id="headerSearch">
         <form action="kc02Search.kchtml" method="post">
     <div class="inner">
-<select name="cat" id="siteSearchSelect">
+    <select name="kkcs" id="siteSearchSelect">
 <option value="all">全部</option>
 <option value="2">动画</option>
 <option value="1">书籍</option>
-<option value="4">游戏</option>         
+<option value="4">游戏</option> 
 </select>
 <input id="search_text" name="kksk" class="textfield" type="text" />
         <input type="submit" name="submit" value="搜索" class="search" />
@@ -161,11 +161,16 @@
            <div class="SidePanel png_bg">
 <h2>收藏盒</h2>
         <div id="SecTab">
+        
+        <c:choose>
+    <c:when test="${sessionScope.user.kkd101!=null }">
     <ul class="secTab tiny">
         <li><a href="#TB_inline?height=350&amp;width=500&amp;inlineId=panel" title="加入收藏"  onclick="GenInterestBox('wish')" class="thickbox"><span>收藏</span></a></li>
         <li><a href="#TB_inline?height=350&amp;width=500&amp;inlineId=panel" title="加入收藏"  onclick="GenInterestBox('collect')" class="thickbox"><span>收藏并评分</span></a></li>
         
         </ul>
+        </c:when>
+        </c:choose>
     </div>
     <div class="clear"></div>
     <hr class="board" />
@@ -374,7 +379,7 @@ sstars1-10即评分 根据数据读取即可
 
 
 
-</div><a href="kc02ShowComments.kchtml?kkc101='${param.kkc101 }'" class="more">更多吐槽 »</a>
+</div><a href="kc02ShowComments.kchtml?kkc101=${param.kkc101 }" class="more">更多吐槽 »</a>
 </div>  
 </div>      
 </div>

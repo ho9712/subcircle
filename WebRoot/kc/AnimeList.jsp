@@ -90,11 +90,11 @@
 <div id="headerSearch">
         <form action="kc02Search.kchtml" method="post">
     <div class="inner">
-<select name="cat" id="siteSearchSelect">
+ <select name="kkcs" id="siteSearchSelect">
 <option value="all">全部</option>
 <option value="2">动画</option>
 <option value="1">书籍</option>
-<option value="4">游戏</option>         
+<option value="4">游戏</option>
 </select>
 <input id="search_text" name="kksk" class="textfield" type="text" />
         <input type="submit" name="submit" value="搜索" class="search" />
@@ -172,6 +172,32 @@
 </c:when>
 </c:choose>								
 			</ul>
+			
+			<input type="hidden" value="${empty param.page?'1':param.page}"   />
+			
+			 <div class="clearit"><div class="page_inner">
+			 
+			 <a href="kc02ShowRank.kchtml?page=1" class="p">|&lsaquo;</a>
+			 <c:if test="${param.page >1}"><a href="kc02ShowRank.kchtml?page=${param.page-1 }" class="p">&lsaquo;&lsaquo;</a></c:if>
+			 <strong class="p_cur">${empty param.page?'1':param.page}</strong>
+			 <a href="kc02ShowRank.kchtml?page=${empty param.page?'2':param.page+1}" class="p">${empty param.page?'2':param.page+1}</a>
+			 <a href="kc02ShowRank.kchtml?page=${empty param.page?'3':param.page+2}" class="p">${empty param.page?'3':param.page+2}</a>
+			 <a href="kc02ShowRank.kchtml?page=${empty param.page?'4':param.page+3}" class="p">${empty param.page?'4':param.page+3}</a>
+			 <a href="kc02ShowRank.kchtml?page=${empty param.page?'5':param.page+4}" class="p">${empty param.page?'5':param.page+4}</a>
+			 <a href="kc02ShowRank.kchtml?page=${empty param.page?'6':param.page+5}" class="p">${empty param.page?'6':param.page+5}</a>
+			 <a href="kc02ShowRank.kchtml?page=${empty param.page?'7':param.page+6}" class="p">${empty param.page?'7':param.page+6}</a>
+			 <a href="kc02ShowRank.kchtml?page=${empty param.page?'8':param.page+7}" class="p">${empty param.page?'8':param.page+7}</a>
+			 <a href="kc02ShowRank.kchtml?page=${empty param.page?'9':param.page+8}" class="p">${empty param.page?'9':param.page+8}</a>
+			 <a href="kc02ShowRank.kchtml?page=${empty param.page?'10':param.page+9}" class="p">${empty param.page?'10':param.page+9}</a>
+			 <c:if test="${param.page <640 }"><a href="kc02ShowRank.kchtml?page=${param.page+1 }" class="p">&rsaquo;&rsaquo;</a></c:if>			 
+			 <a href="kc02ShowRank.kchtml?page=640" class="p">&rsaquo;|</a>
+			 <a class="p_pages" style="padding: 0px">
+			 <input class="inputtext" style="width:30px;" type="text" name="custompage" onKeyDown="if(event.keyCode==13) {window.location='kc02ShowRank.kchtml?page='+this.value + ''; return false;}"></a>
+			 <span class="p_edge">(&nbsp;${empty param.page?'1':param.page}&nbsp;/&nbsp;640&nbsp;)</span>
+			 </div>
+			 </div>
+        </div>
+			
 		</div>
 	</div>
 	</div>

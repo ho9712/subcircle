@@ -84,15 +84,16 @@
     
 </div><div id="headerSearchWrapper">
 <div id="headerSearch">
-        <form action="" method="post">
+        <form action="kc02Search.kchtml" method="post">
     <div class="inner">
-<select name="cat" id="siteSearchSelect">
+    
+    <select name="kkcs" id="siteSearchSelect">
 <option value="all">全部</option>
 <option value="2">动画</option>
 <option value="1">书籍</option>
-<option value="4">游戏</option>         
+<option value="4">游戏</option> 
 </select>
-<input id="search_text" name="search_text" class="textfield" type="text" />
+<input id="search_text" name="kksk" class="textfield" type="text" />
         <input type="submit" name="submit" value="搜索" class="search" />
     </div>
 </form>
@@ -182,7 +183,27 @@ sstars1-10即评分 根据数据读取即可
 </c:when>
 </c:choose>
 
-
+ <div class="clearit"><div class="page_inner">
+			 
+			 <a href="kc02ShowComments.kchtml?page=1" class="p">|&lsaquo;</a>
+			 <c:if test="${param.page >1}"><a href="kc02ShowRank.kchtml?page=${param.page-1 }&kkc101=${param.kkc101}" class="p">&lsaquo;&lsaquo;</a></c:if>
+			 <strong class="p_cur">${empty param.page?'1':param.page}</strong>
+			 <a href="kc02ShowComments.kchtml?page=${empty param.page?'2':param.page+1}&kkc101=${param.kkc101}" class="p">${empty param.page?'2':param.page+1}</a>
+			 <a href="kc02ShowComments.kchtml?page=${empty param.page?'3':param.page+2}&kkc101=${param.kkc101}" class="p">${empty param.page?'3':param.page+2}</a>
+			 <a href="kc02ShowComments.kchtml?page=${empty param.page?'4':param.page+3}&kkc101=${param.kkc101}" class="p">${empty param.page?'4':param.page+3}</a>
+			 <a href="kc02ShowComments.kchtml?page=${empty param.page?'5':param.page+4}&kkc101=${param.kkc101}" class="p">${empty param.page?'5':param.page+4}</a>
+			 <a href="kc02ShowComments.kchtml?page=${empty param.page?'6':param.page+5}&kkc101=${param.kkc101}" class="p">${empty param.page?'6':param.page+5}</a>
+			 <a href="kc02ShowComments.kchtml?page=${empty param.page?'7':param.page+6}&kkc101=${param.kkc101}" class="p">${empty param.page?'7':param.page+6}</a>
+			 <a href="kc02ShowComments.kchtml?page=${empty param.page?'8':param.page+7}&kkc101=${param.kkc101}" class="p">${empty param.page?'8':param.page+7}</a>
+			 <a href="kc02ShowComments.kchtml?page=${empty param.page?'9':param.page+8}&kkc101=${param.kkc101}" class="p">${empty param.page?'9':param.page+8}</a>
+			 <a href="kc02ShowComments.kchtml?page=${empty param.page?'10':param.page+9}&kkc101=${param.kkc101}" class="p">${empty param.page?'10':param.page+9}</a>
+			 <c:if test="${param.page <640 }"><a href="kc02ShowComments.kchtml?page=${param.page+1 }&kkc101=${param.kkc101}" class="p">&rsaquo;&rsaquo;</a></c:if>			 
+			 <a href="kc02ShowComments.kchtml?page=640&kkc101=${param.kkc101}" class="p">&rsaquo;|</a>
+			 <a class="p_pages" style="padding: 0px">
+			 <input class="inputtext" style="width:30px;" type="text" name="custompage" onKeyDown="if(event.keyCode==13) {window.location='kc02ShowComments.kchtml?page='+this.value + '&kkc101=${param.kkc101}'; return false;}"></a>
+			 <span class="p_edge">(&nbsp;${empty param.page?'1':param.page}&nbsp;/&nbsp;640&nbsp;)</span>
+			 </div>
+			 </div>
 
 
 

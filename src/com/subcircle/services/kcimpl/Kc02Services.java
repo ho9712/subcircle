@@ -15,12 +15,23 @@ public class Kc02Services extends JdbcServicesSupport {
 	public List<Map<String,String>> queryByCondition() throws Exception
 	{
 		
+		String page = new String("1");
+		if(this.get("page") != null)
+		{
+		page = this.get("page").toString();
+		}
+		int temp = Integer.parseInt(page);
+		temp = (temp-1)*12;
+		String curPage = String.valueOf(temp);
+		
 		
 		StringBuilder sql = new StringBuilder()
 				.append("SELECT k.kkc101,k.kkc202,k.kkc203,k.kkc204,k.kkc205,k.kkc206,k.kkc207,k.kkc208 ")
 				.append("from kc02 k ")
 				.append("ORDER BY k.kkc208 ")
-				.append("LIMIT 12 ");
+				.append("LIMIT ")
+				.append(curPage)
+				.append(",12");
 		Object args[] = {};
 		return this.queryForList(sql.toString(), args);		
 	}	
@@ -108,6 +119,16 @@ public class Kc02Services extends JdbcServicesSupport {
     
     {
     	
+    	
+    	String page = new String("1");
+		if(this.get("page") != null)
+		{
+		page = this.get("page").toString();
+		}
+		int temp = Integer.parseInt(page);
+		temp = (temp-1)*12;
+		String curPage = String.valueOf(temp);
+    	
     	String kkc101 = this.get("kkc101").toString();
     	StringBuilder sql = new StringBuilder()
     			.append("SELECT a.kkd101,a.kkd105,a.kkd108,b.kkc702,b.kkc703,b.kkc704 ")
@@ -116,7 +137,9 @@ public class Kc02Services extends JdbcServicesSupport {
     			.append(kkc101)
     			.append(" AND a.kkd101 = b.kkd101 ")
     			.append("ORDER BY b.kkc704 DESC ")
-    			.append("LIMIT 20 ");
+    			.append("LIMIT ")
+				.append(curPage)
+				.append(",20");
     			;
     	Object args[] = {};
     	
@@ -129,21 +152,77 @@ public class Kc02Services extends JdbcServicesSupport {
     
     {
     	
+    	String kkcs = this.get("kkcs").toString();
     	String kksk = this.get("kksk").toString();
-    	StringBuilder sql = new StringBuilder()
-    			.append("SELECT k.kkc101,k.kkc202,k.kkc203,k.kkc204,k.kkc205,k.kkc206,k.kkc207,k.kkc208 ")
-				.append("from kc02 k ")
-				.append("where kkc202 ")
-				.append("like '%")
-				.append(kksk)
-				.append("%' ")
-				.append("or kkc217 ")
-				.append("like '%")
-				.append(kksk)
-				.append("%' ")
-				.append("ORDER BY k.kkc208 ")
-				.append("LIMIT 12 ");
+    	StringBuilder sql = new StringBuilder();
     	
+    	switch (kkcs) {
+    	
+		case "2":
+			
+			
+			sql
+			.append("SELECT k.kkc101,k.kkc202,k.kkc203,k.kkc204,k.kkc205,k.kkc206,k.kkc207,k.kkc208 ")
+			.append("from kc02 k ")
+			.append("where kkc202 ")
+			.append("like '%")
+			.append(kksk)
+			.append("%' ")
+			.append("or kkc217 ")
+			.append("like '%")
+			.append(kksk)
+			.append("%' ")
+			.append("ORDER BY k.kkc208 ")
+			.append("LIMIT 12 ");
+			break;
+		case "1":
+			
+			sql
+			.append("SELECT k.kkc101,k.kkc302,k.kkc303,k.kkc304,k.kkc305,k.kkc306,k.kkc307,k.kkc308 ")
+			.append("from kc03 k ")
+			.append("where kkc302 ")
+			.append("like '%")
+			.append(kksk)
+			.append("%' ")
+			.append("or kkc314 ")
+			.append("like '%")
+			.append(kksk)
+			.append("%' ")
+			.append("or kkc309 ")
+			.append("like '%")
+			.append(kksk)
+			.append("%' ")
+			.append("ORDER BY k.kkc308 ")
+			.append("LIMIT 12 ");
+			break;
+			
+		case "4":
+			sql
+			.append("SELECT k.kkc101,k.kkc402,k.kkc403,k.kkc404,k.kkc405,k.kkc406,k.kkc407,k.kkc408 ")
+			.append("from kc04 k ")
+			.append("where kkc402 ")
+			.append("like '%")
+			.append(kksk)
+			.append("%' ")
+			.append("or kkc409 ")
+			.append("like '%")
+			.append(kksk)
+			.append("%' ")
+			.append("or kkc411 ")
+			.append("like '%")
+			.append(kksk)
+			.append("%' ")
+			.append("ORDER BY k.kkc408 ")
+			.append("LIMIT 12 ");
+			
+			break;
+			
+			
+		case "all":
+			
+		default:
+			break;
+		}
     	Object args[] = {};
     	return this.queryForList(sql.toString(), args);
     }

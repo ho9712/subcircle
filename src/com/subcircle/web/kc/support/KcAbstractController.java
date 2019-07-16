@@ -241,9 +241,11 @@ public abstract class KcAbstractController implements ControllerInterface
 	protected final void ShowBookDetail() throws Exception
 	{
 		Map<String,String> ins = this.services.findById();
+		List<Map<String, String>> rows=this.services.queryAnimeComment();
 		if(ins!=null)
 		{
 			this.saveAttribute("ins", ins);
+			this.saveAttribute("rows",rows) ;
 		}
 		else
 		{
@@ -260,9 +262,11 @@ public abstract class KcAbstractController implements ControllerInterface
 	protected final void ShowGameDetail() throws Exception
 	{
 		Map<String,String> ins = this.services.findById();
+		List<Map<String, String>> rows=this.services.queryAnimeComment();
 		if(ins!=null)
 		{
 			this.saveAttribute("ins", ins);
+			this.saveAttribute("rows",rows) ;
 		}
 		else
 		{

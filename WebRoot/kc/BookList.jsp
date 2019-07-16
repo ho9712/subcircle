@@ -21,20 +21,20 @@
 <div id="navNeue2">
 <div id="menuNeue">
 <ul id="navMenuNeue" class="clearit">
-<li><a href="/anime" class="top chl anime"><span>动画</span></a>
+<li><a href="" class="top chl anime"><span>动画</span></a>
                 <div class="clear"></div>
 <ul class="clearit">
 <li><a href="kc02ShowRank.kchtml" class="nav">排行榜</a></li>
 </ul>
 </li>
-<li><a href="/book" class="top chl"><span>书籍</span></a>
+<li><a href="" class="top chl"><span>书籍</span></a>
 <div class="clear"></div>
 <ul class="clearit">
 <li><a href="kc03ShowRank.kchtml" class="nav">排行榜</a></li>
 </ul>
 </li>
 
-<li><a href="/game" class="top chl game"><span>游戏</span></a>
+<li><a href="" class="top chl game"><span>游戏</span></a>
 <div class="clear"></div>
 <ul class="clearit">
 <li><a href="kc04ShowRank.kchtml" class="nav">排行榜</a></li>
@@ -86,13 +86,13 @@
 <div id="headerSearch">
         <form action="" method="post">
     <div class="inner">
-<select name="cat" id="siteSearchSelect">
+     <select name="kkcs" id="siteSearchSelect">
 <option value="all">全部</option>
 <option value="2">动画</option>
 <option value="1">书籍</option>
-<option value="4">游戏</option>         
+<option value="4">游戏</option> 
 </select>
-<input id="search_text" name="search_text" class="textfield" type="text" />
+<input id="search_text" name="kksk" class="textfield" type="text" />
         <input type="submit" name="submit" value="搜索" class="search" />
     </div>
 </form>
