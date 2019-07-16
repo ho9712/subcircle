@@ -48,7 +48,7 @@ public class Kb01Services extends JdbcServicesSupport
 	{
 		StringBuilder  sql = new StringBuilder()
 				.append(" select k1.kkb101,k1.kkb102,k1.kkb103,k1.kkb104,k1.kkb105,")
-				.append("        k1.kkb106,k1.kkb107,k1.kkb108")
+				.append("        k1.kkb106,k1.kkb107,k1.kkb108,k1.kkb109,k1.kkb111")
 				.append("	from kb01 k1")
 				.append("	where k1.kkb110 = 1")
 				.append("	and k1.kkb101 = ?")
@@ -101,7 +101,7 @@ public class Kb01Services extends JdbcServicesSupport
 	 */
 	private List<Map<String, String>> getRateByItemId()throws Exception
 	{
-		String sql = "select k6.kkb602,k6.kkb603,k6.kkd101 from kb06 k6 where k6.kkb605 = ?";
+		String sql = "select k6.kkb601,k6.kkb602,k6.kkb603,k6.kkd101 from kb06 k6 where k6.kkb605 = ?";
 		Object args[] = 
 			{
 				this.get("kkb101")	
@@ -109,6 +109,9 @@ public class Kb01Services extends JdbcServicesSupport
 		return this.queryForList(sql, args);
 	}
 	
+	/**
+	 * 商品的具体信息及其评分评价
+	 */
 	@Override
 	public List<Object> queryInList() throws Exception
 	{
@@ -119,4 +122,74 @@ public class Kb01Services extends JdbcServicesSupport
 		result.add(rate);
 		return result;
 	}
+	
+	/**
+	 * 商城管理员上架商品
+	 * @return
+	 * @throws Exception
+	 */
+	private boolean addItem() throws Exception
+	{
+		StringBuilder sql = new StringBuilder()
+				.append(" insert into kb01(kkb102,kkb103,kkb104,kkb105,kkb106,")
+				.append("			  	   kkb107,kkb108,kkb109,kkb111)")
+				.append("	   values     (?,?,?,?,?,")
+				.append("				   ?,?,?,?)")
+				;
+		
+		Object args[] = 
+			{
+				this.get("kkb102"),
+				this.get("kkb103"),
+				this.get("kkb104"),
+				this.get("kkb105"),
+				this.get("kkb106"),
+
+				this.get("kkb107"),
+				this.get("kkb108"),
+				this.get("kkb109"),
+				this.get("kkb111")
+			};
+		
+		return this.executeUpdate(sql.toString(), args) > 0;
+	}
+	
+	/**
+	 * 商城管理员下架某商品
+	 * @return
+	 * @throws Exception
+	 */
+	private boolean modifyItemInfo() throws Exception
+	{
+		StringBuilder sql = new StringBuilder()
+				.append("  update kb01 set kkb102 = ?,kkb103 = ?,kkb104 = ?,kkb105 = ?,kkb106 = ?,")
+				.append("						  	   kkb107 = ?,kkb108 = ?,kkb109 = ?,kkb111 = ?")
+				.append("            where kkb101 = ?")
+				;
+		Object args[]= 
+			{
+				this.get("kkb102"),
+				this.get("kkb103"),
+				this.get("kkb104"),
+				this.get("kkb105"),
+				this.get("kkb106"),
+
+				this.get("kkb107"),
+				this.get("kkb108"),
+				this.get("kkb109"),
+				this.get("kkb111"),
+				this.get("kkb101")
+			};
+		return this.executeUpdate(sql.toString(), args) > 0;
+	}
+	
+	private boolean delItem()throws Exception
+	{
+		String sql = "update kb01 set kkb110 = 0 where kkb101 = ?";
+		Object args[] = 
+			{
+				this.get("kkb101")
+			};
+		return this.executeUpdate(sql, args) > 0;
+	} 
 }

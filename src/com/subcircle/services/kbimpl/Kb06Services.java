@@ -77,4 +77,14 @@ public class Kb06Services extends JdbcServicesSupport
 			};
 		return this.queryForMap(sql, args).get("kkb602");
 	}
+	
+	private boolean deleteRateById() throws Exception
+	{
+		String sql = "delete from kb06 where kkb601 = ?";
+		Object args[]= 
+			{
+				this.get("kkb601")	
+			};
+		return this.executeUpdate(sql, args) > 0;
+	}
 }

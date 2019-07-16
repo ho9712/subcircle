@@ -266,7 +266,7 @@ public class Kb05Services extends JdbcServicesSupport
 			};
 		String result = null;
 		
-		//删除订单后返回到原位置
+		//删除订单后返回到原位置	
 		if (this.executeUpdate(sql, args) > 0)
 		{
 			//返回到商城主界面

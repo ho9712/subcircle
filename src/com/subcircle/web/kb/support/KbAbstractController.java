@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 import javax.sql.RowSet;
 
 import com.subcircle.services.support.ServicesInterface;
-import com.subcircle.web.ControllerInterface;
+import com.subcircle.web.ControllerInterface;import com.sun.xml.internal.ws.developer.StreamingAttachment;
 
 public abstract class KbAbstractController implements ControllerInterface 
 {
@@ -285,12 +285,35 @@ public abstract class KbAbstractController implements ControllerInterface
 		this.saveAttribute("flag", orderState);
 	}
 	
-	protected final void showItemInfo() throws Exception
+	/**
+	 * 显示商品具体信息及评分评价信息
+	 * @return
+	 * @throws Exception
+	 */
+	protected final String showItemInfo() throws Exception
 	{
 		List<Object> objList = this.services.queryInList();
 		if (objList.size() > 0)
 		{
 			this.saveAttribute("objList", objList);
+		}
+		else
+		{
+			this.saveAttribute("msg", "数据不存在或禁止访问");
+		}
+		return (String)this.dto.get("kkd101");		//返回出去判断有用户登入来决定是否生成浏览记录
+	}
+	
+	/**
+	 * 商城管理员修改商品时查询出该商品的信息
+	 * @throws Exception
+	 */
+	protected final void getModifyItemInfo() throws Exception 
+	{
+		Map<String,String>	ins = this.services.findById();
+		if (ins != null && ins.size() > 0)
+		{
+			this.saveAttribute("ins",ins);
 		}
 		else
 		{

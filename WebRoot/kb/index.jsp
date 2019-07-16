@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,30 +62,77 @@
 		</div>
 		<!-- 站点导航栏结束 -->
 
-
-		<div class="span10">
-			<!-- 商城模块导航栏 -->
-			<ul class="nav nav-pills">
-				<li><a href="#" onclick="ToMyCart()">我的购物车</a></li>
-				<li class="dropdown"><a href="#" data-toggle="dropdown"
-					class="dropdown-toggle">我的订单 <strong class="caret"></strong></a>
-					<ul class="dropdown-menu">
-						<li><a href="#" onclick="showOrder('0')">待支付订单</a></li>
-						<li><a href="#" onclick="showOrder('1')">待收货订单</a></li>
-						<li><a href="#" onclick="showOrder('2')">已完成订单</a></li>
+		<c:choose>
+		<c:when test="${sessionScope.kkd104 != null }">
+			<c:choose>
+			<c:when test="${sessionScope.kkd104 != 2 }">
+				<div class="span10">
+					<!-- 商城模块导航栏 -->
+					<ul class="nav nav-pills">
+						<li><a href="#" onclick="ToMyCart()">我的购物车</a></li>
+						<li class="dropdown"><a href="#" data-toggle="dropdown"
+							class="dropdown-toggle">我的订单 <strong class="caret"></strong></a>
+							<ul class="dropdown-menu">
+								<li><a href="#" onclick="showOrder('0')">待支付订单</a></li>
+								<li><a href="#" onclick="showOrder('1')">待收货订单</a></li>
+								<li><a href="#" onclick="showOrder('2')">已完成订单</a></li>
+							</ul>
+						</li>
+						<li class="dropdown"><a href="#" data-toggle="dropdown"
+							class="dropdown-toggle">求购 <strong class="caret"></strong></a>
+							<ul class="dropdown-menu">
+								<li><a href="#">求购信息列表</a></li>
+								<li><a href="#">我的求购列表</a></li>
+								<li><a href="#">我的响应列表</a></li>
+								<li><a href="#">待处理列表</a></li>
+							</ul></li>
 					</ul>
-				</li>
-				<li class="dropdown"><a href="#" data-toggle="dropdown"
-					class="dropdown-toggle">求购 <strong class="caret"></strong></a>
-					<ul class="dropdown-menu">
-						<li><a href="#">求购信息列表</a></li>
-						<li><a href="#">我的求购列表</a></li>
-						<li><a href="#">我的响应列表</a></li>
-						<li><a href="#">待处理列表</a></li>
-					</ul></li>
-			</ul>
-		</div>
+				</div>
+			</c:when>
+			<c:otherwise>
+				<div class="span10">
+					<!-- 商城模块导航栏 -->
+					<ul class="nav nav-pills">
+						<li><a href="<%=request.getContextPath()%>/kb/addItem.jsp">上架商品</a></li>
+						<li class="dropdown"><a href="#" data-toggle="dropdown"
+							class="dropdown-toggle">管理求购<strong class="caret"></strong></a>
+							<ul class="dropdown-menu">
+								<li><a href="#">求购信息列表</a></li>
+								<li><a href="#">我的求购列表</a></li>
+								<li><a href="#">我的响应列表</a></li>
+								<li><a href="#">待处理列表</a></li>
+							</ul></li>
+					</ul>
+				</div>
+			</c:otherwise>
+			</c:choose>
 		<!-- 商城模块导航栏 结束-->
+		</c:when>
+		<c:otherwise>
+			<div class="span10">
+				<!-- 商城模块导航栏 -->
+				<ul class="nav nav-pills">
+					<li><a href="#" onclick="goLogin()">我的购物车</a></li>
+					<li class="dropdown"><a href="#" data-toggle="dropdown"
+						class="dropdown-toggle">我的订单 <strong class="caret"></strong></a>
+						<ul class="dropdown-menu">
+							<li><a href="#" onclick="goLogin()">待支付订单</a></li>
+							<li><a href="#" onclick="goLogin()">待收货订单</a></li>
+							<li><a href="#" onclick="goLogin()">已完成订单</a></li>
+						</ul>
+					</li>
+					<li class="dropdown"><a href="#" data-toggle="dropdown"
+						class="dropdown-toggle">求购 <strong class="caret"></strong></a>
+						<ul class="dropdown-menu">
+							<li><a href="#" onclick="goLogin()">求购信息列表</a></li>
+							<li><a href="#" onclick="goLogin()">我的求购列表</a></li>
+							<li><a href="#" onclick="goLogin()">我的响应列表</a></li>
+							<li><a href="#" onclick="goLogin()">待处理列表</a></li>
+						</ul></li>
+				</ul>
+			</div>
+		</c:otherwise>
+	</c:choose>
 	</div>
 	<!-- 导航栏结束 -->
 <script type="text/javascript">
@@ -103,6 +151,11 @@
 	function marketCenter()
 	{
 		window.location.href="<%=path%>/kb01QueryItems.kbhtml";
+	}
+	
+	function goLogin()
+	{
+		window.location.href="<%=path%>/kd/login.jsp";	
 	}
 </script>
 

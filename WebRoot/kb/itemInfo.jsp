@@ -69,17 +69,33 @@
 					<!-- 用于定位订单来源  取消订单返回的位置标识-->
 					<input type="hidden" id="backLocation" name="backLocation" value="2" />
 				</form>
-					
-				<div class="btn-group btn-group-sm">
-					<button type="button" class="btn btn-success"
-						onclick="onCollect(${objList[0].kkb101 })">收藏</button>
-					<button type="button" class="btn btn-warning"
-							onclick="onAddToCart(${objList[0].kkb101 })">加入购物车</button>
-					<button type="button" class="btn btn-danger"
-							onclick="submitForm();">
-						立即购买
-					</button>
-				</div>
+
+				<c:choose>
+					<c:when test="${sessionScope.kkd104 == 2}">
+
+
+						<div class="btn-group btn-group-sm">
+							<button type="button" class="btn btn-success"
+									onclick="modifyItemInfo(${objList[0].kkb101 })">修改信息</button>
+							<button type="button" class="btn btn-warning"
+								onclick="deleteItem(${objList[0].kkb101 })">下架商品</button>
+						</div>
+					</c:when>
+					<c:when test="${sessionScope.kkd104 == null}">
+						<button type="button" class="btn btn-success" onclick="goLogin()">去登入</button>
+					</c:when>
+					<c:otherwise>
+
+						<div class="btn-group btn-group-sm">
+							<button type="button" class="btn btn-success"
+								onclick="onCollect(${objList[0].kkb101 })">收藏</button>
+							<button type="button" class="btn btn-warning"
+								onclick="onAddToCart(${objList[0].kkb101 })">加入购物车</button>
+							<button type="button" class="btn btn-danger"
+								onclick="submitForm();">立即购买</button>
+						</div>
+					</c:otherwise>
+				</c:choose>
 			</div>
 			<!-- row1右边结束--商品信息区-->
 		</div>
@@ -111,13 +127,28 @@
 								</c:otherwise>
 							</c:choose>
 							</td>
-							<td></td>
+							<c:choose>
+								<c:when test="${sessionScope.kkd104 == 2}">
+								<td colspan="2"></td>
+							</c:when>
+							<c:otherwise>
+								<td></td>
+							</c:otherwise>
+							</c:choose>
 						</tr>
 						<c:forEach items="${objList[1] }" var="rateInfo" varStatus="vs">
 							<tr class="info">
 								<td>用户${rateInfo.kkd101 }</td>
 								<td>${rateInfo.kkb602 }</td>
 								<td>${rateInfo.kkb603 }</td>
+								<c:choose>
+									<c:when test="${sessionScope.kkd104 == 2}">
+										<td>
+											<button class="btn btn-danger" onclick="deleteRate(${rateInfo.kkb601 })">
+											删除</button>
+										</td>
+									</c:when>
+								</c:choose>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -188,6 +219,37 @@ function onCollect(kkb101)
 		document.getElementById("kkb507").value = kkb507;
 		 $("#myForm").attr("action","<%=request.getContextPath()%>/kb05CreateOrder.kbhtml");
 		 $("#myForm").submit();
+	}
+	
+	//商城管理员修改商品信息
+	function modifyItemInfo(kkb101)
+	{
+		window.location.href = "<%=request.getContextPath()%>/kb01GetModifyItemInfo.kbhtml?kkb101=" + kkb101;	
+	}
+	
+	//商城管理员下架商品
+	function deleteItem(kkb101)
+	{
+		var msg = "确定下架该商品吗"
+		if(confirm(msg) == true)
+		{
+			$.ajax({
+	            type: "POST",
+	            url: "${pageContext.request.contextPath}/kb01DelItem.kbhtml?"
+	            	+"kkb101="+kkb101,
+	            dataType: "text",
+	            success: function (data)
+	            {
+	            	window.location.href = "<%=request.getContextPath()%>/kb01QueryItems.kbhtml"
+	            }//endsuccess
+	       });//endajax
+		}
+	}	
+	
+	//管理员删除评价
+	function deleteRate(kkb601)
+	{
+		window.location.href = "<%=request.getContextPath()%>/kb06DelRate.kbhtml?kkb601=" + kkb601;	
 	}
 </script>
 

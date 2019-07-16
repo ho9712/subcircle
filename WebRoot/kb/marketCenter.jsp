@@ -84,18 +84,33 @@ ${sessionScope.user }
 										<p>${ins.kkb104 }</p>
 										<label><font color="#ff0000" size="2px"> 售价:</font>${ins.kkb103 }
 										</label>
-										<div class="btn-group btn-group-sm">
-											<button type="button" class="btn btn-success"
-											  		onclick="onCollect(${ins.kkb101 })">收藏</button>
-											<button type="button" class="btn btn-warning"
-												onclick="onAddToCart(${ins.kkb101 })">加入购物车</button>
-											<a id="myModel" href="#modal-container" role="button" 
-												class="btn btn-danger" data-toggle="modal"
-												onclick = "passItemInfo('${ins.kkb101 }','${ins.kkb102 }','${ins.kkb103 }','${ins.kkb105 }')">
-												立即购买
-											</a>
-											<!-- <button type="button" class="btn btn-danger">立即购买</button> -->
-										</div>
+										<c:choose>
+											<c:when test="${sessionScope.kkd104 == 2}">
+
+												<div class="btn-group btn-group-sm">
+													<button type="button" class="btn btn-success"
+														onclick="modifyItemInfo(${ins.kkb101 })">修改信息</button>
+													<button type="button" class="btn btn-warning"
+														onclick="deleteItem(${ins.kkb101 })">下架商品</button>
+												</div>
+											</c:when>
+											<c:when test="${sessionScope.kkd104 == null}">
+												<button type="button" class="btn btn-success"
+													onclick="goLogin()">去登入</button>
+											</c:when>
+											<c:otherwise>
+												<div class="btn-group btn-group-sm">
+													<button type="button" class="btn btn-success"
+														onclick="onCollect(${ins.kkb101 })">收藏</button>
+													<button type="button" class="btn btn-warning"
+														onclick="onAddToCart(${ins.kkb101 })">加入购物车</button>
+													<a id="myModel" href="#modal-container" role="button"
+														class="btn btn-danger" data-toggle="modal"
+														onclick="passItemInfo('${ins.kkb101 }','${ins.kkb102 }','${ins.kkb103 }','${ins.kkb105 }')">
+														立即购买 </a>
+												</div>
+											</c:otherwise>
+										</c:choose>
 									</div>
 								</div>
 							</li>
@@ -290,6 +305,37 @@ ${sessionScope.user }
 		sNow += String(vNow.getMilliseconds());
 		return sNow;
 	}
+	
+	
+	function goLogin()
+	{
+		window.location.href="<%=request.getContextPath()%>/kd/slogin.jsp";	
+	}
+	
+	//商城管理员修改商品信息
+	function modifyItemInfo(kkb101)
+	{
+		window.location.href = "<%=request.getContextPath()%>/kb01GetModifyItemInfo.kbhtml?kkb101=" + kkb101;	
+	}
+	
+	//商城管理员下架商品
+	function deleteItem(kkb101)
+	{
+		var msg = "确定下架该商品吗"
+		if(confirm(msg) == true)
+		{
+			$.ajax({
+	            type: "POST",
+	            url: "${pageContext.request.contextPath}/kb01DelItem.kbhtml?"
+	            	+"kkb101="+kkb101,
+	            dataType: "text",
+	            success: function (data)
+	            {
+	            	window.location.href = "<%=request.getContextPath()%>/kb01QueryItems.kbhtml"
+	            }//endsuccess
+	       });//endajax
+		}
+	}	
 	
 	</script>
 	
