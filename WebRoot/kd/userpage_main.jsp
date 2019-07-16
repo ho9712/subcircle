@@ -8,13 +8,33 @@
 <meta charset="utf-8" />
 <title>${sessionScope.user.kkd102} 的主页</title>
 
+<script type="text/javascript">
+	setInterval(function(){
+		getMsg();
+	}, 10000);
+	
+	function getMsg()
+	{
+		$.ajax({
+			type:"POST",
+			url:"<%=path%>/getMsg?username=${user.kkd102}",
+			processData:false,
+			dataType:"json",
+			success:function()	
+			{
+				
+			}
+		});
+	}
+</script>
+
 <link rel="stylesheet" type="text/css" href="<%=path %>/css/bangumi.css" />
 <script src="<%=path %>/js/bangumi.js" type="text/javascript"></script>
+<script src="<%=path %>/js/jquery.js" type="text/javascript"></script>
 </head>
 
 <body class="bangumi">
 <div id="wrapperNeue" class="wrapperNeue">
-
 <!-- 顶部栏 -->
 <div id="headerNeue2">
     <div class="headerNeueInner clearit">
@@ -170,26 +190,63 @@
 					<span class="tip">${sessionScope.user.kkd106 } 加入</span></li>
 					</ul>    
 			        <div class="adminTools">
-				    	<a href="<%=path%>/kd/userpage_info.jsp" class="btnGraySmall"><span>编辑</span></a>           
+				    	<a href="<%=path%>/kd/userpage_info.jsp" class="btnGraySmall"><span>编辑个人信息</span></a>           
 	                </div>
 				</div>
+				<!-- 主页动画 -->
 			    <div id="blog" class="sort">
 					<h2 class="drag">&nbsp;</h2>
 					<div class="horizontalOptions clearit">
 						<ul class="">
-							<li class="title"><h2> 我的日志</h2></li>
-							<li style="float:right"><small><a href="/user/481528/blog">...more</a></small></li>
+							<li class="title"><h2> <a href="#">我的动画</a></h2></li>
 						</ul>
 					</div>
 				
 					<div class="content_inner clearit" align="left">
 						<div align="center" class="clearit">
-							<span class="green">还没有发表过日志?</span>
-								<a href="/blog/create" class="l">>立即发表<</a><br />
-							<span class="tip_j">你甚至可以通过日志为 SubCircle 的会员提供新闻</span>
+							<span class="green">还没有收藏过动画?</span>
+								<a href="#" class="l">>前往收藏<</a><br />
+							<span class="tip_j">其他用户浏览你的主页时能根据你的收藏判断你的兴趣</span>
 						</div>
 					</div>
 				</div>
+				<!-- 主页动画 -->
+				<!-- 主页书籍 -->
+			    <div id="blog" class="sort">
+					<h2 class="drag">&nbsp;</h2>
+					<div class="horizontalOptions clearit">
+						<ul class="">
+							<li class="title"><h2> <a href="#">我的书籍</a></h2></li>
+						</ul>
+					</div>
+				
+					<div class="content_inner clearit" align="left">
+						<div align="center" class="clearit">
+							<span class="green">还没有收藏过书籍?</span>
+								<a href="#" class="l">>前往收藏<</a><br />
+							<span class="tip_j">其他用户浏览你的主页时能根据你的收藏判断你的兴趣</span>
+						</div>
+					</div>
+				</div>
+				<!-- 主页书籍 -->				
+				<!-- 主页游戏 -->
+			    <div id="blog" class="sort">
+					<h2 class="drag">&nbsp;</h2>
+					<div class="horizontalOptions clearit">
+						<ul class="">
+							<li class="title"><h2> <a href="#">我的游戏</a></h2></li>
+						</ul>
+					</div>
+				
+					<div class="content_inner clearit" align="left">
+						<div align="center" class="clearit">
+							<span class="green">还没有收藏过游戏?</span>
+								<a href="#" class="l">>前往收藏<</a><br />
+							<span class="tip_j">其他用户浏览你的主页时能根据你的收藏判断你的兴趣</span>
+						</div>
+					</div>
+				</div>
+				<!-- 主页游戏 -->
 			</div>
 		</div>
 	<!-- 主页主体A栏 -->
@@ -198,7 +255,7 @@
 		<div id="columnB" class="column">
 			<div id="">
 				<div class="SidePanel png_bg">
-					<h2>/ 我的... <small><a href="/user/481528/timeline">...more</a></small></h2>
+					<h2>/ 我的历史 </h2>
 				
 					<ul class="timeline">
 						<li>
@@ -211,22 +268,18 @@
 			<div id="sideLayout">
 				<div id="friend" class="sort">
 					<div class="SidePanel png_bg" align="left">
-						<h2>/ 我的... <small><a href="/user/481528/friends">...more</a></small></h2>
+						<h2>/ 我的论坛 <small><a href="#">...more</a></small></h2>
 						<hr class="board" />
-						<a href="/user/481528/rev_friends">+ 谁加我为好友</a>
+						<a href="#">+ 查看我的发帖</a>
 					</div>
 				</div>
 				<div id="group" class="sort">
 					<div class="SidePanel png_bg" align="left">
-					<h2>/ 我的... </h2>
-					    <ul class="groupsLine">
-					            </ul>
+						<h2>/ 我的商城 <small><a href="#">...more</a></small></h2>
+						<hr class="board" />
+						<a href="#">+ 查看我的订单</a>
 					</div>
 				</div>
-			</div>
-			<div class="menu_inner">
-			    	<p> <a href="/feed/user/481528/interests" class="l">/ </a></p>
-			    	<p><a href="/user/481528/wiki" class="l">/ </a></p>
 			</div>
 		</div>
 	<!-- 主页主体B栏 -->
@@ -241,7 +294,6 @@
     <div class="content">
         <ul class="clearit">
         <li class="first"><a href="<%=path%>/kd/userpage_main.jsp">${sessionScope.user.kkd102 }</a></li>
-        <li><a href="#">提醒</a></li>
         <li><a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a></li>
         <li><a href="<%=path%>/kd/userpage_info.jsp">设置</a></li>
         <li><a href="<%=path%>/logout.kdhtml">登出</a></li>
@@ -270,12 +322,19 @@
 	</c:when>
 </c:choose>
 <br>
+<!-- 消息提示 -->
 <c:if test="${!empty msgs }">
-	你收到了${fn:length(msgs) }封新的短消息~点击下面的链接前往查看<br>
-	<c:forEach items="${msgs }" var="msg">
-		<span style="color:#8f8fff">${msg.sender }:</span> <a href="">${msg.title }</a><br>
+	你收到了 <span class="green">${fn:length(msgs) }</span> 封新的短消息~点击下面的链接前往查看<br>
+	<c:forEach items="${msgs }" var="msg" begin="0" end="2">
+		<span style="color:#8f8fff">${msg.sender }:</span> 
+		<a href="<%=path%>/kd02FindMsgDetail.kdhtml?flag=receive&kkd201=${msg.kkd201}&username=${user.kkd102}">${msg.title }</a>
+		<br>
 	</c:forEach>
+	<c:if test="${fn:length(msgs) >3}">
+		<a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}" ><span>...前往收件箱查看更多</span></a>
+	</c:if>
 </c:if>
+<!-- 消息提示 -->
 </div>
 </div>
 <div class="ukagaka_balloon_pink_bottom"></div>	

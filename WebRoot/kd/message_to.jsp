@@ -14,8 +14,22 @@
 		vform.action="<%= path %>/kd02QuerySend.kdhtml?order="+vorder;
 		vform.submit();
 	}
+	function checkDel(kkd201,sign,username)
+	{
+		document.getElementById("kkd201").value=kkd201;
+		document.getElementById("sign").value=sign;
+		document.getElementById("username").value=username;
+	}
 </script>
-<title>Root管理员页面</title>
+<style type="text/css">
+	.line_limit{
+		width:300px;
+		white-space:nowrap;
+		overflow:hidden;
+		text-overflow:ellipsis;
+	}
+</style>
+<title>发件箱</title>
 
 
 <link rel="stylesheet" type="text/css" href="<%=path %>/css/bangumi.css" />
@@ -123,7 +137,7 @@
 						<li><a href="<%= path %>/kd01QueryUser.kdhtml">作品管理员</a></li>
 					</c:when>
 					<c:when test="${sessionScope.kkd104 eq '2' }">
-						<li><a href="<%= path %>/kd01QueryAdmin.kdhtml">商城管理员</a></li>
+						<li><a href="<%= path %>/kd/shopadminpage_turn.jsp">商城管理员</a></li>
 					</c:when>
 					<c:when test="${sessionScope.kkd104 eq '3' }">
 						<li><a href="<%= path %>/kd01QueryAdmin.kdhtml">论坛管理员</a></li>
@@ -174,18 +188,42 @@
             </div>
 
             <div class="headerAvatar">
-                <c:choose>
+                <!-- 头像或默认头像，以及头像返回页面 -->
+			<c:choose>
             	<c:when test="${!empty sessionScope.user.kkd108}">
-           		 <a href="<%=path%>/kd/userpage_main.jsp" class="avatar">
-                	<span class="avatarNeue avatarSize75" style="background-image:url('${sessionScope.user.kkd108}')"></span>
-                </a>
+            	<c:choose>
+            		<c:when test="${fn:contains('45',sessionScope.user.kkd104) }">
+            			<a class="avatar" href="<%=path%>/kd/userpage_main.jsp">
+						<span class="avatarNeue avatarSize75" 
+							style="background-image:url('${sessionScope.user.kkd108}');background-size: 100% auto;"></span>
+						</a>
+            		</c:when>
+            		<c:otherwise>
+            			<a class="avatar" href="<%=path%>/kd/adminpage_main.jsp">
+						<span class="avatarNeue avatarSize75" 
+							style="background-image:url('${sessionScope.user.kkd108}');background-size: 100% auto;"></span>
+						</a>
+            		</c:otherwise>
+            	</c:choose>
             	</c:when>
             	<c:otherwise>
-           		<a href="<%=path%>/kd/userpage_main.jsp" class="avatar">
-                	<span class="avatarNeue avatarSize75" style="background-image:url('<%=path%>/img/avatar/def_avatar.png')"></span>
-                </a>
+            	<c:choose>
+            		<c:when test="${fn:contains('45',sessionScope.user.kkd104) }">
+            			<a class="avatar" href="<%=path%>/kd/userpage_main.jsp">
+						<span class="avatarNeue avatarSize75" 
+							style="background-image:url('<%=path%>/img/avatar/def_avatar.png');background-size: 100% auto;"></span>
+						</a>
+            		</c:when>
+            		<c:otherwise>
+            			<a class="avatar" href="<%=path%>/kd/adminpage_main.jsp">
+						<span class="avatarNeue avatarSize75" 
+							style="background-image:url('<%=path%>/img/avatar/def_avatar.png');background-size: 100% auto;"></span>
+						</a>
+            		</c:otherwise>
+            	</c:choose>
             	</c:otherwise>
             </c:choose>
+            <!-- 头像或默认头像，以及头像返回页面 -->
             </div>
 
             <div class="inner">
@@ -217,7 +255,7 @@
 						<li><a href="<%= path %>/kd01QueryUser.kdhtml">作品管理员</a></li>
 					</c:when>
 					<c:when test="${sessionScope.kkd104 eq '2' }">
-						<li><a href="<%= path %>/kd01QueryAdmin.kdhtml">商城管理员</a></li>
+						<li><a href="<%= path %>/kd/shopadminpage_turn.jsp">商城管理员</a></li>
 					</c:when>
 					<c:when test="${sessionScope.kkd104 eq '3' }">
 						<li><a href="<%= path %>/kd01QueryAdmin.kdhtml">论坛管理员</a></li>
@@ -248,82 +286,127 @@
 	<!-- 主页主体A栏 -->
 		
 		<div id="columnSubjectBrowserA" class="column">
-    	<div id="browserTools" class="clearit">
-        
-        	按时间 <a href="#" onclick="onClickSort('0')" class="btnGraySmall"><span>升序</span></a> · 
-        	<a href="#" onclick="onClickSort('1')" class="btnGraySmall" ><span>降序</span></a>  排序
-        
-		</div>    
-			<!-- 查询所有接收消息 -->
-			<ul id="browserItemList" class="browserList">
-				<c:forEach items="${sends }" var="send">
-					<li id="item_9912" class="item odd clearit">
-				   	<!-- 头像 -->
-					   	<c:choose>
-			            	<c:when test="${!empty send.kkd108}">
-			           		 <a href="<%=path%>/kd01FindOther.kdhtml?kkd101=${send.kkd101 }" class="avatar">
-			                	<span class="avatarNeue avatarSize48 ll" style="background-image:url('${send.kkd108}');background-size:100% auto;"></span>
-			                </a>
-			            	</c:when>
-			            	<c:otherwise>
-			           		<a href="<%=path%>/kd01FindOther.kdhtml?kkd101=${send.kkd101 }" class="avatar">
-			                	<span class="avatarNeue avatarSize48 ll" style="background-image:url('<%=path%>/img/avatar/def_avatar.png');background-size:100% auto;"></span>
-			                </a>
-			            	</c:otherwise>
-			            </c:choose>
-				   	<!-- 头像 -->
-				    <div class="inner">
-				    	<!-- 用户信息 -->
-				       <span class="userInfo">
-				       		<small class="grey">标题:</small>
-					    	<strong><a href="<%=path%>/kd01FindOther.kdhtml?kkd101=${admin.kkd101 }" class="l">${send.kkd204 }</a></strong>
-				    	</span><br>
-				    	<small class="grey">发往:</small>
-				    	<c:choose>
-				    		<c:when test="${receive.kkd104 eq '0'}">
-				       			<small style="color:#ff0000">超级管理员</small>
-				       		</c:when>
-				       		<c:when test="${receive.kkd104 eq '1'}">
-				       			<small style="color:#ff8f8f">作品管理员</small>
-				       		</c:when>
-				       		<c:when test="${receive.kkd104 eq '2'}">
-				       			<small style="color:#6faf0f">商城管理员</small>
-				       		</c:when>
-				       		<c:when test="${receive.kkd104 eq '3'}">
-				       			<small style="color:#8f8fff">论坛管理员</small>
-				       		</c:when>
-				       		</c:choose>
-				    	<a href="<%=path%>/kd01FindOther.kdhtml?kkd102=${send.kkd203 }" class="l">${send.kkd105 } <small>@${send.kkd203 }</small></a><br>
-				    	<small class="grey">状态:</small>
-				    	<c:choose>
-				    		<c:when test="${send.kkd206 eq '0'}">
-				    			<small style="color:#ff8f8f">未读</small>
-				    		</c:when>
-				    		<c:otherwise>
-				    			<small style="color:#6faf0f">已读</small>
-				    		</c:otherwise>
-				    	</c:choose>
-				       <p class="info tip">
-				       	<small class="grey">正文:</small>
-				       	<span class="tip_j">${send.kkd205 }</span>
-				       </p>
-				       	<p class="collectInfo">
-			       		<small class="grey">日期:</small>
-						<small class="grey">${send.kkd207 } </small>
-						</p>
-						<!-- 用户信息 -->
-						<!-- 右边按钮 -->
-				       	<div id="collectBlock_9912" class="collectBlock tip_i">
-					    <p class="collectModify">
-						    <a href="<%= path %>/kd02DelMsg.kdhtml?kkd201=${send.kkd201}&flag=sender&username=${send.kkd202}" class="l">删除</a>
-						    </p>
-				    	</div>
-				    	<!-- 右边按钮 -->
-				   	</div>
-					</li>
-				</c:forEach>
-			</ul>
-			<!-- 查询所有接收消息 -->
+			<!-- 查询所有发送消息 -->
+			
+			<c:choose>
+				<c:when test="${!empty sends}">
+				<div id="browserTools" class="clearit">
+		        	按时间 <a href="#" onclick="onClickSort('0')" class="btnGraySmall"><span>升序</span></a> · 
+		        	<a href="#" onclick="onClickSort('1')" class="btnGraySmall" ><span>降序</span></a>  排序
+				</div> 
+				<ul id="browserItemList" class="browserList">
+					<c:forEach items="${sends }" var="send">
+						<li id="item_9912" class="item odd clearit">
+					   	<!-- 头像 -->
+						   	<c:choose>
+				            	<c:when test="${!empty send.kkd108}">
+				           		 <a href="<%=path%>/kd01FindOther.kdhtml?kkd101=${send.kkd101 }" class="avatar">
+				                	<span class="avatarNeue avatarSize48 ll" style="background-image:url('${send.kkd108}');background-size:100% auto;"></span>
+				                </a>
+				            	</c:when>
+				            	<c:otherwise>
+				           		<a href="<%=path%>/kd01FindOther.kdhtml?kkd101=${send.kkd101 }" class="avatar">
+				                	<span class="avatarNeue avatarSize48 ll" style="background-image:url('<%=path%>/img/avatar/def_avatar.png');background-size:100% auto;"></span>
+				                </a>
+				            	</c:otherwise>
+				            </c:choose>
+					   	<!-- 头像 -->
+					    <div class="inner">
+					    	<!-- 用户信息 -->
+					       <span class="userInfo">
+					       		<small class="grey">标题:</small>
+						    	<strong><a href="<%=path%>/kd02FindMsgDetail.kdhtml?flag=send&kkd201=${send.kkd201}" class="l">${send.kkd204 }</a></strong>
+					    	</span><br>
+					    	<small class="grey">发往:</small>
+					    	<c:choose>
+					    		<c:when test="${send.kkd104 eq '0'}">
+					       			<small style="color:#ff0000">超级管理员</small>
+					       		</c:when>
+					       		<c:when test="${send.kkd104 eq '1'}">
+					       			<small style="color:#ff8f8f">作品管理员</small>
+					       		</c:when>
+					       		<c:when test="${send.kkd104 eq '2'}">
+					       			<small style="color:#6faf0f">商城管理员</small>
+					       		</c:when>
+					       		<c:when test="${send.kkd104 eq '3'}">
+					       			<small style="color:#8f8fff">论坛管理员</small>
+					       		</c:when>
+					       		</c:choose>
+					    	<a href="<%=path%>/kd01FindOther.kdhtml?kkd102=${send.kkd203 }" class="l">${send.kkd105 } <small>@${send.kkd203 }</small></a><br>
+					    	<small class="grey">状态:</small>
+					    	<c:choose>
+					    		<c:when test="${send.kkd206 eq '0'}">
+					    			<small style="color:#ff8f8f">未读</small>
+					    		</c:when>
+					    		<c:otherwise>
+					    			<small style="color:#6faf0f">已读</small>
+					    		</c:otherwise>
+					    	</c:choose>
+					       <p class="line_limit">
+					       	<small class="grey">正文:</small>
+					       	<span class="tip_j">${send.kkd205 }</span>
+					       </p>
+					       	<p class="collectInfo">
+				       		<small class="grey">日期:</small>
+							<small class="grey">${send.kkd207 } </small>
+							</p>
+							<!-- 用户信息 -->
+							<!-- 右边按钮 -->
+					       	<div id="collectBlock_9912" class="collectBlock tip_i">
+							    <p class="collectModify">
+							    <a href="#TB_inline?height=350&amp;width=500&amp;inlineId=panel" 
+							    	onclick="checkDel('${send.kkd201}','sender','${user.kkd102}')" 
+							    	title="删除消息" class="thickbox l">删除消息</a> 
+							    </p>
+					    	</div>
+					    	<!-- 右边按钮 -->
+					   	</div>
+						</li>
+					</c:forEach>
+				</ul>
+				
+				<!-- 弹窗 -->
+				<div id="panel" style="display:none;">
+					<div class="collectBox clearit">
+					    <!-- 信息修改 -->
+						 <form name="set" method="post" action="<%= path %>/kd02DelMsg.kdhtml">
+						 	<input id="kkd201" name="kkd201" type="hidden" >
+						 	<input id="sign" name="sign" type="hidden" >
+						 	<input id="username" name="username" type="hidden" >
+							<span class="text">
+								<table align="center" width="98%" cellspacing="0" cellpadding="5" class="settings">
+									<tr>
+									<td valign="middle" align="center" colspan="2">
+										<span style="font-size:25px;color:#ff8f8f">确定要删除该消息？</span>
+									</td>
+									</tr>
+									<tr>
+										<td valign="middle" align="center" colspan="2">
+										<input class="inputBtn" value="删除消息" name="submit" type="submit" />
+										</td>
+									</tr>
+								</table>
+							</span>
+						</form>    
+						<!-- 信息修改 -->
+					</div>
+				</div>
+				<!-- 弹窗 -->
+				
+				</c:when>
+				<c:otherwise>
+					<div class="section">
+			            <a href="<%= path %>/kd/message_send.jsp" class="rr l">前往发送消息</a>        	
+			            <br><h2 class="title">你的发件箱空空如也...</h2>
+			        	<div>
+			        		<ul class="coversSmall">
+			           		</ul>
+			        	</div>
+			        </div>
+			        <div class="section_line clear"></div>
+				</c:otherwise>
+			</c:choose>
+			<!-- 查询所有发送消息 -->
 			
 			<div id="multipage"></div>
 		</div>
@@ -386,7 +469,6 @@
        			 <li class="first"><a href="<%=path%>/kd/adminpage_main.jsp">${sessionScope.user.kkd102 }</a></li>
        		</c:otherwise>
        	</c:choose>
-        <li><a href="#">提醒</a></li>
         <li><a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a></li>
         <c:choose>
        		<c:when test="${fn:contains('45',sessionScope.user.kkd104) }">
@@ -422,6 +504,20 @@
 		${msg}<br />
 	</c:otherwise>
 </c:choose>
+<br>
+<!-- 消息提示 -->
+<c:if test="${!empty msgs }">
+	你收到了 <span class="green">${fn:length(msgs) }</span> 封新的短消息~点击下面的链接前往查看<br>
+	<c:forEach items="${msgs }" var="msg" begin="0" end="2">
+		<span style="color:#8f8fff">${msg.sender }:</span> 
+		<a href="<%=path%>/kd02FindMsgDetail.kdhtml?flag=receive&kkd201=${msg.kkd201}&username=${user.kkd102}">${msg.title }</a>
+		<br>
+	</c:forEach>
+	<c:if test="${fn:length(msgs) >3}">
+		<a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}" ><span>...前往收件箱查看更多</span></a>
+	</c:if>
+</c:if>
+<!-- 消息提示 -->
 </div>
 </div>
 <div class="ukagaka_balloon_pink_bottom"></div>	

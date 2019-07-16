@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>登录至 Bangumi 番组计划</title>
+<title>登录至 SubCircle</title>
 
 <link rel="stylesheet" type="text/css" href="<%=path %>/css/bangumi.css" >
 <script src="<%=path %>/js/bangumi.js" type="text/javascript"></script>

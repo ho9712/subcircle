@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>管理员页面</title>
+<title>管理员主页</title>
 
 <link rel="stylesheet" type="text/css" href="<%=path %>/css/bangumi.css" />
 <script src="<%=path %>/js/bangumi.js" type="text/javascript"></script>
@@ -158,7 +158,7 @@
 					<li><a href="<%= path %>/kd01QueryUser.kdhtml">作品管理员</a></li>
 				</c:when>
 				<c:when test="${sessionScope.kkd104 eq '2' }">
-					<li><a href="<%= path %>/kd01QueryAdmin.kdhtml">商城管理员</a></li>
+					<li><a href="<%= path %>/kd/shopadminpage_turn.jsp">商城管理员</a></li>
 				</c:when>
 				<c:when test="${sessionScope.kkd104 eq '3' }">
 					<li><a href="<%= path %>/kd01QueryAdmin.kdhtml">论坛管理员</a></li>
@@ -190,23 +190,23 @@
 					<span class="tip">${sessionScope.user.kkd106 } 加入</span></li>
 					</ul>    
 			        <div class="adminTools">
-				    	<a href="<%=path%>/kd/adminpage_info.jsp" class="btnGraySmall"><span>编辑</span></a>           
+				    	<a href="<%=path%>/kd/adminpage_info.jsp" class="btnGraySmall"><span>编辑个人信息</span></a>        
 	                </div>
 				</div>
 			    <div id="blog" class="sort">
 					<h2 class="drag">&nbsp;</h2>
 					<div class="horizontalOptions clearit">
 						<ul class="">
-							<li class="title"><h2> 我的日志</h2></li>
+							<li class="title"><h2> 我的公告</h2></li>
 							<li style="float:right"><small><a href="/user/481528/blog">...more</a></small></li>
 						</ul>
 					</div>
 				
 					<div class="content_inner clearit" align="left">
 						<div align="center" class="clearit">
-							<span class="green">还没有发表过日志?</span>
-								<a href="/blog/create" class="l">>立即发表<</a><br />
-							<span class="tip_j">你甚至可以通过日志为 SubCircle 的会员提供新闻</span>
+							<span class="green">还没有发布过公告?</span>
+								<a href="/blog/create" class="l">>立即发布<</a><br />
+							<span class="tip_j">你可以通过公告向 SubCircle 的会员告知信息</span>
 						</div>
 					</div>
 				</div>
@@ -218,11 +218,11 @@
 		<div id="columnB" class="column">
 			<div id="">
 				<div class="SidePanel png_bg">
-					<h2>/ 我的... <small><a href="/user/481528/timeline">...more</a></small></h2>
+					<h2>/ 账号历史 </h2>
 				
 					<ul class="timeline">
 						<li>
-							<small class="feed">注册成为了 SubCircle 成员</small> 
+							<small class="feed">管理员账号创建于</small> 
 							<small class="time">${sessionScope.user.kkd106 }</small>
 						</li>
 					</ul>
@@ -231,16 +231,9 @@
 			<div id="sideLayout">
 				<div id="friend" class="sort">
 					<div class="SidePanel png_bg" align="left">
-						<h2>/ 我的... <small><a href="/user/481528/friends">...more</a></small></h2>
+						<h2>/ 我的公告 <small><a href="/user/481528/friends">...more</a></small></h2>
 						<hr class="board" />
-						<a href="/user/481528/rev_friends">+ 谁加我为好友</a>
-					</div>
-				</div>
-				<div id="group" class="sort">
-					<div class="SidePanel png_bg" align="left">
-					<h2>/ 我的... </h2>
-					    <ul class="groupsLine">
-					            </ul>
+						<a href="/user/481528/rev_friends">+ 发布站内公告</a>
 					</div>
 				</div>
 			</div>
@@ -257,7 +250,6 @@
     <div class="content">
         <ul class="clearit">
         <li class="first"><a href="<%= path %>/kd/adminpage_main.jsp">${sessionScope.user.kkd102 }</a></li>
-        <li><a href="#">提醒</a></li>
         <li><a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a></li>
         <li><a href="<%= path %>/kd/adminpage_info.jsp">设置</a></li>
         <li><a href="<%=path%>/logout.kdhtml">登出</a></li>
@@ -278,10 +270,15 @@
 <strong>『管理员主页』</strong><br />
 欢迎你，管理员 <span class="green"><strong>${sessionScope.user.kkd105 }</strong></span><br /><br>
 <c:if test="${!empty msgs }">
-	你收到了${fn:length(msgs) }封新的短消息~点击下面的链接前往查看<br>
-	<c:forEach items="${msgs }" var="msg">
-		<span style="color:#8f8fff">${msg.sender }:</span> <a href="#">${msg.title }</a><br>
+	你收到了 <span class="green">${fn:length(msgs) }</span> 封新的短消息~点击下面的链接前往查看<br>
+	<c:forEach items="${msgs }" var="msg" begin="0" end="2">
+		<span style="color:#8f8fff">${msg.sender }:</span> 
+		<a href="<%=path%>/kd02FindMsgDetail.kdhtml?flag=receive&kkd201=${msg.kkd201}&username=${user.kkd102}">${msg.title }</a>
+		<br>
 	</c:forEach>
+	<c:if test="${fn:length(msgs) >3}">
+		<a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}" ><span>...前往收件箱查看更多</span></a>
+	</c:if>
 </c:if>
 </div>
 </div>

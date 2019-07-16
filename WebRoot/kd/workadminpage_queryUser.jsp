@@ -22,7 +22,7 @@
 		document.getElementById("username").innerHTML=kkd102;
 	}
 </script>
-<title>Root管理员页面</title>
+<title>查看权限用户</title>
 
 
 <link rel="stylesheet" type="text/css" href="<%=path %>/css/bangumi.css" />
@@ -167,14 +167,17 @@
 	<!-- 主页主体A栏 -->
 		
 		<div id="columnSubjectBrowserA" class="column">
-    	<div id="browserTools" class="clearit">
-        
-        	按 <a href="#" onclick="onClickSort()" class="btnGraySmall"><span>默认</span></a> · 
-        	<a href="#" onclick="onClickSort(1)" class="btnGraySmall" ><span>时间</span></a> · 
-        	<a href="#" onclick="onClickSort(3)" class="btnGraySmall" ><span>昵称</span></a> 排序
-        
-		</div>    
+    	  
 			<!-- 查询所有权限用户 -->
+			<c:choose>
+			<c:when test="${!empty users }">
+			<div id="browserTools" class="clearit">
+        
+	        	按 <a href="#" onclick="onClickSort()" class="btnGraySmall"><span>默认</span></a> · 
+	        	<a href="#" onclick="onClickSort(1)" class="btnGraySmall" ><span>时间</span></a> · 
+	        	<a href="#" onclick="onClickSort(3)" class="btnGraySmall" ><span>昵称</span></a> 排序
+	        
+			</div>  
 			<ul id="browserItemList" class="browserList">
 				<c:forEach items="${users }" var="user">
 					<li id="item_9912" class="item odd clearit">
@@ -225,6 +228,18 @@
 					</li>
 				</c:forEach>
 			</ul>
+			</c:when>
+			<c:otherwise>
+				<div class="section">
+		            <br><h2 class="title">没有权限用户...</h2>
+		        	<div>
+		        		<ul class="coversSmall">
+		           		</ul>
+		        	</div>
+		        </div>
+		        <div class="section_line clear"></div>
+			</c:otherwise>
+			</c:choose>
 			<!-- 查询所有权限用户 -->
 			
 			<div id="multipage"></div>
@@ -315,7 +330,6 @@
     <div class="content">
         <ul class="clearit">
         <li class="first"><a href="<%=path%>/kd/adminpage_main.jsp">${sessionScope.user.kkd102 }</a></li>
-        <li><a href="#">提醒</a></li>
         <li><a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a></li>
         <li><a href="<%=path%>/kd/adminpage_info.jsp">设置</a></li>
         <li><a href="<%=path%>/logout.kdhtml">登出</a></li>
@@ -344,6 +358,20 @@
 		${msg}<br />
 	</c:otherwise>
 </c:choose>
+<br>
+<!-- 消息提示 -->
+<c:if test="${!empty msgs }">
+	你收到了 <span class="green">${fn:length(msgs) }</span> 封新的短消息~点击下面的链接前往查看<br>
+	<c:forEach items="${msgs }" var="msg" begin="0" end="2">
+		<span style="color:#8f8fff">${msg.sender }:</span> 
+		<a href="<%=path%>/kd02FindMsgDetail.kdhtml?flag=receive&kkd201=${msg.kkd201}&username=${user.kkd102}">${msg.title }</a>
+		<br>
+	</c:forEach>
+	<c:if test="${fn:length(msgs) >3}">
+		<a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}" ><span>...前往收件箱查看更多</span></a>
+	</c:if>
+</c:if>
+<!-- 消息提示 -->
 </div>
 </div>
 <div class="ukagaka_balloon_pink_bottom"></div>	

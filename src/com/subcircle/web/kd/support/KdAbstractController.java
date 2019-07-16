@@ -492,7 +492,7 @@ public abstract class KdAbstractController implements ControllerInterface
 	//删除消息
 	protected final String delMsg()throws Exception
 	{
-		if(this.dto.get("flag").toString().equals("sender"))
+		if(this.dto.get("sign").toString().equals("sender"))
 		{
 			if(this.executeMethod("senderDelMsg"))
 			{
@@ -510,6 +510,12 @@ public abstract class KdAbstractController implements ControllerInterface
 			if(this.executeMethod("receiverDelMsg"))
 			{
 				this.setHint("删除成功", "该消息已被删除！");
+				//设置为已读
+				this.executeMethod("readMsg");
+				//重新获取未读消息
+				this.session.removeAttribute("msgs");
+				List<Map<String, String>> msgs=this.executeQueryForList("queryMsg");
+				this.session.setAttribute("msgs", msgs);
 			}
 			else
 			{
@@ -517,6 +523,37 @@ public abstract class KdAbstractController implements ControllerInterface
 			}
 			this.queryReceive();
 			return "kd/message_receive";
+		}
+	}
+	
+	//查看单个消息详情
+	protected final void findMsgDetail()throws Exception
+	{
+		Map<String, Object> map=this.services.queryInMap();
+		this.saveAttribute("map", map);
+		if(this.dto.get("flag").toString().equals("receive"))
+		{
+			//设置为已读
+			this.executeMethod("readMsg");
+			//重新获取未读消息
+			this.session.removeAttribute("msgs");
+			List<Map<String, String>> msgs=this.executeQueryForList("queryMsg");
+			this.session.setAttribute("msgs", msgs);
+		}
+	}
+	
+	//回复消息
+	protected final void replyMsg()throws Exception
+	{
+		if(this.executeMethod("replyMsg"))
+		{
+			this.setHint("回复成功", "等待对方查看");
+			Map<String, Object> map=this.services.queryInMap();
+			this.saveAttribute("map", map);
+		}
+		else
+		{
+			this.setHint("回复失败", "服务器可能出现了一点小问题，请稍后再试！");
 		}
 	}
 }

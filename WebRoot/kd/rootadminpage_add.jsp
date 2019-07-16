@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>Root管理员页面</title>
+<title>添加管理员账号</title>
 
 <link rel="stylesheet" type="text/css" href="<%=path %>/css/bangumi.css" />
 <script src="<%=path %>/js/bangumi.js" type="text/javascript"></script>
@@ -126,7 +126,7 @@
     <!-- 主页导航栏 -->
     <div class="navTabsWrapper">
 		<ul class="navTabs">
-			<li><a href="<%= path %>/kd/adminpage_main.jsp">账号</a></li>
+			<li><a href="<%= path %>/kd/adminpage_main.jsp">主页</a></li>
         	<li><a href="<%= path %>/kd/rootadminpage_add.jsp" class="focus">Root管理员</a></li>
         	<li><a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">消息</a></li>
 		</ul>
@@ -194,7 +194,6 @@
     <div class="content">
         <ul class="clearit">
         <li class="first"><a href="<%=path%>/kd/adminpage_main.jsp">${sessionScope.user.kkd102 }</a></li>
-        <li><a href="#">提醒</a></li>
         <li><a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a></li>
         <li><a href="<%=path%>/kd/adminpage_info.jsp">设置</a></li>
         <li><a href="<%=path%>/logout.kdhtml">登出</a></li>
@@ -223,6 +222,20 @@
 		${msg}<br />
 	</c:otherwise>
 </c:choose>
+<br>
+<!-- 消息提示 -->
+<c:if test="${!empty msgs }">
+	你收到了 <span class="green">${fn:length(msgs) }</span> 封新的短消息~点击下面的链接前往查看<br>
+	<c:forEach items="${msgs }" var="msg" begin="0" end="2">
+		<span style="color:#8f8fff">${msg.sender }:</span> 
+		<a href="<%=path%>/kd02FindMsgDetail.kdhtml?flag=receive&kkd201=${msg.kkd201}&username=${user.kkd102}">${msg.title }</a>
+		<br>
+	</c:forEach>
+	<c:if test="${fn:length(msgs) >3}">
+		<a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}" ><span>...前往收件箱查看更多</span></a>
+	</c:if>
+</c:if>
+<!-- 消息提示 -->
 </div>
 </div>
 <div class="ukagaka_balloon_pink_bottom"></div>	

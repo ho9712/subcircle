@@ -53,9 +53,10 @@ public class Kd01Services extends JdbcServicesSupport
 		}
 	}
 	
+	//查询用户未读消息
 	public List<Map<String, String>> queryMsg()throws Exception
 	{
-		String sql="select a.kkd105 sender,b.kkd204 title from kd01 a,kd02 b where a.kkd102=b.kkd202 and b.kkd203=? and b.kkd206='0'";
+		String sql="select b.kkd201 kkd201,a.kkd105 sender,b.kkd204 title from kd01 a,kd02 b where a.kkd102=b.kkd202 and b.kkd203=? and b.kkd206='0'";
 		return this.queryForList(sql, this.get("username"));
 	}
 	

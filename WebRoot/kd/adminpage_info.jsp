@@ -18,7 +18,7 @@
 <div id="headerNeue2">
     <div class="headerNeueInner clearit">
          <div class="bg musume_4"></div>
-   		 <a href="/" class="logo">Bangumi 番组计划</a>
+   		 <a href="/" class="logo"></a>
         
 		<input type="checkbox" id="navMenuNeueToggle" />        
 		<label for="navMenuNeueToggle" class="menuCompact"></label>
@@ -180,10 +180,10 @@
 						<tr>
 						<td valign="top" width="12%">用户权限</td><td valign="top">
 							<c:choose>
-								<c:when test="${sessionScope.user.kkd104==0}"><span style="color:#ff0000">超级管理员</span></c:when>
-								<c:when test="${sessionScope.user.kkd104==1}"><span style="color:#ff8f8f">作品管理员</span></c:when>
-								<c:when test="${sessionScope.user.kkd104==2}"><span style="color:#6faf0f">商城管理员</span></c:when>
-								<c:when test="${sessionScope.user.kkd104==3}"><span style="color:#8f8fff">论坛管理员</span></c:when>
+								<c:when test="${sessionScope.user.kkd104==0}"><span style="font-size:20px;color:#ff0000">超级管理员</span></c:when>
+								<c:when test="${sessionScope.user.kkd104==1}"><span style="font-size:20px;color:#ff8f8f">作品管理员</span></c:when>
+								<c:when test="${sessionScope.user.kkd104==2}"><span style="font-size:20px;color:#6faf0f">商城管理员</span></c:when>
+								<c:when test="${sessionScope.user.kkd104==3}"><span style="font-size:20px;color:#8f8fff">论坛管理员</span></c:when>
 							</c:choose>
 						</td>
 						</tr>
@@ -223,7 +223,6 @@
     <div class="content">
          <ul class="clearit">
         <li class="first"><a href="<%=path%>/kd/adminpage_main.jsp">${sessionScope.user.kkd102 }</a></li>
-        <li><a href="#">提醒</a></li>
         <li><a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a></li>
         <li><a href="<%=path%>/kd/adminpage_info.jsp">设置</a></li>
         <li><a href="<%=path%>/logout.kdhtml">登出</a></li>
@@ -254,6 +253,20 @@
 		${msg }<br />
 	</c:otherwise>
 </c:choose>
+<br>
+<!-- 消息提示 -->
+<c:if test="${!empty msgs }">
+	你收到了 <span class="green">${fn:length(msgs) }</span> 封新的短消息~点击下面的链接前往查看<br>
+	<c:forEach items="${msgs }" var="msg" begin="0" end="2">
+		<span style="color:#8f8fff">${msg.sender }:</span> 
+		<a href="<%=path%>/kd02FindMsgDetail.kdhtml?flag=receive&kkd201=${msg.kkd201}&username=${user.kkd102}">${msg.title }</a>
+		<br>
+	</c:forEach>
+	<c:if test="${fn:length(msgs) >3}">
+		<a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}" ><span>...前往收件箱查看更多</span></a>
+	</c:if>
+</c:if>
+<!-- 消息提示 -->
 </div>
 </div>
 <div class="ukagaka_balloon_pink_bottom"></div>	

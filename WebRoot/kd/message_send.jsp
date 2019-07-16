@@ -7,25 +7,7 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<script type="text/javascript">
-	function onClickSort(vorder)
-	{
-		var vform=document.getElementById("myform");
-		vform.action="<%= path %>/kd01QueryAdmin.kdhtml?order="+vorder;
-		vform.submit();
-	}
-	function modifyAdmin(kkd108,kkd101,kkd102,kkd104)
-	{
-		document.getElementById("img1").src=kkd108;
-		document.getElementById("img2").src=kkd108;
-		document.getElementById("img3").src=kkd108;
-		document.getElementById("uid").value=kkd101;
-		document.getElementById("kkd101-hide").value=kkd101;
-		document.getElementById("username").value=kkd102;
-		document.getElementById("permit").value=kkd104;
-	}
-</script>
-<title>Root管理员页面</title>
+<title>发送消息</title>
 
 
 <link rel="stylesheet" type="text/css" href="<%=path %>/css/bangumi.css" />
@@ -133,7 +115,7 @@
 						<li><a href="<%= path %>/kd01QueryUser.kdhtml">作品管理员</a></li>
 					</c:when>
 					<c:when test="${sessionScope.kkd104 eq '2' }">
-						<li><a href="<%= path %>/kd01QueryAdmin.kdhtml">商城管理员</a></li>
+						<li><a href="<%= path %>/kd/shopadminpage_turn.jsp">商城管理员</a></li>
 					</c:when>
 					<c:when test="${sessionScope.kkd104 eq '3' }">
 						<li><a href="<%= path %>/kd01QueryAdmin.kdhtml">论坛管理员</a></li>
@@ -184,18 +166,42 @@
             </div>
 
             <div class="headerAvatar">
-                <c:choose>
+               <!-- 头像或默认头像，以及头像返回页面 -->
+			<c:choose>
             	<c:when test="${!empty sessionScope.user.kkd108}">
-           		 <a href="<%=path%>/kd/userpage_main.jsp" class="avatar">
-                	<span class="avatarNeue avatarSize75" style="background-image:url('${sessionScope.user.kkd108}')"></span>
-                </a>
+            	<c:choose>
+            		<c:when test="${fn:contains('45',sessionScope.user.kkd104) }">
+            			<a class="avatar" href="<%=path%>/kd/userpage_main.jsp">
+						<span class="avatarNeue avatarSize75" 
+							style="background-image:url('${sessionScope.user.kkd108}');background-size: 100% auto;"></span>
+						</a>
+            		</c:when>
+            		<c:otherwise>
+            			<a class="avatar" href="<%=path%>/kd/adminpage_main.jsp">
+						<span class="avatarNeue avatarSize75" 
+							style="background-image:url('${sessionScope.user.kkd108}');background-size: 100% auto;"></span>
+						</a>
+            		</c:otherwise>
+            	</c:choose>
             	</c:when>
             	<c:otherwise>
-           		<a href="<%=path%>/kd/userpage_main.jsp" class="avatar">
-                	<span class="avatarNeue avatarSize75" style="background-image:url('<%=path%>/img/avatar/def_avatar.png')"></span>
-                </a>
+            	<c:choose>
+            		<c:when test="${fn:contains('45',sessionScope.user.kkd104) }">
+            			<a class="avatar" href="<%=path%>/kd/userpage_main.jsp">
+						<span class="avatarNeue avatarSize75" 
+							style="background-image:url('<%=path%>/img/avatar/def_avatar.png');background-size: 100% auto;"></span>
+						</a>
+            		</c:when>
+            		<c:otherwise>
+            			<a class="avatar" href="<%=path%>/kd/adminpage_main.jsp">
+						<span class="avatarNeue avatarSize75" 
+							style="background-image:url('<%=path%>/img/avatar/def_avatar.png');background-size: 100% auto;"></span>
+						</a>
+            		</c:otherwise>
+            	</c:choose>
             	</c:otherwise>
             </c:choose>
+            <!-- 头像或默认头像，以及头像返回页面 -->
             </div>
 
             <div class="inner">
@@ -227,7 +233,7 @@
 						<li><a href="<%= path %>/kd01QueryUser.kdhtml">作品管理员</a></li>
 					</c:when>
 					<c:when test="${sessionScope.kkd104 eq '2' }">
-						<li><a href="<%= path %>/kd01QueryAdmin.kdhtml">商城管理员</a></li>
+						<li><a href="<%= path %>/kd/shopadminpage_turn.jsp">商城管理员</a></li>
 					</c:when>
 					<c:when test="${sessionScope.kkd104 eq '3' }">
 						<li><a href="<%= path %>/kd01QueryAdmin.kdhtml">论坛管理员</a></li>
@@ -244,7 +250,7 @@
 	<div class="navSubTabsWrapper">
 		<ul class="navSubTabs">
 			<li><a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}" ><span>收件箱</span></a></li>
-			<li><a href="<%=path%>/kd/message_send.jsp" class="focus"><span>发送消息</span></a></li>
+			<li><a href="<%=path%>/kd/message_send.jsp?kkd102=${param.kkd102 }" class="focus"><span>发送消息</span></a></li>
   	 		<li><a href="<%= path %>/kd02QuerySend.kdhtml?username=${user.kkd102}" ><span>已发送</span></a></li>
 		</ul>
 	</div>
@@ -348,6 +354,7 @@
 </div>
 </div>
 </div>
+</div>
 <!-- 页面主体到此结束 -->
 
 <div class="homeBg"></div>
@@ -363,7 +370,6 @@
        			 <li class="first"><a href="<%=path%>/kd/adminpage_main.jsp">${sessionScope.user.kkd102 }</a></li>
        		</c:otherwise>
        	</c:choose>
-        <li><a href="#">提醒</a></li>
         <li><a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a></li>
         <c:choose>
        		<c:when test="${fn:contains('45',sessionScope.user.kkd104) }">
@@ -399,6 +405,20 @@
 		${msg}<br />
 	</c:otherwise>
 </c:choose>
+<br>
+<!-- 消息提示 -->
+<c:if test="${!empty msgs }">
+	你收到了 <span class="green">${fn:length(msgs) }</span> 封新的短消息~点击下面的链接前往查看<br>
+	<c:forEach items="${msgs }" var="msg" begin="0" end="2">
+		<span style="color:#8f8fff">${msg.sender }:</span> 
+		<a href="<%=path%>/kd02FindMsgDetail.kdhtml?flag=receive&kkd201=${msg.kkd201}&username=${user.kkd102}">${msg.title }</a>
+		<br>
+	</c:forEach>
+	<c:if test="${fn:length(msgs) >3}">
+		<a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}" ><span>...前往收件箱查看更多</span></a>
+	</c:if>
+</c:if>
+<!-- 消息提示 -->
 </div>
 </div>
 <div class="ukagaka_balloon_pink_bottom"></div>	
