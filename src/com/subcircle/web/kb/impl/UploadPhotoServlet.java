@@ -14,25 +14,42 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 
-@WebServlet("/kb01UploadPhotoServlet")
+@WebServlet("/uploadPhotoServlet")
 @MultipartConfig
-public class Kb01UploadPhotoServlet extends HttpServlet {
+public class UploadPhotoServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		try 
 		{
-			Part part=request.getPart("itemPhoto");
-			String fileName=part.getSubmittedFileName();
-			String filePath=request.getServletContext().getRealPath("img/item/");
+			Part part = null;
+			String filePath = null;
+			String data = null;
+			String fileName=null;
+			UUID uuid=UUID.randomUUID();
+			//商城管理员上传商品图片
+			if (request.getPart("itemPhoto") != null)
+			{
+				part=request.getPart("itemPhoto");
+				filePath=request.getServletContext().getRealPath("img/item/");
+				fileName=part.getSubmittedFileName();
+				data = "/item/"  + uuid+fileName;
+			}
+			//用户发布求购上传求购商品图片
+			else if (request.getPart("inquiryItemPhoto") != null) 
+			{
+				part=request.getPart("inquiryItemPhoto");
+				filePath=request.getServletContext().getRealPath("img/inquiry/");
+				fileName=part.getSubmittedFileName();
+				data = "/inquiry/"  + uuid+fileName;
+			}
+			
 			File file=new File(filePath);
 			if(!file.exists())
 			{
 				file.mkdir();
 			}
-			UUID uuid=UUID.randomUUID();
 			String url=filePath+uuid+fileName;
-			System.out.println(url + "========");
 			if(fileName.endsWith(".jpg") || fileName.endsWith(".png"))
 			{
 				part.write(url);
@@ -48,10 +65,8 @@ public class Kb01UploadPhotoServlet extends HttpServlet {
 					request.setAttribute("avatarMsg", "仅支持.jpg或.png格式文件！");
 				}
 			}
-			
 			PrintWriter out = response.getWriter();
 			response.setContentType("text");
-			String data = "\\item\\"  + uuid+fileName;
 			out.write(data); 
 			out.flush();
 			out.close();

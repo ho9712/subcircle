@@ -10,7 +10,7 @@
 #bom {
 	position: fixed;
 	left: 0px;
-	bottom: 0;
+	bottom:20px;
 	_position: absolute;
 	_top: expression(document.documentElement.clientHeight +  
 		 document.documentElement.scrollTop - this.offsetHeight);
@@ -18,41 +18,62 @@
 
 #top {
 	position: fixed;
-	top: 15%;
 	width: 15%;
 	_position: absolute;
 	_bottom: expression(document.documentElement.clientHeight +  
 		 document.documentElement.scrollTop - this.offsetHeight);
 }
 
-
-/* #top_1 {
-	position: fixed;
-	left:16.7%;
-	_position: absolute;
-	_bottom: expression(document.documentElement.clientHeight +  
-		 document.documentElement.scrollTop - this.offsetHeight);
-} */
 </style>
 </head>
 <body>
-
 <% String path = request.getContextPath();%>
 	<div class="row-fluid" align="center">
 		<!--站点导航栏-商城导航栏 ()-->
 
+
 		<div class="span2">
+			
 			<!-- 站点导航栏 -->
 			<div id = "top">
-				<ul class="nav nav-list">
-					<li><a href="#">站点首页</a></li>
-					<hr>
-					<li><a href="#">迷你论坛</a></li>
-					<hr>
-					<li class="active"><a href="#" onclick="marketCenter()">周边商城</a></li>
-					<hr>
-					<li><a href="#">个人空间</a></li>
-				</ul>
+				<div>
+					<a href="<%=path%>/kd/userpage_main.jsp">
+				 		<img class="img-circle image-responsive" 
+				 			src="${sessionScope.user.kkd108 }" 
+				 			style="width: 100px;height: 100px;">
+				 	</a>
+				</div>
+				<br>
+				<div>
+					<span style="width:80%;word-break: break-word;font-size:20px;font: bold;">
+						<a href="<%=path%>/kd/userpage_main.jsp">
+							${sessionScope.user.kkd105 }
+						</a>
+					</span>
+				</div>
+				<div style="padding-top: 50px">
+					<ul class="nav nav-list">
+						<li><a href="#">
+							<span style="font-size:20px;font: bold;">站点首页</span>
+							</a>
+						</li>
+						<hr>
+						<li><a href="#">
+							<span style="font-size:20px;font: bold;">迷你论坛</span>
+							</a>
+						</li>
+						<hr>
+						<li class="active"><a href="#" onclick="marketCenter()">
+							<span style="font-size:20px;font: bold;">周边商城</span>
+							</a>
+						</li>
+						<hr>
+						<li><a href="<%=path%>/kd/userpage_main.jsp">
+							<span style="font-size:20px;font: bold;">个人空间</span>
+							</a>
+						</li>
+					</ul>
+				</div>
 			</div>
 			<div id="bom">
 				<img class="img-thumbnail"
@@ -81,10 +102,11 @@
 						<li class="dropdown"><a href="#" data-toggle="dropdown"
 							class="dropdown-toggle">求购 <strong class="caret"></strong></a>
 							<ul class="dropdown-menu">
-								<li><a href="#">求购信息列表</a></li>
+								<li><a href="<%=path%>/Kb07QueryInquiry.kbhtml?kkb708=2">求购信息列表</a></li>
 								<li><a href="#">我的求购列表</a></li>
 								<li><a href="#">我的响应列表</a></li>
 								<li><a href="#">待处理列表</a></li>
+								<li><a href="<%=path%>/kb/addInquiry.jsp">发布求购</a></li>
 							</ul></li>
 					</ul>
 				</div>
@@ -97,10 +119,8 @@
 						<li class="dropdown"><a href="#" data-toggle="dropdown"
 							class="dropdown-toggle">管理求购<strong class="caret"></strong></a>
 							<ul class="dropdown-menu">
-								<li><a href="#">求购信息列表</a></li>
-								<li><a href="#">我的求购列表</a></li>
-								<li><a href="#">我的响应列表</a></li>
-								<li><a href="#">待处理列表</a></li>
+								<li><a href="<%=path%>/Kb07QueryInquiry.kbhtml?kkb708=1">待审核求购</a></li>
+								<li><a href="<%=path%>/Kb07QueryInquiry.kbhtml?kkb708=2">求购信息列表</a></li>
 							</ul></li>
 					</ul>
 				</div>

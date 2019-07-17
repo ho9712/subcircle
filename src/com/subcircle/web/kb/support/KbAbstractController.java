@@ -320,4 +320,21 @@ public abstract class KbAbstractController implements ControllerInterface
 			this.saveAttribute("msg", "数据不存在或禁止访问");
 		}
 	}
+	
+	/**
+	 * 求购信息列表
+	 * @throws Exception
+	 */
+	protected final void showInquiryList() throws Exception
+	{
+		List<Map<String, String>> rows = this.services.queryByCondition();
+		if(rows.size()>0)
+		{
+			this.saveAttribute("rows", rows);
+		}
+		else
+		{
+			this.saveAttribute("msg", "数据不存在或禁止访问");
+		}
+	}
 }

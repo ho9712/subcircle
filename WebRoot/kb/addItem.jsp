@@ -124,7 +124,7 @@
 	<script type="text/javascript">
 		function uploadPhoto()
 		{
-			$("#photoForm").attr("action","<%=request.getContextPath()%>/kb01UploadPhotoServlet")
+			$("#photoForm").attr("action","<%=request.getContextPath()%>/uploadPhotoServlet")
 			$("#photoForm").ajaxSubmit({
 		            type: "POST",
 		            dataType: "text",

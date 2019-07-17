@@ -8,7 +8,6 @@
 <jsp:include page="index.jsp" flush="true" /><!-- 引入导航栏 -->
 </head>
 <body>
-${sessionScope.user }
 	<%-- ${rows.get(1) } --%>
 	<%-- ${hotItems } --%>
 	<div class="container-fluid">
