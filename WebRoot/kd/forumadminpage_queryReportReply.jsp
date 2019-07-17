@@ -11,21 +11,21 @@
 	function onClickSort(vorder)
 	{
 		var vform=document.getElementById("myform");
-		vform.action="<%= path %>/kd01QueryAdmin.kdhtml?order="+vorder;
+		vform.action="<%= path %>/kd03QueryApp.kdhtml?order="+vorder;
 		vform.submit();
 	}
-	function modifyAdmin(kkd108,kkd101,kkd102,kkd104)
+	function dealApp(kkd101,kkd102,kkd105,kkd108,kkd304,kkd302,kkd303)
 	{
-		document.getElementById("img1").src=kkd108;
-		document.getElementById("img2").src=kkd108;
-		document.getElementById("img3").src=kkd108;
-		document.getElementById("uid").value=kkd101;
+		document.getElementById("img").src=kkd108;
 		document.getElementById("kkd101-hide").value=kkd101;
-		document.getElementById("username").value=kkd102;
-		document.getElementById("permit").value=kkd104;
+		document.getElementById("nickname").innerHTML=kkd105;
+		document.getElementById("username").innerHTML=kkd102;
+		document.getElementById("time").innerHTML=kkd304;
+		document.getElementById("title").value=kkd302;
+		document.getElementById("content").innerHTML=kkd303;
 	}
 </script>
-<title>查看所有管理员账号</title>
+<title>查看贴子回复举报</title>
 
 
 <link rel="stylesheet" type="text/css" href="<%=path %>/css/bangumi.css" />
@@ -89,7 +89,7 @@
             </c:choose>
 		<ul id="badgeUserPanel">
 			<li><a href="<%=path%>/kd01AdminMain.kdhtml">个人主页</a></li>                    
-	    	<li><a href="<%= path %>/kd01QueryAdmin.kdhtml">管理员</a></li>
+	    	<li><a href="<%= path %>/ka03QueryReport.kdhtml?flag=post">论坛管理员</a></li>
 	        <li class="row">
 		        <a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a> | 
 		        <a href="<%=path%>/kd/adminpage_info.jsp">设置</a> | 
@@ -132,7 +132,18 @@
             </div>
 
             <div class="headerAvatar">
-                <a href="<%=path%>/kd01AdminMain.kdhtml" class="avatar"><span class="avatarNeue avatarSize75" style="background-image:url('${sessionScope.user.kkd108}')"></span></a>
+                <c:choose>
+            	<c:when test="${!empty sessionScope.user.kkd108}">
+           		 <a href="<%=path%>/kd01AdminMain.kdhtml" class="avatar">
+                	<span class="avatarNeue avatarSize75" style="background-image:url('${sessionScope.user.kkd108}')"></span>
+                </a>
+            	</c:when>
+            	<c:otherwise>
+           		<a href="<%=path%>/kd01AdminMain.kdhtml" class="avatar">
+                	<span class="avatarNeue avatarSize75" style="background-image:url('<%=path%>/img/avatar/def_avatar.png')"></span>
+                </a>
+            	</c:otherwise>
+            </c:choose>
             </div>
 
             <div class="inner">
@@ -147,7 +158,7 @@
     <div class="navTabsWrapper">
 		<ul class="navTabs">
 			<li><a href="<%= path %>/kd/adminpage_main.jsp">主页</a></li>
-        	<li><a href="<%= path %>/kd01QueryAdmin.kdhtml" class="focus">Root管理员</a></li>
+        	<li><a href="<%= path %>/ka03QueryReport.kdhtml?flag=post" class="focus">论坛管理员</a></li>
         	<li><a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">消息</a></li>
 		</ul>
 	</div>
@@ -155,8 +166,9 @@
 	<!-- 子导航栏 -->
 	<div class="navSubTabsWrapper">
 		<ul class="navSubTabs">
-			<li><a href="<%= path %>/kd01QueryAdmin.kdhtml" class="focus"><span>现有管理员账号</span></a></li>
-  	 		<li><a href="<%= path %>/kd/rootadminpage_add.jsp" ><span>添加管理员账户</span></a></li>
+			<li><a href="<%= path %>/ka03QueryReport.kdhtml?flag=post"><span>查看举报贴子</span></a></li>
+  	 		<li><a href="<%= path %>/ka03QueryReport.kdhtml?flag=reply" class="focus"><span>查看举报回复</span></a></li>
+  	 		<li><a href="<%= path %>/ka01MainForum.kahtml?id=0"><span>前往管理论坛</span></a></li>
 		</ul>
 	</div>
 	<!-- 子导航栏 -->
@@ -169,130 +181,80 @@
 	<!-- 主页主体A栏 -->
 		
 		<div id="columnSubjectBrowserA" class="column">
-    	<div id="browserTools" class="clearit">
-        
-        	按 <a href="#" onclick="onClickSort()" class="btnGraySmall"><span>默认</span></a> · 
-        	<a href="#" onclick="onClickSort(1)" class="btnGraySmall" ><span>时间</span></a> · 
-        	<a href="#" onclick="onClickSort(2)" class="btnGraySmall" ><span>权限</span></a> · 
-        	<a href="#" onclick="onClickSort(3)" class="btnGraySmall" ><span>昵称</span></a> 排序
-        
-		</div>    
-			<!-- 查询所有管理员账号 -->
-			<ul id="browserItemList" class="browserList">
-				<c:forEach items="${admins }" var="admin">
-					<li id="item_9912" class="item odd clearit">
-				   	<!-- 头像 -->
-					   <%-- 	<a href="<%= path %>/kd01FindAdmin.kdhtml?kkd101=${admin.kkd101}" class="subjectCover cover ll">       
-				           	<span class="image">
-			             	<img src="${admin.kkd108 }" onerror="this.src='<%=path %>/img/avatar/def_avatar.png'" class="cover" />
-				       		</span>
-					       	<span class="overlay"></span>
-					   	</a> --%>
-					   	<c:choose>
-			            	<c:when test="${!empty admin.kkd108}">
-			           		 <a href="<%=path%>/kd01FindOther.kdhtml?kkd101=${admin.kkd101 }" class="avatar">
-			                	<span class="avatarNeue avatarSize48 ll" style="background-image:url('${admin.kkd108}');background-size:100% auto;"></span>
-			                </a>
-			            	</c:when>
-			            	<c:otherwise>
-			           		<a href="<%=path%>/kd01FindOther.kdhtml?kkd101=${admin.kkd101 }" class="avatar">
-			                	<span class="avatarNeue avatarSize48 ll" style="background-image:url('<%=path%>/img/avatar/def_avatar.png');background-size:100% auto;"></span>
-			                </a>
-			            	</c:otherwise>
-			            </c:choose>
-				   	<!-- 头像 -->
-				    <div class="inner">
-				    	<!-- 用户信息 -->
-				       <span class="userInfo">
-					    	<strong><a href="<%=path%>/kd01FindOther.kdhtml?kkd101=${admin.kkd101 }" class="l">${admin.kkd105 }</a></strong>
-				    		<a href="<%=path%>/kd/message_send.jsp?kkd102=${admin.kkd102 }"  class="tip_i icons_cmt">发消息</a>  
-				    		<span class="tip_j">(${admin.kkd107 })</span>
-				    	</span>
-				       <p class="info tip">
-				       	<c:choose>
-				       		<c:when test="${admin.admin eq '作品管理员'}">
-				       			<small style="color:#ff8f8f">${admin.admin }</small>
-				       		</c:when>
-				       		<c:when test="${admin.admin eq '商城管理员'}">
-				       			<small style="color:#6faf0f">${admin.admin }</small>
-				       		</c:when>
-				       		<c:when test="${admin.admin eq '论坛管理员'}">
-				       			<small style="color:#8f8fff">${admin.admin }</small>
-				       		</c:when>
-				       	</c:choose>
-				       </p>
-				       	<p class="collectInfo">
-						<span class="tip_j">${admin.kkd106 }</span> 
-						</p>
-						<!-- 用户信息 -->
-						<!-- 右边按钮 -->
-				       	<div id="collectBlock_9912" class="collectBlock tip_i">
-					    <p class="collectModify">
-						    <a href="#TB_inline?height=350&amp;width=500&amp;inlineId=panel" 
-						    	onclick="modifyAdmin('${admin.kkd108}','${admin.kkd101}','${admin.kkd102}','${admin.kkd104}')" 
-						    	title="修改" class="thickbox l">修改</a> | 
-						    <a href="<%= path %>/kd01DelAdmin.kdhtml?kkd101=${admin.kkd101}" class="l">删除</a>
-					    </p>
-				    	</div>
-				    	<!-- 右边按钮 -->
-				   	</div>
-					</li>
-				</c:forEach>
-			</ul>
-			<!-- 查询所有管理员账号 -->
+    	 
+    	 <c:choose>
+    	 <c:when test="${!empty reports}">
+    	 	<c:forEach items="${reports }" var="report">
+			<div id="entry_list">
+			<div class="item clearit">
+			<a href="<%= path %>/ka03DelReport.kdhtml?flag=reply&kka301=${report.kka301}" class="btnGraySmall rr"><span>删除举报</span></a>
+			<h2 class="title">回复内容: #${report.kka201} ${report.kka202 }</h2>
+			<h2 class="title">贴子: 
+				<a href="<%= path %>/ka01PostContent.kahtml?kka101=${report.kka101}" class="l"> ${report.kka102 }</a>
+			</h2>
+			<div class="time"><small class="time">举报时间: ${report.kka303 }</small> </div>
+			<div class="content">举报理由: ${report.kka302 }</div>
+			<div class="tools clearit">
+				<div class="tags">所属板块: 
+					<a href="ka01AnimeForum.kahtml?id=${report.kka103 }" class="l">${report.ckka103 }</a> 
+				</div>
+			</div>
+			</div>
+			</div>
+			</c:forEach>
+		</c:when>
+		<c:otherwise>
+			<div class="section">
+	            <br><h2 class="title">没有收到来自用户的举报...</h2>
+	        	<div>
+	        		<ul class="coversSmall">
+	           		</ul>
+	        	</div>
+	        </div>
+	        <div class="section_line clear"></div>
+		</c:otherwise>
+		</c:choose>
 			
 			<div id="multipage"></div>
 			<!-- 弹窗 -->
 		<div id="panel" style="display:none;">
 			<div class="collectBox clearit">
 			    <!-- 信息修改 -->
-			    <form name="set" method="post" action="<%=path %>/kd01ModifyAdmin.kdhtml?flag=1">
-					<span class="text">
-						<table align="center" width="98%" cellspacing="0" cellpadding="5" class="settings">
-							<tr>
-							<td valign="top" width="12%">头像</td>
-							<td valign="top">
-								<img id="img1" src="" onerror="this.src='<%=path %>/img/avatar/def_avatar.png'" class="port" width="50px" height="50px"/>
-								<img id="img2" src="" onerror="this.src='<%=path %>/img/avatar/def_avatar.png'" class="port" width="40px" height="40px"/>
-								<img id="img3" src="" onerror="this.src='<%=path %>/img/avatar/def_avatar.png'" class="port" width="30px" height="30px"/>
-							</td>
-							</tr>
-							<tr>
-								<td valign="top" width="12%">UID</td>
-								<td valign="top"><input id="uid" name="kkd101" class="inputtext" type="text" readonly="readonly"></td>
-							</tr>
-							<tr>
-								<td valign="top" width="12%">用户名</td>
-								<td valign="top"><input id="username" name="kkd102" class="inputtext" type="text" readonly="readonly"></td>
-							</tr>
-							<tr>
-								<td valign="top" width="12%">设置新密码</td>
-								<td valign="top"><input name="kkd103" class="inputtext" type="password" required="required"></td>
-							</tr>
-							<tr>
-								<td valign="top">
-								<input class="inputBtn" value="更新密码" name="submit" type="submit"/>
-								</td>
-								<td valign="top"></td>
-							</tr>
-							</table>
-					</span>
-				</form>  
-				 <form name="set" method="post" action="<%=path %>/kd01ModifyAdmin.kdhtml?flag=2">
+				 <form name="set" method="post" action="">
 				 	<input id="kkd101-hide" name="kkd101" type="hidden" >
 					<span class="text">
 						<table align="center" width="98%" cellspacing="0" cellpadding="5" class="settings">
 							<tr>
-							<td valign="top" width="12%">用户权限</td>
-							<td valign="top">
-								<e:select value="作品管理员:1,商城管理员:2,论坛管理员:3" id="permit" name="kkd104" style="height:30px;width:100px;"/>
-							</td>
+								<td valign="top" align="center">
+								<img id="img" src="" onerror="this.src='<%=path %>/img/avatar/def_avatar.png'" class="port" width="50px" height="50px"/>
+								</td>
+								<td></td>
 							</tr>
 							<tr>
-								<td valign="top">
-								<input class="inputBtn" value="修改权限" name="submit" type="submit" />
+								<td valign="top" width="12%"><span style="font-size:12px">昵称:</span></td>
+								<td valign="top"><span id="nickname" style="font-size:15px;color:#8f8fff"></span></td>
+							</tr>
+							<tr>
+								<td valign="top" width="12%"><span style="font-size:12px">用户名:</span></td>
+								<td valign="top"><span id="username" style="font-size:15px;color:#8f8fff"></span></td>
+							</tr>
+							<tr>
+								<td valign="top" width="12%"><span style="font-size:12px">申请时间:</span></td>
+								<td valign="top"><span id="time" style="font-size:15px;color:#8f8fff"></span></td>
+							</tr>
+							<tr>
+								<td valign="top" width="12%"><span style="font-size:12px">标题:</span></td>
+								<td valign="top"><input id="title" class="inputtext" type="text" readonly="readonly"></td>
+							</tr>
+							<tr>
+								<td valign="top" width="12%"><span style="font-size:12px">内容:</span></td>
+								<td valign="top"><textarea id="content" rows="10" cols="50" readonly="readonly"></textarea></td>
+							</tr>
+							<tr>
+								<td valign="middle" align="center" colspan="2">
+								<input class="inputBtn" value="授予权限" name="submit" type="submit" formaction="<%=path %>/kd03DealApp.kdhtml?flag=accept"/>
+								<input class="inputBtn" value="拒绝申请" name="submit" type="submit" formaction="<%=path %>/kd03DealApp.kdhtml?flag=refuse"/>
 								</td>
-								<td valign="top"></td>
 							</tr>
 						</table>
 					</span>
@@ -311,11 +273,11 @@
 			<div id="columnSubjectInBrowserB" class="clearit">
 				<div class="SidePanel png_bg">
 					<h2>/ 根据条件检索 </h2>
-					<form id="myform" name="set" method="post" action="<%= path %>/kd01QueryAdmin.kdhtml">
+					<form id="myform" name="set" method="post" action="<%= path %>/ka03QueryReport.kdhtml?flag=reply">
 						<span class="text">
 							<table align="center" width="98%" cellspacing="0" cellpadding="5" class="settings">
 								<tr>
-									<td valign="top" width="15%">关键字</td>
+									<td valign="top" width="5%">关键字</td>
 									<td valign="top">
 										<e:text name="keyword" style="border:1px
 											solid #BEB4A7;padding:1px
@@ -324,9 +286,27 @@
 									</td>
 								</tr>
 								<tr>
-									<td valign="top" width="15%">管理员权限</td>
+									<td valign="top" width="15%">所属板块</td>
 									<td valign="top">
-										<e:select value="作品管理员:1,商城管理员:2,论坛管理员:3" name="qkkd104" style="height:30px;width:100px;" header="true"/>
+										<e:select value="动画:1,书籍:2,游戏:3" name="plate" style="height:30px;width:100px;" header="true"/>
+									</td>
+								</tr>
+								<tr>
+									<td valign="top" width="15%">举报时间[B]</td>
+									<td valign="top">
+										<e:date name="bkka303" style="border:1px
+											solid #BEB4A7;padding:1px
+											4px;width:120px;height:20px;padding:3px
+											5px;text-align:left;font-size:14px;line-height:130%"/>
+									</td>
+								</tr>
+								<tr>
+									<td valign="top" width="15%">举报时间[E]</td>
+									<td valign="top">
+										<e:date name="ekka303" style="border:1px
+											solid #BEB4A7;padding:1px
+											4px;width:120px;height:20px;padding:3px
+											5px;text-align:left;font-size:14px;line-height:130%"/>
 									</td>
 								</tr>
 								<tr>
@@ -372,8 +352,8 @@
 <div id="robot_speech" class="speech" >
 <c:choose>
 	<c:when test="${empty hint }">
-		<strong>『Root管理员功能页面』</strong><br />
-		在这里，你可以管理各模块管理员账号。<br />
+		<strong>『查看贴子回复举报』</strong><br />
+		在这里，你可以查看并管理所有来自用户对论坛模块贴子的回复的举报。<br />
 	</c:when>
 	<c:otherwise>
 		<strong>『${hint }』</strong><br />

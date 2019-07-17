@@ -75,20 +75,20 @@
     <div class="idBadgerNeue">
 		<c:choose>
             	<c:when test="${!empty sessionScope.user.kkd108}">
-                <a class="avatar" href="<%=path%>/kd/adminpage_main.jsp">
+                <a class="avatar" href="<%=path%>/kd01AdminMain.kdhtml">
 				<span class="avatarNeue avatarSize32 ll" 
 					style="background-image:url('${sessionScope.user.kkd108}');background-size: 100% auto;"></span>
 				</a>
             	</c:when>
             	<c:otherwise>
-                <a class="avatar" href="<%=path%>/kd/adminpage_main.jsp">
+                <a class="avatar" href="<%=path%>/kd01AdminMain.kdhtml">
 				<span class="avatarNeue avatarSize32 ll" 
 					style="background-image:url('<%=path%>/img/avatar/def_avatar.png');background-size: 100% auto;"></span>
 				</a>
             	</c:otherwise>
             </c:choose>
 		<ul id="badgeUserPanel">
-			<li><a href="<%=path%>/kd/adminpage_main.jsp">个人主页</a></li>                    
+			<li><a href="<%=path%>/kd01AdminMain.kdhtml">个人主页</a></li>                    
 	    	<li><a href="<%= path %>/kd01QueryUser.kdhtml">作品管理员</a></li>
 	        <li class="row">
 		        <a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a> | 
@@ -132,11 +132,11 @@
             </div>
 
             <div class="headerAvatar">
-                <a href="<%=path%>/kd/adminpage_main.jsp" class="avatar"><span class="avatarNeue avatarSize75" style="background-image:url('${sessionScope.user.kkd108}')"></span></a>
+                <a href="<%=path%>/kd01AdminMain.kdhtml" class="avatar"><span class="avatarNeue avatarSize75" style="background-image:url('${sessionScope.user.kkd108}')"></span></a>
             </div>
 
             <div class="inner">
-                <a href="<%=path%>/kd/adminpage_main.jsp">${sessionScope.user.kkd105 }</a> <small class="grey">@${sessionScope.user.kkd102 }</small>
+                <a href="<%=path%>/kd01AdminMain.kdhtml">${sessionScope.user.kkd105 }</a> <small class="grey">@${sessionScope.user.kkd102 }</small>
                 <span id="friend_flag"></span>
             </div>
     	</h1>
@@ -378,7 +378,7 @@
 <div id="dock">
     <div class="content">
         <ul class="clearit">
-        <li class="first"><a href="<%=path%>/kd/adminpage_main.jsp">${sessionScope.user.kkd102 }</a></li>
+        <li class="first"><a href="<%=path%>/kd01AdminMain.kdhtml">${sessionScope.user.kkd102 }</a></li>
         <li><a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a></li>
         <li><a href="<%=path%>/kd/adminpage_info.jsp">设置</a></li>
         <li><a href="<%=path%>/logout.kdhtml">登出</a></li>

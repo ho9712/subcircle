@@ -60,13 +60,13 @@
             	<c:when test="${!empty sessionScope.user.kkd108}">
             	<c:choose>
             		<c:when test="${fn:contains('45',sessionScope.user.kkd104) }">
-            			<a class="avatar" href="<%=path%>/kd/userpage_main.jsp">
+            			<a class="avatar" href="<%=path%>/kd01UserMain.kdhtml">
 						<span class="avatarNeue avatarSize32 ll" 
 							style="background-image:url('${sessionScope.user.kkd108}');background-size: 100% auto;"></span>
 						</a>
             		</c:when>
             		<c:otherwise>
-            			<a class="avatar" href="<%=path%>/kd/adminpage_main.jsp">
+            			<a class="avatar" href="<%=path%>/kd01AdminMain.kdhtml">
 						<span class="avatarNeue avatarSize32 ll" 
 							style="background-image:url('${sessionScope.user.kkd108}');background-size: 100% auto;"></span>
 						</a>
@@ -76,13 +76,13 @@
             	<c:otherwise>
             	<c:choose>
             		<c:when test="${fn:contains('45',sessionScope.user.kkd104) }">
-            			<a class="avatar" href="<%=path%>/kd/userpage_main.jsp">
+            			<a class="avatar" href="<%=path%>/kd01UserMain.kdhtml">
 						<span class="avatarNeue avatarSize32 ll" 
 							style="background-image:url('<%=path%>/img/avatar/def_avatar.png');background-size: 100% auto;"></span>
 						</a>
             		</c:when>
             		<c:otherwise>
-            			<a class="avatar" href="<%=path%>/kd/adminpage_main.jsp">
+            			<a class="avatar" href="<%=path%>/kd01AdminMain.kdhtml">
 						<span class="avatarNeue avatarSize32 ll" 
 							style="background-image:url('<%=path%>/img/avatar/def_avatar.png');background-size: 100% auto;"></span>
 						</a>
@@ -95,7 +95,7 @@
 		<ul id="badgeUserPanel">
 		<c:choose>
        		<c:when test="${fn:contains('45',sessionScope.user.kkd104) }">
-				<li><a href="<%=path%>/kd/userpage_main.jsp">个人主页</a></li>                    
+				<li><a href="<%=path%>/kd01UserMain.kdhtml">个人主页</a></li>                    
 	       		<li><a href="#">作品</a></li>
 	       		<li><a href="#">论坛</a></li>
 	       		<li><a href="#">商城</a></li>
@@ -106,7 +106,7 @@
 	        	</li>
 	    	</c:when>
 	    	<c:otherwise>
-	    		<li><a href="<%=path%>/kd/adminpage_main.jsp">个人主页</a></li>
+	    		<li><a href="<%=path%>/kd01AdminMain.kdhtml">个人主页</a></li>
 	    		<c:choose>
 	    			<c:when test="${sessionScope.kkd104 eq '0' }">
 						<li><a href="<%= path %>/kd01QueryAdmin.kdhtml">Root管理员</a></li>
@@ -118,7 +118,7 @@
 						<li><a href="<%= path %>/kd/shopadminpage_turn.jsp">商城管理员</a></li>
 					</c:when>
 					<c:when test="${sessionScope.kkd104 eq '3' }">
-						<li><a href="<%= path %>/kd01QueryAdmin.kdhtml">论坛管理员</a></li>
+						<li><a href="<%= path %>/ka03QueryReport.kdhtml?flag=post">论坛管理员</a></li>
 					</c:when>
 	    		</c:choose>
 	    		<li class="row">
@@ -171,13 +171,13 @@
             	<c:when test="${!empty sessionScope.user.kkd108}">
             	<c:choose>
             		<c:when test="${fn:contains('45',sessionScope.user.kkd104) }">
-            			<a class="avatar" href="<%=path%>/kd/userpage_main.jsp">
+            			<a class="avatar" href="<%=path%>/kd01UserMain.kdhtml">
 						<span class="avatarNeue avatarSize75" 
 							style="background-image:url('${sessionScope.user.kkd108}');background-size: 100% auto;"></span>
 						</a>
             		</c:when>
             		<c:otherwise>
-            			<a class="avatar" href="<%=path%>/kd/adminpage_main.jsp">
+            			<a class="avatar" href="<%=path%>/kd01AdminMain.kdhtml">
 						<span class="avatarNeue avatarSize75" 
 							style="background-image:url('${sessionScope.user.kkd108}');background-size: 100% auto;"></span>
 						</a>
@@ -187,13 +187,13 @@
             	<c:otherwise>
             	<c:choose>
             		<c:when test="${fn:contains('45',sessionScope.user.kkd104) }">
-            			<a class="avatar" href="<%=path%>/kd/userpage_main.jsp">
+            			<a class="avatar" href="<%=path%>/kd01UserMain.kdhtml">
 						<span class="avatarNeue avatarSize75" 
 							style="background-image:url('<%=path%>/img/avatar/def_avatar.png');background-size: 100% auto;"></span>
 						</a>
             		</c:when>
             		<c:otherwise>
-            			<a class="avatar" href="<%=path%>/kd/adminpage_main.jsp">
+            			<a class="avatar" href="<%=path%>/kd01AdminMain.kdhtml">
 						<span class="avatarNeue avatarSize75" 
 							style="background-image:url('<%=path%>/img/avatar/def_avatar.png');background-size: 100% auto;"></span>
 						</a>
@@ -205,8 +205,18 @@
             </div>
 
             <div class="inner">
-                <a href="<%=path%>/kd/adminpage_main.jsp">${sessionScope.user.kkd105 }</a> <small class="grey">@${sessionScope.user.kkd102 }</small>
-                <span id="friend_flag"></span>
+                <c:choose>
+           		<c:when test="${fn:contains('45',sessionScope.user.kkd104) }">
+	               <a href="<%=path%>/kd01UserMain.kdhtml">${sessionScope.user.kkd105 }</a> 
+	               <small class="grey">@${sessionScope.user.kkd102 }</small>
+	               <span id="friend_flag"></span>
+                </c:when>
+                <c:otherwise>
+                	<a href="<%=path%>/kd01AdminMain.kdhtml">${sessionScope.user.kkd105 }</a> 
+	               <small class="grey">@${sessionScope.user.kkd102 }</small>
+	               <span id="friend_flag"></span>
+                </c:otherwise>
+            </c:choose>
             </div>
     	</h1>
     </div>
@@ -218,13 +228,13 @@
         <!-- 用户或管理员入口 -->
 		<c:choose>
        		<c:when test="${fn:contains('45',sessionScope.user.kkd104) }">
-				<li><a href="<%=path%>/kd/userpage_main.jsp">主页</a></li>                    
+				<li><a href="<%=path%>/kd01UserMain.kdhtml">主页</a></li>                    
 	       		<li><a href="#">作品</a></li>
 	       		<li><a href="#">论坛</a></li>
 	       		<li><a href="#">商城</a></li>
 	    	</c:when>
 	    	<c:otherwise>
-	    		<li><a href="<%=path%>/kd/adminpage_main.jsp">主页</a></li>
+	    		<li><a href="<%=path%>/kd01AdminMain.kdhtml">主页</a></li>
 	    		<c:choose>
 	    			<c:when test="${sessionScope.kkd104 eq '0' }">
 						<li><a href="<%= path %>/kd01QueryAdmin.kdhtml">Root管理员</a></li>
@@ -236,7 +246,7 @@
 						<li><a href="<%= path %>/kd/shopadminpage_turn.jsp">商城管理员</a></li>
 					</c:when>
 					<c:when test="${sessionScope.kkd104 eq '3' }">
-						<li><a href="<%= path %>/kd01QueryAdmin.kdhtml">论坛管理员</a></li>
+						<li><a href="<%= path %>/ka03QueryReport.kdhtml?flag=post">论坛管理员</a></li>
 					</c:when>
 	    		</c:choose>
 	    	</c:otherwise>
@@ -364,10 +374,10 @@
         <ul class="clearit">
         <c:choose>
        		<c:when test="${fn:contains('45',sessionScope.user.kkd104) }">
-       			 <li class="first"><a href="<%=path%>/kd/userpage_main.jsp">${sessionScope.user.kkd102 }</a></li>
+       			 <li class="first"><a href="<%=path%>/kd01UserMain.kdhtml">${sessionScope.user.kkd102 }</a></li>
        		</c:when>
        		<c:otherwise>
-       			 <li class="first"><a href="<%=path%>/kd/adminpage_main.jsp">${sessionScope.user.kkd102 }</a></li>
+       			 <li class="first"><a href="<%=path%>/kd01AdminMain.kdhtml">${sessionScope.user.kkd102 }</a></li>
        		</c:otherwise>
        	</c:choose>
         <li><a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a></li>

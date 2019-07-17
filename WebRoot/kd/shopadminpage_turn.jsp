@@ -66,7 +66,7 @@
 						</a>
             		</c:when>
             		<c:otherwise>
-            			<a class="avatar" href="<%=path%>/kd/adminpage_main.jsp">
+            			<a class="avatar" href="<%=path%>/kd01AdminMain.kdhtml">
 						<span class="avatarNeue avatarSize32 ll" 
 							style="background-image:url('${sessionScope.user.kkd108}');background-size: 100% auto;"></span>
 						</a>
@@ -82,7 +82,7 @@
 						</a>
             		</c:when>
             		<c:otherwise>
-            			<a class="avatar" href="<%=path%>/kd/adminpage_main.jsp">
+            			<a class="avatar" href="<%=path%>/kd01AdminMain.kdhtml">
 						<span class="avatarNeue avatarSize32 ll" 
 							style="background-image:url('<%=path%>/img/avatar/def_avatar.png');background-size: 100% auto;"></span>
 						</a>
@@ -106,7 +106,7 @@
 	        	</li>
 	    	</c:when>
 	    	<c:otherwise>
-	    		<li><a href="<%=path%>/kd/adminpage_main.jsp">个人主页</a></li>
+	    		<li><a href="<%=path%>/kd01AdminMain.kdhtml">个人主页</a></li>
 	    		<c:choose>
 	    			<c:when test="${sessionScope.kkd104 eq '0' }">
 						<li><a href="<%= path %>/kd01QueryAdmin.kdhtml">Root管理员</a></li>
@@ -177,7 +177,7 @@
 						</a>
             		</c:when>
             		<c:otherwise>
-            			<a class="avatar" href="<%=path%>/kd/adminpage_main.jsp">
+            			<a class="avatar" href="<%=path%>/kd01AdminMain.kdhtml">
 						<span class="avatarNeue avatarSize75" 
 							style="background-image:url('${sessionScope.user.kkd108}');background-size: 100% auto;"></span>
 						</a>
@@ -193,7 +193,7 @@
 						</a>
             		</c:when>
             		<c:otherwise>
-            			<a class="avatar" href="<%=path%>/kd/adminpage_main.jsp">
+            			<a class="avatar" href="<%=path%>/kd01AdminMain.kdhtml">
 						<span class="avatarNeue avatarSize75" 
 							style="background-image:url('<%=path%>/img/avatar/def_avatar.png');background-size: 100% auto;"></span>
 						</a>
@@ -205,7 +205,7 @@
             </div>
 
             <div class="inner">
-                <a href="<%=path%>/kd/adminpage_main.jsp">${sessionScope.user.kkd105 }</a> <small class="grey">@${sessionScope.user.kkd102 }</small>
+                <a href="<%=path%>/kd01AdminMain.kdhtml">${sessionScope.user.kkd105 }</a> <small class="grey">@${sessionScope.user.kkd102 }</small>
                 <span id="friend_flag"></span>
             </div>
     	</h1>
@@ -224,7 +224,7 @@
 	       		<li><a href="#">商城</a></li>
 	    	</c:when>
 	    	<c:otherwise>
-	    		<li><a href="<%=path%>/kd/adminpage_main.jsp">主页</a></li>
+	    		<li><a href="<%=path%>/kd01AdminMain.kdhtml">主页</a></li>
 	    		<c:choose>
 	    			<c:when test="${sessionScope.kkd104 eq '0' }">
 						<li><a href="<%= path %>/kd01QueryAdmin.kdhtml">Root管理员</a></li>
@@ -290,7 +290,7 @@
        			 <li class="first"><a href="<%=path%>/kd/userpage_main.jsp">${sessionScope.user.kkd102 }</a></li>
        		</c:when>
        		<c:otherwise>
-       			 <li class="first"><a href="<%=path%>/kd/adminpage_main.jsp">${sessionScope.user.kkd102 }</a></li>
+       			 <li class="first"><a href="<%=path%>/kd01AdminMain.kdhtml">${sessionScope.user.kkd102 }</a></li>
        		</c:otherwise>
        	</c:choose>
         <li><a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a></li>

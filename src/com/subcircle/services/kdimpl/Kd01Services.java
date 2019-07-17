@@ -1,6 +1,7 @@
 package com.subcircle.services.kdimpl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -201,5 +202,40 @@ public class Kd01Services extends JdbcServicesSupport
 		return this.executeUpdate(sql,this.get("kkd101"))>0;
 	}
 	
-	
+	//查询主页收藏动画
+	public Map<String, Object> queryMainColl()throws Exception
+	{
+		Map<String, Object> colls=new HashMap<>();
+		StringBuilder sql1=new StringBuilder()
+				.append("select a.kkc101,c.kkc202,c.kkc204")
+				.append("  from kc06 a,kc01 b,kc02 c")
+				.append(" where a.kkc101=b.kkc101")
+				.append("   and c.kkc101=b.kkc101")
+				.append("   and b.kkc102=1")
+				.append("   and a.kkd101=?")
+				.append(" limit 6")
+				;
+		colls.put("animeColl", this.queryForList(sql1.toString(), this.get("kkd101")));
+		StringBuilder sql2=new StringBuilder()
+				.append("select a.kkc101,c.kkc302,c.kkc304")
+				.append("  from kc06 a,kc01 b,kc03 c")
+				.append(" where a.kkc101=b.kkc101")
+				.append("   and c.kkc101=b.kkc101")
+				.append("   and b.kkc102=2")
+				.append("   and a.kkd101=?")
+				.append(" limit 6")
+				;
+		colls.put("bookColl", this.queryForList(sql2.toString(), this.get("kkd101")));
+		StringBuilder sql3=new StringBuilder()
+				.append("select a.kkc101,c.kkc402,c.kkc404")
+				.append("  from kc06 a,kc01 b,kc04 c")
+				.append(" where a.kkc101=b.kkc101")
+				.append("   and c.kkc101=b.kkc101")
+				.append("   and b.kkc102=3")
+				.append("   and a.kkd101=?")
+				.append(" limit 6")
+				;
+		colls.put("gameColl", this.queryForList(sql3.toString(), this.get("kkd101")));
+		return colls;
+	}
 }

@@ -54,20 +54,20 @@
     <div class="idBadgerNeue">
 		<c:choose>
             	<c:when test="${!empty sessionScope.user.kkd108}">
-                <a class="avatar" href="<%=path%>/kd/userpage_main.jsp">
+                <a class="avatar" href="<%=path%>/kd01UserMain.kdhtml">
 				<span class="avatarNeue avatarSize32 ll" 
 					style="background-image:url('${sessionScope.user.kkd108}');background-size: 100% auto;"></span>
 				</a>
             	</c:when>
             	<c:otherwise>
-                <a class="avatar" href="<%=path%>/kd/userpage_main.jsp">
+                <a class="avatar" href="<%=path%>/kd01UserMain.kdhtml">
 				<span class="avatarNeue avatarSize32 ll" 
 					style="background-image:url('<%=path%>/img/avatar/def_avatar.png');background-size: 100% auto;"></span>
 				</a>
             	</c:otherwise>
             </c:choose>
 		<ul id="badgeUserPanel">
-			<li><a href="<%=path%>/kd/userpage_main.jsp">个人主页</a></li>                    
+			<li><a href="<%=path%>/kd01UserMain.kdhtml">个人主页</a></li>                    
        		<li><a href="#">作品</a></li>
        		<li><a href="#">论坛</a></li>
        		<li><a href="#">商城</a></li>
@@ -157,7 +157,7 @@
 <div id="dock">
     <div class="content">
          <ul class="clearit">
-        <li class="first"><a href="<%=path %>/kd/userpage_main.jsp">${sessionScope.user.kkd102 }</a></li>
+        <li class="first"><a href="<%=path%>/kd01UserMain.kdhtml">${sessionScope.user.kkd102 }</a></li>
         <li><a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a></li>
         <li><a href="<%=path %>/kd/userpage_info.jsp">设置</a></li>
         <li><a href="<%=path%>/logout.kdhtml">登出</a></li>

@@ -54,20 +54,20 @@
     <div class="idBadgerNeue">
 		<c:choose>
             	<c:when test="${!empty sessionScope.user.kkd108}">
-                <a class="avatar" href="<%=path%>/kd/adminpage_main.jsp">
+                <a class="avatar" href="<%=path%>/kd01AdminMain.kdhtml">
 				<span class="avatarNeue avatarSize32 ll" 
 					style="background-image:url('${sessionScope.user.kkd108}');background-size: 100% auto;"></span>
 				</a>
             	</c:when>
             	<c:otherwise>
-                <a class="avatar" href="<%=path%>/kd/adminpage_main.jsp">
+                <a class="avatar" href="<%=path%>/kd01AdminMain.kdhtml">
 				<span class="avatarNeue avatarSize32 ll" 
 					style="background-image:url('<%=path%>/img/avatar/def_avatar.png');background-size: 100% auto;"></span>
 				</a>
             	</c:otherwise>
             </c:choose>
 		<ul id="badgeUserPanel">
-			<li><a href="<%=path%>/kd/adminpage_main.jsp">个人主页</a></li>                    
+			<li><a href="<%=path%>/kd01AdminMain.kdhtml">个人主页</a></li>                    
 	    	<c:choose>
 				<c:when test="${sessionScope.kkd104 eq '0' }">
 					<li><a href="<%= path %>/kd01QueryAdmin.kdhtml">Root管理员</a></li>
@@ -76,10 +76,10 @@
 					<li><a href="<%= path %>/kd01QueryUser.kdhtml">作品管理员</a></li>
 				</c:when>
 				<c:when test="${sessionScope.kkd104 eq '2' }">
-					<li><a href="<%= path %>/kd01QueryAdmin.kdhtml">商城管理员</a></li>
+					<li><a href="<%= path %>/kd/shopadminpage_turn.jsp">商城管理员</a></li>
 				</c:when>
 				<c:when test="${sessionScope.kkd104 eq '3' }">
-					<li><a href="<%= path %>/kd01QueryAdmin.kdhtml">论坛管理员</a></li>
+					<li><a href="<%= path %>/ka03QueryReport.kdhtml?flag=post">论坛管理员</a></li>
 				</c:when>
 			</c:choose>
 	        <li class="row">

@@ -8,7 +8,7 @@
 <meta charset="utf-8" />
 <title>${sessionScope.user.kkd102} 的主页</title>
 
-<script type="text/javascript">
+<%-- <script type="text/javascript">
 	setInterval(function(){
 		getMsg();
 	}, 10000);
@@ -26,7 +26,7 @@
 			}
 		});
 	}
-</script>
+</script> --%>
 
 <link rel="stylesheet" type="text/css" href="<%=path %>/css/bangumi.css" />
 <script src="<%=path %>/js/bangumi.js" type="text/javascript"></script>
@@ -75,20 +75,20 @@
     <div class="idBadgerNeue">
 			<c:choose>
             	<c:when test="${!empty sessionScope.user.kkd108}">
-                <a class="avatar" href="<%=path%>/kd/userpage_main.jsp">
+                <a class="avatar" href="<%=path%>/kd01UserMain.kdhtml">
 				<span class="avatarNeue avatarSize32 ll" 
 					style="background-image:url('${sessionScope.user.kkd108}');background-size: 100% auto;"></span>
 				</a>
             	</c:when>
             	<c:otherwise>
-                <a class="avatar" href="<%=path%>/kd/userpage_main.jsp">
+                <a class="avatar" href="<%=path%>/kd01UserMain.kdhtml">
 				<span class="avatarNeue avatarSize32 ll" 
 					style="background-image:url('<%=path%>/img/avatar/def_avatar.png');background-size: 100% auto;"></span>
 				</a>
             	</c:otherwise>
             </c:choose>
 		<ul id="badgeUserPanel">
-			<li><a href="<%=path%>/kd/userpage_main.jsp">个人主页</a></li>                    
+			<li><a href="<%=path%>/kd01UserMain.kdhtml">个人主页</a></li>                    
        		<li><a href="#">作品</a></li>
        		<li><a href="#">论坛</a></li>
        		<li><a href="#">商城</a></li>
@@ -137,12 +137,12 @@
             <div class="headerAvatar">
             <c:choose>
             	<c:when test="${!empty sessionScope.user.kkd108}">
-           		 <a href="<%=path%>/kd/userpage_main.jsp" class="avatar">
+           		 <a href="<%=path%>/kd01UserMain.kdhtml" class="avatar">
                 	<span class="avatarNeue avatarSize75" style="background-image:url('${sessionScope.user.kkd108}')"></span>
                 </a>
             	</c:when>
             	<c:otherwise>
-           		<a href="<%=path%>/kd/userpage_main.jsp" class="avatar">
+           		<a href="<%=path%>/kd01UserMain.kdhtml" class="avatar">
                 	<span class="avatarNeue avatarSize75" style="background-image:url('<%=path%>/img/avatar/def_avatar.png')"></span>
                 </a>
             	</c:otherwise>
@@ -150,7 +150,7 @@
             </div>
 
             <div class="inner">
-                <a href="<%=path%>/kd/userpage_main.jsp">${sessionScope.user.kkd105 }</a> <small class="grey">@${sessionScope.user.kkd102 }</small>
+                <a href="<%=path%>/kd01UserMain.kdhtml">${sessionScope.user.kkd105 }</a> <small class="grey">@${sessionScope.user.kkd102 }</small>
                 <span id="friend_flag"></span>
             </div>
     	</h1>
@@ -160,7 +160,7 @@
     <!-- 主页导航栏 -->
     <div class="navTabsWrapper">
 		<ul class="navTabs">
-			<li><a href="<%=path%>/kd/userpage_main.jsp" class="focus">主页</a></li>                    
+			<li><a href="<%=path%>/kd01UserMain.kdhtml" class="focus">主页</a></li>                    
        		<li><a href="#">作品</a></li>
        		<li><a href="#">论坛</a></li>
        		<li><a href="#">商城</a></li>
@@ -203,11 +203,33 @@
 					</div>
 				
 					<div class="content_inner clearit" align="left">
+					<c:choose>
+					<c:when test="${empty colls.animeColl}">
 						<div align="center" class="clearit">
 							<span class="green">还没有收藏过动画?</span>
-								<a href="#" class="l">>前往收藏<</a><br />
+								<a href="kc02ShowRank.kchtml" class="l">>前往收藏<</a><br />
 							<span class="tip_j">其他用户浏览你的主页时能根据你的收藏判断你的兴趣</span>
 						</div>
+					</c:when>
+					<c:otherwise>
+						<div class="clearit">
+				    		<div class="substatus">收藏</div>
+				    		<ul class="coversSmall clearit" style="margin-right:0;">
+				    		<c:forEach items="${colls.animeColl }" var="animeColl">
+           		    		<li class="clearit">
+	           		    		<a href="Kc02ShowDetail.kchtml?kkc101=${animeColl.kkc101}" title="カウボーイビバップ">
+	           		    		<span class="pictureFrameGroup">
+		           		    		<span class="image"><img src="${animeColl.kkc204 }"></span>
+		           		    		<span class="overlay"></span>
+	           		    		</span>
+	           		    		<span class="name">${animeColl.kkc202 }</span>
+	           		    		</a>
+           		    		</li>
+           		    		</c:forEach>
+	    		    		</ul>
+				    	</div>
+			    	</c:otherwise>
+			    	</c:choose>
 					</div>
 				</div>
 				<!-- 主页动画 -->
@@ -221,11 +243,33 @@
 					</div>
 				
 					<div class="content_inner clearit" align="left">
-						<div align="center" class="clearit">
-							<span class="green">还没有收藏过书籍?</span>
-								<a href="#" class="l">>前往收藏<</a><br />
-							<span class="tip_j">其他用户浏览你的主页时能根据你的收藏判断你的兴趣</span>
-						</div>
+						<c:choose>
+						<c:when test="${empty colls.bookColl}">
+							<div align="center" class="clearit">
+								<span class="green">还没有收藏过书籍?</span>
+									<a href="kc03ShowRank.kchtml" class="l">>前往收藏<</a><br />
+								<span class="tip_j">其他用户浏览你的主页时能根据你的收藏判断你的兴趣</span>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<div class="clearit">
+					    		<div class="substatus">收藏</div>
+					    		<ul class="coversSmall clearit" style="margin-right:0;">
+					    		<c:forEach items="${colls.bookColl }" var="bookColl">
+	           		    		<li class="clearit">
+		           		    		<a href="Kc03ShowDetail.kchtml?kkc101=${bookColl.kkc101}" title="カウボーイビバップ">
+		           		    		<span class="pictureFrameGroup">
+			           		    		<span class="image"><img src="${bookColl.kkc304 }"></span>
+			           		    		<span class="overlay"></span>
+		           		    		</span>
+		           		    		<span class="name">${bookColl.kkc302 }</span>
+		           		    		</a>
+	           		    		</li>
+	           		    		</c:forEach>
+		    		    		</ul>
+					    	</div>
+				    	</c:otherwise>
+				    	</c:choose>
 					</div>
 				</div>
 				<!-- 主页书籍 -->				
@@ -239,11 +283,33 @@
 					</div>
 				
 					<div class="content_inner clearit" align="left">
-						<div align="center" class="clearit">
-							<span class="green">还没有收藏过游戏?</span>
-								<a href="#" class="l">>前往收藏<</a><br />
-							<span class="tip_j">其他用户浏览你的主页时能根据你的收藏判断你的兴趣</span>
-						</div>
+						<c:choose>
+						<c:when test="${empty colls.gameColl}">
+							<div align="center" class="clearit">
+								<span class="green">还没有收藏过游戏?</span>
+									<a href="kc04ShowRank.kchtml" class="l">>前往收藏<</a><br />
+								<span class="tip_j">其他用户浏览你的主页时能根据你的收藏判断你的兴趣</span>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<div class="clearit">
+					    		<div class="substatus">收藏</div>
+					    		<ul class="coversSmall clearit" style="margin-right:0;">
+					    		<c:forEach items="${colls.gameColl }" var="gameColl">
+	           		    		<li class="clearit">
+		           		    		<a href="Kc04ShowDetail.kchtml?kkc101=${gameColl.kkc101}" title="カウボーイビバップ">
+		           		    		<span class="pictureFrameGroup">
+			           		    		<span class="image"><img src="${gameColl.kkc404 }"></span>
+			           		    		<span class="overlay"></span>
+		           		    		</span>
+		           		    		<span class="name">${gameColl.kkc402 }</span>
+		           		    		</a>
+	           		    		</li>
+	           		    		</c:forEach>
+		    		    		</ul>
+					    	</div>
+				    	</c:otherwise>
+				    	</c:choose>
 					</div>
 				</div>
 				<!-- 主页游戏 -->
@@ -293,7 +359,7 @@
 <div id="dock">
     <div class="content">
         <ul class="clearit">
-        <li class="first"><a href="<%=path%>/kd/userpage_main.jsp">${sessionScope.user.kkd102 }</a></li>
+        <li class="first"><a href="<%=path%>/kd01UserMain.kdhtml">${sessionScope.user.kkd102 }</a></li>
         <li><a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a></li>
         <li><a href="<%=path%>/kd/userpage_info.jsp">设置</a></li>
         <li><a href="<%=path%>/logout.kdhtml">登出</a></li>

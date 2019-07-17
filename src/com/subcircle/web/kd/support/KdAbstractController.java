@@ -142,6 +142,14 @@ public abstract class KdAbstractController implements ControllerInterface
 		method.setAccessible(true);
 		return (List<Map<String, String>>)method.invoke(this.services);
 	}
+	
+	private Map<String, Object> executeQueryForMap(String methodName)throws Exception
+	{
+		Method method=this.services.getClass().getDeclaredMethod(methodName);
+		//设置访问权限，使能够访问private方法
+		method.setAccessible(true);
+		return (Map<String, Object>)method.invoke(this.services);
+	}
 
 	/**
 	 * 更新操作后重新查询
@@ -214,19 +222,58 @@ public abstract class KdAbstractController implements ControllerInterface
 		{
 			user.remove("kkd103");
 			this.session.setAttribute("kkd101", user.get("kkd101"));
+			this.session.setAttribute("kkd102", user.get("kkd102"));
 			this.session.setAttribute("kkd104", user.get("kkd104"));
 			this.session.setAttribute("user", user);
 			this.dto.put("username", user.get("kkd102"));
-			List<Map<String, String>> msgs=this.executeQueryForList("queryMsg");
-			this.session.setAttribute("msgs", msgs);
 			if(user.get("kkd104").toString().equals("4") || user.get("kkd104").toString().equals("5"))
 			{
-				return "kd/userpage_main";
+				return this.userMain();
 			}
 			else
 			{
-				return "kd/adminpage_main";
+				return this.adminMain();
 			}
+		}
+	}
+	
+	//返回用户主页
+	protected final String userMain()throws Exception
+	{
+		if(this.session.getAttribute("user")!=null)
+		{
+			this.dto.put("username", this.session.getAttribute("kkd102"));
+			this.session.removeAttribute("msgs");
+			List<Map<String, String>> msgs=this.executeQueryForList("queryMsg");
+			this.session.setAttribute("msgs", msgs);
+			if(this.dto.get("kkd101")==null)
+			{
+				this.dto.put("kkd101", this.session.getAttribute("kkd101"));
+			}
+			Map<String,Object> colls=this.executeQueryForMap("queryMainColl");
+			this.saveAttribute("colls", colls);
+			return "kd/userpage_main";
+		}
+		else
+		{
+			return "kd/nologin";
+		}
+	}
+	
+	//返回管理员主页
+	protected final String adminMain()throws Exception
+	{
+		if(this.session.getAttribute("user")!=null)
+		{
+			this.dto.put("username", this.session.getAttribute("kkd102"));
+			this.session.removeAttribute("msgs");
+			List<Map<String, String>> msgs=this.executeQueryForList("queryMsg");
+			this.session.setAttribute("msgs", msgs);
+			return "kd/adminpage_main";
+		}
+		else
+		{
+			return "kd/nologin";
 		}
 	}
 	
@@ -242,25 +289,32 @@ public abstract class KdAbstractController implements ControllerInterface
 	//用户修改个人信息
 	protected final String modifyInfo()throws Exception
 	{
-		if(this.executeMethod("modifyInfo"))
+		if(session.getAttribute("user")!=null)
 		{
-			this.setHint("成功", "个人信息修改成功！");
-			Map<String, String> user=services.findById();
-			user.remove("kkd103");
-			this.session.removeAttribute("user");
-			this.session.setAttribute("user", user);
+			if(this.executeMethod("modifyInfo"))
+			{
+				this.setHint("成功", "个人信息修改成功！");
+				Map<String, String> user=services.findById();
+				user.remove("kkd103");
+				this.session.removeAttribute("user");
+				this.session.setAttribute("user", user);
+			}
+			else
+			{
+				this.setHint("失败", "修改失败，请稍后再试！");
+			}
+			if("45".contains(this.session.getAttribute("kkd104").toString()))
+			{
+				return "kd/userpage_info";
+			}
+			else
+			{
+				return "kd/adminpage_info";
+			}
 		}
 		else
 		{
-			this.setHint("失败", "修改失败，请稍后再试！");
-		}
-		if("45".contains(this.session.getAttribute("kkd104").toString()))
-		{
-			return "kd/userpage_info";
-		}
-		else
-		{
-			return "kd/adminpage_info";
+			return "kd/nologin";
 		}
 	}
 	
@@ -451,6 +505,7 @@ public abstract class KdAbstractController implements ControllerInterface
 	{
 		Map<String, String> other=this.services.findById();
 		this.saveAttribute("other", other);
+		this.userMain();
 	}
 	
 	//发送消息
@@ -555,5 +610,34 @@ public abstract class KdAbstractController implements ControllerInterface
 		{
 			this.setHint("回复失败", "服务器可能出现了一点小问题，请稍后再试！");
 		}
+	}
+	
+	//管理员查询举报
+	protected final String queryReport()throws Exception
+	{
+		List<Map<String, String>> reports=this.services.queryByCondition();
+		this.saveAttribute("reports",reports);
+		if(this.dto.get("flag").toString().equals("post"))
+		{
+			return "kd/forumadminpage_queryReportPost";
+		}
+		else
+		{
+			return "kd/forumadminpage_queryReportReply";
+		}
+	}
+	
+	//管理员删除举报
+	protected final String delReport()throws Exception
+	{
+		if(this.executeMethod("delReport"))
+		{
+			this.setHint("删除成功", "该举报已被删除！");
+		}
+		else
+		{
+			this.setHint("删除失败", "服务器可能出现了一点小问题，请稍后再试！");
+		}
+		return this.queryReport();
 	}
 }
