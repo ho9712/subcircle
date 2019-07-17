@@ -159,8 +159,8 @@
  <input type="hidden" name="kka101" value="${param.kka101 }" />
 <script type="text/javascript">var CHOBITS_SID = 'aru27g'; var SCRIPT_URL = '/blog/upload_photo';</script> 
 <table align="center" width="99%" class="settings">
-  <tr><td valign="top" width="10%">标题</td><td valign="top"><input id="tpc_title" name="kka102" class="inputtext" type="text"> <span class="alarm"></span></td></tr>
-  <tr><td valign="top" width="10%">正文</td><td valign="top"><textarea  id="tpc_content" name="kka104" cols="45" rows="15" style="width:550px;" class="quick newBlogEntry loadEditor" onKeyDown="seditor_ctlent(event,'editTopicForm');"></textarea>
+  <tr><td valign="top" width="10%">标题</td><td valign="top"><input id="tpc_title" name="kka102" class="inputtext" type="text"  required="required"> <span class="alarm"></span></td></tr>
+  <tr><td valign="top" width="10%">正文</td><td valign="top"><textarea  id="tpc_content" name="kka104" cols="45" rows="15" style="width:550px;" class="quick newBlogEntry loadEditor" required="required"  onKeyDown="seditor_ctlent(event,'editTopicForm');"></textarea>
   <tr><td valign="top" width="10%">板块</td><td><e:select name="kka103" value="番剧:1,书籍:2,游戏:3"/></td></tr>
 <tr>
 <td valign="top" width="10%"></td><td valign="top">
@@ -168,8 +168,6 @@
 </td>
 </tr>
 </table>
-<div id="related_value_list">
-</div>
 </form>
 </span>
 </div>

@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import com.subcircle.services.support.ServicesInterface;
 import com.subcircle.web.ControllerInterface;
 
@@ -32,8 +34,21 @@ public abstract class KaAbstractController implements ControllerInterface
 	public final void setDto(Map<String, Object> dto) 
 	{
 		this.dto=dto;
+		this.dto.put("kkd101", this.session.getAttribute("kkd101"));
+		this.dto.put("kkd104", this.session.getAttribute("kkd104"));
 		//为Services传递DTO
 		this.services.setServicesDto(dto);
+	}
+	
+	/***********************************************************
+	 * 					保存Session
+	 ***********************************************************/
+	 private HttpSession session=null;
+	
+	@Override
+	public void setSession(HttpSession session) 
+	{
+		this.session=session;
 	}
 	
 	/***********************************************************
@@ -103,12 +118,7 @@ public abstract class KaAbstractController implements ControllerInterface
 		this.saveAttribute("msg", msg);
 	}
 	
-	protected final void update(String methodName,String typeMsg,String extMsg,String key)throws Exception
-	{
-		String msg=typeMsg+(this.executeMethod(methodName)?"成功":"失败");
-		msg+=extMsg+this.dto.get(key);
-		this.saveAttribute("msg", msg);
-	}
+
 	
 	//通过反射机制，传递方法名执行Services中的方法
 	private boolean executeMethod(String methodName)throws Exception
@@ -119,18 +129,6 @@ public abstract class KaAbstractController implements ControllerInterface
 		return (boolean)method.invoke(this.services);
 	}
 	
-	/**
-	 * 更新操作后重新查询
-	 * @throws Exception
-	 */
-	protected final void queryForDelAndShow()throws Exception
-	{
-		List<Map<String, String>> rows=this.services.queryByCondition();
-		if(rows.size()>0)
-		{
-			this.saveAttribute("rows", rows);
-		}
-	}
 
 	
 	/*********************************************************************
@@ -171,9 +169,9 @@ public abstract class KaAbstractController implements ControllerInterface
 			return "ka/gameForum.jsp";
 		}
 	}
+	
+	
 
-	
-	
 	/**
 	 * 	显示贴子内容详情
 	 * @throws Exception
@@ -208,9 +206,15 @@ public abstract class KaAbstractController implements ControllerInterface
 		}	
 	}
 	
+	
+	
+	/**
+	 * 举报违规贴子
+	 * @throws Exception
+	 */
 	protected final void postReport()throws Exception
 	{
-		if(this.executeMethod("report"))
+		if(this.executeMethod("reportPost"))
 		{
 			this.saveAttribute("msg", "举报成功");
 		}
@@ -219,5 +223,63 @@ public abstract class KaAbstractController implements ControllerInterface
 			this.saveAttribute("msg", "举报失败");
 		}
 	}
+	
+	/**
+	 * 举报违规回复
+	 * @throws Exception
+	 */
+	protected final void answerReport()throws Exception
+	{
+		if(this.executeMethod("reportAnswer"))
+		{
+			this.saveAttribute("msg", "举报成功");
+		}
+		else
+		{
+			this.saveAttribute("msg", "举报失败");
+		}
+	}
+	
+	
+	
+	/**
+	 * 查询执行删除贴子操作后的贴子列表
+	 * @return
+	 * @throws Exception
+	 */
+	protected final String queryDelCondition()throws Exception
+	{
+		List<Map<String,String>> rows=this.services.queryByCondition();
+		if(rows.size()>0)
+		{
+			this.saveAttribute("rows", rows);
+		}
+		else
+		{
+			this.saveAttribute("msg", "没有符合条件的数据!");
+		}
+		return "ka/mainForum.jsp";
+	}
+	
+	
+	/**
+	 *查询删除贴子回复后的贴子列表
+	 * @return
+	 * @throws Exception
+	 */
+	protected final String queryDelAnswerCondition()throws Exception
+	{
+		List<Map<String,String>> rows=this.services.queryByCondition();
+		if(rows.size()>0)
+		{
+			this.saveAttribute("rows", rows);
+		}
+		else
+		{
+			this.saveAttribute("msg", "没有符合条件的数据!");
+		}
+		return "ka01AdmPostContent.kahtml";
+	}
+	
 	
 }

@@ -1,30 +1,41 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%String path=request.getContextPath(); %>
+<%@ taglib uri="http://org.wangxg/jsp/extl" prefix="e"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%String path = request.getContextPath();%>
 <!DOCTYPE html>
 <html>
 <head>
 <script type="text/javascript">
-	function onClickReport(kka201)
-	{
-		document.getElementById("kka201-1").value=kka201;
+	function onClickReply(kka201) {
+		document.getElementById("kka201-2").value = kka201;
 	}
 	
-	function onClickReply(kka201)
+	function onClickDel(kka101) 
 	{
-		document.getElementById("kka201-2").value=kka201;
+		window.location.href = "<%=path%>/ka01AdmDelForum.kahtml?kka101=" + kka101;
+	}
+	
+	function onClickDelAnswer(kka101, kka201) 
+	{
+		window.location.href = "<%=path%>/ka02AdmDelAnswer.kahtml?"
+			+"kka101=" + kka101
+			+"&kka201=" + kka201;
 	}
 </script>
 <meta charset="utf-8" />
-<meta content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" name="viewport">
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1"
+	name="viewport">
 <title>${ins.kka102 }</title>
-<meta name="keywords" content="登录至 Bangumi 番组计划,ACG,anime,comic,game,music,动漫,音乐,游戏,动画,漫画,番组,bangumi,chii,chobits" />
+<meta name="keywords"
+	content="登录至 Bangumi 番组计划,ACG,anime,comic,game,music,动漫,音乐,游戏,动画,漫画,番组,bangumi,chii,chobits" />
 <meta name="description" content="登录至 Bangumi 番组计划" />
-<link rel="search" type="application/opensearchdescription+xml" href="http://bangumi.tv/static/xml/opensearch_bgm.xml" title="Bangumi 番组计划" />
+<link rel="search" type="application/opensearchdescription+xml"
+	href="http://bangumi.tv/static/xml/opensearch_bgm.xml"
+	title="Bangumi 番组计划" />
 <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
-<link rel="apple-touch-icon-precomposed" href="/img/ico/ico_ios.png" />	
+<link rel="apple-touch-icon-precomposed" href="/img/ico/ico_ios.png" />
 
 </style>
 <!--[if lte IE 6]>
@@ -194,13 +205,10 @@ word-wrap: break-word;
 	<!-- 论坛导航栏 -->
 </div>
 </div>
-
-<div class="mainWrapper">
-<div class="columns clearit">
-<div id="columnA" class="column">
-               
-               
-                <!-- 贴子主体（头部） -->
+            <div class="mainWrapper">
+			    <div class="columns clearit">
+				<div id="columnA" class="column">
+     <!-- 贴子主体（头部） -->
   <div id="timeline" class="menu_inner" style="width:85%;margin-left: 15px;float: left;background-color: white;">
     <div  id="columnA">
       <div class="menu_inner" style="width:75px;float: left;height:110px;background-color: #F5F5F5">
@@ -231,13 +239,20 @@ word-wrap: break-word;
       </div >
       <div id="columnB">
       <font size="3" style="width:80%;height:15px;margin-left: 10px">
-        <a href="#">
-          <b>
-            ${ins.kka102 }
-          </b>
-       </a>
-         <a href="#" onclick="itemInfo(${ins.kka101 })">收藏</a>
-         <a href="#TB_inline?height=350&amp;width=500&amp;inlineId=panel" title="举报理由"  class="thickbox">举报 </a>
+        <li>
+		 <a href="#"> 
+			 <b> 
+                 ${ins.kka102 } 
+             </b>
+			</a>
+		<ul>
+		<li>
+		<a href="#" title="删除贴子" class="nav"  onclick="onClickDel('${ins.kka101}')" >删除</a>
+           </li>
+			</ul>
+			</li>
+			</ul>
+			<a href="#" onclick="itemInfo(${ins.kka101 })">收藏</a>
        </font>
     </div>
     <hr class="board" />
@@ -255,29 +270,8 @@ word-wrap: break-word;
     <div style="margin-left: 20px" align="right">
         楼主&nbsp&nbsp&nbsp ${ins.kka105 }
     </div>
-  </div>
-  
-    <!-- 举报弹窗 ,举报贴子-->
-	<div id="panel" style="display:none;">
-    <div class="collectBox clearit">
-    <form method="post" action="ka03PostReport.kahtml?kka101=${ins.kka101 }">
-    ${ins.kka101 }
-    <div class="cell">
-    <p class="tip"><label for="comment">举报(最多200字):</label></p>
-    <br/><br/>
-    <textarea rows="20" cols="70" name="kka302-1" required="required"></textarea>
-    </div>
-    <div class="clearit">
-    <div id="submitBtnO" class="ll">
-        <input class="inputBtn" type="submit" name="report" value="举报" />
-    </div>
-    </div>
-   </form>
-   </div>
-   </div>
-   <br>
-   
-  <!-- 贴子回复 -->
+  </div>						
+	<!-- 贴子回复 -->
    <div class="clear"></div>
   <div id="timeline">
   <ul>
@@ -350,13 +344,10 @@ word-wrap: break-word;
    <hr class="board" />
      <div id="SecTab">
       <ul class="secTab tiny">
-        <li>
-        <a href="#TB_inline?height=350&amp;width=500&amp;inlineId=panel1" title="举报理由" 
-         onclick="onClickReport('${ins.kka201}')" class="thickbox">
-        <span>举报</span>
-        </a>
-        </li>
-        <li>
+        <li><a href="#" onclick="onClickDelAnswer('${ins.kka101}','${ins.kka201}')"> 
+        <span>删除</span></a></li>
+        
+         <li>
         <a href="#TB_inline?height=350&amp;width=500&amp;inlineId=panel2" title="发表回复" 
          onclick="onClickReply('${ins.kka201}')" class="thickbox">
          <span>回复</span>
@@ -378,31 +369,12 @@ word-wrap: break-word;
     </div>
    </c:if>
 	</c:forEach>
-	
-	<!-- 举报弹窗 ,举报回复-->
-	<div id="panel1" style="display:none;">
-    <div class="collectBox clearit">
-    <form method="post" action="ka03AnswerReport.kahtml?kka101=${ins.kka101 }">
-    <input type="hidden" id="kka201-1" name="kka201-1" value="">
-    <div class="cell">
-    <p class="tip"><label for="comment">举报(最多200字):</label></p>
-    <br/><br/>
-    <textarea rows="20" cols="70" name="kka302-2" required="required"></textarea>
-    </div>
-    <div class="clearit">
-    <div id="submitBtnO" class="ll">
-        <input class="inputBtn" 
-        type="submit" name="next" value="举报" />
-    </div>
-    </div>
-   </form>
-   </div>
-   </div>
-   
-   <!-- 回复弹窗 -->
+							
+							
+	<!-- 回复弹窗 -->
 	<div id="panel2" style="display:none;">
     <div class="collectBox clearit">
-    <form method="post" action="ka02PostAnswerToAnswer.kahtml?kka101=${ins.kka101 }">
+    <form method="post" action="ka02AdmPostAnswerToAnswer.kahtml?kka101=${ins.kka101 }">
     <input type="hidden" id="kka201-2" name="kka201-2" value="">
     <div class="cell">
     <p class="tip"><label for="comment"> 回复(最多200字): </label></p>
@@ -418,82 +390,90 @@ word-wrap: break-word;
    </form>
    </div>
    </div>
-  
    </ul>
  </div>
- 
- 
-<!-- 回复贴子-->
-<div class="light_odd">
-<span class="tip">
-<form id="editTopicForm" name="new_comment" method="post" action="ka02PostAnswer.kahtml?kka101=${ins.kka101 }">		
-  <input type="hidden" name="kka201" value="${param.kka201 }" />
-<script type="text/javascript">var CHOBITS_SID = 'aru27g'; var SCRIPT_URL = '/blog/upload_photo';</script> 
-<table align="center" width="99%" class="settings">
-  <tr><td valign="top" width="10%">评论</td><td valign="top">
-  <textarea  id="tpc_content" name="kka202"   required="required"  cols="45" rows="5"  style="width:550px;" class="quick newBlogEntry loadEditor"  onKeyDown="seditor_ctlent(event,'editTopicForm');"></textarea>
-<tr>
-<td valign="top" width="10%"></td><td valign="top">
-<div id="submitBtnO"><input class="inputBtn" value="加上去" name="next" type="submit" /> </div>
-</td>
-</tr>
-</table>
-<div id="related_value_list">
-</div>
-</form>
-</span>
-</div>
-</div>
 
-<div id="columnB" class="column">
-<div id="">
-<br>
-<br>
-<br>
-<br>
-<div class="SidePanel png_bg">
-<ul class="timeline"><li><small class="feed">注册成为了 Bangumi 成员</small> <small class="time">2019-6-28 18:52</small></li></ul>
-</div>
-</div>
-<div id="sideLayout"><div id="friend" class="sort">
-<div class="SidePanel png_bg" align="left">
-<h2><a href="<%=path %>/ka/posting.jsp">我要发贴</a></h2>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="homeBg"></div>
-<div id="dock">
-    <div class="content">
-        <ul class="clearit">
-                <li class="first"><a href="http://bangumi.tv/user/481528">ericho</a></li>
-        <li><a href="http://bangumi.tv/notify/all">提醒</a> | <a href="http://bangumi.tv/pm">短信</a> | <a href="http://bangumi.tv/settings">设置</a> | <a href="http://bangumi.tv/logout/82d89381" target="_self">登出</a></li>
-                <li class="last"><a href="javascript:void(0);" id="showrobot">&nbsp;</a></li>
-        </ul>
-    </div>
-</div>
+					<div class="light_odd">
+						<span class="tip">
+							<form id="editTopicForm" name="new_comment" method="post"
+								action="/PostForum.html">
 
+								<input type="hidden" name="kka201" value="${param.kka201 }" />
+								<script type="text/javascript">
+									var CHOBITS_SID = 'aru27g';
+									var SCRIPT_URL = '/blog/upload_photo';
+								</script>
+								<table align="center" width="99%" class="settings">
+									<tr>
+										<td valign="top" width="10%">评论</td>
+										<td valign="top"><textarea id="tpc_content" name="kka202"
+												cols="45" rows="5" style="width: 550px;"
+												class="quick newBlogEntry loadEditor"
+												onKeyDown="seditor_ctlent(event,'editTopicForm');"></textarea>
+									<tr>
+										<td valign="top" width="10%"></td>
+										<td valign="top">
+											<div id="submitBtnO">
+												<input class="inputBtn" value="加上去" name="next"
+													type="submit"
+													formaction="ka02AdmPostAnswer.kahtml?kka101=${ins.kka101 }" />
+											</div>
+										</td>
+									</tr>
+								</table>
+								<div id="related_value_list"></div>
+							</form>
+						</span>
+					</div>
+				</div>
 
+				<div id="columnB" class="column">
+					<div id="">
+						<br> <br> <br> <br>
+					</div>
+					<div id="sideLayout">
+						<div id="friend" class="sort">
+							<div class="SidePanel png_bg" align="left">
+								<hr class="board" />
+								<a href="postForum.jsp">我要发贴</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="homeBg"></div>
+	<div id="dock">
+		<div class="content">
+			<ul class="clearit">
+				<li class="first"><a href="http://bangumi.tv/user/481528">ericho</a></li>
+				<li><a href="http://bangumi.tv/notify/all">提醒</a> | <a
+					href="http://bangumi.tv/pm">短信</a> | <a
+					href="http://bangumi.tv/settings">设置</a> | <a
+					href="http://bangumi.tv/logout/82d89381" target="_self">登出</a></li>
+				<li class="last"><a href="javascript:void(0);" id="showrobot">&nbsp;</a></li>
+			</ul>
+		</div>
+	</div>
+	
 <script src="js/bangumi.js" type="text/javascript"></script>
-<script src="<%=path %>/js/bangumi.js" type="text/javascript"></script>
-<script type="text/javascript">
-    
-    function setKKa202() {
-    	var kka202 = document.getElementById("comment");
-    	kka202.value = kka202.innerHTML;
-    	alert(kka202.innerHTML)
-}
-    
-</script>
-<script type="text/javascript">chiiLib.login.init();</script>
-<script type="text/javascript">
-function itemInfo(kka101)
-{
-	window.location.href = "<%=path%>/ka04AddCollection.kahtml?kka101=" + kka101;
-}
-</script>
+	<script src="<%=path%>/js/bangumi.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		function setKKa202() {
+			var kka202 = document.getElementById("comment");
+			kka202.value = kka202.innerHTML;
+			alert(kka202.innerHTML)
+		}
+	</script>
+	<script type="text/javascript">
+     function itemInfo(kka101)
+    {
+	   window.location.href = "<%=path%>/ka04AddCollection.kahtml?kka101=" + kka101;
+     }
+     </script>
+	<script type="text/javascript">
+		chiiLib.login.init();
+	</script>
 </body>
 </html>

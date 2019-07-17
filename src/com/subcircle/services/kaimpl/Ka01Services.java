@@ -78,58 +78,77 @@ public class Ka01Services extends JdbcServicesSupport
      * @return
      * @throws Exception
      */
-	 private boolean posting() throws Exception
-	    {
-			int kka101=Tools.getPk("kka101");
-	    	//1.编写SQL语句
-	    	StringBuilder sql1=new StringBuilder()
-	    			.append("insert into ka01(kka101,kkd101,kka102,kka103,kka104,kka105,kka106)")
-	    			.append("          values(?,?,?,?,?,CURRENT_TIMESTAMP,1)")
-	    			;
-	    	//2.编写参数数组
-	    	Object args[]=
-	    		{
-	    			kka101,
-	    			"2",
-	    			this.get("kka102"),
-	    			this.get("kka103"),
-	    			this.get("kka104"),
-	    	    };
-	    	this.appendSql(sql1.toString(), args);
-	    	StringBuilder sql2=new StringBuilder()
-	    			.append("insert into ka02(kka201,kka101,kkd101,kka202,kka203,kka204,ka02_kka201)")
-	    			.append(" values(0,?,?,'1',current_timestamp,1,0)")
-	    			;
-	    	Object[] args2={
-	    			kka101,
-	    			1,
-	    	};
-	    	this.appendSql(sql2.toString(), args2);
-	    	return this.executeTransaction();
-	    }
-	 
+	private boolean posting() throws Exception
+    {
+	 int kka101=Tools.getPk("kka101");
+    	//1.编写SQL语句
+    	StringBuilder sql1=new StringBuilder()
+    			.append("insert into ka01(kka101,kkd101,kka102,kka103,kka104,kka105,kka106)")
+    			.append("          values(?,?,?,?,?,CURRENT_TIMESTAMP,1)")
+    			;
+    	//2.编写参数数组
+    	Object args[]=
+    		{
+    			kka101,
+    			this.get("kkd101"),
+    			this.get("kka102"),
+    			this.get("kka103"),
+    			this.get("kka104"),
+    	    };
+    	this.appendSql(sql1.toString(), args);
+    	StringBuilder sql2=new StringBuilder()
+    			.append("insert into ka02(kka201,kka101,kkd101,kka202,kka203,kka204,ka02_kka201)")
+    			.append(" values(0,?,?,'1',current_timestamp,1,0)")
+    			;
+    	Object[] args2={
+    			kka101,
+    			this.get("kkd101"),
+    	};
+    	this.appendSql(sql2.toString(), args2);
+    	return this.executeTransaction();
+    }
 	 
 	 
 	    /**
-	     * 查询贴子详细信息页面下 其他用户的回复信息
+	     * 管理员功能--删帖，实际操作为更改帖子表kka106属性值，从1（未删除）更改为0（已删除）
+	     * @return
+	     * @throws Exception
+	     */
+	 private boolean delPost()throws Exception
+	    {
+	    	StringBuilder sql=new StringBuilder()
+	    			.append("update ka01 a")
+	    			.append("   set a.kka106=?")
+	    			.append(" where a.kka101=?")
+	    			;
+	    	Object args[]={
+	    			0,
+                this.get("kka101")
+	    	};
+	    	return this.executeUpdate(sql.toString(), args)>0;
+	    	
+	    }
+	 
+	   
+	 
+	    /**
+	     * 查询贴子详细信息页面下 其他用户的回复信息，包括对对贴子下回复的回复
 	     * @return
 	     * @throws Exception
 	     */
 	 private List<Map<String,String>> query02Services()throws Exception
-	 {
+	  {
+		 // Object kka101=this.get("kka101");
 	  		//定义SQL主体
 	  		StringBuilder sql=new StringBuilder()
-	  				.append("select x.kka201,x.kka202,x.kka203,x.kka204,x.ka02_kka201,a.kkd105,b.kka101")
-	  				.append(" from ka02 x,kd01 a,ka01 b ")
-	  				.append(" where x.kkd101 = a.kkd101 and b.kka101 = x.kka101 and b.kka101 =? ")
+	  				.append("select x.kka201,x.kka202,x.kka203,x.kka204,x.ka02_kka201,a.kkd105,b.kka101,c.kka202 rootAnswer")
+	  				.append(" from ka02 x,kd01 a,ka01 b,ka02 c ")
+	  				.append(" where x.kkd101 = a.kkd101 and b.kka101 = x.kka101 and b.kka101 =? and x.ka02_kka201=c.kka201 and x.kka101 = c.kka101")
 	  				.append(" order by x.kka203")
-	  				//.append(" where a.kkd101=1")    //模拟用户1
 	  				;
-
 	  		Object args[] =
 	  			{
-	  				this.get("kka101"),
-	  				//this.get("kka101"),
+	  				this.get("kka101")
 	  		    };
 	  		List<Map<String,String>> rows=this.queryForList(sql.toString(), args);
 	  		rows.remove(0);

@@ -1,12 +1,13 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
+<%String path=request.getContextPath(); %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <title>Login</title>
 </head>
 <body>
-<form action="<%=request.getContextPath()%>/ka01MainForum.kahtml"  method="post">
-<input type="hidden" name="id" value="0">
+<form action="<%=path %>/ka01MainForum.kahtml?id=0"  method="post">
 <input type="submit" name = "next">Login</input>
 </form>
 
