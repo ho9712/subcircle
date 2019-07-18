@@ -14,15 +14,14 @@
 		vform.action="<%= path %>/kd03QueryApp.kdhtml?order="+vorder;
 		vform.submit();
 	}
-	function dealApp(kkd101,kkd102,kkd105,kkd108,kkd304,kkd302,kkd303)
+	function delReport(kka301)	
 	{
-		document.getElementById("img").src=kkd108;
-		document.getElementById("kkd101-hide").value=kkd101;
-		document.getElementById("nickname").innerHTML=kkd105;
-		document.getElementById("username").innerHTML=kkd102;
-		document.getElementById("time").innerHTML=kkd304;
-		document.getElementById("title").value=kkd302;
-		document.getElementById("content").innerHTML=kkd303;
+		var msg="确定要删除该举报？";
+		if(confirm(msg))
+		{
+			window.location.href="<%= path %>/ka03DelReport.kdhtml?flag=reply&kka301="+kka301;
+			alert("删除成功！");
+		}
 	}
 </script>
 <title>查看贴子回复举报</title>
@@ -66,6 +65,17 @@
 		<li><a href="kc04ShowRank.kchtml" class="nav">排行榜</a></li>
 		</ul>
 		</li>
+		
+		<li>&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="kb01QueryItems.kbhtml">
+			<img alt="前往商城" src="<%=path%>/img/shop_logo.png" style="width:150px;height:50px;">
+			</a>&nbsp;&nbsp;
+		</li>
+		<li>
+			<a href="<%=path %>/ka01MainForum.kahtml?id=0">
+			<img alt="前往论坛" src="<%=path%>/img/forum_logo.png" style="width:150px;height:50px;">
+			</a>&nbsp;&nbsp;
+		</li>
 		</ul>
 		</div>
 	</div>
@@ -89,7 +99,7 @@
             </c:choose>
 		<ul id="badgeUserPanel">
 			<li><a href="<%=path%>/kd01AdminMain.kdhtml">个人主页</a></li>                    
-	    	<li><a href="<%= path %>/ka03QueryReport.kdhtml?flag=post">论坛管理员</a></li>
+	    	<li><a href="#">论坛管理员</a></li>
 	        <li class="row">
 		        <a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a> | 
 		        <a href="<%=path%>/kd/adminpage_info.jsp">设置</a> | 
@@ -158,7 +168,7 @@
     <div class="navTabsWrapper">
 		<ul class="navTabs">
 			<li><a href="<%= path %>/kd/adminpage_main.jsp">主页</a></li>
-        	<li><a href="<%= path %>/ka03QueryReport.kdhtml?flag=post" class="focus">论坛管理员</a></li>
+        	<li><a href="#" class="focus">论坛管理员</a></li>
         	<li><a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">消息</a></li>
 		</ul>
 	</div>
@@ -187,7 +197,7 @@
     	 	<c:forEach items="${reports }" var="report">
 			<div id="entry_list">
 			<div class="item clearit">
-			<a href="<%= path %>/ka03DelReport.kdhtml?flag=reply&kka301=${report.kka301}" class="btnGraySmall rr"><span>删除举报</span></a>
+			<a href="#" onclick="delReport('${report.kka301}')" class="btnGraySmall rr"><span>删除举报</span></a>
 			<h2 class="title">回复内容: #${report.kka201} ${report.kka202 }</h2>
 			<h2 class="title">贴子: 
 				<a href="<%= path %>/ka01PostContent.kahtml?kka101=${report.kka101}" class="l"> ${report.kka102 }</a>

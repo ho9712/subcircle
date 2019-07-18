@@ -70,6 +70,17 @@
 		<li><a href="kc04ShowRank.kchtml" class="nav">排行榜</a></li>
 		</ul>
 		</li>
+		
+		<li>&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="kb01QueryItems.kbhtml">
+			<img alt="前往商城" src="<%=path%>/img/shop_logo.png" style="width:150px;height:50px;">
+			</a>&nbsp;&nbsp;
+		</li>
+		<li>
+			<a href="<%=path %>/ka01MainForum.kahtml?id=0">
+			<img alt="前往论坛" src="<%=path%>/img/forum_logo.png" style="width:150px;height:50px;">
+			</a>&nbsp;&nbsp;
+		</li>
 		</ul>
 		</div>
 	</div>
@@ -118,7 +129,7 @@
 		<c:choose>
        		<c:when test="${fn:contains('45',sessionScope.user.kkd104) }">
 				<li><a href="<%=path%>/kd01UserMain.kdhtml">个人主页</a></li>                    
-	       		<li><a href="#">作品</a></li>
+	       		<li><a href="<%=path%>/kc06AnimeColl.kdhtml">作品</a></li>
 	       		<li><a href="#">论坛</a></li>
 	       		<li><a href="#">商城</a></li>
 	       		<li class="row">
@@ -144,7 +155,7 @@
 					</c:when>
 	    		</c:choose>
 	    		<li class="row">
-	    		<a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a> | 
+	    		<a href="#">短信</a> | 
 		        <a href="<%=path%>/kd/adminpage_info.jsp">设置</a> | 
 		        <a href="<%=path%>/logout.kdhtml">登出</a>
 	        	</li>
@@ -251,7 +262,7 @@
 		<c:choose>
        		<c:when test="${fn:contains('45',sessionScope.user.kkd104) }">
 				<li><a href="<%=path%>/kd01UserMain.kdhtml">主页</a></li>                    
-	       		<li><a href="#">作品</a></li>
+	       		<li><a href="<%=path%>/kc06AnimeColl.kdhtml">作品</a></li>
 	       		<li><a href="#">论坛</a></li>
 	       		<li><a href="#">商城</a></li>
 	    	</c:when>
@@ -274,7 +285,7 @@
 	    	</c:otherwise>
         </c:choose>
     	<!-- 用户或管理员入口 -->
-    	<li><a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}" class="focus">消息</a></li>
+    	<li><a href="#" class="focus">消息</a></li>
 		</ul>
 	</div>
 	<!-- 主页导航栏 -->
@@ -487,7 +498,7 @@
        			 <li class="first"><a href="<%=path%>/kd01AdminMain.kdhtml">${sessionScope.user.kkd102 }</a></li>
        		</c:otherwise>
        	</c:choose>
-        <li><a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a></li>
+        <li><a href="#">短信</a></li>
         <c:choose>
        		<c:when test="${fn:contains('45',sessionScope.user.kkd104) }">
        			 <li><a href="<%=path%>/kd/userpage_info.jsp">设置</a></li>

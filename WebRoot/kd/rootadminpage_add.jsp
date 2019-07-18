@@ -46,6 +46,17 @@
 		<li><a href="kc04ShowRank.kchtml" class="nav">排行榜</a></li>
 		</ul>
 		</li>
+		
+		<li>&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="kb01QueryItems.kbhtml">
+			<img alt="前往商城" src="<%=path%>/img/shop_logo.png" style="width:150px;height:50px;">
+			</a>&nbsp;&nbsp;
+		</li>
+		<li>
+			<a href="<%=path %>/ka01MainForum.kahtml?id=0">
+			<img alt="前往论坛" src="<%=path%>/img/forum_logo.png" style="width:150px;height:50px;">
+			</a>&nbsp;&nbsp;
+		</li>
 		</ul>
 		</div>
 	</div>
@@ -69,7 +80,7 @@
             </c:choose>
 		<ul id="badgeUserPanel">
 			<li><a href="<%=path%>/kd01AdminMain.kdhtml">个人主页</a></li>                    
-	    	<li><a href="<%= path %>/kd01QueryAdmin.kdhtml">Root管理员</a></li>
+	    	<li><a href="#">Root管理员</a></li>
 	        <li class="row">
 		        <a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a> | 
 		        <a href="<%=path%>/kd/adminpage_info.jsp">设置</a> | 
@@ -126,17 +137,17 @@
     <!-- 主页导航栏 -->
     <div class="navTabsWrapper">
 		<ul class="navTabs">
-			<li><a href="<%= path %>/kd/adminpage_main.jsp">主页</a></li>
-        	<li><a href="<%= path %>/kd/rootadminpage_add.jsp" class="focus">Root管理员</a></li>
-        	<li><a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">消息</a></li>
+			<li><a href="<%=path%>/kd01AdminMain.kdhtml">主页</a></li>
+        	<li><a href="#" class="focus">Root管理员</a></li>
+        	<li><a href="<%=path%>/kd02QueryReceive.kdhtml?username=${user.kkd102}">消息</a></li>
 		</ul>
 	</div>
 	<!-- 主页导航栏 -->
 	<!-- 子导航栏 -->
 	<div class="navSubTabsWrapper">
 		<ul class="navSubTabs">
-			<li><a href="<%= path %>/kd01QueryAdmin.kdhtml"><span>现有管理员账号</span></a></li>
-  	 		<li><a href="<%= path %>/kd/rootadminpage_add.jsp" class="focus"><span>添加管理员账户</span></a></li>
+			<li><a href="<%=path%>/kd01QueryAdmin.kdhtml"><span>现有管理员账号</span></a></li>
+  	 		<li><a href="<%=path%>/kd/rootadminpage_add.jsp" class="focus"><span>添加管理员账户</span></a></li>
 		</ul>
 	</div>
 	<!-- 子导航栏 -->
@@ -153,7 +164,7 @@
         <div id="columnLoginA" class="column">        
             
             <div id="signupFormWrapper">
-                <form id="signupForm" method="post" name="signup" action="<%=path %>/kd01AddAdmin.kdhtml">
+                <form id="signupForm" method="post" name="signup" action="<%=path%>/kd01AddAdmin.kdhtml">
                 <p class="title"><label for="email">登录账号</label></p>
                 <p><input id="email" name="kkd102" class="inputtext" type="text" required="required" /></p>
                 <p class="title"><label for="password">设置一个密码</label></p>
@@ -178,7 +189,7 @@
         <div id="columnLoginB" class="column">
             <div class="panel">
             <p class="title">已添加管理员账户？</p>
-            <a href="<%=path %>/kd01QueryAdmin.kdhtml" class="btnPink">前去管理</a>
+            <a href="<%=path%>/kd01QueryAdmin.kdhtml" class="btnPink">前去管理</a>
             </div>
         </div>
     </div>
@@ -194,7 +205,7 @@
     <div class="content">
         <ul class="clearit">
         <li class="first"><a href="<%=path%>/kd01AdminMain.kdhtml">${sessionScope.user.kkd102 }</a></li>
-        <li><a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a></li>
+        <li><a href="<%=path%>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a></li>
         <li><a href="<%=path%>/kd/adminpage_info.jsp">设置</a></li>
         <li><a href="<%=path%>/logout.kdhtml">登出</a></li>
         <li class="last"><a href="javascript:void(0);" id="showrobot">&nbsp;</a></li>

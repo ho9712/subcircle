@@ -66,6 +66,17 @@
 		<li><a href="kc04ShowRank.kchtml" class="nav">排行榜</a></li>
 		</ul>
 		</li>
+		
+		<li>&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="kb01QueryItems.kbhtml">
+			<img alt="前往商城" src="<%=path%>/img/shop_logo.png" style="width:150px;height:50px;">
+			</a>&nbsp;&nbsp;
+		</li>
+		<li>
+			<a href="<%=path %>/ka01MainForum.kahtml?id=0">
+			<img alt="前往论坛" src="<%=path%>/img/forum_logo.png" style="width:150px;height:50px;">
+			</a>&nbsp;&nbsp;
+		</li>
 		</ul>
 		</div>
 	</div>

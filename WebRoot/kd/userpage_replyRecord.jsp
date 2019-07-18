@@ -11,37 +11,37 @@
 	function onClickSort(vorder)
 	{
 		var vform=document.getElementById("myform");
-		vform.action="<%= path %>/kd03QueryApp.kdhtml?order="+vorder;
+		vform.action="<%=path%>/ka02ReplyRecord.kdhtml?order="+vorder;
 		vform.submit();
 	}
-	function delReport(kka301)	
+	function delReply(kka201)
 	{
-		var msg="确定要删除该举报？";
+		var msg="确定删除该回复?";
 		if(confirm(msg))
 		{
-			window.location.href="<%= path %>/ka03DelReport.kdhtml?flag=post&kka301="+kka301;
+			window.location.href="<%= path %>/ka02DelReply.kdhtml?kka201="+kka201;		
 			alert("删除成功！");
 		}
 	}
 </script>
 <style type="text/css">
 	.line_limit{
-		width:300px;
+		width:500px;
 		white-space:nowrap;
 		overflow:hidden;
 		text-overflow:ellipsis;
 	}
 </style>
-<title>查看贴子举报</title>
+<title>回帖记录</title>
 
 
 <link rel="stylesheet" type="text/css" href="<%=path %>/css/bangumi.css" />
 <script src="<%=path %>/js/bangumi.js" type="text/javascript"></script>
+<script src="<%=path %>/js/jquery.js" type="text/javascript"></script>
 </head>
 
 <body class="bangumi">
 <div id="wrapperNeue" class="wrapperNeue">
-
 <!-- 顶部栏 -->
 <div id="headerNeue2">
     <div class="headerNeueInner clearit">
@@ -91,26 +91,29 @@
 	
     <!-- 顶部头像菜单 -->
     <div class="idBadgerNeue">
-		<c:choose>
+			<c:choose>
             	<c:when test="${!empty sessionScope.user.kkd108}">
-                <a class="avatar" href="<%=path%>/kd01AdminMain.kdhtml">
+                <a class="avatar" href="<%=path%>/kd01UserMain.kdhtml">
 				<span class="avatarNeue avatarSize32 ll" 
 					style="background-image:url('${sessionScope.user.kkd108}');background-size: 100% auto;"></span>
 				</a>
             	</c:when>
             	<c:otherwise>
-                <a class="avatar" href="<%=path%>/kd01AdminMain.kdhtml">
+                <a class="avatar" href="<%=path%>/kd01UserMain.kdhtml">
 				<span class="avatarNeue avatarSize32 ll" 
 					style="background-image:url('<%=path%>/img/avatar/def_avatar.png');background-size: 100% auto;"></span>
 				</a>
             	</c:otherwise>
             </c:choose>
 		<ul id="badgeUserPanel">
-			<li><a href="<%=path%>/kd01AdminMain.kdhtml">个人主页</a></li>                    
-	    	<li><a href="#">论坛管理员</a></li>
+			<li><a href="<%=path%>/kd01UserMain.kdhtml">个人主页</a></li>                    
+       		<li><a href="<%=path%>/kc06AnimeColl.kdhtml">作品</a></li>
+       		<li><a href="#">论坛</a></li>
+       		<li><a href="#">商城</a></li>
+	    	
 	        <li class="row">
 		        <a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a> | 
-		        <a href="<%=path%>/kd/adminpage_info.jsp">设置</a> | 
+		        <a href="<%=path%>/kd/userpage_info.jsp">设置</a> | 
 		        <a href="<%=path%>/logout.kdhtml">登出</a>
 	        </li>
     	</ul>	
@@ -150,14 +153,14 @@
             </div>
 
             <div class="headerAvatar">
-                <c:choose>
+            <c:choose>
             	<c:when test="${!empty sessionScope.user.kkd108}">
-           		 <a href="<%=path%>/kd01AdminMain.kdhtml" class="avatar">
+           		 <a href="<%=path%>/kd01UserMain.kdhtml" class="avatar">
                 	<span class="avatarNeue avatarSize75" style="background-image:url('${sessionScope.user.kkd108}')"></span>
                 </a>
             	</c:when>
             	<c:otherwise>
-           		<a href="<%=path%>/kd01AdminMain.kdhtml" class="avatar">
+           		<a href="<%=path%>/kd01UserMain.kdhtml" class="avatar">
                 	<span class="avatarNeue avatarSize75" style="background-image:url('<%=path%>/img/avatar/def_avatar.png')"></span>
                 </a>
             	</c:otherwise>
@@ -165,7 +168,7 @@
             </div>
 
             <div class="inner">
-                <a href="<%=path%>/kd01AdminMain.kdhtml">${sessionScope.user.kkd105 }</a> <small class="grey">@${sessionScope.user.kkd102 }</small>
+                <a href="<%=path%>/kd01UserMain.kdhtml">${sessionScope.user.kkd105 }</a> <small class="grey">@${sessionScope.user.kkd102 }</small>
                 <span id="friend_flag"></span>
             </div>
     	</h1>
@@ -175,18 +178,20 @@
     <!-- 主页导航栏 -->
     <div class="navTabsWrapper">
 		<ul class="navTabs">
-			<li><a href="<%= path %>/kd/adminpage_main.jsp">主页</a></li>
-        	<li><a href="#" class="focus">论坛管理员</a></li>
-        	<li><a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">消息</a></li>
+			<li><a href="<%=path%>/kd01UserMain.kdhtml">主页</a></li>                    
+       		<li><a href="<%=path%>/kc06AnimeColl.kdhtml">作品</a></li>
+       		<li><a href="#" class="focus">论坛</a></li>
+       		<li><a href="#">商城</a></li>
+       		<li><a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">消息</a></li>
 		</ul>
 	</div>
 	<!-- 主页导航栏 -->
 	<!-- 子导航栏 -->
 	<div class="navSubTabsWrapper">
 		<ul class="navSubTabs">
-			<li><a href="<%= path %>/ka03QueryReport.kdhtml?flag=post" class="focus"><span>查看举报贴子</span></a></li>
-  	 		<li><a href="<%= path %>/ka03QueryReport.kdhtml?flag=reply"><span>查看举报回复</span></a></li>
-  	 		<li><a href="<%= path %>/ka01MainForum.kahtml?id=0"><span>前往管理论坛</span></a></li>
+			<li><a href="<%=path%>/ka01PostRecord.kdhtml"><span>发帖记录</span></a></li>
+  	 		<li><a href="<%=path%>/ka02ReplyRecord.kdhtml" class="focus"><span>回帖记录</span></a></li>
+  	 		<li><a href="<%=path%>/ka04PostColl.kdhtml" ><span>贴子收藏</span></a></li>
 		</ul>
 	</div>
 	<!-- 子导航栏 -->
@@ -194,47 +199,54 @@
 	</div>
 </div>
 <!-- 主页头部 -->
+
 <div class="mainWrapper">
 <div class="columns clearit" xmlns:v="http://rdf.data-vocabulary.org/#">
 	<!-- 主页主体A栏 -->
 		
 		<div id="columnSubjectBrowserA" class="column">
-    	 
-    	 <c:choose>
-    	 <c:when test="${!empty reports}">
-    	 	<c:forEach items="${reports }" var="report">
-			<div id="entry_list">
-			<div class="item clearit">
-			<a href="#" onclick="delReport('${report.kka301}')" class="btnGraySmall rr"><span>删除举报</span></a>
-			<h2 class="title">贴子: 
-			<a href="<%= path %>/ka01PostContent.kahtml?kka101=${report.kka101}" class="l"> ${report.kka102 }</a>
-			</h2>
-			<div class="time"><small class="time">举报时间: ${report.kka303 }</small> </div>
-			<div class="content"><p class="line_limit">内容: ${report.kka104 }</p>
-			<p class="line_limit">举报理由: ${report.kka302 }</p>
-			</div>
-			<div class="tools clearit">
-				<div class="tags">所属板块: 
-					<a href="ka01AnimeForum.kahtml?id=${report.kka103 }" class="l">${report.ckka103 }</a> 
-				</div>
-			</div>
-			</div>
-			</div>
-			</c:forEach>
-		</c:when>
-		<c:otherwise>
+		<c:choose>
+		<c:when test="${empty replys}">
 			<div class="section">
-	            <br><h2 class="title">没有收到来自用户的举报...</h2>
+				<a href="<%=path%>/kc02ShowRank.kchtml" class="rr l">前往回复</a>
+	            <br><h2 class="title">你还没有回复过贴子...</h2>
 	        	<div>
 	        		<ul class="coversSmall">
 	           		</ul>
 	        	</div>
 	        </div>
 	        <div class="section_line clear"></div>
+		</c:when>
+		<c:otherwise>
+    	<div id="browserTools" class="clearit">
+        
+        	按 时间<a href="#" onclick="onClickSort(1)" class="btnGraySmall" ><span>升序</span></a> · 
+        	<a href="#" onclick="onClickSort(2)" class="btnGraySmall" ><span>降序</span></a> 排序
+		</div>    
+			<!-- 查询所有回帖记录 -->
+			<c:forEach items="${replys }" var="reply">
+			<div id="entry_list">
+			<div class="item clearit">
+			<a href="#" onclick="delReply('${reply.kka201}')" class="btnGraySmall rr"><span>删除回复</span></a>
+			<p class="line_limit">回复内容: #${reply.kka201} ${reply.kka202 }</p>
+			<h2 class="title">贴子: 
+				<a href="<%= path %>/ka01PostContent.kahtml?kka101=${reply.kka101}" class="l"> ${reply.kka102 }</a>
+			</h2>
+			<div class="time"><small class="time">回复时间: ${reply.kka203 }</small> </div>
+			<div class="tools clearit">
+				<div class="tags">所属板块: 
+					<a href="ka01AnimeForum.kahtml?id=${reply.kka103 }" class="l">${reply.cnkka103 }</a> 
+				</div>
+			</div>
+			</div>
+			</div>
+			</c:forEach>
+			<div id="multipage"></div>
+
+			<!-- 查询所有回帖记录 -->
+			
 		</c:otherwise>
 		</c:choose>
-			
-			<div id="multipage"></div>
 		</div>
 		
 		
@@ -245,11 +257,11 @@
 			<div id="columnSubjectInBrowserB" class="clearit">
 				<div class="SidePanel png_bg">
 					<h2>/ 根据条件检索 </h2>
-					<form id="myform" name="set" method="post" action="<%= path %>/ka03QueryReport.kdhtml?flag=post">
+					<form id="myform" name="set" method="post" action="<%=path%>/ka02ReplyRecord.kdhtml">
 						<span class="text">
 							<table align="center" width="98%" cellspacing="0" cellpadding="5" class="settings">
 								<tr>
-									<td valign="top" width="5%">关键字</td>
+									<td valign="top" width="15%">关键字</td>
 									<td valign="top">
 										<e:text name="keyword" style="border:1px
 											solid #BEB4A7;padding:1px
@@ -264,18 +276,18 @@
 									</td>
 								</tr>
 								<tr>
-									<td valign="top" width="15%">举报时间[B]</td>
+									<td valign="top" width="15%">回帖时间[B]</td>
 									<td valign="top">
-										<e:date name="bkka303" style="border:1px
+										<e:date name="bkka203" style="border:1px
 											solid #BEB4A7;padding:1px
 											4px;width:120px;height:20px;padding:3px
 											5px;text-align:left;font-size:14px;line-height:130%"/>
 									</td>
 								</tr>
 								<tr>
-									<td valign="top" width="15%">举报时间[E]</td>
+									<td valign="top" width="15%">回帖时间[E]</td>
 									<td valign="top">
-										<e:date name="ekka303" style="border:1px
+										<e:date name="ekka203" style="border:1px
 											solid #BEB4A7;padding:1px
 											4px;width:120px;height:20px;padding:3px
 											5px;text-align:left;font-size:14px;line-height:130%"/>
@@ -303,33 +315,32 @@
 <div id="dock">
     <div class="content">
         <ul class="clearit">
-        <li class="first"><a href="<%=path%>/kd01AdminMain.kdhtml">${sessionScope.user.kkd102 }</a></li>
+        <li class="first"><a href="<%=path%>/kd01UserMain.kdhtml">${sessionScope.user.kkd102 }</a></li>
         <li><a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a></li>
-        <li><a href="<%=path%>/kd/adminpage_info.jsp">设置</a></li>
+        <li><a href="<%=path%>/kd/userpage_info.jsp">设置</a></li>
         <li><a href="<%=path%>/logout.kdhtml">登出</a></li>
         <li class="last"><a href="javascript:void(0);" id="showrobot">&nbsp;</a></li>
         </ul>
     </div>
 </div>
 <!-- 底部菜单栏 -->
-
 <!-- 展示 -->
 <div id="robot" >
 <div id="ukagaka_shell">
 <div class="ui_10 shell_1">
 <div id="ukagaka_voice"></div>
 <div id="robot_balloon" class="ukagaka_balloon_pink">
-<div class="tools"><a href="#" id="ukagaka_menu"></a></div>    
+<div class="tools"><a href="javascript:void(0);" id="ukagaka_menu"></a></div>    
 <div class="inner">
 <div id="robot_speech" class="speech" >
 <c:choose>
 	<c:when test="${empty hint }">
-		<strong>『查看贴子举报』</strong><br />
-		在这里，你可以查看并管理所有来自用户对论坛模块贴子的举报。<br />
+		<strong>『回帖记录』</strong><br />
+		这里记录了你曾经在讨论版的回复。 <br />
 	</c:when>
 	<c:otherwise>
 		<strong>『${hint }』</strong><br />
-		${msg}<br />
+		${msg }<br />
 	</c:otherwise>
 </c:choose>
 <br>

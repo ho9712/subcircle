@@ -45,6 +45,17 @@
 		<li><a href="kc04ShowRank.kchtml" class="nav">排行榜</a></li>
 		</ul>
 		</li>
+		
+		<li>&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="kb01QueryItems.kbhtml">
+			<img alt="前往商城" src="<%=path%>/img/shop_logo.png" style="width:150px;height:50px;">
+			</a>&nbsp;&nbsp;
+		</li>
+		<li>
+			<a href="<%=path %>/ka01MainForum.kahtml?id=0">
+			<img alt="前往论坛" src="<%=path%>/img/forum_logo.png" style="width:150px;height:50px;">
+			</a>&nbsp;&nbsp;
+		</li>
 		</ul>
 		</div>
 	</div>
@@ -68,7 +79,7 @@
             </c:choose>
 		<ul id="badgeUserPanel">
 			<li><a href="<%=path%>/kd01UserMain.kdhtml">个人主页</a></li>                    
-       		<li><a href="#">作品</a></li>
+       		<li><a href="<%=path%>/kc06AnimeColl.kdhtml">作品</a></li>
        		<li><a href="#">论坛</a></li>
        		<li><a href="#">商城</a></li>
 	    	

@@ -48,6 +48,17 @@
 		<li><a href="kc04ShowRank.kchtml" class="nav">排行榜</a></li>
 		</ul>
 		</li>
+		
+		<li>&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="kb01QueryItems.kbhtml">
+			<img alt="前往商城" src="<%=path%>/img/shop_logo.png" style="width:150px;height:50px;">
+			</a>&nbsp;&nbsp;
+		</li>
+		<li>
+			<a href="<%=path %>/ka01MainForum.kahtml?id=0">
+			<img alt="前往论坛" src="<%=path%>/img/forum_logo.png" style="width:150px;height:50px;">
+			</a>&nbsp;&nbsp;
+		</li>
 		</ul>
 		</div>
 	</div>
@@ -93,41 +104,13 @@
             <!-- 头像或默认头像，以及头像返回页面 -->
         <!-- 用户或管理员入口 -->
 		<ul id="badgeUserPanel">
-		<c:choose>
-       		<c:when test="${fn:contains('45',sessionScope.user.kkd104) }">
-				<li><a href="<%=path%>/kd/userpage_main.jsp">个人主页</a></li>                    
-	       		<li><a href="#">作品</a></li>
-	       		<li><a href="#">论坛</a></li>
-	       		<li><a href="#">商城</a></li>
-	       		<li class="row">
-		        <a href="#">短信</a> | 
-		        <a href="<%=path%>/kd/userpage_info.jsp">设置</a> | 
-		        <a href="<%=path%>/logout.kdhtml">登出</a>
-	        	</li>
-	    	</c:when>
-	    	<c:otherwise>
 	    		<li><a href="<%=path%>/kd01AdminMain.kdhtml">个人主页</a></li>
-	    		<c:choose>
-	    			<c:when test="${sessionScope.kkd104 eq '0' }">
-						<li><a href="<%= path %>/kd01QueryAdmin.kdhtml">Root管理员</a></li>
-					</c:when>
-					<c:when test="${sessionScope.kkd104 eq '1' }">
-						<li><a href="<%= path %>/kd01QueryUser.kdhtml">作品管理员</a></li>
-					</c:when>
-					<c:when test="${sessionScope.kkd104 eq '2' }">
-						<li><a href="<%= path %>/kd01QueryAdmin.kdhtml">商城管理员</a></li>
-					</c:when>
-					<c:when test="${sessionScope.kkd104 eq '3' }">
-						<li><a href="<%= path %>/kd01QueryAdmin.kdhtml">论坛管理员</a></li>
-					</c:when>
-	    		</c:choose>
+				<li><a href="<%= path %>/kd01QueryAdmin.kdhtml">商城管理员</a></li>
 	    		<li class="row">
 	    		<a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a> | 
 		        <a href="<%=path%>/kd/adminpage_info.jsp">设置</a> | 
 		        <a href="<%=path%>/logout.kdhtml">登出</a>
 	        	</li>
-	    	</c:otherwise>
-        </c:choose>
     	</ul>	
     	<!-- 用户或管理员入口 -->
     </div>
@@ -169,36 +152,16 @@
                 <!-- 头像或默认头像，以及头像返回页面 -->
 			<c:choose>
             	<c:when test="${!empty sessionScope.user.kkd108}">
-            	<c:choose>
-            		<c:when test="${fn:contains('45',sessionScope.user.kkd104) }">
-            			<a class="avatar" href="<%=path%>/kd/userpage_main.jsp">
-						<span class="avatarNeue avatarSize75" 
-							style="background-image:url('${sessionScope.user.kkd108}');background-size: 100% auto;"></span>
-						</a>
-            		</c:when>
-            		<c:otherwise>
-            			<a class="avatar" href="<%=path%>/kd01AdminMain.kdhtml">
-						<span class="avatarNeue avatarSize75" 
-							style="background-image:url('${sessionScope.user.kkd108}');background-size: 100% auto;"></span>
-						</a>
-            		</c:otherwise>
-            	</c:choose>
+           			<a class="avatar" href="<%=path%>/kd01AdminMain.kdhtml">
+					<span class="avatarNeue avatarSize75" 
+						style="background-image:url('${sessionScope.user.kkd108}');background-size: 100% auto;"></span>
+					</a>
             	</c:when>
             	<c:otherwise>
-            	<c:choose>
-            		<c:when test="${fn:contains('45',sessionScope.user.kkd104) }">
-            			<a class="avatar" href="<%=path%>/kd/userpage_main.jsp">
-						<span class="avatarNeue avatarSize75" 
-							style="background-image:url('<%=path%>/img/avatar/def_avatar.png');background-size: 100% auto;"></span>
-						</a>
-            		</c:when>
-            		<c:otherwise>
-            			<a class="avatar" href="<%=path%>/kd01AdminMain.kdhtml">
-						<span class="avatarNeue avatarSize75" 
-							style="background-image:url('<%=path%>/img/avatar/def_avatar.png');background-size: 100% auto;"></span>
-						</a>
-            		</c:otherwise>
-            	</c:choose>
+           			<a class="avatar" href="<%=path%>/kd01AdminMain.kdhtml">
+					<span class="avatarNeue avatarSize75" 
+						style="background-image:url('<%=path%>/img/avatar/def_avatar.png');background-size: 100% auto;"></span>
+					</a>
             	</c:otherwise>
             </c:choose>
             <!-- 头像或默认头像，以及头像返回页面 -->
@@ -216,31 +179,8 @@
     <div class="navTabsWrapper">
 		<ul class="navTabs">
         <!-- 用户或管理员入口 -->
-		<c:choose>
-       		<c:when test="${fn:contains('45',sessionScope.user.kkd104) }">
-				<li><a href="<%=path%>/kd/userpage_main.jsp">主页</a></li>                    
-	       		<li><a href="#">作品</a></li>
-	       		<li><a href="#">论坛</a></li>
-	       		<li><a href="#">商城</a></li>
-	    	</c:when>
-	    	<c:otherwise>
-	    		<li><a href="<%=path%>/kd01AdminMain.kdhtml">主页</a></li>
-	    		<c:choose>
-	    			<c:when test="${sessionScope.kkd104 eq '0' }">
-						<li><a href="<%= path %>/kd01QueryAdmin.kdhtml">Root管理员</a></li>
-					</c:when>
-					<c:when test="${sessionScope.kkd104 eq '1' }">
-						<li><a href="<%= path %>/kd01QueryUser.kdhtml">作品管理员</a></li>
-					</c:when>
-					<c:when test="${sessionScope.kkd104 eq '2' }">
-						<li><a href="<%= path %>/kd/shopadminpage_turn.jsp" class="focus">商城管理员</a></li>
-					</c:when>
-					<c:when test="${sessionScope.kkd104 eq '3' }">
-						<li><a href="<%= path %>/kd01QueryAdmin.kdhtml">论坛管理员</a></li>
-					</c:when>
-	    		</c:choose>
-	    	</c:otherwise>
-        </c:choose>
+    		<li><a href="<%=path%>/kd01AdminMain.kdhtml">主页</a></li>
+			<li><a href="<%= path %>/kd/shopadminpage_turn.jsp" class="focus">商城管理员</a></li>
     	<!-- 用户或管理员入口 -->
     	<li><a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">消息</a></li>
 		</ul>
@@ -285,23 +225,9 @@
 <div id="dock">
     <div class="content">
         <ul class="clearit">
-        <c:choose>
-       		<c:when test="${fn:contains('45',sessionScope.user.kkd104) }">
-       			 <li class="first"><a href="<%=path%>/kd/userpage_main.jsp">${sessionScope.user.kkd102 }</a></li>
-       		</c:when>
-       		<c:otherwise>
-       			 <li class="first"><a href="<%=path%>/kd01AdminMain.kdhtml">${sessionScope.user.kkd102 }</a></li>
-       		</c:otherwise>
-       	</c:choose>
-        <li><a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a></li>
-        <c:choose>
-       		<c:when test="${fn:contains('45',sessionScope.user.kkd104) }">
-       			 <li><a href="<%=path%>/kd/userpage_info.jsp">设置</a></li>
-       		</c:when>
-       		<c:otherwise>
-       			 <li><a href="<%=path%>/kd/adminpage_info.jsp">设置</a></li>
-       		</c:otherwise>
-       	</c:choose>
+		 <li class="first"><a href="<%=path%>/kd01AdminMain.kdhtml">${sessionScope.user.kkd102 }</a></li>
+       	<li><a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a></li>
+		 <li><a href="<%=path%>/kd/adminpage_info.jsp">设置</a></li>
         <li><a href="<%=path%>/logout.kdhtml">登出</a></li>
         <li class="last"><a href="javascript:void(0);" id="showrobot">&nbsp;</a></li>
         </ul>
@@ -320,8 +246,8 @@
 <div id="robot_speech" class="speech" >
 <c:choose>
 	<c:when test="${empty hint }">
-		<strong>『发送消息』</strong><br />
-		在这里，你可以向其他用户发送短消息，收件人处请填该用户的用户名。<br />
+		<strong>『商城管理员』</strong><br />
+		在这里，你可以前往管理周边商城。<br />
 	</c:when>
 	<c:otherwise>
 		<strong>『${hint }』</strong><br />

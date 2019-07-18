@@ -505,7 +505,8 @@ public abstract class KdAbstractController implements ControllerInterface
 	{
 		Map<String, String> other=this.services.findById();
 		this.saveAttribute("other", other);
-		this.userMain();
+		Map<String,Object> colls=this.executeQueryForMap("queryMainColl");
+		this.saveAttribute("colls", colls);
 	}
 	
 	//发送消息
@@ -639,5 +640,127 @@ public abstract class KdAbstractController implements ControllerInterface
 			this.setHint("删除失败", "服务器可能出现了一点小问题，请稍后再试！");
 		}
 		return this.queryReport();
+	}
+	
+	//查询动画收藏
+	protected final void queryAnimeColl()throws Exception
+	{
+		if(this.dto.get("kkd101")==null)
+		{
+			this.dto.put("kkd101", this.session.getAttribute("kkd101"));
+		}
+		List<Map<String, String>> animeColls=this.executeQueryForList("queryAnimeColl");
+		this.saveAttribute("animeColls", animeColls);
+	}
+	
+	//查询书籍收藏
+	protected final void queryBookColl()throws Exception
+	{
+		if(this.dto.get("kkd101")==null)
+		{
+			this.dto.put("kkd101", this.session.getAttribute("kkd101"));
+		}
+		List<Map<String, String>> bookColls=this.executeQueryForList("queryBookColl");
+		this.saveAttribute("bookColls", bookColls);
+	}
+	
+	//查询游戏收藏
+	protected final void queryGameColl()throws Exception
+	{
+		if(this.dto.get("kkd101")==null)
+		{
+			this.dto.put("kkd101", this.session.getAttribute("kkd101"));
+		}
+		List<Map<String, String>> gameColls=this.executeQueryForList("queryGameColl");
+		this.saveAttribute("gameColls", gameColls);
+	}
+	
+	//修改作品评价
+	protected final void modifyComment()throws Exception
+	{
+		if(this.executeMethod("modifyComment"))
+		{
+			this.setHint("修改成功", "你对该作品的评价已被更新！");
+		}
+		else
+		{
+			this.setHint("修改失败", "服务器可能出现了一点小问题，请稍后再试！");
+		}
+	}
+	
+	//删除作品收藏及评价
+	protected final void delColl()throws Exception
+	{
+		if(this.executeMethod("delColl"))
+		{
+			this.setHint("删除成功", "该作品 已从你的收藏中移除！");
+		}
+		else
+		{
+			this.setHint("删除失败", "服务器可能出现了一点小问题，请稍后再试！");
+		}
+	}
+	
+	//查询发帖记录
+	protected final void queryPostRecord()throws Exception
+	{
+		this.dto.put("kkd101", this.session.getAttribute("kkd101"));
+		List<Map<String, String>> posts=this.services.queryByCondition();
+		this.saveAttribute("posts", posts);
+	}
+	
+	//删除贴子
+	protected final void delPost()throws Exception
+	{
+		if(this.executeMethod("delPost"))
+		{
+			this.setHint("删除成功", "该帖子已被删除！");
+		}
+		else
+		{
+			this.setHint("删除失败", "服务器可能出现了一点小问题，请稍后再试！");
+		}
+	}
+	
+	//查询回帖记录
+	protected final void queryReplyRecord()throws Exception
+	{
+		this.dto.put("kkd101", this.session.getAttribute("kkd101"));
+		List<Map<String, String>> replys=this.services.queryByCondition();
+		this.saveAttribute("replys", replys);
+	}
+	
+	//删除回帖
+	protected final void delReply()throws Exception
+	{
+		if(this.executeMethod("delReply"))
+		{
+			this.setHint("删除成功", "该回帖已被删除！");
+		}
+		else
+		{
+			this.setHint("删除失败", "服务器可能出现了一点小问题，请稍后再试！");
+		}
+	}
+	
+	//查询贴子收藏
+	protected final void queryPostColl()throws Exception
+	{
+		this.dto.put("kkd101", this.session.getAttribute("kkd101"));
+		List<Map<String, String>> postColls=this.services.queryByCondition();
+		this.saveAttribute("postColls", postColls);
+	}
+	
+	//取消帖子收藏
+	protected final void delPostColl()throws Exception
+	{
+		if(this.executeMethod("delPostColl"))
+		{
+			this.setHint("取消成功", "该贴子已从你的收藏中移除！");
+		}
+		else
+		{
+			this.setHint("删除失败", "服务器可能出现了一点小问题，请稍后再试！");
+		}
 	}
 }
