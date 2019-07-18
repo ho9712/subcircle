@@ -8,7 +8,6 @@
 <head>
 <meta charset="utf-8" />
 <title>论坛</title>
-
 <link rel="stylesheet" type="text/css" href="<%=path %>/css/bangumi.css" >
 </head>
   <body class="bangumi">
@@ -91,11 +90,11 @@
 </select>
 <input id="search_text" name="search_text" class="textfield" type="text" />
         <input type="submit" name="submit" value="搜索" class="search" />
-    </div>
+</div>
 </form>
-    </div>   
+</div>   
 </div>  
-    </div>
+</div>
 </div>
 <!-- 以上为导航栏 -->
 
@@ -188,20 +187,50 @@
         
         
 <div id="columnB" class="column">
-<div id="">
+<div >
 <br>
 <br>
 <br>
 <br>
 </div>
+
 <div id="sideLayout">
 <div id="post" class="sort">
 <div class="SidePanel png_bg" align="left">
 <h2><a href="<%=path %>/ka/posting.jsp">我要发贴</a></h2>
 </div>
 </div>
+</div>
+<!-- 展示 -->
+<div id="robot" >
+<div id="ukagaka_shell">
+<div class="ui_10 shell_1">
+<div id="ukagaka_voice"></div>
+<div id="robot_balloon" class="ukagaka_balloon_pink">
+<div class="tools"><a href="javascript:void(0);" id="ukagaka_menu"></a></div>    
+<div class="inner">
+<div id="robot_speech" class="speech" >
+<c:choose>
+	<c:when test="${empty sessionScope.user.kkd105 }">
+		<strong>『欢迎你！游客』</strong><br />
+		您可以搜索、浏览网站贴子！<br />
+		如果想要发帖、回贴参与网站论坛，请及时登录！<br />
+		如果还没有账户，请通过注册获取一个您的专属账户哦！<br />
+	</c:when>
+	<c:otherwise>
+		<strong>『欢迎你！用户 ${sessionScope.user.kkd105 }』</strong><br />
+		请尽情浏览网站贴子、参与网站讨论哦！<br />
+	</c:otherwise>
+</c:choose>
 
 </div>
+</div>
+<div class="ukagaka_balloon_pink_bottom"></div>	
+</div>
+</div>
+</div>
+</div>
+<!-- 展示 -->
 </div>
 </div>
 </div>

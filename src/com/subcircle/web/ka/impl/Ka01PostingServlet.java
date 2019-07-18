@@ -6,7 +6,7 @@ public class Ka01PostingServlet extends Ka01Controller
 		@Override
 		public String execute() throws Exception 
 		{
-			this.update("posting","发布贴子");
-            return "ka/ka01MainForum.kahtml?id=0";
+			this.update("posting","发贴");
+            return "ka/posting.jsp";
 		}
 }

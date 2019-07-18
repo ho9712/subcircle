@@ -45,401 +45,364 @@
 </script>
 <![endif]-->
 
-<link rel="stylesheet" type="text/css" href="<%=path %>/css/bangumi.css" >
+<link rel="stylesheet" type="text/css" href="<%=path%>/css/bangumi.css">
 <script type="text/javascript">var SHOW_ROBOT = '0',CHOBITS_UID = 0, SITE_URL = 'http://bangumi.tv';</script>
 </head>
 <style type="text/css">
-	pre {
-white-space: pre-wrap;
-word-wrap: break-word;
+pre {
+	white-space: pre-wrap;
+	word-wrap: break-word;
 }
 </style>
-  <body class="bangumi">
-    <div id="wrapperNeue" class="wrapperNeue">
-      <div id="headerNeue2">
-        <div class="headerNeueInner clearit">
-         <div class="bg musume_2"></div>
-         <a href="/" class="logo">Bangumi 番组计划</a>
-    
-         <input type="checkbox" id="navMenuNeueToggle" />    	
-         <label for="navMenuNeueToggle" class="menuCompact"></label>    
-    
-         <div id="navNeue2">
-           <div id="menuNeue">
-             <ul id="navMenuNeue" class="clearit">
-               <li><a href="/anime" class="top chl anime"><span>动画</span></a>
-    			<div class="clear"></div>
-                <ul class="clearit">
-                  <li><a href="/anime/chart" class="nav">排行榜</a></li>
-                  <li><a href="/calendar" class="nav">每日放送</a></li>
-                  <li><a href="/anime/tag" class="nav">动画标签</a></li>
-                  <li><a href="/anime/browser" class="nav">分类浏览</a></li>
-                  <li><a href="/anime/blog" class="nav">动画日志</a></li>
-                </ul>
-               </li>
-             <li><a href="/book" class="top chl"><span>书籍</span></a>
-               <div class="clear"></div>
-                 <ul class="clearit">
-                   <li><a href="/book/chart" class="nav">排行榜</a></li>
-                   <li><a href="/book/tag" class="nav">图书标签</a></li>
-                   <li><a href="/book/browser" class="nav">分类浏览</a></li>
-                   <li><a href="/book/blog" class="nav">图书日志</a></li>
-                 </ul>
-             </li>
-             <li><a href="/music" class="top chl"><span>音乐</span></a>
-               <div class="clear"></div>
-                 <ul class="clearit">
-                   <li><a href="/music/chart" class="nav">排行榜</a></li>
-                   <li><a href="/music/tag" class="nav">音乐标签</a></li>
-                   <li><a href="/music/browser" class="nav">浏览全部</a></li>
-                   <li><a href="/music/blog" class="nav">音乐日志</a></li>
-                 </ul>
-             </li>
-<li><a href="/game" class="top chl"><span>游戏</span></a>
-<div class="clear"></div>
-<ul class="clearit">
-<li><a href="/game/chart" class="nav">排行榜</a></li>
-<li><a href="/game/tag" class="nav">游戏标签</a></li>
-<li><a href="/game/browser" class="nav">平台浏览</a></li>
-<li><a href="/game/blog" class="nav">游戏日志</a></li>
-</ul>
-</li>
-<li><a href="/real" class="top chl real"><span>三次元</span></a>
-<div class="clear"></div>
-<ul class="clearit">
-<li><a href="/real/chart" class="nav">排行榜</a></li>
-<li><a href="/real/tag" class="nav">三次元标签</a></li>
-<li><a href="/real/blog" class="nav">三次元日志</a></li>
-<li><a href="/real/browser/platform/jp" class="nav">日剧</a></li>
-<li><a href="/real/browser/platform/en" class="nav">欧美剧</a></li>
-</ul>
-</li>
-            <li><a href="/mono" class="top"><span>人物</span></a>
-<div class="clear"></div>
-<ul class="clearit">
-<li><a href="/character" class="nav">虚构人物</a></li>
-<li><a href="/person" class="nav">现实人物</a></li>
-	
-</ul>
-</li>
-<li><a href="/rakuen" class="top_lite"><span>超展开</span></a></li>
-<li><a href="/group"class="top"><span>小组</span></a>
-<div class="clear"></div>
-<ul class="clearit">
-<li><a href="/group/discover" class="nav">随便看看</a></li>
-<li><a href="/group/all" class="nav">所有小组</a></li>
-</ul>
-</li>
-<li><a href="javascript:void(0);" class="top"><span>探索</span></a>
-<div class="clear"></div>
-<ul class="explore clearit">
+<body class="bangumi">
+	<div id="wrapperNeue" class="wrapperNeue">
+		<div id="headerNeue2">
+			<div class="headerNeueInner clearit">
+				<div class="bg musume_2"></div>
+				<a href="/" class="logo">Bangumi 番组计划</a> <input type="checkbox"
+					id="navMenuNeueToggle" /> <label for="navMenuNeueToggle"
+					class="menuCompact"></label>
 
-<li class="single"><a href="/timeline">时空管理局</a></li>		
-                <li class="group">
-<span><a href="/blog">日志</a><a href="/index">目录</a><a href="/wiki">维基人</a></span>
-</li>				
-<li class="group"><span><a href="/magi">MAGI 问答</a><a href="/dollars">Dollars</a></span></li>				
-                <li class="group">
-<span class="root">客户端</span>
-<span><a href="/onair">onAir</a><a href="/group/topic/5155">Mobile</a></span>
-</li>				
-</ul>
-</li>
-<li class="doujin"><a href="http://doujin.bangumi.tv">天窗联盟</a></li>
-</ul>	
-</div>
-</div>
-        
-    <div class="idBadgerNeue">
-    <div class="guest"><a href="<%=path %>/kd/login.jsp" class="guest login">登录</a><a href="<%=path %>/kd/signup.jsp" class="guest signup">注册</a></div>
-	
-</div><div id="headerSearchWrapper">
-<div id="headerSearch">
-        <form action="/subject_search" method="post">
-    <div class="inner">
-<select name="cat" id="siteSearchSelect">
-<option value="all">全部</option>
-<option value="2">动画</option>
-<option value="1">书籍</option>
-<option value="4">游戏</option>
-<option value="3">音乐</option>
-<option value="6">三次元</option>
-<option value="person">人物</option>			
-</select>
-<input id="search_text" name="search_text" class="textfield" type="text" />
-        <input type="submit" name="submit" value="搜索" class="search" />
-    </div>
-</form>
-    </div>   
-</div>  
-    </div>
-</div>
-<!-- 以上为导航栏 -->
-
-<!-- 以下为页面内容 -->
-<div id="main" class="png_bg"></div>
-<div id="headerProfile" class="clearit">
-  <div class="subjectNav">
-   <!-- 主页个人信息 -->
-    <div class="headerContainer">
-    	<h1 class="nameSingle">
-            <div class="rr">
-            </div>
-            <div class="inner">
-                <b class="grey">欢迎来到论坛~</b>
-                <a href="<%=path%>/kd/userpage_main.jsp">${sessionScope.user.kkd105 }</a>
-            </div>
-    	</h1>
-    </div>
-    <!-- 主页个人信息 -->
-    
-    <!-- 论坛导航栏 -->
-    <div class="subjectNav">
-      <ul class="navTabs">
-      <li><a href="ka01MainForum.kahtml?id=0" class="focus">全部</a></li>
-        <li><a href="ka01AnimeForum.kahtml?id=1">动画</a></li>
-        <li><a href="ka01BookForum.kahtml?id=2">书籍</a></li>
-        <li><a href="ka01GameForum.kahtml?id=3" >游戏</a></li>
-      </ul>
-    </div>
-	<!-- 论坛导航栏 -->
-</div>
-</div>
-            <div class="mainWrapper">
-			    <div class="columns clearit">
-				<div id="columnA" class="column">
-     <!-- 贴子主体（头部） -->
-  <div id="timeline" class="menu_inner" style="width:85%;margin-left: 15px;float: left;background-color: white;">
-    <div  id="columnA">
-      <div class="menu_inner" style="width:75px;float: left;height:110px;background-color: #F5F5F5">
-        <ul>
-          <li>
-            <div class="headerAvatar">
-              <c:choose>
-            	<c:when test="${!empty ins.kkd108}">
-           		 <a href="#" class="avatar">
-                	<span class="avatarNeue avatarSize75" style="background-image:url('${ins.kkd108}')"></span>
-                </a>
-            	</c:when>
-            	<c:otherwise>
-           		<a href="#" class="avatar">
-                	<span class="avatarNeue avatarSize75" style="background-image:url('<%=path%>/img/avatar/def_avatar.png')"></span>
-                </a>
-            	</c:otherwise>
-              </c:choose>
-            </div>
-            <div align="center">
-              <font size="2" style="width:10%;height:15px;margin-top: 65px;">
-              ${ins.kkd105 }
-              </font>
-            </div>
-          </li>
-        </ul>
-      </div>
-      </div >
-      <div id="columnB">
-      <font size="3" style="width:80%;height:15px;margin-left: 10px">
-        <li>
-		 <a href="#"> 
-			 <b> 
-                 ${ins.kka102 } 
-             </b>
-			</a>
-		<ul>
-		<li>
-		<a href="#" title="删除贴子" class="nav"  onclick="onClickDel('${ins.kka101}')" >删除</a>
-           </li>
-			</ul>
-			</li>
-			</ul>
-			<a href="#" onclick="itemInfo(${ins.kka101 })">收藏</a>
-       </font>
-    </div>
-    <hr class="board" />
-    
-    <div style="margin-left: 60px">
-    <ul style="margin-left: 50px">
-      <li style="margin-left: 10px">
-      <pre>       
-      ${ins.kka104 }
-      </pre> 
-      </li>
-    </ul>
-    </div>
-    <br>
-    <div style="margin-left: 20px" align="right">
-        楼主&nbsp&nbsp&nbsp ${ins.kka105 }
-    </div>
-  </div>						
-	<!-- 贴子回复 -->
-   <div class="clear"></div>
-  <div id="timeline">
-  <ul>
-	<c:forEach items="${rows }" var="ins">
-	<c:if test="${ins.kka204 == 1 }">
-	  <div class="menu_inner" style="width:85%;margin-left: 15px;float: left">
-	  
-	  <div  id="columnA">
-      <div class="menu_inner" style="width:75px;float: left;height:110px;background-color: #F5F5F5">
-        <ul>
-          <li>
-            <div class="headerAvatar">
-              <c:choose>
-            	<c:when test="${!empty ins.kkd108}">
-           		 <a href="#" class="avatar">
-                	<span class="avatarNeue avatarSize75" style="background-image:url('${ins.kkd108}')"></span>
-                </a>
-            	</c:when>
-            	<c:otherwise>
-           		<a href="#" class="avatar">
-                	<span class="avatarNeue avatarSize75" style="background-image:url('<%=path%>/img/avatar/def_avatar.png')"></span>
-                </a>
-            	</c:otherwise>
-              </c:choose>
-            </div>
-            <div align="center">
-          <font size="2" style="width:10%;height:15px;margin-top: 65px">
-              ${ins.kkd105 }
-          </font>
-          </div>
-          </li>
-        </ul>
-      </div>
-      </div>
-	  <li class="clearit tml_item">
-          <div style="width:85%;margin-left: 15px">
-   	        <c:if test="${ins.ka02_kka201 ne 0}">
-   		      <div>
-	            <span>
-	                       回复 ${ins.ka02_kka201 }楼
-	            </span>
-	            <c:choose>
-	            <c:when test="${ins.delSign ne 0}">
-	            <div class="menu_inner">
-	            <pre>${ins.rootAnswer }</pre>
-	            </div>
-	            </c:when>
-	            <c:otherwise>
-	            <div class="menu_inner">
-	            <pre>该回复被删除了哦</pre>
-	            </div>
-	            </c:otherwise>
-	            </c:choose>
-    	      </div>
-    	      <hr class="board" />
-   	       </c:if>
-   
-    <div  id="columnA" style="margin-left: 5px">
-      <pre>
-      ${ins.kka202 }
-      </pre>
-    </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    </div>
-   </li>
-   <hr class="board" />
-     <div id="SecTab">
-      <ul class="secTab tiny">
-        <li><a href="#" onclick="onClickDelAnswer('${ins.kka101}','${ins.kka201}')"> 
-        <span>删除</span></a></li>
-        
-         <li>
-        <a href="#TB_inline?height=350&amp;width=500&amp;inlineId=panel2" title="发表回复" 
-         onclick="onClickReply('${ins.kka201}')" class="thickbox">
-         <span>回复</span>
-         </a>
-         </li>
-        <li style="float: right;">
-          <div style="margin-left: 20px;margin-top: 6px;" >
-               ${ins.kka203 }
-          </div>
-        </li>
-        <li style="float: right;">
-          <div style="margin-top: 6px;float: right;">
-             ${ins.kka201 }楼
-          </div>
-        </li>
-      </ul>
-    </div>
-    <div class="clear"></div>
-    </div>
-   </c:if>
-	</c:forEach>
-							
-							
-	<!-- 回复弹窗 -->
-	<div id="panel2" style="display:none;">
-    <div class="collectBox clearit">
-    <form method="post" action="ka02AdmPostAnswerToAnswer.kahtml?kka101=${ins.kka101 }">
-    <input type="hidden" id="kka201-2" name="kka201-2" value="">
-    <div class="cell">
-    <p class="tip"><label for="comment"> 回复(最多200字): </label></p>
-    <br/><br/>
-    <textarea rows="20" cols="70" name="kka202" required="required"></textarea>
-    </div>
-    <div class="clearit">
-    <div id="submitBtnO" class="ll">
-        <input class="inputBtn" 
-        type="submit" name="next" value="提交" />
-    </div>
-    </div>
-   </form>
-   </div>
-   </div>
-   </ul>
- </div>
-
-					<div class="light_odd">
-						<span class="tip">
-							<form id="editTopicForm" name="new_comment" method="post"
-								action="/PostForum.html">
-
-								<input type="hidden" name="kka201" value="${param.kka201 }" />
-								<script type="text/javascript">
-									var CHOBITS_SID = 'aru27g';
-									var SCRIPT_URL = '/blog/upload_photo';
-								</script>
-								<table align="center" width="99%" class="settings">
-									<tr>
-										<td valign="top" width="10%">评论</td>
-										<td valign="top"><textarea id="tpc_content" name="kka202"
-												cols="45" rows="5" style="width: 550px;"
-												class="quick newBlogEntry loadEditor"
-												onKeyDown="seditor_ctlent(event,'editTopicForm');"></textarea>
-									<tr>
-										<td valign="top" width="10%"></td>
-										<td valign="top">
-											<div id="submitBtnO">
-												<input class="inputBtn" value="加上去" name="next"
-													type="submit"
-													formaction="ka02AdmPostAnswer.kahtml?kka101=${ins.kka101 }" />
-											</div>
-										</td>
-									</tr>
-								</table>
-								<div id="related_value_list"></div>
-							</form>
-						</span>
+				<div id="navNeue2">
+					<div id="menuNeue">
+						<ul id="navMenuNeue" class="clearit">
+							<li><a href="/anime" class="top chl anime"><span>动画</span></a>
+								<div class="clear"></div>
+								<ul class="clearit">
+									<li><a href="/anime/chart" class="nav">排行榜</a></li>
+									<li><a href="/calendar" class="nav">每日放送</a></li>
+									<li><a href="/anime/tag" class="nav">动画标签</a></li>
+									<li><a href="/anime/browser" class="nav">分类浏览</a></li>
+									<li><a href="/anime/blog" class="nav">动画日志</a></li>
+								</ul></li>
+							<li><a href="/book" class="top chl"><span>书籍</span></a>
+								<div class="clear"></div>
+								<ul class="clearit">
+									<li><a href="/book/chart" class="nav">排行榜</a></li>
+									<li><a href="/book/tag" class="nav">图书标签</a></li>
+									<li><a href="/book/browser" class="nav">分类浏览</a></li>
+									<li><a href="/book/blog" class="nav">图书日志</a></li>
+								</ul></li>
+							<li><a href="/music" class="top chl"><span>音乐</span></a>
+								<div class="clear"></div>
+								<ul class="clearit">
+									<li><a href="/music/chart" class="nav">排行榜</a></li>
+									<li><a href="/music/tag" class="nav">音乐标签</a></li>
+									<li><a href="/music/browser" class="nav">浏览全部</a></li>
+									<li><a href="/music/blog" class="nav">音乐日志</a></li>
+								</ul></li>
+							<li><a href="/game" class="top chl"><span>游戏</span></a>
+								<div class="clear"></div>
+								<ul class="clearit">
+									<li><a href="/game/chart" class="nav">排行榜</a></li>
+									<li><a href="/game/tag" class="nav">游戏标签</a></li>
+									<li><a href="/game/browser" class="nav">平台浏览</a></li>
+									<li><a href="/game/blog" class="nav">游戏日志</a></li>
+								</ul></li>
+							<li class="doujin"><a href="http://doujin.bangumi.tv">天窗联盟</a></li>
+						</ul>
 					</div>
 				</div>
+
+				<div class="idBadgerNeue">
+					<div class="guest">
+						<a href="<%=path%>/kd/login.jsp" class="guest login">登录</a><a
+							href="<%=path%>/kd/signup.jsp" class="guest signup">注册</a>
+					</div>
+
+				</div>
+				<div id="headerSearchWrapper">
+					<div id="headerSearch">
+						<form action="/subject_search" method="post">
+							<div class="inner">
+								<select name="cat" id="siteSearchSelect">
+									<option value="all">全部</option>
+									<option value="2">动画</option>
+									<option value="1">书籍</option>
+									<option value="4">游戏</option>
+									<option value="3">音乐</option>
+									<option value="6">三次元</option>
+									<option value="person">人物</option>
+								</select> <input id="search_text" name="search_text" class="textfield"
+									type="text" /> <input type="submit" name="submit" value="搜索"
+									class="search" />
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 以上为导航栏 -->
+
+		<!-- 以下为页面内容 -->
+		<div id="main" class="png_bg"></div>
+		<div id="headerProfile" class="clearit">
+			<div class="subjectNav">
+				<!-- 主页个人信息 -->
+				<div class="headerContainer">
+					<h1 class="nameSingle">
+						<div class="rr"></div>
+						<div class="inner">
+							<b class="grey">欢迎来到论坛~</b> <a
+								href="<%=path%>/kd/userpage_main.jsp">${sessionScope.user.kkd105 }</a>
+						</div>
+					</h1>
+				</div>
+				<!-- 主页个人信息 -->
+
+				<!-- 论坛导航栏 -->
+				<div class="subjectNav">
+					<ul class="navTabs">
+						<li><a href="ka01MainForum.kahtml?id=0" class="focus">全部</a></li>
+						<li><a href="ka01AnimeForum.kahtml?id=1">番剧</a></li>
+						<li><a href="ka01BookForum.kahtml?id=2">书籍</a></li>
+						<li><a href="ka01GameForum.kahtml?id=3">游戏</a></li>
+					</ul>
+				</div>
+				<!-- 论坛导航栏 -->
+			</div>
+		</div>
+		<div class="mainWrapper">
+			<div class="columns clearit">
+				<div id="columnA" class="column">
+
+
+					<!-- 贴子主体（头部） -->
+					<div id="timeline" class="menu_inner"
+					  style="width: 85%; margin-left: 15px; float: left; background-color: white;">
+					<div id="columnA">
+					<div class="menu_inner"
+					  style="width: 75px; float: left; height: 110px; background-color: white">
+					    <ul>
+						<li>
+						<div class="headerAvatar">
+						<c:choose>
+						<c:when test="${!empty ins.kkd108}">
+						<a href="#" class="avatar"> <span class="avatarNeue avatarSize75"  style="background-image:url('${ins.kkd108}')"></span></a>
+						</c:when>
+						<c:otherwise>
+							<a href="#" class="avatar"> <span  class="avatarNeue avatarSize75" style="background-image:url('<%=path%>/img/avatar/def_avatar.png')"></span></a>
+						</c:otherwise>
+					   </c:choose>
+					</div>
+					<div align="center">
+						<font size="2"
+							style="width: 10%; height: 15px; margin-top: 65px;">
+							${ins.kkd105 } </font>
+					 </div>
+				     </li>
+			         </ul>
+		             </div>
+	                 </div>
+						<div id="columnB">
+							<font size="3" style="width: 80%; height: 15px; margin-left:80px">
+								<li><a href="#"> <b> ${ins.kka102 } </b></a>
+								 <a href="#" title="删除贴子" class="nav"  style="color:red" onclick="onClickDel('${ins.kka101}')">删除</a>
+								</li>
+							</font>
+						</div>
+						<hr class="board" />
+
+						<div style="margin-left: 60px">
+						<ul style="margin-left: 50px">
+						    <li style="margin-left: 10px"><pre>       
+                              ${ins.kka104 }
+                            </pre></li>
+							</ul>
+						</div>
+						<br>
+						<div style="margin-left: 20px" align="right">
+							楼主&nbsp&nbsp&nbsp ${ins.kka105 }</div>
+					</div>
+					
+					
+					<!-- 贴子回复 -->
+					<div class="clear"></div>
+					<div id="timeline">
+					<ul>
+					<c:forEach items="${rows }" var="ins">
+				    <c:if test="${ins.kka204 == 1 }">
+					<div class="menu_inner"  style="width: 85%; margin-left: 15px; float: left">
+                    <div id="columnA">
+					<div class="menu_inner" style="width: 75px; float: left; height: 110px; background-color: #F5F5F5">
+					<ul>
+					<li>
+					<div class="headerAvatar">
+					<c:choose>
+					<c:when test="${!empty ins.kkd108}">
+					<a href="#" class="avatar"> <span class="avatarNeue avatarSize75" style="background-image:url('${ins.kkd108}')"></span></a>
+					</c:when>
+					<c:otherwise>
+					<a href="#" class="avatar"> <span class="avatarNeue avatarSize75" style="background-image:url('<%=path%>/img/avatar/def_avatar.png')"></span></a>
+					</c:otherwise>
+					</c:choose>
+					</div>
+					<div align="center">
+					<font size="2" style="width: 10%; height: 15px; margin-top: 65px"> ${ins.kkd105 } </font> </div>
+					</li>
+					</ul>
+					</div>
+					</div>
+					<li class="clearit tml_item">
+					<div style="width: 85%; margin-left: 15px">
+					<c:if test="${ins.ka02_kka201 ne 0}">
+					<div>
+					<span> 回复 ${ins.ka02_kka201 }楼 </span>
+					<c:choose>
+					<c:when test="${ins.delSign ne 0}">
+					<div class="menu_inner">
+					<pre>${ins.rootAnswer }</pre>
+					</div>
+					</c:when>
+					<c:otherwise>
+					<div class="menu_inner">
+					<pre>该回复被删除了哦</pre>
+					</div>
+					</c:otherwise>
+					</c:choose>
+					</div>
+					<hr class="board" />
+				</c:if>
+
+				<div id="columnA" style="margin-left: 5px">
+					<pre>
+                                             ${ins.kka202 }
+                                            </pre>
+				</div>
+				<br> <br> <br> <br> <br>
+			</div>
+		</li>
+		<hr class="board" />
+		<div id="SecTab">
+			<ul class="secTab tiny">
+				<li><a href="#"
+					onclick="onClickDelAnswer('${ins.kka101}','${ins.kka201}')">
+						<span>删除</span>
+				</a></li>
+
+				<li><a
+					href="#TB_inline?height=350&amp;width=500&amp;inlineId=panel2"
+					title="发表回复" onclick="onClickReply('${ins.kka201}')"
+					class="thickbox"> <span>回复</span>
+				</a></li>
+				<li style="float: right;">
+					<div style="margin-left: 20px; margin-top: 6px;">
+						${ins.kka203 }</div>
+				</li>
+				<li style="float: right;">
+					<div style="margin-top: 6px; float: right;">
+						${ins.kka201 }楼</div>
+				</li>
+			</ul>
+		</div>
+		<div class="clear"></div>
+	</div>
+</c:if>
+</c:forEach>
+
+
+<!-- 回复弹窗 -->
+<div id="panel2" style="display: none;">
+<div class="collectBox clearit">
+	<form method="post"
+		action="ka02AdmPostAnswerToAnswer.kahtml?kka101=${ins.kka101 }">
+					<input type="hidden" id="kka201-2" name="kka201-2" value="">
+					<div class="cell">
+						<p class="tip">
+							<label for="comment"> 回复(最多200字): </label>
+						</p>
+						<br /> <br />
+						<textarea rows="20" cols="70" name="kka202"
+							required="required"></textarea>
+					</div>
+					<div class="clearit">
+						<div id="submitBtnO" class="ll">
+							<input class="inputBtn" type="submit" name="next" value="提交" />
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</ul>
+</div>
+
+<div class="light_odd">
+	<span class="tip">
+		<form id="editTopicForm" name="new_comment" method="post"
+			action="/PostForum.html">
+
+			<input type="hidden" name="kka201" value="${param.kka201 }" />
+        <script type="text/javascript">
+	        var CHOBITS_SID = 'aru27g';
+	        var SCRIPT_URL = '/blog/upload_photo';
+        </script>
+        <table align="center" width="99%" class="settings">
+	     <tr>
+		<td valign="top" width="10%">评论</td>
+		<td valign="top"><textarea id="tpc_content" name="kka202"  cols="45" rows="5" style="width: 550px;" 
+		        class="quick newBlogEntry loadEditor"   required="required"
+				onKeyDown="seditor_ctlent(event,'editTopicForm');"></textarea>
+	    <tr>
+		<td valign="top" width="10%"></td>
+		<td valign="top">
+		<div id="submitBtnO">
+		    <input class="inputBtn" value="加上去" name="next"  type="submit"  formaction="ka02AdmPostAnswer.kahtml?kka101=${ins.kka101 }" />
+		</div>
+		</td>
+		</tr>
+		</table>
+		<div id="related_value_list"></div>
+	  </form>
+		</span>
+	</div>
+</div>
 
 				<div id="columnB" class="column">
 					<div id="">
-						<br> <br> <br> <br>
+				    <br> <br> <br> <br>
 					</div>
 					<div id="sideLayout">
-						<div id="friend" class="sort">
-							<div class="SidePanel png_bg" align="left">
-								<hr class="board" />
-								<a href="postForum.jsp">我要发贴</a>
-							</div>
-						</div>
+					<div id="friend" class="sort">
+					<div class="SidePanel png_bg" align="left">
+					<hr class="board" />
+					<a href="postForum.jsp">我要发贴</a>
+					</div>
+					</div>
 					</div>
 				</div>
+				
+<!-- 展示 -->
+<div id="robot" >
+<div id="ukagaka_shell">
+<div class="ui_10 shell_1">
+<div id="ukagaka_voice"></div>
+<div id="robot_balloon" class="ukagaka_balloon_pink">
+<div class="tools"><a href="javascript:void(0);" id="ukagaka_menu"></a></div>    
+<div class="inner">
+<div id="robot_speech" class="speech" >
+<c:choose>
+	<c:when test="${empty msg }">
+		<strong>『贴子详情』</strong><br />
+		您可以管理网站贴子！<br />
+	</c:when>
+	<c:otherwise>
+		<strong>${msg }</strong><br />
+	</c:otherwise>
+</c:choose>
+
+</div>
+</div>
+<div class="ukagaka_balloon_pink_bottom"></div>	
+</div>
+</div>
+</div>
+</div>
+<!-- 展示 -->
+				
+				
+				
+				
+				
 			</div>
 		</div>
 	</div>
@@ -456,8 +419,8 @@ word-wrap: break-word;
 			</ul>
 		</div>
 	</div>
-	
-<script src="js/bangumi.js" type="text/javascript"></script>
+
+	<script src="js/bangumi.js" type="text/javascript"></script>
 	<script src="<%=path%>/js/bangumi.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		function setKKa202() {
@@ -466,12 +429,6 @@ word-wrap: break-word;
 			alert(kka202.innerHTML)
 		}
 	</script>
-	<script type="text/javascript">
-     function itemInfo(kka101)
-    {
-	   window.location.href = "<%=path%>/ka04AddCollection.kahtml?kka101=" + kka101;
-     }
-     </script>
 	<script type="text/javascript">
 		chiiLib.login.init();
 	</script>

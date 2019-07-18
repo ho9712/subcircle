@@ -14,8 +14,8 @@ public class Ka03Services extends JdbcServicesSupport
 	    {
 	    	//1.编写SQL语句
 	    	StringBuilder sql=new StringBuilder()
-	    			.append("insert into ka03(kka101,kka201,kka302,kka303,kka304)")
-	    			.append("          values(?,?,?,CURRENT_TIMESTAMP,0)")
+	    			.append("insert into ka03(kka101,kka201,kka302,kka303)")
+	    			.append("          values(?,?,?,CURRENT_TIMESTAMP)")
 	    			;
 	    	
 	    	//2.编写参数数组
@@ -42,8 +42,8 @@ public class Ka03Services extends JdbcServicesSupport
 	    {
 	    	//1.编写SQL语句
 	    	StringBuilder sql=new StringBuilder()
-	    			.append("insert into ka03(kka101,kka201,kka302,kka303,kka304)")
-	    			.append("          values(?,?,?,CURRENT_TIMESTAMP,0)")
+	    			.append("insert into ka03(kka101,kka201,kka302,kka303)")
+	    			.append("          values(?,?,?,CURRENT_TIMESTAMP)")
 	    			;
 	    	
 	    	//2.编写参数数组
@@ -54,7 +54,6 @@ public class Ka03Services extends JdbcServicesSupport
 	    			this.get("kka201-1"),
 	    			this.get("kka302-2"),	
 	    	    };
-	    	System.out.println(this.get("kka201-1")); 
 	        return this.executeUpdate(sql.toString(), args)>0;	
 	    }
 }

@@ -93,47 +93,7 @@ word-wrap: break-word;
 <li><a href="/game/blog" class="nav">游戏日志</a></li>
 </ul>
 </li>
-<li><a href="/real" class="top chl real"><span>三次元</span></a>
-<div class="clear"></div>
-<ul class="clearit">
-<li><a href="/real/chart" class="nav">排行榜</a></li>
-<li><a href="/real/tag" class="nav">三次元标签</a></li>
-<li><a href="/real/blog" class="nav">三次元日志</a></li>
-<li><a href="/real/browser/platform/jp" class="nav">日剧</a></li>
-<li><a href="/real/browser/platform/en" class="nav">欧美剧</a></li>
-</ul>
-</li>
-            <li><a href="/mono" class="top"><span>人物</span></a>
-<div class="clear"></div>
-<ul class="clearit">
-<li><a href="/character" class="nav">虚构人物</a></li>
-<li><a href="/person" class="nav">现实人物</a></li>
-	
-</ul>
-</li>
-<li><a href="/rakuen" class="top_lite"><span>超展开</span></a></li>
-<li><a href="/group"class="top"><span>小组</span></a>
-<div class="clear"></div>
-<ul class="clearit">
-<li><a href="/group/discover" class="nav">随便看看</a></li>
-<li><a href="/group/all" class="nav">所有小组</a></li>
-</ul>
-</li>
-<li><a href="javascript:void(0);" class="top"><span>探索</span></a>
-<div class="clear"></div>
-<ul class="explore clearit">
 
-<li class="single"><a href="/timeline">时空管理局</a></li>		
-                <li class="group">
-<span><a href="/blog">日志</a><a href="/index">目录</a><a href="/wiki">维基人</a></span>
-</li>				
-<li class="group"><span><a href="/magi">MAGI 问答</a><a href="/dollars">Dollars</a></span></li>				
-                <li class="group">
-<span class="root">客户端</span>
-<span><a href="/onair">onAir</a><a href="/group/topic/5155">Mobile</a></span>
-</li>				
-</ul>
-</li>
 <li class="doujin"><a href="http://doujin.bangumi.tv">天窗联盟</a></li>
 </ul>	
 </div>
@@ -186,7 +146,7 @@ word-wrap: break-word;
     <div class="subjectNav">
       <ul class="navTabs">
       <li><a href="ka01MainForum.kahtml?id=0" class="focus">全部</a></li>
-        <li><a href="ka01AnimeForum.kahtml?id=1">动画</a></li>
+        <li><a href="ka01AnimeForum.kahtml?id=1">番剧</a></li>
         <li><a href="ka01BookForum.kahtml?id=2">书籍</a></li>
         <li><a href="ka01GameForum.kahtml?id=3" >游戏</a></li>
       </ul>
@@ -203,10 +163,9 @@ word-wrap: break-word;
                 <!-- 贴子主体（头部） -->
   <div id="timeline" class="menu_inner" style="width:85%;margin-left: 15px;float: left;background-color: white;">
     <div  id="columnA">
-      <div class="menu_inner" style="width:75px;float: left;height:110px;background-color: #F5F5F5">
-        <ul>
-          <li>
-            <div class="headerAvatar">
+      <div class="menu_inner" style="width:75px;float: left;background-color: #F5F5F5">
+      
+            <div class="headerAvatar" style="margin-top: 5px">
               <c:choose>
             	<c:when test="${!empty ins.kkd108}">
            		 <a href="#" class="avatar">
@@ -225,8 +184,7 @@ word-wrap: break-word;
               ${ins.kkd105 }
               </font>
             </div>
-          </li>
-        </ul>
+        
       </div>
       </div >
       <div id="columnB">
@@ -261,7 +219,6 @@ word-wrap: break-word;
 	<div id="panel" style="display:none;">
     <div class="collectBox clearit">
     <form method="post" action="ka03PostReport.kahtml?kka101=${ins.kka101 }">
-    ${ins.kka101 }
     <div class="cell">
     <p class="tip"><label for="comment">举报(最多200字):</label></p>
     <br/><br/>
@@ -286,10 +243,9 @@ word-wrap: break-word;
 	  <div class="menu_inner" style="width:85%;margin-left: 15px;float: left">
 	  
 	  <div  id="columnA">
-      <div class="menu_inner" style="width:75px;float: left;height:110px;background-color: #F5F5F5">
-        <ul>
-          <li>
-            <div class="headerAvatar">
+      <div class="menu_inner" style="width:75px;float: left;background-color: #F5F5F5">
+       
+            <div class="headerAvatar" style="margin-top: 5px">
               <c:choose>
             	<c:when test="${!empty ins.kkd108}">
            		 <a href="#" class="avatar">
@@ -308,8 +264,7 @@ word-wrap: break-word;
               ${ins.kkd105 }
           </font>
           </div>
-          </li>
-        </ul>
+       
       </div>
       </div>
 	  <li class="clearit tml_item">
@@ -451,9 +406,6 @@ word-wrap: break-word;
 <br>
 <br>
 <br>
-<div class="SidePanel png_bg">
-<ul class="timeline"><li><small class="feed">注册成为了 Bangumi 成员</small> <small class="time">2019-6-28 18:52</small></li></ul>
-</div>
 </div>
 <div id="sideLayout"><div id="friend" class="sort">
 <div class="SidePanel png_bg" align="left">
@@ -461,6 +413,34 @@ word-wrap: break-word;
 </div>
 </div>
 </div>
+
+<!-- 展示 -->
+<div id="robot" >
+<div id="ukagaka_shell">
+<div class="ui_10 shell_1">
+<div id="ukagaka_voice"></div>
+<div id="robot_balloon" class="ukagaka_balloon_pink">
+<div class="tools"><a href="javascript:void(0);" id="ukagaka_menu"></a></div>    
+<div class="inner">
+<div id="robot_speech" class="speech" >
+<c:choose>
+	<c:when test="${empty msg }">
+		<strong>『贴子详情』</strong><br />
+		您可以浏览网站贴子！<br />
+	</c:when>
+	<c:otherwise>
+		<strong>${msg }</strong><br />
+	</c:otherwise>
+</c:choose>
+
+</div>
+</div>
+<div class="ukagaka_balloon_pink_bottom"></div>	
+</div>
+</div>
+</div>
+</div>
+<!-- 展示 -->
 </div>
 </div>
 </div>

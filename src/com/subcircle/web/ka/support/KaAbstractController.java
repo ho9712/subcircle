@@ -151,7 +151,6 @@ public abstract class KaAbstractController implements ControllerInterface
 			this.saveAttribute("msg", "没有符合条件的数据!");
 		}
 		
-		System.out.println(this.dto.get("id"));
 		if(this.dto.get("id").toString().equals("0"))
 		{
 			return "ka/mainForum.jsp";
@@ -179,12 +178,7 @@ public abstract class KaAbstractController implements ControllerInterface
 	protected final void showPostContent() throws Exception
 	{
 		Map<String, String> ins = this.services.findById();
-		this.saveAttribute("msg","该贴子不存在!");
-		if(ins != null) 
-		{
-			this.saveAttribute("msg","查询成功");
-		}
-		this.saveAttribute("ins", ins);
+        this.saveAttribute("ins", ins);
 	}
 	
 	

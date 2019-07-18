@@ -96,7 +96,6 @@ public class Ka02Services extends JdbcServicesSupport
     			Tools.getReplyId(this.get("kka101").toString()),
     			this.get("kka202")
     	    };
-    	//System.out.println("kkd101 :"+this.get("kkd101"));
         return this.executeUpdate(sql.toString(), args)>0;	
     }
 	
@@ -123,7 +122,8 @@ public class Ka02Services extends JdbcServicesSupport
     			Tools.getReplyId(this.get("kka101").toString()),
     			this.get("kka202")
     	    };
-    	//System.out.println("kka201 :"+this.get("kka201"));
+    	 System.out.println(this.get("kka101"));
+    	 System.out.println(this.get("kka201-2"));
         return this.executeUpdate(sql.toString(), args)>0;	
     }
 	
@@ -169,11 +169,9 @@ public class Ka02Services extends JdbcServicesSupport
 	  		Object args[] =
 	  			{
 	  				this.get("kka101"),
-	  				//this.get("kka101"),
 	  		    };
 	  		List<Map<String,String>> rows=this.queryForList(sql.toString(), args);
 	  		rows.remove(0);
-	  		System.out.println("111"+this.get("delSign"));
 	  		return rows;
 	  }
 	  

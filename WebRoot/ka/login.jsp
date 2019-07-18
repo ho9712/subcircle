@@ -10,6 +10,5 @@
 <form action="<%=path %>/ka01MainForum.kahtml?id=0"  method="post">
 <input type="submit" name = "next">Login</input>
 </form>
-
 </body>
 </html>
