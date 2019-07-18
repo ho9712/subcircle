@@ -1,10 +1,12 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%String path = request.getContextPath();%>
 <!DOCTYPE html>
 <html>
 <head>
 <title>我的订单</title>
+<link href="<%=path %>/css/bootstrap.css" rel="stylesheet">
 <jsp:include page="index.jsp" flush="true" />
 <!-- 引入导航栏 -->
 <style type="text/css">
@@ -303,8 +305,8 @@
 	
 	</script>
 	
-	<script src="js/jquery.js"></script>
-	<script src="js/bootstrap.min.js"></script>
+	<script src="<%=path %>/js/jquery.js"></script>
+	<script src="<%=path %>/js/bootstrap.min.js"></script>
 
 </body>
 </html>

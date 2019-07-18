@@ -31,8 +31,6 @@ public class GetRateById extends HttpServlet {
 		{
 			e.printStackTrace();
 		}
-		
-		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException

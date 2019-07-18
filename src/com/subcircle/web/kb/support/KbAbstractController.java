@@ -129,6 +129,13 @@ public abstract class KbAbstractController implements ControllerInterface
 		this.saveAttribute("msg", msg);
 	}
 	
+	protected final boolean update(String methodName)throws Exception
+	{
+		boolean flag = this.executeMethod(methodName);
+		this.saveAttribute("msg", flag);
+		return flag;
+	}
+	
 	protected String updateRtn(String methodName,String typeMsg) throws Exception
 	{	
 		String result = null;
@@ -244,7 +251,7 @@ public abstract class KbAbstractController implements ControllerInterface
 //	}
 	
 	/**
-	 *	根据订单号显示订单详情 
+	 *	根据订单号显示订单详情 (kb05)
 	 * @throws Exception
 	 */
 	protected final void queryAndShowOrderByNum()throws Exception
@@ -265,7 +272,7 @@ public abstract class KbAbstractController implements ControllerInterface
 		this.saveAttribute("backLocation",backLocation);
 	}
 	
-	/**
+	/**	(kb05)
 	 * 	返回所查询的状态的订单
 	 * 	如用户查看待支付订单则返回待支付订单列表
 	 */
@@ -286,7 +293,7 @@ public abstract class KbAbstractController implements ControllerInterface
 	}
 	
 	/**
-	 * 显示商品具体信息及评分评价信息
+	 * 	显示商品具体信息及评分评价信息(kb01)
 	 * @return
 	 * @throws Exception
 	 */
@@ -305,7 +312,7 @@ public abstract class KbAbstractController implements ControllerInterface
 	}
 	
 	/**
-	 * 商城管理员修改商品时查询出该商品的信息
+	 *	 商城管理员修改商品时查询出该商品的信息(kb01)
 	 * @throws Exception
 	 */
 	protected final void getModifyItemInfo() throws Exception 
@@ -322,7 +329,7 @@ public abstract class KbAbstractController implements ControllerInterface
 	}
 	
 	/**
-	 * 求购信息列表
+	 * 	求购信息列表(kb07)
 	 * @throws Exception
 	 */
 	protected final void showInquiryList() throws Exception
@@ -337,4 +344,52 @@ public abstract class KbAbstractController implements ControllerInterface
 			this.saveAttribute("msg", "数据不存在或禁止访问");
 		}
 	}
+	
+	/**
+	 * 	返回某一用户的各状态的求购(kb07)
+	 * @throws Exception
+	 */
+	protected final void showUserInquiryList() throws Exception
+	{
+		List<Object> objList = this.services.queryInList();
+		if (objList.size() > 0)
+		{
+			this.saveAttribute("objList", objList);
+		}
+		else
+		{
+			this.saveAttribute("msg", "数据不存在或禁止访问");
+		}
+	}
+	
+	/**
+	 * 	返回某一用户的各状态的响应列表(kb08)
+	 * @throws Exception
+	 */
+	protected final void showUserResponseList() throws Exception
+	{
+		List<Object> objList = this.services.queryInList();
+		if (objList.size() > 0)
+		{
+			this.saveAttribute("objList", objList);
+		}
+		else
+		{
+			this.saveAttribute("msg", "数据不存在或禁止访问");
+		}
+	}
+	
+	protected final void showResToInquiry() throws Exception
+	{
+		Map<String, Object> objMap = this.services.queryInMap();
+		if (objMap.size() > 0)
+		{
+			this.saveAttribute("rows",objMap.get("objMap"));
+		}
+		else
+		{
+			this.saveAttribute("msg", "数据不存在或禁止访问");
+		}
+	}
+	
 }

@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%String path = request.getContextPath();%>
 <!DOCTYPE html>
 <html>
 <head>
 
 <title>Market</title>
-<link href="css/bootstrap.css" rel="stylesheet">
+<link href="<%=path %>/css/bootstrap.css" rel="stylesheet">
 <style type="text/css">
 #bom {
 	position: fixed;
@@ -27,7 +28,6 @@
 </style>
 </head>
 <body>
-<% String path = request.getContextPath();%>
 	<div class="row-fluid" align="center">
 		<!--站点导航栏-商城导航栏 ()-->
 
@@ -103,9 +103,9 @@
 							class="dropdown-toggle">求购 <strong class="caret"></strong></a>
 							<ul class="dropdown-menu">
 								<li><a href="<%=path%>/Kb07QueryInquiry.kbhtml?kkb708=2">求购信息列表</a></li>
-								<li><a href="#">我的求购列表</a></li>
-								<li><a href="#">我的响应列表</a></li>
-								<li><a href="#">待处理列表</a></li>
+								<li><a href="<%=path%>/Kb07QueryMyInquiry.kbhtml?kkd101=${kkd101}">我的求购列表</a></li>
+								<li><a href="<%=path%>/Kb08QueryMyResponse.kbhtml?kkd101=${kkd101}">我的响应列表</a></li>
+								<li><a href="<%=path%>/Kb07QueryResToMyInquiry.kbhtml?kkd101=${kkd101}">待处理列表</a></li>
 								<li><a href="<%=path%>/kb/addInquiry.jsp">发布求购</a></li>
 							</ul></li>
 					</ul>
@@ -178,5 +178,7 @@
 		window.location.href="<%=path%>/kd/login.jsp";	
 	}
 </script>
-
+<%-- 	<script src="<%=path %>/js/jquery.js"></script>
+	<script src="<%=path %>/js/bootstrap.min.js"></script> --%>
 </body>
+</html>

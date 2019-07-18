@@ -1,14 +1,14 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%String path = request.getContextPath();%>
 <!DOCTYPE html>
 <html>
 <head>
 <title>求购信息列表</title>
-<link href="css/bootstrap.css" rel="stylesheet">
+<link href="<%=path %>/css/bootstrap.css" rel="stylesheet">
 <jsp:include page="index.jsp" flush="true" /><!-- 引入导航栏 -->
 </head>
 <body>
-<%String path = request.getContextPath();%>
 	<div class="container-fluid">
 		<!-- 容器 -->
 		<div class="row-fluid">
@@ -32,7 +32,7 @@
 										<span style="font-size: 20px; color: buttonshadow;">求购号:</span>
 										<a id="myModel" href="#modal-container" role="button"
 														 data-toggle="modal"
-														 onclick = "passInquiryInfo('${ins.kkb702}','${ins.kkb703}','${ins.kkb704}','${ins.kkb705}','${ins.kkb709}','${ins.kkd105}','${ins.kkd108}')">
+														 onclick = "passInquiryInfo('${ins.kkd101}','${ins.kkb702}','${ins.kkb703}','${ins.kkb704}','${ins.kkb705}','${ins.kkb709}','${ins.kkd105}','${ins.kkd108}')">
 											<span style="font-size: 20px; color: red;">
 												&nbsp;${ins.kkb709 }</span>
 										</a>
@@ -73,7 +73,7 @@
 								</td>
 								<td>
 									<div align="left" style="padding-top:10px">
-										<a href=""> <img
+										<a href="<%=path%>/kd01FindOther.kdhtml?kkd101=${ins.kkd101}"> <img
 											class="img-circle image-responsive"
 											src="${ins.kkd108 }"
 											style="width:50px; height: 50px;">
@@ -91,7 +91,7 @@
 									<c:when test="${sessionScope.kkd104 != 2}">
 										<c:choose>
 										<c:when test="${sessionScope.kkd101 != ins.kkd101 }">
-											<button class = "btn btn-warning" onclick="addResponse('${ins.kkd101}','${ins.kkb701}')">响应</button>
+											<button class = "btn btn-warning" onclick="addResponse('${ins.kkb701}')">响应</button>
 										</c:when>
 										</c:choose>
 									</c:when>
@@ -145,7 +145,7 @@
 											<div align="center" style="padding-top: 10px">
 												<span style="font-size:20px;">求购者</span>
 													<hr>
-												<a href=""> <img class="img-circle image-responsive"
+												<a id = "userLink" href="<%=path%>/kd01FindOther.kdhtml?kkd101=${ins.kkd101}"> <img class="img-circle image-responsive"
 													   			id = "InquiryUserImg"	src=""
 													    style="width: 80px; height: 80px;">
 													<br> <span id="InquiryUserName"
@@ -239,8 +239,9 @@
 		}
 	}
 	
+	
 	//向遮罩窗体传递信息
-	function passInquiryInfo(kkb702,kkb703,kkb704,kkb705,kkb709,kkd105,kkd108)
+	function passInquiryInfo(kkd101,kkb702,kkb703,kkb704,kkb705,kkb709,kkd105,kkd108)
 	{
 		document.getElementById("myModalLabel").innerHTML = kkb709;
 		document.getElementById("InquiryItemImg").src =kkb704;
@@ -249,7 +250,9 @@
 		document.getElementById("InquiryItemName").innerHTML = kkb702;
 		document.getElementById("InquiryItemPrice").innerHTML = kkb705;
 		document.getElementById("InquiryItemDes").value = kkb703;
+		document.getElementById("userLink").href = "<%=path%>/kd01FindOther.kdhtml?kkd101=" + kkd101;
 	}
+	
 
 	//响应求购
 	function addResponse(kkb701)
@@ -257,15 +260,31 @@
 		var msg = "您确认响应该求购请求吗"
 		if(confirm(msg) == true)
 		{
-			window.location.href = "<%=path%>/kb08AddResponse.kbhtml?"
+			$.ajax({
+	            type: "POST",
+	            url:  "<%=path%>/kb08AddResponse.kbhtml?"
 					+"kkd101=${kkd101}"
-					+"&kkb701=" + kkb701;
+					+"&kkb701=" + kkb701,
+	            dataType: "text",
+	            success: function (data)
+	            {
+	            	if(data=="false")
+	            	{
+	            		alert("您已经响应过该求购请求,请耐心等待求购者的回应");
+	            	}
+	            	else
+	            	{
+	            		alert("响应成功");
+	            		location.reload();
+	            	}
+	            }//endsuccess
+	       });//endajax
 		}
 	}
 	
 	</script>
 	
-	<script src="js/jquery.js"></script>
-	<script src="js/bootstrap.min.js"></script>
+	<script src="<%=path %>/js/jquery.js"></script>
+	<script src="<%=path %>/js/bootstrap.min.js"></script>
 </body>
 </html>

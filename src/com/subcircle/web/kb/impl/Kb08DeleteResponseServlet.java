@@ -1,11 +1,11 @@
 package com.subcircle.web.kb.impl;
 
-public class Kb08AddResponseServlet extends Kb08Controller 
+public class Kb08DeleteResponseServlet extends Kb08Controller 
 {
 	@Override
 	public String execute() throws Exception 
 	{
-		boolean flag = this.update("addResponse");
+		boolean flag = this.update("deleteResponse");
 		if (flag)
 		{
 			return "ajax";

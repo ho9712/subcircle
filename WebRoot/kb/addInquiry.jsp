@@ -1,9 +1,10 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
+<%String path = request.getContextPath();%>
 <!DOCTYPE html>
 <html>
 <head>
 <title>发布求购信息</title>
-<link href="css/bootstrap.css" rel="stylesheet">
+<link href="<%=path %>/css/bootstrap.css" rel="stylesheet">
 <jsp:include page="index.jsp" flush="true" /><!-- 引入导航栏 -->
 </head>
 <body>
@@ -130,8 +131,8 @@
 		
 	</script>
 	
-  <script src="js/jquery.js"></script>
+  <script src="<%=path %>/js/jquery.js"></script>
   <script src="https://cdn.bootcss.com/jquery.form/4.2.1/jquery.form.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
+  <script src="<%=path %>/js/bootstrap.min.js"></script>
 </body>
 </html>

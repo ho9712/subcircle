@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%String path = request.getContextPath();%>
 <!DOCTYPE html>
 <html>
 <head>
 <title>周边商城</title>
-<link href="css/bootstrap.css" rel="stylesheet">
+<link href="<%=path %>/css/bootstrap.css" rel="stylesheet">
 <jsp:include page="index.jsp" flush="true" /><!-- 引入导航栏 -->
 </head>
 <body>
@@ -308,7 +309,7 @@
 	
 	function goLogin()
 	{
-		window.location.href="<%=request.getContextPath()%>/kd/slogin.jsp";	
+		window.location.href="<%=request.getContextPath()%>/kd/login.jsp";	
 	}
 	
 	//商城管理员修改商品信息
@@ -338,8 +339,8 @@
 	
 	</script>
 	
-	<script src="js/jquery.js"></script>
-	<script src="js/bootstrap.min.js"></script>
+	<script src="<%=path %>/js/jquery.js"></script>
+	<script src="<%=path %>/js/bootstrap.min.js"></script>
 	
 </body>
 </html>

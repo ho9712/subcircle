@@ -1,9 +1,11 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%String path = request.getContextPath();%>
 <!DOCTYPE html>
 <html>
 <head>
 <title>我的购物车</title>
+<link href="<%=path %>/css/bootstrap.css" rel="stylesheet">
 <jsp:include page="index.jsp" flush="true" /> <!-- 引入导航栏 -->
 <style type="text/css">
 </style>
@@ -226,7 +228,7 @@
 	//从购物车中移除该商品
 	function delFromCart(kkb101)
 	{
-		/* var msg = "您确认移出该商品吗";
+		 var msg = "您确认移出该商品吗";
 	    if (confirm(msg)==true)
 	    {
 		 	$.ajax({
@@ -236,20 +238,25 @@
 		            dataType: "text",
 		            success: function (data)
 		            {
-		            	if(data)
+		            	if(data == "true")
 		            	{
 		            		alert("移出购物车成功");
+		            		location.reload();
+		            	}
+		            	else
+		            	{
+		            		alert("移出购物车失败");
 		            	}
 		            }//endsuccess
 		        });//endajax
-	    } */
+	    } 
 			
-		var msg = "您确认移出该商品吗";
+		<%-- var msg = "您确认移出该商品吗";
 	    if (confirm(msg)==true)
 	    {
 	    	window.location.href="<%=request.getContextPath()%>/kb04DelFromMyCart.kbhtml?kkb101="+kkb101;
 	    	alert("移除成功");
-	    }
+	    } --%>
 	    
 	}
 	
@@ -355,8 +362,8 @@
 	 } 
 	</script>
 	
-	<script src="js/jquery.js"></script>
-	<script src="js/bootstrap.min.js"></script>
+	<script src="<%=path %>/js/jquery.js"></script>
+	<script src="<%=path %>/js/bootstrap.min.js"></script>
 		
 </body>
 </html>

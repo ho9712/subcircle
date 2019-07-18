@@ -63,6 +63,13 @@ public class KbBaseServlet extends HttpServlet
 			out.flush();
 			out.close();
 		}
+		else if (toPath.equals("ajaxFalse"))
+		{
+			PrintWriter out = response.getWriter();
+			out.write("false");
+			out.flush();
+			out.close();
+		}
 		else
 		{
 			request.getRequestDispatcher("/"+toPath).forward(request, response);
