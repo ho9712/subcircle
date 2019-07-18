@@ -219,11 +219,13 @@ public abstract class KcAbstractController implements ControllerInterface
 	{
 		Map<String,String> ins = this.services.findById();
 		List<Map<String, String>> rows=this.services.queryAnimeComment();
+		Boolean b = this.services.collectionExsits();
 
 		if(ins!=null)
 		{
 			this.saveAttribute("ins", ins);
 			this.saveAttribute("rows",rows) ;
+			this.saveAttribute("b", b);
 		}
 		else
 		{
@@ -242,10 +244,12 @@ public abstract class KcAbstractController implements ControllerInterface
 	{
 		Map<String,String> ins = this.services.findById();
 		List<Map<String, String>> rows=this.services.queryAnimeComment();
+		Boolean b = this.services.collectionExsits();
 		if(ins!=null)
 		{
 			this.saveAttribute("ins", ins);
 			this.saveAttribute("rows",rows) ;
+			this.saveAttribute("b", b);
 		}
 		else
 		{
@@ -263,10 +267,12 @@ public abstract class KcAbstractController implements ControllerInterface
 	{
 		Map<String,String> ins = this.services.findById();
 		List<Map<String, String>> rows=this.services.queryAnimeComment();
+		Boolean b = this.services.collectionExsits();
 		if(ins!=null)
 		{
 			this.saveAttribute("ins", ins);
 			this.saveAttribute("rows",rows) ;
+			this.saveAttribute("b", b);
 		}
 		else
 		{
@@ -288,6 +294,29 @@ public abstract class KcAbstractController implements ControllerInterface
 	}
 	
 	
+	
+	/**
+	 * 用于kc02，修改评分和收藏信息
+	 * @throws Exception
+	 */
+	
+	protected final void UpdateAnimeComment() throws Exception
+	{
+		
+		this.update("updateAnimeComment", "");
+	}
+	
+	
+	/**
+	 * 用于kc02，删除收藏和评分
+	 * @throws Exception
+	 */
+	
+	protected final void DelAnimeComment() throws Exception
+	{
+		
+		this.update("delAnimeComment", "");
+	}
 	
 	/**
 	 * 显示评论详情页面

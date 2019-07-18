@@ -1,10 +1,10 @@
 package com.subcircle.web.kc.impl;
 
-public class Kc04AddCommentServlet extends Kc04Controller {
+public class Kc04UpdateCommentServlet extends Kc04Controller {
 
 	@Override
 	public String execute() throws Exception {
-		this.AnimeRankAndComment();
+		this.UpdateAnimeComment();
 		return "Kc04ShowDetail.kchtml";
 	}
 

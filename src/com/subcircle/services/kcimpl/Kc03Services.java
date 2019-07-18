@@ -2,6 +2,8 @@ package com.subcircle.services.kcimpl;
 
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.subcircle.services.support.JdbcServicesSupport;
 
@@ -87,6 +89,72 @@ public boolean addAnimeComment()throws Exception
 
 
 
+public boolean updateAnimeComment() throws Exception
+
+{
+	StringBuilder sql = new StringBuilder()
+			.append("update kc07 ")
+			.append("set kkc702=?,")
+			.append("kkc703=?,")
+			.append("kkc704=CURRENT_TIMESTAMP ")
+			.append("where ")
+			.append("kkc101=? ")
+			.append("and ")
+			.append("kkd101=?")
+			;
+	
+	Object args[] ={
+			
+			this.get("kkc702"),
+			this.get("kkc703"),
+			this.get("kkc101"),
+			this.get("kkd101")
+	} ;
+	
+	this.appendSql(sql.toString(), args);
+	
+	
+	return this.executeTransaction();
+}
+
+
+
+public boolean delAnimeComment() throws Exception
+{
+	
+	StringBuilder sql1 = new StringBuilder()
+			.append("delete from  kc07 ")
+			.append("where ")
+			.append("kkc101=? ")
+			.append("and ")
+			.append("kkd101=?")
+			;
+	Object args1[] ={
+			this.get("kkc101"),
+			this.get("kkd101")
+	} ;
+	
+	
+	
+	StringBuilder sql2 = new StringBuilder()
+			.append("delete from  kc06 ")
+			.append("where ")
+			.append("kkc101=? ")
+			.append("and ")
+			.append("kkd101=?")
+			;
+	
+	
+	this.appendSql(sql1.toString(), args1);
+	this.appendSql(sql2.toString(), args1);
+	
+	
+	
+	
+	return this.executeTransaction();
+}
+
+
 
 public List<Map<String,String>> queryAnimeComment () throws Exception
 
@@ -114,6 +182,16 @@ public List<Map<String,String>> queryAnimeCommentAll () throws Exception
 
 {
 	
+	
+	String page = new String("1");
+	if(this.get("page") != null)
+	{
+	page = this.get("page").toString();
+	}
+	int temp = Integer.parseInt(page);
+	temp = (temp-1)*12;
+	String curPage = String.valueOf(temp);
+	
 	String kkc101 = this.get("kkc101").toString();
 	StringBuilder sql = new StringBuilder()
 			.append("SELECT a.kkd101,a.kkd105,a.kkd108,b.kkc702,b.kkc703,b.kkc704 ")
@@ -122,13 +200,49 @@ public List<Map<String,String>> queryAnimeCommentAll () throws Exception
 			.append(kkc101)
 			.append(" AND a.kkd101 = b.kkd101 ")
 			.append("ORDER BY b.kkc704 DESC ")
-			.append("LIMIT 20 ");
+			.append("LIMIT ")
+			.append(curPage)
+			.append(",20");
 			;
 	Object args[] = {};
 	
 	
 	return this.queryForList(sql.toString(), args);
 }
+
+
+
+public boolean collectionExsits()throws Exception
+{
+	String kkc101 = this.get("kkc101").toString();
+	String kkd101 = this.get("kkd101").toString();
+	StringBuilder sql = new StringBuilder()
+			.append("SELECT COUNT(*) number from ")
+			.append("kc06 a ")
+			.append("where ")
+			.append("a.kkd101 =")
+			.append(kkd101)
+			.append(" and ")
+			.append("a.kkc101 =")
+			.append(kkc101);
+	Object args[] = {};
+	List<Map<String,String>> Temp = this.queryForList(sql.toString(), args);
+	String number = Temp.get(0).toString();    	
+	String regEx="[^0-9]";  
+	Pattern p = Pattern.compile(regEx);  
+	Matcher m = p.matcher(number);
+	number = m.replaceAll("").trim();
+	if(Integer.parseInt(number)>0)
+	{
+		return true;
+	}
+	
+	else{
+	
+	return false;
+	}
+}
+
 
 
 
