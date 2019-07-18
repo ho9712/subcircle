@@ -40,4 +40,8 @@ public interface ServicesInterface
 	{
 		return null;
 	}
+	default boolean collectionExsits()throws Exception
+	{
+		return false;
+	}
 }

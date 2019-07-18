@@ -110,7 +110,7 @@
    ${ins.kkc202}
                     </h1>
 
-    
+   
         
     <div class="subjectNav">
 <ul class="navTabs clearit">
@@ -121,6 +121,11 @@
 	
 </div>
 </div>
+
+
+
+
+
 <div class="mainWrapper"><div class="columns clearit" xmlns:v="http://rdf.data-vocabulary.org/#" typeof="v:Movie">
 <div id="columnSubjectHomeA" class="column">
     <div id="bangumiInfo">
@@ -164,11 +169,25 @@
         
         <c:choose>
     <c:when test="${sessionScope.user.kkd101!=null }">
-    <ul class="secTab tiny">
-        <li><a href="#TB_inline?height=350&amp;width=500&amp;inlineId=panel" title="加入收藏"  onclick="GenInterestBox('wish')" class="thickbox"><span>收藏</span></a></li>
-        <li><a href="#TB_inline?height=350&amp;width=500&amp;inlineId=panel" title="加入收藏"  onclick="GenInterestBox('collect')" class="thickbox"><span>收藏并评分</span></a></li>
+    <c:choose>
+    <c:when test="${b }">
+    <span class="interest_now">已收藏</span> 
+            
+        <a href="#TB_inline?height=350&amp;width=500&amp;inlineId=panel" id="modifyCollect" title="修改收藏" class="thickbox l">修改</a>     <a href="kc02DelComments.kchtml?kkc101=${param.kkc101 }&kkd101=${sessionScope.user.kkd101 }"  class="l">删除</a><br />
+    
+    
+    </c:when>
+    <c:otherwise>
+     <ul class="secTab tiny">
         
-        </ul>
+        
+        <!--<li><a href="#TB_inline?height=350&amp;width=500&amp;inlineId=panel" title="加入收藏"  onclick="GenInterestBox('wish')" class="thickbox"><span>收藏</span></a></li>
+          -->
+        <li><a href="#TB_inline?height=350&amp;width=500&amp;inlineId=panel" title="加入收藏"  onclick="GenInterestBox('collect')" class="thickbox"><span>收藏并评分</span></a></li>
+                </ul>
+    </c:otherwise>
+    </c:choose>
+   
         </c:when>
         </c:choose>
     </div>
@@ -179,13 +198,28 @@
 <!-- 评分 -->
 
 <div id="panel" style="display:none;"><div class="collectBox clearit">
-    <form id="collectBoxForm" name="collectBoxForm" method="post" action="kc02AddComment.kchtml">
+
+	<c:choose>
+	<c:when test="${b }">
+	<form id="collectBoxForm" name="collectBoxForm" method="post" action="kc02UpdateComment.kchtml">
+	</c:when>
+	<c:otherwise>
+	<form id="collectBoxForm" name="collectBoxForm" method="post" action="kc02AddComment.kchtml">
+	</c:otherwise>
+	</c:choose>
+
+    
     <input  type="hidden" name="kkc101" value="${param.kkc101 }"/>
     <input  type="hidden" name="kkd101" value="${sessionScope.user.kkd101 }"/>
     <input type="hidden" name="referer" value="subject">
     <div class="collectType cell">
-        <label><input value="1" id="wish" name="interest" onclick="GenInterestBox('wish')"  type="radio"> 收藏</label>&nbsp;&nbsp;
-        <label><input value="2" id="collect" name="interest" onclick="GenInterestBox('collect')"  type="radio"> 收藏并评分</label>&nbsp;&nbsp;        
+    
+    <!-- <label><input value="1" id="wish" name="interest" onclick="GenInterestBox('wish')"  type="radio"> 收藏</label>&nbsp;&nbsp;
+    
+    <label><input value="2" id="collect" name="interest" onclick="GenInterestBox('collect')"  type="radio"> 收藏并评分</label>&nbsp;&nbsp;
+     -->
+        
+                
         </div>
 
 <div id="interest_rate" class="cell" style="">
@@ -416,4 +450,6 @@ $(document).ready(function () {
 </script>
 <script type="text/javascript">chiiLib.subject.init();</script>
 </body>
+
+
 </html>
