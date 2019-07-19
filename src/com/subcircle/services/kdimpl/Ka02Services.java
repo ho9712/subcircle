@@ -74,4 +74,26 @@ public class Ka02Services extends JdbcServicesSupport
 		String sql="update ka02 set kka204=0 where kka201=?";
 		return this.executeUpdate(sql, this.get("kka201"))>0;
 	}
+	
+	//查询其他用户信息
+	public Map<String, String> findById()throws Exception
+	{
+		StringBuilder sql=new StringBuilder()
+				.append("select kkd101,kkd102,kkd103,kkd104,kkd105,")
+				.append("		date_format(kkd106,'%Y-%m-%d %H:%i:%S') kkd106,kkd107,kkd108,kkd109,kkd110,")
+				.append("		kkd111,kkd112")
+				.append("  from kd01")
+				
+				;
+		if(this.get("kkd101")!=null)
+		{
+			sql.append(" where kkd101=?");
+			return this.queryForMap(sql.toString(), this.get("kkd101"));
+		}
+		else
+		{
+			sql.append(" where kkd102=?");
+			return this.queryForMap(sql.toString(), this.get("kkd102"));
+		}
+	}
 }

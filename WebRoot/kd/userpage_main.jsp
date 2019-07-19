@@ -30,7 +30,6 @@
 
 <link rel="stylesheet" type="text/css" href="<%=path %>/css/bangumi.css" />
 <script src="<%=path %>/js/bangumi.js" type="text/javascript"></script>
-<script src="<%=path %>/js/jquery.js" type="text/javascript"></script>
 </head>
 
 <body class="bangumi">
@@ -102,7 +101,7 @@
 			<li><a href="<%=path%>/kd01UserMain.kdhtml">个人主页</a></li>                    
        		<li><a href="<%=path%>/kc06AnimeColl.kdhtml">作品</a></li>
        		<li><a href="<%=path%>/ka01PostRecord.kdhtml">论坛</a></li>
-       		<li><a href="#">商城</a></li>
+       		<li><a href="<%=path%>/kb02ShopRecord.kdhtml">商城</a></li>
 	    	
 	        <li class="row">
 		        <a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a> | 
@@ -174,7 +173,7 @@
 			<li><a href="<%=path%>/kd01UserMain.kdhtml" class="focus">主页</a></li>                    
        		<li><a href="<%=path%>/kc06AnimeColl.kdhtml">作品</a></li>
        		<li><a href="<%=path%>/ka01PostRecord.kdhtml">论坛</a></li>
-       		<li><a href="#">商城</a></li>
+       		<li><a href="<%=path%>/kb02ShopRecord.kdhtml">商城</a></li>
        		<li><a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">消息</a></li>
 		</ul>
 	</div>
@@ -345,16 +344,38 @@
 			<div id="sideLayout">
 				<div id="friend" class="sort">
 					<div class="SidePanel png_bg" align="left">
-						<h2>/ 我的论坛 <small><a href="#">...more</a></small></h2>
+						<h2>/ 我的论坛 <small><a href="<%=path%>/ka01PostRecord.kdhtml">...more</a></small></h2>
+						<ul class="timeline">
+							<c:forEach items="${posts }" var="post">
+							<li>
+								<small class="feed">发表了:</small>
+								<a href="<%=path%>/ka01PostContent.kahtml?kka101=${post.kka101}" class="l"> 
+								<small class="feed">${post.kka102 }</small>
+								</a> 
+								<small class="time">${post.kka105 }</small>
+							</li>
+							</c:forEach>
+						</ul>
 						<hr class="board" />
-						<a href="#">+ 查看我的发帖</a>
+						<a href="<%=path%>/ka01PostRecord.kdhtml">+ 查看我的全部发帖</a>
 					</div>
 				</div>
 				<div id="group" class="sort">
 					<div class="SidePanel png_bg" align="left">
-						<h2>/ 我的商城 <small><a href="#">...more</a></small></h2>
+						<h2>/ 我的商城 <small><a href="<%=path%>/kb03ShopColl.kdhtml">...more</a></small></h2>
+						<ul class="timeline">
+							<c:forEach items="${goods }" var="good">
+							<li>
+								<small class="feed">收藏了:</small>
+								<a href="<%=path%>/kb01FindItemById.kbhtml?kkb101=${good.kkb101}" class="l"> 
+								<small class="feed">${good.kkb102 }</small>
+								</a> 
+								<small class="time">${good.kkb302 }</small>
+							</li>
+							</c:forEach>
+						</ul>
 						<hr class="board" />
-						<a href="#">+ 查看我的订单</a>
+						<a href="<%=path%>/kb03ShopColl.kdhtml">+ 查看更多</a>
 					</div>
 				</div>
 			</div>

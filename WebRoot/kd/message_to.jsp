@@ -130,8 +130,8 @@
        		<c:when test="${fn:contains('45',sessionScope.user.kkd104) }">
 				<li><a href="<%=path%>/kd01UserMain.kdhtml">个人主页</a></li>                    
 	       		<li><a href="<%=path%>/kc06AnimeColl.kdhtml">作品</a></li>
-	       		<li><a href="#">论坛</a></li>
-	       		<li><a href="#">商城</a></li>
+	       		<li><a href="<%=path%>/ka01PostRecord.kdhtml">论坛</a></li>
+	       		<li><a href="<%=path%>/kb02ShopRecord.kdhtml">商城</a></li>
 	       		<li class="row">
 		        <a href="#">短信</a> | 
 		        <a href="<%=path%>/kd/userpage_info.jsp">设置</a> | 
@@ -263,8 +263,8 @@
        		<c:when test="${fn:contains('45',sessionScope.user.kkd104) }">
 				<li><a href="<%=path%>/kd01UserMain.kdhtml">主页</a></li>                    
 	       		<li><a href="<%=path%>/kc06AnimeColl.kdhtml">作品</a></li>
-	       		<li><a href="#">论坛</a></li>
-	       		<li><a href="#">商城</a></li>
+	       		<li><a href="<%=path%>/ka01PostRecord.kdhtml">论坛</a></li>
+	       		<li><a href="<%=path%>/kb02ShopRecord.kdhtml">商城</a></li>
 	    	</c:when>
 	    	<c:otherwise>
 	    		<li><a href="<%=path%>/kd01AdminMain.kdhtml">主页</a></li>
@@ -353,14 +353,14 @@
 					       			<small style="color:#8f8fff">论坛管理员</small>
 					       		</c:when>
 					       		</c:choose>
-					    	<a href="<%=path%>/kd01FindOther.kdhtml?kkd102=${send.kkd203 }" class="l">${send.kkd105 } <small>@${send.kkd203 }</small></a><br>
+					    	<a href="<%=path%>/kd01FindOther.kdhtml?kkd101=${send.kkd101 }" class="l">${send.kkd105 } <small>@${send.kkd203 }</small></a><br>
 					    	<small class="grey">状态:</small>
 					    	<c:choose>
 					    		<c:when test="${send.kkd206 eq '0'}">
-					    			<small style="color:#ff8f8f">未读</small>
+					    			<small style="font-size:16px;color:#ff8f8f">未读</small>
 					    		</c:when>
 					    		<c:otherwise>
-					    			<small style="color:#6faf0f">已读</small>
+					    			<small style="font-size:16px;color:#6faf0f">已读</small>
 					    		</c:otherwise>
 					    	</c:choose>
 					       <p class="line_limit">

@@ -36,7 +36,7 @@
 
 <link rel="stylesheet" type="text/css" href="<%=path %>/css/bangumi.css" />
 <script src="<%=path %>/js/bangumi.js" type="text/javascript"></script>
-<script src="<%=path %>/js/jquery.js" type="text/javascript"></script>
+<%-- <script src="<%=path %>/js/jquery.js" type="text/javascript"></script> --%>
 </head>
 
 <body class="bangumi">
@@ -108,7 +108,7 @@
 			<li><a href="<%=path%>/kd01UserMain.kdhtml">个人主页</a></li>                    
        		<li><a href="#">作品</a></li>
        		<li><a href="<%=path%>/ka01PostRecord.kdhtml">论坛</a></li>
-       		<li><a href="#">商城</a></li>
+       		<li><a href="<%=path%>/kb02ShopRecord.kdhtml">商城</a></li>
 	    	
 	        <li class="row">
 		        <a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a> | 
@@ -180,7 +180,7 @@
 			<li><a href="<%=path%>/kd01UserMain.kdhtml">主页</a></li>                    
        		<li><a href="#" class="focus">作品</a></li>
        		<li><a href="<%=path%>/ka01PostRecord.kdhtml">论坛</a></li>
-       		<li><a href="#">商城</a></li>
+       		<li><a href="<%=path%>/kb02ShopRecord.kdhtml">商城</a></li>
        		<li><a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">消息</a></li>
 		</ul>
 	</div>

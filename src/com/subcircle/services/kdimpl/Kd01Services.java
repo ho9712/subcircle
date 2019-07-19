@@ -238,4 +238,27 @@ public class Kd01Services extends JdbcServicesSupport
 		colls.put("gameColl", this.queryForList(sql3.toString(), this.get("kkd101")));
 		return colls;
 	}
+	
+	//查询主页发帖
+	public List<Map<String, String>> queryMainPost()throws Exception
+	{
+		StringBuilder sql=new StringBuilder()
+				.append("select kka101,kka102,date_format(kka105,'%Y-%m-%d %H:%i') kka105")
+				.append(" from ka01 where kkd101=? order by kka105 desc limit 3")
+				;
+		return this.queryForList(sql.toString(), this.get("kkd101"));
+	}
+	
+	//查询主页商品浏览记录
+	public List<Map<String, String>> queryMainShopRecord()throws Exception
+	{
+		StringBuilder sql=new StringBuilder()
+				.append("select b3.kkb101,date_format(b3.kkb302,'%Y-%m-%d %H:%i') kkb302,b1.kkb102")
+				.append("  from kb01 b1,kb03 b3")
+				.append(" where b1.kkb101=b3.kkb101 ")
+				.append("   and b3.kkd101=?")
+				.append("  order by b3.kkb302 desc limit 4")
+				;
+		return this.queryForList(sql.toString(), this.get("kkd101"));
+	}
 }

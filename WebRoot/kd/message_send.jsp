@@ -108,8 +108,8 @@
        		<c:when test="${fn:contains('45',sessionScope.user.kkd104) }">
 				<li><a href="<%=path%>/kd01UserMain.kdhtml">个人主页</a></li>                    
 	       		<li><a href="<%=path%>/kc06AnimeColl.kdhtml">作品</a></li>
-	       		<li><a href="#">论坛</a></li>
-	       		<li><a href="#">商城</a></li>
+	       		<li><a href="<%=path%>/ka01PostRecord.kdhtml">论坛</a></li>
+	       		<li><a href="<%=path%>/kb02ShopRecord.kdhtml">商城</a></li>
 	       		<li class="row">
 		        <a href="#">短信</a> | 
 		        <a href="<%=path%>/kd/userpage_info.jsp">设置</a> | 
@@ -241,8 +241,8 @@
        		<c:when test="${fn:contains('45',sessionScope.user.kkd104) }">
 				<li><a href="<%=path%>/kd01UserMain.kdhtml">主页</a></li>                    
 	       		<li><a href="<%=path%>/kc06AnimeColl.kdhtml">作品</a></li>
-	       		<li><a href="#">论坛</a></li>
-	       		<li><a href="#">商城</a></li>
+	       		<li><a href="<%=path%>/ka01PostRecord.kdhtml">论坛</a></li>
+	       		<li><a href="<%=path%>/kb02ShopRecord.kdhtml">商城</a></li>
 	    	</c:when>
 	    	<c:otherwise>
 	    		<li><a href="<%=path%>/kd01AdminMain.kdhtml">主页</a></li>

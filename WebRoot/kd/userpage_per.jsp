@@ -81,8 +81,8 @@
 		<ul id="badgeUserPanel">
 			<li><a href="<%=path%>/kd01UserMain.kdhtml">个人主页</a></li>                    
        		<li><a href="<%=path%>/kc06AnimeColl.kdhtml">作品</a></li>
-       		<li><a href="#">论坛</a></li>
-       		<li><a href="#">商城</a></li>
+       		<li><a href="<%=path%>/ka01PostRecord.kdhtml">论坛</a></li>
+       		<li><a href="<%=path%>/kb02ShopRecord.kdhtml">商城</a></li>
 	    	
 	        <li class="row">
 		        <a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a> | 

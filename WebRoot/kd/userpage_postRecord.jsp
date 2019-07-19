@@ -37,7 +37,6 @@
 
 <link rel="stylesheet" type="text/css" href="<%=path %>/css/bangumi.css" />
 <script src="<%=path %>/js/bangumi.js" type="text/javascript"></script>
-<script src="<%=path %>/js/jquery.js" type="text/javascript"></script>
 </head>
 
 <body class="bangumi">
@@ -109,7 +108,7 @@
 			<li><a href="<%=path%>/kd01UserMain.kdhtml">个人主页</a></li>                    
        		<li><a href="<%=path%>/kc06AnimeColl.kdhtml">作品</a></li>
        		<li><a href="#">论坛</a></li>
-       		<li><a href="#">商城</a></li>
+       		<li><a href="<%=path%>/kb02ShopRecord.kdhtml">商城</a></li>
 	    	
 	        <li class="row">
 		        <a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a> | 
@@ -181,7 +180,7 @@
 			<li><a href="<%=path%>/kd01UserMain.kdhtml">主页</a></li>                    
        		<li><a href="<%=path%>/kc06AnimeColl.kdhtml">作品</a></li>
        		<li><a href="#" class="focus">论坛</a></li>
-       		<li><a href="#">商城</a></li>
+       		<li><a href="<%=path%>/kb02ShopRecord.kdhtml">商城</a></li>
        		<li><a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">消息</a></li>
 		</ul>
 	</div>
@@ -208,7 +207,7 @@
 		<c:choose>
 		<c:when test="${empty posts}">
 			<div class="section">
-				<a href="<%=path%>/kc02ShowRank.kchtml" class="rr l">前往发帖</a>
+				<a href="<%=path %>/ka/posting.jsp" class="rr l">前往发帖</a>
 	            <br><h2 class="title">你还没有发表过贴子...</h2>
 	        	<div>
 	        		<ul class="coversSmall">
@@ -229,7 +228,7 @@
 			<div class="item clearit">
 			<a href="#" onclick="delPost('${post.kka101}')" class="btnGraySmall rr"><span>删除贴子</span></a>
 			<h2 class="title">贴子: 
-			<a href="<%= path %>/ka01PostContent.kahtml?kka101=${post.kka101}" class="l"> ${post.kka102 }</a>
+			<a href="<%=path%>/ka01PostContent.kahtml?kka101=${post.kka101}" class="l"> ${post.kka102 }</a>
 			</h2>
 			<div class="time"><small class="time">发帖时间: ${post.kka105 }</small> </div>
 			<div class="content"><p class="line_limit">内容: ${post.kka104 }</p>

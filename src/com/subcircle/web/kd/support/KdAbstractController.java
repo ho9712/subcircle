@@ -252,6 +252,10 @@ public abstract class KdAbstractController implements ControllerInterface
 			}
 			Map<String,Object> colls=this.executeQueryForMap("queryMainColl");
 			this.saveAttribute("colls", colls);
+			List<Map<String, String>> posts=this.executeQueryForList("queryMainPost");
+			this.saveAttribute("posts", posts);
+			List<Map<String, String>> goods=this.executeQueryForList("queryMainShopRecord");
+			this.saveAttribute("goods", goods);
 			return "kd/userpage_main";
 		}
 		else
@@ -507,6 +511,15 @@ public abstract class KdAbstractController implements ControllerInterface
 		this.saveAttribute("other", other);
 		Map<String,Object> colls=this.executeQueryForMap("queryMainColl");
 		this.saveAttribute("colls", colls);
+		List<Map<String, String>> posts=this.executeQueryForList("queryMainPost");
+		this.saveAttribute("posts", posts);
+	}
+	
+	//查询其他用户信息
+	protected final void otherInfo()throws Exception
+	{
+		Map<String, String> other=this.services.findById();
+		this.saveAttribute("other", other);
 	}
 	
 	//发送消息
@@ -704,7 +717,10 @@ public abstract class KdAbstractController implements ControllerInterface
 	//查询发帖记录
 	protected final void queryPostRecord()throws Exception
 	{
-		this.dto.put("kkd101", this.session.getAttribute("kkd101"));
+		if(this.dto.get("kkd101")==null)
+		{
+			this.dto.put("kkd101", this.session.getAttribute("kkd101"));	
+		}
 		List<Map<String, String>> posts=this.services.queryByCondition();
 		this.saveAttribute("posts", posts);
 	}
@@ -725,7 +741,10 @@ public abstract class KdAbstractController implements ControllerInterface
 	//查询回帖记录
 	protected final void queryReplyRecord()throws Exception
 	{
-		this.dto.put("kkd101", this.session.getAttribute("kkd101"));
+		if(this.dto.get("kkd101")==null)
+		{
+			this.dto.put("kkd101", this.session.getAttribute("kkd101"));	
+		}
 		List<Map<String, String>> replys=this.services.queryByCondition();
 		this.saveAttribute("replys", replys);
 	}
@@ -757,6 +776,61 @@ public abstract class KdAbstractController implements ControllerInterface
 		if(this.executeMethod("delPostColl"))
 		{
 			this.setHint("取消成功", "该贴子已从你的收藏中移除！");
+		}
+		else
+		{
+			this.setHint("删除失败", "服务器可能出现了一点小问题，请稍后再试！");
+		}
+	}
+	
+	//查询商品浏览记录
+	protected final void queryShopRecord()throws Exception
+	{
+		this.dto.put("kkd101", this.session.getAttribute("kkd101"));
+		List<Map<String, String>> goods=this.services.queryByCondition();
+		this.saveAttribute("goods", goods);
+	}
+	
+	//删除商品浏览记录
+	protected final void delShopRecord()throws Exception
+	{
+		if(this.executeMethod("delShopRecord"))
+		{
+			this.setHint("删除成功", "该记录已从你的浏览记录中移除！");
+		}
+		else
+		{
+			this.setHint("删除失败", "服务器可能出现了一点小问题，请稍后再试！");
+		}
+	}
+	
+	//删除选中商品浏览记录
+	protected final void delSelect()throws Exception
+	{
+		if(this.executeMethod("delSelect"))
+		{
+			this.setHint("删除成功", "选中记录已从你的浏览记录中移除！");
+		}
+		else
+		{
+			this.setHint("删除失败", "服务器可能出现了一点小问题，请稍后再试！");
+		}
+	}
+	
+	//查询商品收藏记录
+	protected final void queryShopColl()throws Exception
+	{
+		this.dto.put("kkd101", this.session.getAttribute("kkd101"));
+		List<Map<String, String>> goods=this.services.queryByCondition();
+		this.saveAttribute("goods", goods);
+	}
+	
+	//删除商品收藏记录
+	protected final void delShopColl()throws Exception
+	{
+		if(this.executeMethod("delShopColl"))
+		{
+			this.setHint("删除成功", "该商品已从你的收藏中移除！");
 		}
 		else
 		{

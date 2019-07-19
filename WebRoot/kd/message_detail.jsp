@@ -113,9 +113,9 @@ word-wrap: break-word;
 		<c:choose>
        		<c:when test="${fn:contains('45',sessionScope.user.kkd104) }">
 				<li><a href="<%=path%>/kd01UserMain.kdhtml">个人主页</a></li>                    
-	       		<li><a href="#">作品</a></li>
-	       		<li><a href="#">论坛</a></li>
-	       		<li><a href="#">商城</a></li>
+	       		<li><a href="<%=path%>/kc06AnimeColl.kdhtml">作品</a></li>
+	       		<li><a href="<%=path%>/ka01PostRecord.kdhtml">论坛</a></li>
+	       		<li><a href="<%=path%>/kb02ShopRecord.kdhtml">商城</a></li>
 	       		<li class="row">
 		        <a href="#">短信</a> | 
 		        <a href="<%=path%>/kd/userpage_info.jsp">设置</a> | 
@@ -222,9 +222,9 @@ word-wrap: break-word;
 		<c:choose>
        		<c:when test="${fn:contains('45',sessionScope.user.kkd104) }">
 				<li><a href="<%=path%>/kd01UserMain.kdhtml">主页</a></li>                    
-	       		<li><a href="#">作品</a></li>
-	       		<li><a href="#">论坛</a></li>
-	       		<li><a href="#">商城</a></li>
+	       		<li><a href="<%=path%>/kc06AnimeColl.kdhtml">作品</a></li>
+	       		<li><a href="<%=path%>/ka01PostRecord.kdhtml">论坛</a></li>
+	       		<li><a href="<%=path%>/kb02ShopRecord.kdhtml">商城</a></li>
 	    	</c:when>
 	    	<c:otherwise>
 	    		<li><a href="<%=path%>/kd01AdminMain.kdhtml">主页</a></li>
@@ -236,10 +236,10 @@ word-wrap: break-word;
 						<li><a href="<%= path %>/kd01QueryUser.kdhtml">作品管理员</a></li>
 					</c:when>
 					<c:when test="${sessionScope.kkd104 eq '2' }">
-						<li><a href="<%= path %>/kd01QueryAdmin.kdhtml">商城管理员</a></li>
+						<li><a href="<%= path %>/kd/shopadminpage_turn.jsp">商城管理员</a></li>
 					</c:when>
 					<c:when test="${sessionScope.kkd104 eq '3' }">
-						<li><a href="<%= path %>/kd01QueryAdmin.kdhtml">论坛管理员</a></li>
+						<li><a href="<%= path %>/ka03QueryReport.kdhtml?flag=post">论坛管理员</a></li>
 					</c:when>
 	    		</c:choose>
 	    	</c:otherwise>

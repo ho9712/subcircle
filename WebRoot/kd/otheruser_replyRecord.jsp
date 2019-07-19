@@ -1,12 +1,30 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://org.wangxg/jsp/extl" prefix="e"%>
 <%String path=request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
-<title>${other.kkd105 } 的主页</title>
+<script type="text/javascript">
+	function onClickSort(vorder)
+	{
+		var vform=document.getElementById("myform");
+		vform.action="<%=path%>/ka02OtherReplyRecord.kdhtml?kkd101=${param.kkd101}&order="+vorder;
+		vform.submit();
+	}
+</script>
+<style type="text/css">
+	.line_limit{
+		width:500px;
+		white-space:nowrap;
+		overflow:hidden;
+		text-overflow:ellipsis;
+	}
+</style>
+<title>发帖记录</title>
+
 
 <link rel="stylesheet" type="text/css" href="<%=path %>/css/bangumi.css" />
 <script src="<%=path %>/js/bangumi.js" type="text/javascript"></script>
@@ -14,7 +32,6 @@
 
 <body class="bangumi">
 <div id="wrapperNeue" class="wrapperNeue">
-
 <!-- 顶部栏 -->
 <div id="headerNeue2">
     <div class="headerNeueInner clearit">
@@ -214,15 +231,17 @@
     <!-- 主页导航栏 -->
     <div class="navTabsWrapper">
 		<ul class="navTabs">
-			<li><a href="<%=path%>/kd01FindOther.kdhtml?kkd101=${other.kkd101}" class="focus">主页</a></li>                    
+			<li><a href="<%=path%>/kd01FindOther.kdhtml?kkd101=${other.kkd101}">主页</a></li>                    
        		<li><a href="<%=path%>/kc06OtherAnimeColl.kdhtml?kkd101=${other.kkd101}">Ta的作品</a></li>
-       		<li><a href="<%=path%>/ka01OtherPostRecord.kdhtml?kkd101=${other.kkd101}">Ta的论坛</a></li>
+       		<li><a href="#" class="focus">Ta的论坛</a></li>
 		</ul>
 	</div>
 	<!-- 主页导航栏 -->
 	<!-- 子导航栏 -->
 	<div class="navSubTabsWrapper">
 		<ul class="navSubTabs">
+			<li><a href="<%=path%>/ka01OtherPostRecord.kdhtml?kkd101=${param.kkd101}"><span>发帖记录</span></a></li>
+  	 		<li><a href="<%=path%>/ka02OtherReplyRecord.kdhtml?kkd101=${param.kkd101}" class="focus"><span>回帖记录</span></a></li>
 		</ul>
 	</div>
 	<!-- 子导航栏 -->
@@ -232,196 +251,109 @@
 <!-- 主页头部 -->
 
 <div class="mainWrapper">
-<div class="columns clearit">
+<div class="columns clearit" xmlns:v="http://rdf.data-vocabulary.org/#">
 	<!-- 主页主体A栏 -->
-		<div id="columnA" class="column">
-			<div id="user_home">
-				<div class="user_box clearit">
-					<div class="intro">
-						<blockquote class="intro">
-						<div class="bio">
-						<c:choose>
-							<c:when test="${!empty other.kkd109}"><pre>${other.kkd109 }</pre><br><br></c:when>
-							<c:otherwise>这个人很懒，什么也没有留下...<br><br></c:otherwise>
-						</c:choose>
-						</div>
-						</blockquote>
-					</div> 
-					<ul class="network_service clearit">
-					<li><span class="service" style="background-color:#F09199;">SubCircle</span>
-					<span class="tip">${other.kkd106 } 加入</span></li>
-					</ul>    
+		
+		<div id="columnSubjectBrowserA" class="column">
+		<c:choose>
+		<c:when test="${empty replys}">
+			<div class="section">
+				<a href="<%=path %>/ka01MainForum.kahtml?id=0" class="rr l">前往论坛</a>
+	            <br><h2 class="title">你还没有回复过贴子...</h2>
+	        	<div>
+	        		<ul class="coversSmall">
+	           		</ul>
+	        	</div>
+	        </div>
+	        <div class="section_line clear"></div>
+		</c:when>
+		<c:otherwise>
+    	<div id="browserTools" class="clearit">
+        
+        	按 时间<a href="#" onclick="onClickSort(1)" class="btnGraySmall" ><span>升序</span></a> · 
+        	<a href="#" onclick="onClickSort(2)" class="btnGraySmall" ><span>降序</span></a> 排序
+		</div>    
+			<!-- 查询所有回帖记录 -->
+			<c:forEach items="${replys }" var="reply">
+			<div id="entry_list">
+			<div class="item clearit">
+			<p class="line_limit">回复内容: #${reply.kka201} ${reply.kka202 }</p>
+			<h2 class="title">贴子: 
+				<a href="<%= path %>/ka01PostContent.kahtml?kka101=${reply.kka101}" class="l"> ${reply.kka102 }</a>
+			</h2>
+			<div class="time"><small class="time">回复时间: ${reply.kka203 }</small> </div>
+			<div class="tools clearit">
+				<div class="tags">所属板块: 
+					<a href="ka01AnimeForum.kahtml?id=${reply.kka103 }" class="l">${reply.cnkka103 }</a> 
 				</div>
-			    <!-- 主页动画 -->
-			    <div id="blog" class="sort">
-					<h2 class="drag">&nbsp;</h2>
-					<div class="horizontalOptions clearit">
-						<ul class="">
-							<li class="title">
-							<h2> 
-							<a href="<%=path%>/kc06OtherAnimeColl.kdhtml?kkd101=${other.kkd101}">Ta的动画</a>
-							</h2>
-							</li>
-						</ul>
-					</div>
-				
-					<div class="content_inner clearit" align="left">
-					<c:choose>
-					<c:when test="${empty colls.animeColl}">
-						<div align="center" class="clearit">
-							<span class="green">Ta还没有收藏过动画</span>
-						</div>
-					</c:when>
-					<c:otherwise>
-						<div class="clearit">
-				    		<div class="substatus">收藏</div>
-				    		<ul class="coversSmall clearit" style="margin-right:0;">
-				    		<c:forEach items="${colls.animeColl }" var="animeColl">
-           		    		<li class="clearit">
-	           		    		<a href="Kc02ShowDetail.kchtml?kkc101=${animeColl.kkc101}" title="カウボーイビバップ">
-	           		    		<span class="pictureFrameGroup">
-		           		    		<span class="image"><img src="${animeColl.kkc204 }"></span>
-		           		    		<span class="overlay"></span>
-	           		    		</span>
-	           		    		<span class="name">${animeColl.kkc202 }</span>
-	           		    		</a>
-           		    		</li>
-           		    		</c:forEach>
-	    		    		</ul>
-				    	</div>
-			    	</c:otherwise>
-			    	</c:choose>
-					</div>
-				</div>
-				<!-- 主页动画 -->
-				<!-- 主页书籍 -->
-			    <div id="blog" class="sort">
-					<h2 class="drag">&nbsp;</h2>
-					<div class="horizontalOptions clearit">
-						<ul class="">
-							<li class="title">
-							<h2> 
-							<a href="<%=path%>/kc06OtherBookColl.kdhtml?kkd101=${other.kkd101}">Ta的书籍</a>
-							</h2>
-							</li>
-						</ul>
-					</div>
-				
-					<div class="content_inner clearit" align="left">
-						<c:choose>
-						<c:when test="${empty colls.bookColl}">
-							<div align="center" class="clearit">
-								<span class="green">Ta还没有收藏过书籍</span>
-							</div>
-						</c:when>
-						<c:otherwise>
-							<div class="clearit">
-					    		<div class="substatus">收藏</div>
-					    		<ul class="coversSmall clearit" style="margin-right:0;">
-					    		<c:forEach items="${colls.bookColl }" var="bookColl">
-	           		    		<li class="clearit">
-		           		    		<a href="Kc03ShowDetail.kchtml?kkc101=${bookColl.kkc101}" title="カウボーイビバップ">
-		           		    		<span class="pictureFrameGroup">
-			           		    		<span class="image"><img src="${bookColl.kkc304 }"></span>
-			           		    		<span class="overlay"></span>
-		           		    		</span>
-		           		    		<span class="name">${bookColl.kkc302 }</span>
-		           		    		</a>
-	           		    		</li>
-	           		    		</c:forEach>
-		    		    		</ul>
-					    	</div>
-				    	</c:otherwise>
-				    	</c:choose>
-					</div>
-				</div>
-				<!-- 主页书籍 -->				
-				<!-- 主页游戏 -->
-			    <div id="blog" class="sort">
-					<h2 class="drag">&nbsp;</h2>
-					<div class="horizontalOptions clearit">
-						<ul class="">
-							<li class="title">
-							<h2> 
-							<a href="<%=path%>/kc06OtherGameColl.kdhtml?kkd101=${other.kkd101}">Ta的游戏</a>
-							</h2>
-							</li>
-						</ul>
-					</div>
-				
-					<div class="content_inner clearit" align="left">
-						<c:choose>
-						<c:when test="${empty colls.gameColl}">
-							<div align="center" class="clearit">
-								<span class="green">Ta还没有收藏过游戏</span>
-							</div>
-						</c:when>
-						<c:otherwise>
-							<div class="clearit">
-					    		<div class="substatus">收藏</div>
-					    		<ul class="coversSmall clearit" style="margin-right:0;">
-					    		<c:forEach items="${colls.gameColl }" var="gameColl">
-	           		    		<li class="clearit">
-		           		    		<a href="Kc04ShowDetail.kchtml?kkc101=${gameColl.kkc101}" title="カウボーイビバップ">
-		           		    		<span class="pictureFrameGroup">
-			           		    		<span class="image"><img src="${gameColl.kkc404 }"></span>
-			           		    		<span class="overlay"></span>
-		           		    		</span>
-		           		    		<span class="name">${gameColl.kkc402 }</span>
-		           		    		</a>
-	           		    		</li>
-	           		    		</c:forEach>
-		    		    		</ul>
-					    	</div>
-				    	</c:otherwise>
-				    	</c:choose>
-					</div>
-				</div>
-				<!-- 主页游戏 -->
 			</div>
+			</div>
+			</div>
+			</c:forEach>
+			<div id="multipage"></div>
+
+			<!-- 查询所有回帖记录 -->
+			
+		</c:otherwise>
+		</c:choose>
 		</div>
+		
+		
 	<!-- 主页主体A栏 -->
 	
 	<!-- 主页主体B栏 -->
-		<div id="columnB" class="column">
-			<div id="">
+		<div id="columnSubjectBrowserB" class="column">
+			<div id="columnSubjectInBrowserB" class="clearit">
 				<div class="SidePanel png_bg">
-					<h2>/ 我的... <small><a href="/user/481528/timeline">...more</a></small></h2>
-				
-					<ul class="timeline">
-						<li>
-							<small class="feed">注册成为了 SubCircle 成员</small> 
-							<small class="time">${other.kkd106 }</small>
-						</li>
-					</ul>
+					<h2>/ 根据条件检索 </h2>
+					<form id="myform" name="set" method="post" action="<%=path%>/ka02OtherReplyRecord.kdhtml?kkd101=${param.kkd101}">
+						<span class="text">
+							<table align="center" width="98%" cellspacing="0" cellpadding="5" class="settings">
+								<tr>
+									<td valign="top" width="15%">关键字</td>
+									<td valign="top">
+										<e:text name="keyword" style="border:1px
+											solid #BEB4A7;padding:1px
+											4px;width:120px;height:20px;padding:3px
+											5px;text-align:left;font-size:14px;line-height:130%"/>
+									</td>
+								</tr>
+								<tr>
+									<td valign="top" width="15%">所属板块</td>
+									<td valign="top">
+										<e:select value="动画:1,书籍:2,游戏:3" name="plate" style="height:30px;width:100px;" header="true"/>
+									</td>
+								</tr>
+								<tr>
+									<td valign="top" width="15%">回帖时间[B]</td>
+									<td valign="top">
+										<e:date name="bkka203" style="border:1px
+											solid #BEB4A7;padding:1px
+											4px;width:120px;height:20px;padding:3px
+											5px;text-align:left;font-size:14px;line-height:130%"/>
+									</td>
+								</tr>
+								<tr>
+									<td valign="top" width="15%">回帖时间[E]</td>
+									<td valign="top">
+										<e:date name="ekka203" style="border:1px
+											solid #BEB4A7;padding:1px
+											4px;width:120px;height:20px;padding:3px
+											5px;text-align:left;font-size:14px;line-height:130%"/>
+									</td>
+								</tr>
+								<tr>
+									<td valign="top" width="15%"><input class="inputBtn" value="点击搜索" name="next" type="submit"></td>
+								</tr>
+							</table>
+						</span>
+					</form>
 				</div>
 			</div>
-			<div id="sideLayout">
-				<div id="friend" class="sort">
-					<div class="SidePanel png_bg" align="left">
-						<h2>/ Ta的论坛 <small><a href="/user/481528/friends">...more</a></small></h2>
-						<ul class="timeline">
-							<c:forEach items="${posts }" var="post">
-							<li>
-								<small class="feed">发表了:</small>
-								<a href="<%=path%>/ka01PostContent.kahtml?kka101=${post.kka101}" class="l"> 
-								<small class="feed">${post.kka102 }</small>
-								</a> 
-								<small class="time">${post.kka105 }</small>
-							</li>
-							</c:forEach>
-						</ul>
-						<hr class="board" />
-						<a href="/user/481528/rev_friends">+ 查看更多</a>
-					</div>
-				</div>
-			</div>
-			<div class="menu_inner">
-			    	<p> <a href="/feed/user/481528/interests" class="l">/ </a></p>
-			    	<p><a href="/user/481528/wiki" class="l">/ </a></p>
-			</div>
+			
 		</div>
 	<!-- 主页主体B栏 -->
+	
 </div>
 </div>
 </div>
@@ -475,8 +407,16 @@
 <div class="tools"><a href="javascript:void(0);" id="ukagaka_menu"></a></div>    
 <div class="inner">
 <div id="robot_speech" class="speech" >
-<strong>『Ta的主页』</strong><br />
-欢迎来到  <span class="green"><strong>${other.kkd105 }</strong></span> 的主页！ <br />
+<c:choose>
+	<c:when test="${empty hint }">
+		<strong>『Ta的回帖记录』</strong><br />
+		这里记录了Ta曾经在讨论版回复过的贴子。 <br />
+	</c:when>
+	<c:otherwise>
+		<strong>『${hint }』</strong><br />
+		${msg }<br />
+	</c:otherwise>
+</c:choose>
 <br>
 <!-- 消息提示 -->
 <c:if test="${!empty msgs }">

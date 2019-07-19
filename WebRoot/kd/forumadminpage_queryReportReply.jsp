@@ -167,9 +167,9 @@
     <!-- 主页导航栏 -->
     <div class="navTabsWrapper">
 		<ul class="navTabs">
-			<li><a href="<%= path %>/kd/adminpage_main.jsp">主页</a></li>
+			<li><a href="<%=path%>/kd01AdminMain.kdhtml">主页</a></li>
         	<li><a href="#" class="focus">论坛管理员</a></li>
-        	<li><a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">消息</a></li>
+        	<li><a href="<%=path%>/kd02QueryReceive.kdhtml?username=${user.kkd102}">消息</a></li>
 		</ul>
 	</div>
 	<!-- 主页导航栏 -->

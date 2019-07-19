@@ -11,16 +11,48 @@
 	function onClickSort(vorder)
 	{
 		var vform=document.getElementById("myform");
-		vform.action="<%=path%>/ka02ReplyRecord.kdhtml?order="+vorder;
+		vform.action="<%=path%>/kb02ShopRecord.kdhtml?order="+vorder;
 		vform.submit();
 	}
-	function delReply(kka201)
+	function delShopRecord(kkb201)
 	{
-		var msg="确定删除该回复?";
+		var msg="确定删除该记录?";
 		if(confirm(msg))
 		{
-			window.location.href="<%= path %>/ka02DelReply.kdhtml?kka201="+kka201;		
+			window.location.href="<%=path%>/kb02DelShopRecord.kdhtml?kkb201="+kkb201;		
 			alert("删除成功！");
+		}
+	}
+	function onClickDel()
+	{
+		var msg="确定删除所有选中记录?";
+		if(confirm(msg))
+		{
+			var vform=document.getElementById("delForm");
+			vform.submit();		
+			alert("删除成功！");
+		}
+	}
+	function selectAll()
+	{
+		var select=document.getElementById("select");
+		if(select.innerHTML=="全选")
+		{
+			var checkboxs=document.getElementsByName("kkb201List");
+			for(var i=0;i<checkboxs.length;i++)
+			{
+				checkboxs[i].checked=true;
+			}
+			select.innerHTML="全不选";
+		}
+		else
+		{
+			var checkboxs=document.getElementsByName("kkb201List");
+			for(var i=0;i<checkboxs.length;i++)
+			{
+				checkboxs[i].checked=false;
+			}
+			select.innerHTML="全选";
 		}
 	}
 </script>
@@ -32,7 +64,7 @@
 		text-overflow:ellipsis;
 	}
 </style>
-<title>回帖记录</title>
+<title>发帖记录</title>
 
 
 <link rel="stylesheet" type="text/css" href="<%=path %>/css/bangumi.css" />
@@ -107,8 +139,8 @@
 		<ul id="badgeUserPanel">
 			<li><a href="<%=path%>/kd01UserMain.kdhtml">个人主页</a></li>                    
        		<li><a href="<%=path%>/kc06AnimeColl.kdhtml">作品</a></li>
-       		<li><a href="#">论坛</a></li>
-       		<li><a href="<%=path%>/kb02ShopRecord.kdhtml">商城</a></li>
+       		<li><a href="<%=path%>/ka01PostRecord.kdhtml">论坛</a></li>
+       		<li><a href="#">商城</a></li>
 	    	
 	        <li class="row">
 		        <a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a> | 
@@ -179,8 +211,8 @@
 		<ul class="navTabs">
 			<li><a href="<%=path%>/kd01UserMain.kdhtml">主页</a></li>                    
        		<li><a href="<%=path%>/kc06AnimeColl.kdhtml">作品</a></li>
-       		<li><a href="#" class="focus">论坛</a></li>
-       		<li><a href="<%=path%>/kb02ShopRecord.kdhtml">商城</a></li>
+       		<li><a href="<%=path%>/ka01PostRecord.kdhtml">论坛</a></li>
+       		<li><a href="#" class="focus">商城</a></li>
        		<li><a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">消息</a></li>
 		</ul>
 	</div>
@@ -188,9 +220,8 @@
 	<!-- 子导航栏 -->
 	<div class="navSubTabsWrapper">
 		<ul class="navSubTabs">
-			<li><a href="<%=path%>/ka01PostRecord.kdhtml"><span>发帖记录</span></a></li>
-  	 		<li><a href="<%=path%>/ka02ReplyRecord.kdhtml" class="focus"><span>回帖记录</span></a></li>
-  	 		<li><a href="<%=path%>/ka04PostColl.kdhtml" ><span>贴子收藏</span></a></li>
+			<li><a href="<%=path%>/kb02ShopRecord.kdhtml" class="focus"><span>商品浏览记录</span></a></li>
+  	 		<li><a href="<%=path%>/kb03ShopColl.kdhtml" ><span>商品收藏记录</span></a></li>
 		</ul>
 	</div>
 	<!-- 子导航栏 -->
@@ -205,10 +236,10 @@
 		
 		<div id="columnSubjectBrowserA" class="column">
 		<c:choose>
-		<c:when test="${empty replys}">
+		<c:when test="${empty goods}">
 			<div class="section">
-				<a href="<%=path %>/ka01MainForum.kahtml?id=0" class="rr l">前往论坛</a>
-	            <br><h2 class="title">你还没有回复过贴子...</h2>
+				<a href="<%=path%>/kb01QueryItems.kbhtml" class="rr l">前往商城</a>
+	            <br><h2 class="title">你还没有浏览过商品...</h2>
 	        	<div>
 	        		<ul class="coversSmall">
 	           		</ul>
@@ -221,28 +252,46 @@
         
         	按 时间<a href="#" onclick="onClickSort(1)" class="btnGraySmall" ><span>升序</span></a> · 
         	<a href="#" onclick="onClickSort(2)" class="btnGraySmall" ><span>降序</span></a> 排序
+        	
+        	<a href="#" onclick="onClickDel()" class="btnGraySmall rr" ><span>删除选中</span></a>
+        	<a href="#" onclick="selectAll()" class="btnGraySmall rr" ><span id="select">全选</span></a> ·
 		</div>    
-			<!-- 查询所有回帖记录 -->
-			<c:forEach items="${replys }" var="reply">
+			<!-- 查询所有发帖记录 -->
 			<div id="entry_list">
+			<form id="delForm" action="<%=path%>/kb02DelSelect.kdhtml">
+			<c:forEach items="${goods }" var="good" varStatus="status">
+			
 			<div class="item clearit">
-			<a href="#" onclick="delReply('${reply.kka201}')" class="btnGraySmall rr"><span>删除回复</span></a>
-			<p class="line_limit">回复内容: #${reply.kka201} ${reply.kka202 }</p>
-			<h2 class="title">贴子: 
-				<a href="<%= path %>/ka01PostContent.kahtml?kka101=${reply.kka101}" class="l"> ${reply.kka102 }</a>
+			
+			<a href="<%=path%>/kb01FindItemById.kbhtml?kkb101=${good.kkb101}" class="subjectCover cover ll">       
+	            <span class="image">
+                       <img src="${good.kkb105 }" alt="${good.kkb105 }" class="cover" style="width:100px;height:100px;"/>
+		        </span>
+		        <span class="overlay"></span>
+		    </a>
+			<a href="#" onclick="delShopRecord('${good.kkb201}')" class="btnGraySmall rr"><span>删除记录</span></a>
+			<div style="padding-left: 110px;">
+			<input type="checkbox" name="kkb201List" value="${good.kkb201}">
+			<h2 class="title">商品: 
+			<a href="<%=path%>/kb01FindItemById.kbhtml?kkb101=${good.kkb101}" class="l"> ${good.kkb102 }</a>
 			</h2>
-			<div class="time"><small class="time">回复时间: ${reply.kka203 }</small> </div>
+			<div class="time"><small class="time">浏览时间: ${good.kkb202 }</small> </div>
+			<div class="content"><p class="line_limit">商品介绍: ${good.kkb104 }</p>
+			</div>
+			</div>
 			<div class="tools clearit">
-				<div class="tags">所属板块: 
-					<a href="ka01AnimeForum.kahtml?id=${reply.kka103 }" class="l">${reply.cnkka103 }</a> 
+				<div class="tags">售价: 
+					￥ <span style="font-size:20px;color:#ff8f8f;">${good.kkb103 }</span>
 				</div>
 			</div>
 			</div>
-			</div>
+			
 			</c:forEach>
+			</form>
+			</div>
 			<div id="multipage"></div>
 
-			<!-- 查询所有回帖记录 -->
+			<!-- 查询所有发帖记录 -->
 			
 		</c:otherwise>
 		</c:choose>
@@ -256,7 +305,7 @@
 			<div id="columnSubjectInBrowserB" class="clearit">
 				<div class="SidePanel png_bg">
 					<h2>/ 根据条件检索 </h2>
-					<form id="myform" name="set" method="post" action="<%=path%>/ka02ReplyRecord.kdhtml">
+					<form id="myform" name="set" method="post" action="<%=path%>/kb02ShopRecord.kdhtml">
 						<span class="text">
 							<table align="center" width="98%" cellspacing="0" cellpadding="5" class="settings">
 								<tr>
@@ -269,24 +318,18 @@
 									</td>
 								</tr>
 								<tr>
-									<td valign="top" width="15%">所属板块</td>
+									<td valign="top" width="15%">浏览时间[B]</td>
 									<td valign="top">
-										<e:select value="动画:1,书籍:2,游戏:3" name="plate" style="height:30px;width:100px;" header="true"/>
-									</td>
-								</tr>
-								<tr>
-									<td valign="top" width="15%">回帖时间[B]</td>
-									<td valign="top">
-										<e:date name="bkka203" style="border:1px
+										<e:date name="bkkb202" style="border:1px
 											solid #BEB4A7;padding:1px
 											4px;width:120px;height:20px;padding:3px
 											5px;text-align:left;font-size:14px;line-height:130%"/>
 									</td>
 								</tr>
 								<tr>
-									<td valign="top" width="15%">回帖时间[E]</td>
+									<td valign="top" width="15%">浏览时间[E]</td>
 									<td valign="top">
-										<e:date name="ekka203" style="border:1px
+										<e:date name="ekkb202" style="border:1px
 											solid #BEB4A7;padding:1px
 											4px;width:120px;height:20px;padding:3px
 											5px;text-align:left;font-size:14px;line-height:130%"/>
@@ -334,8 +377,8 @@
 <div id="robot_speech" class="speech" >
 <c:choose>
 	<c:when test="${empty hint }">
-		<strong>『回帖记录』</strong><br />
-		这里记录了你曾经在讨论版的回复。 <br />
+		<strong>『商城浏览记录』</strong><br />
+		这里记录了你在周边商城中浏览过的商品。 <br />
 	</c:when>
 	<c:otherwise>
 		<strong>『${hint }』</strong><br />

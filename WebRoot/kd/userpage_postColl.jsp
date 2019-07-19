@@ -37,7 +37,6 @@
 
 <link rel="stylesheet" type="text/css" href="<%=path %>/css/bangumi.css" />
 <script src="<%=path %>/js/bangumi.js" type="text/javascript"></script>
-<script src="<%=path %>/js/jquery.js" type="text/javascript"></script>
 </head>
 
 <body class="bangumi">
@@ -109,7 +108,7 @@
 			<li><a href="<%=path%>/kd01UserMain.kdhtml">个人主页</a></li>                    
        		<li><a href="<%=path%>/kc06AnimeColl.kdhtml">作品</a></li>
        		<li><a href="#">论坛</a></li>
-       		<li><a href="#">商城</a></li>
+       		<li><a href="<%=path%>/kb02ShopRecord.kdhtml">商城</a></li>
 	    	
 	        <li class="row">
 		        <a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a> | 
@@ -181,7 +180,7 @@
 			<li><a href="<%=path%>/kd01UserMain.kdhtml">主页</a></li>                    
        		<li><a href="<%=path%>/kc06AnimeColl.kdhtml">作品</a></li>
        		<li><a href="#" class="focus">论坛</a></li>
-       		<li><a href="#">商城</a></li>
+       		<li><a href="<%=path%>/kb02ShopRecord.kdhtml">商城</a></li>
        		<li><a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">消息</a></li>
 		</ul>
 	</div>
@@ -208,7 +207,7 @@
 		<c:choose>
 		<c:when test="${empty postColls}">
 			<div class="section">
-				<a href="<%=path%>/kc02ShowRank.kchtml" class="rr l">前往收藏</a>
+				<a href="<%=path %>/ka01MainForum.kahtml?id=0" class="rr l">前往论坛</a>
 	            <br><h2 class="title">你还没有收藏过贴子...</h2>
 	        	<div>
 	        		<ul class="coversSmall">

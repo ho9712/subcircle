@@ -105,7 +105,7 @@
         <!-- 用户或管理员入口 -->
 		<ul id="badgeUserPanel">
 	    		<li><a href="<%=path%>/kd01AdminMain.kdhtml">个人主页</a></li>
-				<li><a href="<%= path %>/kd01QueryAdmin.kdhtml">商城管理员</a></li>
+				<li><a href="#">商城管理员</a></li>
 	    		<li class="row">
 	    		<a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a> | 
 		        <a href="<%=path%>/kd/adminpage_info.jsp">设置</a> | 
@@ -180,7 +180,7 @@
 		<ul class="navTabs">
         <!-- 用户或管理员入口 -->
     		<li><a href="<%=path%>/kd01AdminMain.kdhtml">主页</a></li>
-			<li><a href="<%= path %>/kd/shopadminpage_turn.jsp" class="focus">商城管理员</a></li>
+			<li><a href="#" class="focus">商城管理员</a></li>
     	<!-- 用户或管理员入口 -->
     	<li><a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">消息</a></li>
 		</ul>
