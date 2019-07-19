@@ -115,7 +115,7 @@
     <div class="subjectNav">
 <ul class="navTabs clearit">
         <li><a href="${ins.kkc303}" class="focus">概览</a></li>       
-        <li><a href="kc02ShowComments.kchtml?kkc101=${param.kkc101 }" >评论</a></li>
+        <li><a href="kc03ShowComments.kchtml?kkc101=${param.kkc101 }" >评论</a></li>
         <li><a href="" >讨论版</a></li>
         </ul>
 	
@@ -150,14 +150,14 @@
     <div id="columnSubjectHomeB" class="column">
    <div id="columnSubjectInHomeB" class="clearit">
             <div id="subject_detail" class="ll"> 
-    <div id="subject_summary" class="subject_summary" property="v:summary">${ins.kkc217}</div>
+    <div id="subject_summary" class="subject_summary" property="v:summary">${ins.kkc314}</div>
     			<small class="gery clearit"><a href="#;" id="show_summary"  class="rr l">more...</a></small>
     			</div>
     			         <div id="panelInterestWrapper">
            <div class="SidePanel png_bg">
            
            
-           ${b }
+        
 <h2>收藏盒</h2>
         <div id="SecTab">
         
@@ -167,7 +167,7 @@
     <c:when test="${b }">
     <span class="interest_now">已收藏</span> 
             
-        <a href="#TB_inline?height=350&amp;width=500&amp;inlineId=panel" id="modifyCollect" title="修改收藏" class="thickbox l">修改</a>     <a href="kc02DelComments.kchtml?kkc101=${param.kkc101 }&kkd101=${sessionScope.user.kkd101 }"  class="l">删除</a><br />
+        <a href="#TB_inline?height=350&amp;width=500&amp;inlineId=panel" id="modifyCollect" title="修改收藏" class="thickbox l">修改</a>     <a href="kc03DelComments.kchtml?kkc101=${param.kkc101 }&kkd101=${sessionScope.user.kkd101 }"  class="l">删除</a><br />
     
     
     </c:when>

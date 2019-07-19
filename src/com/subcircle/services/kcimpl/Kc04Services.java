@@ -2,6 +2,8 @@ package com.subcircle.services.kcimpl;
 
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.subcircle.services.support.JdbcServicesSupport;
 
@@ -11,11 +13,22 @@ public  class Kc04Services extends JdbcServicesSupport {
 	{
 		
 		
+		String page = new String("1");
+		if(this.get("page") != null)
+		{
+		page = this.get("page").toString();
+		}
+		int temp = Integer.parseInt(page);
+		temp = (temp-1)*12;
+		String curPage = String.valueOf(temp);
+		
 		StringBuilder sql = new StringBuilder()
 				.append("SELECT k.kkc101,k.kkc402,k.kkc403,k.kkc404,k.kkc405,k.kkc406,k.kkc407,k.kkc408 ")
 				.append("from kc04 k ")
 				.append("ORDER BY k.kkc408 ")
-				.append("LIMIT 12");
+				.append("LIMIT ")
+				.append(curPage)
+				.append(",12");
 		Object args[] = {};
 		return this.queryForList(sql.toString(), args);
 		
@@ -197,5 +210,53 @@ public List<Map<String,String>> queryAnimeCommentAll () throws Exception
 	return this.queryForList(sql.toString(), args);
 }
 
+
+public boolean collectionExsits()throws Exception
+{
+	
+	
+	if (this.get("kkd101")!= null)
+			
+			{
+	
+	String kkc101 = this.get("kkc101").toString();
+	String kkd101 = this.get("kkd101").toString();
+	StringBuilder sql = new StringBuilder()
+			.append("SELECT COUNT(*) number from ")
+			.append("kc06 a ")
+			.append("where ")
+			.append("a.kkd101 =")
+			.append(kkd101)
+			.append(" and ")
+			.append("a.kkc101 =")
+			.append(kkc101);
+	Object args[] = {};
+	List<Map<String,String>> Temp = this.queryForList(sql.toString(), args);
+	String number = Temp.get(0).toString();    	
+	String regEx="[^0-9]";  
+	Pattern p = Pattern.compile(regEx);  
+	Matcher m = p.matcher(number);
+	number = m.replaceAll("").trim();
+	if(Integer.parseInt(number)>0)
+	{
+		return true;
+	}
+	
+	else{
+	
+	return false;
+	}
+	
+			}
+	
+	else
+		
+	{
+		
+		return false;
+	}
+	
+	
+}
 	
 }

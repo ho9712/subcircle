@@ -315,6 +315,10 @@ public class Kc02Services extends JdbcServicesSupport {
     
     public boolean collectionExsits()throws Exception
     {
+    	
+    	if(this.get("kkd101")!=null)
+    	{
+    	
     	String kkc101 = this.get("kkc101").toString();
     	String kkd101 = this.get("kkd101").toString();
     	StringBuilder sql = new StringBuilder()
@@ -342,6 +346,13 @@ public class Kc02Services extends JdbcServicesSupport {
     	
     	return false;
     	}
+    	
+    	}
+    	else
+    	{
+    		return false;
+    	}
+    	
     }
     
 }

@@ -217,6 +217,7 @@ public abstract class KcAbstractController implements ControllerInterface
 	
 	protected final void ShowAnimeDetail() throws Exception
 	{
+		this.dto.put("kkd101", this.session.getAttribute("kkd101"));
 		Map<String,String> ins = this.services.findById();
 		List<Map<String, String>> rows=this.services.queryAnimeComment();
 		Boolean b = this.services.collectionExsits();
@@ -242,6 +243,8 @@ public abstract class KcAbstractController implements ControllerInterface
 	 */
 	protected final void ShowBookDetail() throws Exception
 	{
+		
+		this.dto.put("kkd101", this.session.getAttribute("kkd101"));
 		Map<String,String> ins = this.services.findById();
 		List<Map<String, String>> rows=this.services.queryAnimeComment();
 		Boolean b = this.services.collectionExsits();
@@ -265,6 +268,8 @@ public abstract class KcAbstractController implements ControllerInterface
 	 */
 	protected final void ShowGameDetail() throws Exception
 	{
+		
+		this.dto.put("kkd101", this.session.getAttribute("kkd101"));
 		Map<String,String> ins = this.services.findById();
 		List<Map<String, String>> rows=this.services.queryAnimeComment();
 		Boolean b = this.services.collectionExsits();
@@ -272,7 +277,7 @@ public abstract class KcAbstractController implements ControllerInterface
 		{
 			this.saveAttribute("ins", ins);
 			this.saveAttribute("rows",rows) ;
-			this.saveAttribute("b", b);
+			this.saveAttribute("b", b);	
 		}
 		else
 		{

@@ -14,11 +14,25 @@ public class Kc03Services extends JdbcServicesSupport {
 	{
 		
 		
+		
+		String page = new String("1");
+		if(this.get("page") != null)
+		{
+		page = this.get("page").toString();
+		}
+		
+		
+		int temp = Integer.parseInt(page);
+		temp = (temp-1)*12;
+		String curPage = String.valueOf(temp);
+		
 		StringBuilder sql = new StringBuilder()
 				.append("SELECT k.kkc101,k.kkc302,k.kkc303,k.kkc304,k.kkc305,k.kkc306,k.kkc307,k.kkc308 ")
 				.append("from kc03 k ")
 				.append("ORDER BY k.kkc308 ")
-				.append("LIMIT 12");
+				.append("LIMIT ")
+				.append(curPage)
+				.append(",12");
 		Object args[] = {};
 		return this.queryForList(sql.toString(), args);
 		
@@ -214,6 +228,11 @@ public List<Map<String,String>> queryAnimeCommentAll () throws Exception
 
 public boolean collectionExsits()throws Exception
 {
+	
+	
+	if(this.get("kkd101")!=null)
+		
+	{
 	String kkc101 = this.get("kkc101").toString();
 	String kkd101 = this.get("kkd101").toString();
 	StringBuilder sql = new StringBuilder()
@@ -241,6 +260,16 @@ public boolean collectionExsits()throws Exception
 	
 	return false;
 	}
+	
+	
+	}
+	else
+		
+	{
+		
+		return false;
+	}
+	
 }
 
 

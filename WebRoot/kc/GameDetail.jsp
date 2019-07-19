@@ -114,8 +114,8 @@
         
     <div class="subjectNav">
 <ul class="navTabs clearit">
-        <li><a href="${ins.kkc403}" class="focus">概览</a></li>       
-        <li><a href="" >评论</a></li>
+        <li><a href="" class="focus">概览</a></li>       
+        <li><a href="kc04ShowComments.kchtml?kkc101=${param.kkc101 }" >评论</a></li>
         <li><a href="" >讨论版</a></li>
         </ul>
 	
@@ -153,26 +153,60 @@
            <div class="SidePanel png_bg">
 <h2>收藏盒</h2>
         <div id="SecTab">
-    <ul class="secTab tiny">
-        <li><a href="#TB_inline?height=350&amp;width=500&amp;inlineId=panel" title="加入收藏"  onclick="GenInterestBox('wish')" class="thickbox"><span>想看</span></a></li>
-        <li><a href="#TB_inline?height=350&amp;width=500&amp;inlineId=panel" title="加入收藏"  onclick="GenInterestBox('collect')" class="thickbox"><span>看过</span></a></li>
-        <li><a href="#TB_inline?height=350&amp;width=500&amp;inlineId=panel" title="加入收藏"  onclick="GenInterestBox('do')" class="thickbox"><span>在看</span></a></li>
-        <li><a href="#TB_inline?height=350&amp;width=500&amp;inlineId=panel" title="加入收藏"  onclick="GenInterestBox('on_hold')" class="thickbox"><span>搁置</span></a></li>
-        <li><a href="#TB_inline?height=350&amp;width=500&amp;inlineId=panel" title="加入收藏"  onclick="GenInterestBox('dropped')" class="thickbox"><span>抛弃</span></a></li>
-        </ul>
+        
+        <c:choose>
+    <c:when test="${sessionScope.user.kkd101!=null }">
+    <c:choose>
+    <c:when test="${b }">
+    <span class="interest_now">已收藏</span> 
+            
+        <a href="#TB_inline?height=350&amp;width=500&amp;inlineId=panel" id="modifyCollect" title="修改收藏" class="thickbox l">修改</a>     <a href="kc04DelComments.kchtml?kkc101=${param.kkc101 }&kkd101=${sessionScope.user.kkd101 }"  class="l">删除</a><br />
+    
+    
+    </c:when>
+    <c:otherwise>
+     <ul class="secTab tiny">
+        
+        
+        <!--<li><a href="#TB_inline?height=350&amp;width=500&amp;inlineId=panel" title="加入收藏"  onclick="GenInterestBox('wish')" class="thickbox"><span>收藏</span></a></li>
+          -->
+        <li><a href="#TB_inline?height=350&amp;width=500&amp;inlineId=panel" title="加入收藏"  onclick="GenInterestBox('collect')" class="thickbox"><span>收藏并评分</span></a></li>
+                </ul>
+    </c:otherwise>
+    </c:choose>
+   
+        </c:when>
+        </c:choose>
     </div>
     <div class="clear"></div>
     <hr class="board" />
 
+
+<!-- 评分 -->
+
 <div id="panel" style="display:none;"><div class="collectBox clearit">
-    <form id="collectBoxForm" name="collectBoxForm" method="post" action="/subject/253/interest/update?gh=2dae75e4">
+
+	<c:choose>
+	<c:when test="${b }">
+	<form id="collectBoxForm" name="collectBoxForm" method="post" action="kc04UpdateComment.kchtml">
+	</c:when>
+	<c:otherwise>
+	<form id="collectBoxForm" name="collectBoxForm" method="post" action="kc04AddComment.kchtml">
+	</c:otherwise>
+	</c:choose>
+
+    
+    <input  type="hidden" name="kkc101" value="${param.kkc101 }"/>
+    <input  type="hidden" name="kkd101" value="${sessionScope.user.kkd101 }"/>
     <input type="hidden" name="referer" value="subject">
     <div class="collectType cell">
-        <label><input value="1" id="wish" name="interest" onclick="GenInterestBox('wish')"  type="radio"> 想看</label>&nbsp;&nbsp;
-        <label><input value="2" id="collect" name="interest" onclick="GenInterestBox('collect')"  type="radio"> 看过</label>&nbsp;&nbsp;
-        <label><input value="3" id="do" name="interest" onclick="GenInterestBox('do')"  type="radio"> 在看</label>&nbsp;&nbsp;
-        <label><input value="4" id="on_hold" name="interest" onclick="GenInterestBox('on_hold')"  type="radio"> 搁置</label>&nbsp;&nbsp;
-        <label><input value="5" id="dropped" name="interest" onclick="GenInterestBox('dropped')"  type="radio"> 抛弃</label>&nbsp;&nbsp;
+    
+    <!-- <label><input value="1" id="wish" name="interest" onclick="GenInterestBox('wish')"  type="radio"> 收藏</label>&nbsp;&nbsp;
+    
+    <label><input value="2" id="collect" name="interest" onclick="GenInterestBox('collect')"  type="radio"> 收藏并评分</label>&nbsp;&nbsp;
+     -->
+        
+                
         </div>
 
 <div id="interest_rate" class="cell" style="">
@@ -180,57 +214,26 @@
 <span class="tip">我的评价:</span> <span class="alarm" id="rating-tip"></span>
         <div class="clearit">
             <input style="display: none;" id="rating" name="rating" type="radio" class="star rating" value="1" title="不忍直视 1 "  />
-                <input style="display: none;" id="rating" name="rating" type="radio" class="star rating" value="2" title="很差 2 "  />
-                <input style="display: none;" id="rating" name="rating" type="radio" class="star rating" value="3" title="差 3 "  />
-                <input style="display: none;" id="rating" name="rating" type="radio" class="star rating" value="4" title="较差 4 "  />
-                <input style="display: none;" id="rating" name="rating" type="radio" class="star rating" value="5" title="不过不失 5 "  />
-                <input style="display: none;" id="rating" name="rating" type="radio" class="star rating" value="6" title="还行 6 "  />
-                <input style="display: none;" id="rating" name="rating" type="radio" class="star rating" value="7" title="推荐 7 "  />
-                <input style="display: none;" id="rating" name="rating" type="radio" class="star rating" value="8" title="力荐 8 "  />
-                <input style="display: none;" id="rating" name="rating" type="radio" class="star rating" value="9" title="神作 9 "  />
-                <input style="display: none;" id="rating" name="rating" type="radio" class="star rating" value="10" title="超神作 10 (请谨慎评价)"  />
+                <input style="display: none;" id="rating" name="kkc702" type="radio" class="star rating" value="2" title="很差 2 "  />
+                <input style="display: none;" id="rating" name="kkc702" type="radio" class="star rating" value="3" title="差 3 "  />
+                <input style="display: none;" id="rating" name="kkc702" type="radio" class="star rating" value="4" title="较差 4 "  />
+                <input style="display: none;" id="rating" name="kkc702" type="radio" class="star rating" value="5" title="不过不失 5 "  />
+                <input style="display: none;" id="rating" name="kkc702" type="radio" class="star rating" value="6" title="还行 6 "  />
+                <input style="display: none;" id="rating" name="kkc702" type="radio" class="star rating" value="7" title="推荐 7 "  />
+                <input style="display: none;" id="rating" name="kkc702" type="radio" class="star rating" value="8" title="力荐 8 "  />
+                <input style="display: none;" id="rating" name="kkc702" type="radio" class="star rating" value="9" title="神作 9 "  />
+                <input style="display: none;" id="rating" name="kkc702" type="radio" class="star rating" value="10" title="超神作 10 (请谨慎评价)"  />
                 </div>
 </div>
-
-<div class="cell">
-<p class="tip"><label for="tags">标签 (使用半角空格或逗号隔开，至多10个):</label></p>
-<input id="tags" class="inputtext" type="text" size="30" name="tags" value="" />
-    <div class="tagList clearit">
-        <span class="tip_j ll">常用标签：</span>
-        <div class="inner">
-                
-                        <a href="#;" class="btnGray" onclick="chiiLib.subject.addTag('菅野洋子')">菅野洋子</a>
-                                    <a href="#;" class="btnGray" onclick="chiiLib.subject.addTag('渡边信一郎')">渡边信一郎</a>
-                                    <a href="#;" class="btnGray" onclick="chiiLib.subject.addTag('星际牛仔')">星际牛仔</a>
-                                    <a href="#;" class="btnGray" onclick="chiiLib.subject.addTag('SUNRISE')">SUNRISE</a>
-                                    <a href="#;" class="btnGray" onclick="chiiLib.subject.addTag('经典')">经典</a>
-                                    <a href="#;" class="btnGray" onclick="chiiLib.subject.addTag('科幻')">科幻</a>
-                                    <a href="#;" class="btnGray" onclick="chiiLib.subject.addTag('神配乐')">神配乐</a>
-                                    <a href="#;" class="btnGray" onclick="chiiLib.subject.addTag('神作')">神作</a>
-                                    <a href="#;" class="btnGray" onclick="chiiLib.subject.addTag('CowboyBebop')">CowboyBebop</a>
-                                    <a href="#;" class="btnGray" onclick="chiiLib.subject.addTag('TV')">TV</a>
-                                    <a href="#;" class="btnGray" onclick="chiiLib.subject.addTag('cowboy')">cowboy</a>
-                                    <a href="#;" class="btnGray" onclick="chiiLib.subject.addTag('1998')">1998</a>
-                                    <a href="#;" class="btnGray" onclick="chiiLib.subject.addTag('林原惠')">林原惠</a>
-                                    <a href="#;" class="btnGray" onclick="chiiLib.subject.addTag('原创')">原创</a>
-                                    <a href="#;" class="btnGray" onclick="chiiLib.subject.addTag('山寺宏一')">山寺宏一</a>
-                                                                                                                                                                                                                                                                                                                                    </div>
-    </div>    
-    
-    <div class="tagList clearit">
-    </div>          
-    </div> 
     <div class="cell">
     <p class="tip"><label for="comment">吐槽 (简评，最多200字):</label></p>
-    <textarea name="comment" id="comment" cols="32" rows="3" class="quick"></textarea>
+    <textarea name="kkc703" id="comment" cols="32" rows="3" class="quick"></textarea>
     </div>
     <div class="clearit">
     <div id="submitBtnO" class="ll">
         <input class="inputBtn" type="submit" name="update" value="保存" />
     </div>
-    <div class="ll">
-        &nbsp;&nbsp;<label for="privacy"><input id="privacy" type="checkbox" value="1" name="privacy"  /> 仅自己可见</label>
-    </div>
+   
     </div>
 
     </form>
@@ -259,7 +262,9 @@
 
 <div id="ChartWarpper" align="center">
     <div class="chart_desc" style=""><small class="grey"><span property="v:votes">${ins.kkc407}</span> votes</small></div>
-    <ul class="horizontalChart">
+    
+    
+   <!-- <ul class="horizontalChart">
         <li><a href="javascript:void(0)" title="2823人评分"><span class="label">10</span><span class="count" style="height:47.73%">(2823)</span></a></li>
         <li><a href="javascript:void(0)" title="1880人评分"><span class="label">9</span><span class="count" style="height:31.78%">(1880)</span></a></li>
         <li><a href="javascript:void(0)" title="814人评分"><span class="label">8</span><span class="count" style="height:13.76%">(814)</span></a></li>
@@ -270,7 +275,8 @@
         <li><a href="javascript:void(0)" title="4人评分"><span class="label">3</span><span class="count" style="height:0.07%">(4)</span></a></li>
         <li><a href="javascript:void(0)" title="4人评分"><span class="label">2</span><span class="count" style="height:0.07%">(4)</span></a></li>
         <li><a href="javascript:void(0)" title="26人评分"><span class="label">1</span><span class="count" style="height:0.44%">(26)</span></a></li>
-        </ul>
+        </ul>-->
+    
     </div>
 </div>
 </div>
@@ -330,78 +336,72 @@
 </div>
 
 <div class="subject_section">
-<h2 class="subtitle">吐槽箱</h2><div id="comment_box"><div class="item clearit">
-<a href="/user/465109" class="avatar"><span class="avatarNeue avatarSize32 ll" style="background-image:url('//lain.bgm.tv/pic/user/s/000/46/51/465109.jpg?r=1554029003')"></span></a>
+<h2 class="subtitle">吐槽箱</h2><div id="comment_box">
+
+
+
+
+<c:choose>
+			<c:when test="${rows!=null }">
+			<c:forEach items="${rows }" var="comments" varStatus="vs">
+			<c:choose>
+			<c:when test="${(vs.count)%2 ==1 }">
+
+
+
+
+<div class="item clearit">
+<a href="" class="avatar">
+<span class="avatarNeue avatarSize32 ll" style="background-image:url('${comments.kkd108 }');background-size: 100% auto; "></span>
+</a>
 <div class="text_main_even">
 <div class="text">
-            <a href="/user/465109" class="l">七里泷义</a> <small class="grey">@ 2h 1m  ago</small> <span class="sstars10 starsinfo"></span>         <p>孤独浪漫，关于旅途、关于过去、关于自我。广袤的宇宙，无数个人，无数颗星星，何处是归宿。</p>
+
+<!-- 注意此处的星星样式以及评分
+sstars1-10即评分 根据数据读取即可
+链接里是用户个人中心的链接
+图片复用个人中心的头像
+用户ID
+ -->
+ 
+ 
+            <a href="" class="l">${comments.kkd105 }</a> <small class="grey">${comments.kkc704 }</small> <span class="sstars${comments.kkc702 } starsinfo"></span>         <p>${comments.kkc703 }</p>
 </div>
 </div>
-</div><div class="item clearit">
-<a href="/user/483816" class="avatar"><span class="avatarNeue avatarSize32 rr" style="background-image:url('//lain.bgm.tv/pic/user/s/icon.jpg')"></span></a>
+</div>
+
+
+</c:when>
+<c:otherwise>
+<div class="item clearit">
+<a href="" class="avatar"><span class="avatarNeue avatarSize32 rr" style="background-image:url('${comments.kkd108 }');background-size: 100% auto;"></span></a>
 <div class="text_main_odd">
 <div class="text">
-            <a href="/user/483816" class="l">Faner</a> <small class="grey">@ 2h 43m  ago</small> <span class="sstars10 starsinfo"></span>           <p>给我一个不给十分的理由</p>
+
+<!-- 注意此处的星星样式以及评分
+sstars1-10即评分 根据数据读取即可
+链接里是用户个人中心的链接
+图片复用个人中心的头像
+用户ID
+ -->
+ 
+ 
+            <a href="" class="l">${comments.kkd105 }</a> <small class="grey">${comments.kkc704 }</small> <span class="sstars${comments.kkc702 } starsinfo"></span>         <p>${comments.kkc703 }</p>
 </div>
 </div>
-</div><div class="item clearit">
-<a href="/user/coi" class="avatar"><span class="avatarNeue avatarSize32 ll" style="background-image:url('//lain.bgm.tv/pic/user/s/000/42/06/420632.jpg?r=1559643484')"></span></a>
-<div class="text_main_even">
-<div class="text">
-            <a href="/user/coi" class="l">泪果</a> <small class="grey">@ 4h 12m  ago</small> <span class="sstars8 starsinfo"></span>          <p>最强单元剧？观感与吸血姬美夕内在上类似</p>
 </div>
+</c:otherwise>
+</c:choose>
+</c:forEach>
+</c:when>
+</c:choose>
+
+
+
+
+
+</div><a href="kc04ShowComments.kchtml?kkc101=${param.kkc101 }" class="more">更多吐槽 »</a>
 </div>
-</div><div class="item clearit">
-<a href="/user/478370" class="avatar"><span class="avatarNeue avatarSize32 rr" style="background-image:url('//lain.bgm.tv/pic/user/s/000/47/83/478370.jpg?r=1560146337')"></span></a>
-<div class="text_main_odd">
-<div class="text">
-            <a href="/user/478370" class="l">花间一壶酒</a> <small class="grey">@ 6h 47m  ago</small> <span class="sstars10 starsinfo"></span>           <p>属于男人的自由与浪漫~~与SC相比，明明有着欢乐的日常，细细品味却总是感受到伤感与无奈......</p>
-</div>
-</div>
-</div><div class="item clearit">
-<a href="/user/233875" class="avatar"><span class="avatarNeue avatarSize32 ll" style="background-image:url('//lain.bgm.tv/pic/user/s/000/23/38/233875.jpg?r=1538667704')"></span></a>
-<div class="text_main_even">
-<div class="text">
-            <a href="/user/233875" class="l">是这样吗</a> <small class="grey">@ 1d  ago</small>             <p>补档</p>
-</div>
-</div>
-</div><div class="item clearit">
-<a href="/user/272522" class="avatar"><span class="avatarNeue avatarSize32 rr" style="background-image:url('//lain.bgm.tv/pic/user/s/icon.jpg')"></span></a>
-<div class="text_main_odd">
-<div class="text">
-            <a href="/user/272522" class="l">NOTmax</a> <small class="grey">@ 1d 6h ago</small> <span class="sstars10 starsinfo"></span>            <p>如果我这辈子只能看一部番剧 我希望是这部</p>
-</div>
-</div>
-</div><div class="item clearit">
-<a href="/user/468754" class="avatar"><span class="avatarNeue avatarSize32 ll" style="background-image:url('//lain.bgm.tv/pic/user/s/icon.jpg')"></span></a>
-<div class="text_main_even">
-<div class="text">
-            <a href="/user/468754" class="l">格林与高斯</a> <small class="grey">@ 2019-7-7 14:03</small> <span class="sstars10 starsinfo"></span>            <p>不说了，混沌武士见</p>
-</div>
-</div>
-</div><div class="item clearit">
-<a href="/user/476296" class="avatar"><span class="avatarNeue avatarSize32 rr" style="background-image:url('//lain.bgm.tv/pic/user/s/000/47/62/476296.jpg?r=1562421812')"></span></a>
-<div class="text_main_odd">
-<div class="text">
-            <a href="/user/476296" class="l">思念是一把刀</a> <small class="grey">@ 2019-7-7 10:15</small> <span class="sstars10 starsinfo"></span>           <p>狂野西部与黑色硬汉两大好莱坞黄金时代类型片在荒蛮太空背景下的另一种重现，像是更轻松版本的雷蒙德·钱德勒；每个人的性格都那么饱满，尤其是Spike，身上集合了太多人的影子，而那chain-smoker的习惯和冷漠中暗藏热烈的特质真是像极了鲍嘉；很感兴趣的是乔斯·韦登的《萤火虫》是不是从这里偷师良多</p>
-</div>
-</div>
-</div><div class="item clearit">
-<a href="/user/robot17" class="avatar"><span class="avatarNeue avatarSize32 ll" style="background-image:url('//lain.bgm.tv/pic/user/s/000/40/62/406222.jpg?r=1520748233')"></span></a>
-<div class="text_main_even">
-<div class="text">
-            <a href="/user/robot17" class="l">嘉神川诺艾尔</a> <small class="grey">@ 2019-7-7 08:50</small> <span class="sstars10 starsinfo"></span>          <p>神作不解释</p>
-</div>
-</div>
-</div><div class="item clearit">
-<a href="/user/483071" class="avatar"><span class="avatarNeue avatarSize32 rr" style="background-image:url('//lain.bgm.tv/pic/user/s/icon.jpg')"></span></a>
-<div class="text_main_odd">
-<div class="text">
-            <a href="/user/483071" class="l">缺乏想象力</a> <small class="grey">@ 2019-7-6 20:24</small> <span class="sstars10 starsinfo"></span>            <p>完美</p>
-</div>
-</div>
-</div></div><a href="/subject/253/comments" class="more">更多吐槽 »</a>
-</div>  
 </div>      
 </div>
 </div>

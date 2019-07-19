@@ -73,6 +73,11 @@
 
 <div class="container-fluid" >
 	
+	
+	
+	
+	
+	
 	<div class="row-fluid">
 		<div class="span12">
 			<ul id="browserItemList" class="browserFull">
@@ -271,4 +276,6 @@
 <script type="text/javascript" src="<%=path %>/js/bootstrap.min.js"></script>
 	
 </body>
+
+
 </html>

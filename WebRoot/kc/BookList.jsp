@@ -117,7 +117,7 @@
 			<c:choose>
 			<c:when test="${(vs.count)%2 ==1 }">
 			<li id="${ins.kkc101}" class="item odd clearit">
-    <a href="Kc03ShowDetail.kchtml?kkc101=${ins.kkc101}&kkd101=${empty sessionScope.user.kkd101?'':sessionScope.user.kkd101 }" class="subjectCover cover ll">       
+    <a href="Kc03ShowDetail.kchtml?kkc101=${ins.kkc101}" class="subjectCover cover ll">       
             <span class="image">
                         <img src="${ins.kkc304 }" class="cover" />
                         
@@ -127,7 +127,7 @@
     </a>
     <div class="inner">
                                 <h3>
-                    <a href="Kc03ShowDetail.kchtml?kkc101=${ins.kkc101}&kkd101=${empty sessionScope.user.kkd101?'':sessionScope.user.kkd101 }" class="l">${ins.kkc302 }</a> 
+                    <a href="Kc03ShowDetail.kchtml?kkc101=${ins.kkc101}" class="l">${ins.kkc302 }</a> 
                 				</h3>
                 
         <span class="rank"><small>Rank ${ins.kkc308 }</small></span>        
@@ -141,7 +141,7 @@
 </c:when>
 <c:otherwise>
 <li id="${ins.kkc101}" class="item even clearit">
-    <a href="Kc03ShowDetail.kchtml?kkc101=${ins.kkc101}&kkd101=${empty sessionScope.user.kkd101?'':sessionScope.user.kkd101 }" class="subjectCover cover ll">       
+    <a href="Kc03ShowDetail.kchtml?kkc101=${ins.kkc101}" class="subjectCover cover ll">       
             <span class="image">
                         <img src="${ins.kkc304 }" class="cover" />
                         
@@ -151,7 +151,7 @@
     </a>
     <div class="inner">
                                 <h3>
-                    <a href="Kc03ShowDetail.kchtml?kkc101=${ins.kkc101}&kkd101=${empty sessionScope.user.kkd101?'':sessionScope.user.kkd101 }" class="l">${ins.kkc302 }</a> 
+                    <a href="Kc03ShowDetail.kchtml?kkc101=${ins.kkc101}" class="l">${ins.kkc302 }</a> 
                 				</h3>
                 
         <span class="rank"><small>Rank ${ins.kkc308 }</small></span>        
@@ -168,6 +168,29 @@
 </c:when>
 </c:choose>								
 			</ul>
+			
+			
+						 <div class="clearit"><div class="page_inner">
+			 
+			 <a href="kc03ShowRank.kchtml?page=1" class="p">|&lsaquo;</a>
+			 <c:if test="${param.page >1}"><a href="kc03ShowRank.kchtml?page=${param.page-1 }" class="p">&lsaquo;&lsaquo;</a></c:if>
+			 <strong class="p_cur">${empty param.page?'1':param.page}</strong>
+			 <a href="kc03ShowRank.kchtml?page=${empty param.page?'2':param.page+1}" class="p">${empty param.page?'2':param.page+1}</a>
+			 <a href="kc03ShowRank.kchtml?page=${empty param.page?'3':param.page+2}" class="p">${empty param.page?'3':param.page+2}</a>
+			 <a href="kc03ShowRank.kchtml?page=${empty param.page?'4':param.page+3}" class="p">${empty param.page?'4':param.page+3}</a>
+			 <a href="kc03ShowRank.kchtml?page=${empty param.page?'5':param.page+4}" class="p">${empty param.page?'5':param.page+4}</a>
+			 <a href="kc03ShowRank.kchtml?page=${empty param.page?'6':param.page+5}" class="p">${empty param.page?'6':param.page+5}</a>
+			 <a href="kc03ShowRank.kchtml?page=${empty param.page?'7':param.page+6}" class="p">${empty param.page?'7':param.page+6}</a>
+			 <a href="kc03ShowRank.kchtml?page=${empty param.page?'8':param.page+7}" class="p">${empty param.page?'8':param.page+7}</a>
+			 <a href="kc03ShowRank.kchtml?page=${empty param.page?'9':param.page+8}" class="p">${empty param.page?'9':param.page+8}</a>
+			 <a href="kc03ShowRank.kchtml?page=${empty param.page?'10':param.page+9}" class="p">${empty param.page?'10':param.page+9}</a>
+			 <c:if test="${param.page <640 }"><a href="kc03ShowRank.kchtml?page=${param.page+1 }" class="p">&rsaquo;&rsaquo;</a></c:if>			 
+			 <a href="kc03ShowRank.kchtml?page=640" class="p">&rsaquo;|</a>
+			 <a class="p_pages" style="padding: 0px">
+			 <input class="inputtext" style="width:30px;" type="text" name="custompage" onKeyDown="if(event.keyCode==13) {window.location='kc03ShowRank.kchtml?page='+this.value + ''; return false;}"></a>
+			 <span class="p_edge">(&nbsp;${empty param.page?'1':param.page}&nbsp;/&nbsp;640&nbsp;)</span>
+			 </div>
+			 </div>
 		</div>
 	</div>
 	</div>
