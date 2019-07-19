@@ -1,12 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%String path = request.getContextPath();%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path;
+%>
 <!DOCTYPE html>
 <html>
 <head>
 
 <title>Market</title>
-<link href="<%=path %>/css/bootstrap.css" rel="stylesheet">
+<link href="<%=basePath %>/css/bootstrap.css" rel="stylesheet">
 <style type="text/css">
 #bom {
 	position: fixed;
@@ -170,15 +174,15 @@
 	
 	function marketCenter()
 	{
-		window.location.href="<%=path%>/kb01QueryItems.kbhtml";
+		window.location.href="<%=path%>/kb01QueryItems.kbhtml?page=1";
 	}
 	
 	function goLogin()
 	{
-		window.location.href="<%=path%>/kd/login.jsp";	
+		window.location.href="<%=path%>/kd/nologin.jsp";	
 	}
 </script>
-<%-- 	<script src="<%=path %>/js/jquery.js"></script>
-	<script src="<%=path %>/js/bootstrap.min.js"></script> --%>
+<%-- 	<script src="<%=basePath %>/js/jquery.js"></script>
+	<script src="<%=basePath %>/js/bootstrap.min.js"></script> --%>
 </body>
 </html>

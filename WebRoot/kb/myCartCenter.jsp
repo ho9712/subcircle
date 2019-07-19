@@ -1,11 +1,15 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%String path = request.getContextPath();%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path;
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <title>我的购物车</title>
-<link href="<%=path %>/css/bootstrap.css" rel="stylesheet">
+<link href="<%=basePath %>/css/bootstrap.css" rel="stylesheet">
 <jsp:include page="index.jsp" flush="true" /> <!-- 引入导航栏 -->
 <style type="text/css">
 </style>
@@ -18,6 +22,9 @@
 			<!-- row -->
 			<div class="span10 offset2">
 				<!-- col -->
+				
+						
+				
 				<form action = "<%=request.getContextPath()%>/kb05CreateOrder.kbhtml" method="post">
 					<table class="table table-hover">
 						<thead>
@@ -33,6 +40,21 @@
 								<th style="vertical-align: middle;">操作</th>
 							</tr>
 						</thead>
+						<c:choose>
+							<c:when test="${rows == null }">
+							<tbody>
+							<tr width="100%" class="success">
+								<td colspan="6">
+									<div align="center">
+									<font color="darkgray" size="5">
+		                                   		 购物车空空如也~~
+		                             <hr/>去淘一些自己喜欢的商品吧</font>
+									</div>
+								</td>
+							</tr>
+							</tbody>
+							</c:when>
+						<c:otherwise>
 						<tbody>
 							<c:forEach items="${rows }" var="ins" varStatus="vs">
 								<tr name = "cartRecord">		<!-- 一条购物车记录 -->
@@ -88,6 +110,8 @@
 								</td>
 							</tr>
 						</tbody>
+						</c:otherwise>
+						</c:choose>
 					</table>
 					
 					
@@ -100,6 +124,7 @@
 					<input type="hidden" id="backLocation" name="backLocation" value="3" />
 					
 				</form>
+				
 			</div>
 			<!-- col-END -->
 		</div>
@@ -263,6 +288,7 @@
 	//从购物车中加入该商品至用户收藏列表
 	function onCollect(kkb101)
 	{
+
 		 $.ajax({
 	            type: "POST",
 	            url: "${pageContext.request.contextPath}/kb03CollectItem.kbhtml?"
@@ -270,12 +296,16 @@
 	            dataType: "text",
 	            success: function (data)
 	            {
-	            	if(data)
+	            	if(data == "true")
 	            	{
 	            		alert("收藏成功");
 	            	}
+	            	else
+	            	{
+	            		alert("您已收藏过该商品去个人主页看看吧")
+	            	}
 	            }//endsuccess
-	        });//endajax
+	       });//endajax
 	}
 	
 	//显示选中商品总金额和总件数的控件
@@ -362,8 +392,8 @@
 	 } 
 	</script>
 	
-	<script src="<%=path %>/js/jquery.js"></script>
-	<script src="<%=path %>/js/bootstrap.min.js"></script>
+	<script src="<%=basePath %>/js/jquery.js"></script>
+	<script src="<%=basePath %>/js/bootstrap.min.js"></script>
 		
 </body>
 </html>

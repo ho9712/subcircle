@@ -1,12 +1,16 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%String path = request.getContextPath();%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path;
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <title>我的订单</title>
-<link href="<%=path %>/css/bootstrap.css" rel="stylesheet">
+<link href="<%=basePath %>/css/bootstrap.css" rel="stylesheet">
 <jsp:include page="index.jsp" flush="true" />
 <!-- 引入导航栏 -->
 <style type="text/css">
@@ -31,6 +35,17 @@
 					</c:when>
 				</c:choose>
 				<hr>
+				
+				<c:choose>
+					<c:when test="${objList == null}">
+						<div align="center">
+							<font color="darkgray" size="6"> 
+							不存在相关的订单信息
+							</font>
+						</div>
+					</c:when>
+					
+				</c:choose>
 					<!-- 循环显示每一笔订单 -->
 					<c:forEach items="${objList }" var="rows" varStatus="objVs">
 						<c:set var="orderPrice" value="${0 }" />
@@ -305,8 +320,8 @@
 	
 	</script>
 	
-	<script src="<%=path %>/js/jquery.js"></script>
-	<script src="<%=path %>/js/bootstrap.min.js"></script>
+	<script src="<%=basePath %>/js/jquery.js"></script>
+	<script src="<%=basePath %>/js/bootstrap.min.js"></script>
 
 </body>
 </html>

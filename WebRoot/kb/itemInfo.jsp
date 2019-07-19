@@ -1,11 +1,15 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%String path = request.getContextPath();%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path;
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <title>商品${ins.kkb102 }详情</title>
-<link href="<%=path %>/css/bootstrap.css" rel="stylesheet">
+<link href="<%=basePath %>/css/bootstrap.css" rel="stylesheet">
 <jsp:include page="index.jsp" flush="true"/>	<!-- 引入导航栏 -->
 </head>
 <body>
@@ -108,7 +112,7 @@
 			<div class="span10 offset2">
 				<!-- row2第一行-->
 				<h3>购买者评价:</h3>
-				<table class="table">
+				<table class="table" style="vertical-align: middle;">
 					<tbody>
 						<tr class="error">
 						<c:set var="score" value=""/>
@@ -117,8 +121,8 @@
 							<c:set var="score" value="${rateInfo.kkb602 + score}"/>
 							<c:set var="count" value="${1 + count}"/>
 						</c:forEach>
-							<td>评分</td>
-							<td>
+							<td style="width: 15%">评分</td>
+							<td style="width: 15%">
 							<c:choose>
 								<c:when test="${count != 0 }">							
 									${score/count }
@@ -139,9 +143,18 @@
 						</tr>
 						<c:forEach items="${objList[1] }" var="rateInfo" varStatus="vs">
 							<tr class="info">
-								<td>用户${rateInfo.kkd101 }</td>
-								<td>${rateInfo.kkb602 }</td>
-								<td>${rateInfo.kkb603 }</td>
+								<td>
+									<div align="left" style="padding-top: 10px">
+										<a href="<%=path%>/kd01FindOther.kdhtml?kkd101=${rateInfo.kkd101}"> <img class="img-circle image-responsive"
+											src="${rateInfo.kkd108 }" style="width: 50px; height: 50px;">
+											<br> <span
+											style="width: 80%; word-break: break-word; font-size: 10px; font: bold; padding-left: 5px">
+												${rateInfo.kkd105 } </span>
+										</a>
+									</div>
+								</td>
+								<td style="vertical-align: middle;">${rateInfo.kkb602 }</td>
+								<td style="vertical-align: middle;">${rateInfo.kkb603 }</td>
 								<c:choose>
 									<c:when test="${sessionScope.kkd104 == 2}">
 										<td>
@@ -164,19 +177,24 @@
 //从购物车中加入该商品至用户收藏列表
 function onCollect(kkb101)
 {
+
 	 $.ajax({
-            type: "POST",
-            url: "${pageContext.request.contextPath}/kb03CollectItem.kbhtml?"
-    			+"kkb101="+kkb101,
-            dataType: "text",
-            success: function (data)
-            {
-            	if(data)
-            	{
-            		alert("收藏成功");
-            	}
-            }//endsuccess
-        });//endajax
+           type: "POST",
+           url: "${pageContext.request.contextPath}/kb03CollectItem.kbhtml?"
+   			+"kkb101="+kkb101,
+           dataType: "text",
+           success: function (data)
+           {
+           	if(data == "true")
+           	{
+           		alert("收藏成功");
+           	}
+           	else
+           	{
+           		alert("您已收藏过该商品去个人主页看看吧")
+           	}
+           }//endsuccess
+      });//endajax
 	}
 	
 	//根据商品id以及数量加入用户购物车中
@@ -250,12 +268,16 @@ function onCollect(kkb101)
 	//管理员删除评价
 	function deleteRate(kkb601)
 	{
-		window.location.href = "<%=request.getContextPath()%>/kb06DelRate.kbhtml?kkb601=" + kkb601;	
+		var msg = "确定删除该评价吗"
+		if(confirm(msg) == true)
+		{
+			window.location.href = "<%=request.getContextPath()%>/kb06DelRate.kbhtml?kkb601=" + kkb601;	
+		}
 	}
 </script>
 
-<script src="<%=path %>/js/jquery.js"></script>
-<script src="<%=path %>/js/bootstrap.min.js"></script>
+<script src="<%=basePath %>/js/jquery.js"></script>
+<script src="<%=basePath %>/js/bootstrap.min.js"></script>
 
 </body>
 </html>

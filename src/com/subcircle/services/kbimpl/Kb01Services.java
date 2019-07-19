@@ -1,4 +1,4 @@
-package com.subcircle.services.kbimpl;
+	package com.subcircle.services.kbimpl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,14 +29,46 @@ public class Kb01Services extends JdbcServicesSupport
 	 */
 	public List<Map<String, String>> queryByCondition() throws Exception
 	{
-		StringBuilder sql = new StringBuilder()
-				.append(" select k.kkb101,k.kkb102,k.kkb103,k.kkb104,k.kkb105,")
-				.append("        k.kkb106,k.kkb107,k.kkb108,k.kkb109")
-				.append("	from kb01 k")
-				.append("	where k.kkb110 = 1 limit 12")
+		StringBuilder sql = new StringBuilder();
+			 sql.append(" select  k.kkb101,k.kkb102,k.kkb103,k.kkb104,k.kkb105,")
+				.append("		 k.kkb106,k.kkb107,k.kkb108,k.kkb109")
+				.append("   from  kb01 k ")
+				.append("  where  k.kkb110 = 1 ")
 				;
-		Object args[] = {};
-		return this.queryForList(sql.toString(),args);
+		//计算查询结果可分多少页
+		StringBuilder sql_1 = new StringBuilder();
+			sql_1.append(" select count(kkb101)/12 as pageNum from kb01 k")
+				 .append("  where kkb110 = 1");
+		
+		Object searchText = this.get("searchText");
+		if (searchText != null && !searchText.equals(""))
+		{
+			sql.append("	and (    k.kkb102 like + '%" + searchText + "%'")
+			   .append("       	  or k.kkb104 like + '%" + searchText + "%'")
+			   .append("		  or k.kkb107 like + '%" + searchText + "%')");
+		  sql_1.append("	and (    k.kkb102 like + '%" + searchText + "%'")
+			   .append("       	  or k.kkb104 like + '%" + searchText + "%'")
+			   .append("		  or k.kkb107 like + '%" + searchText + "%')");
+		}
+		sql.append("limit ?,?");
+		int start = (Integer.parseInt((String) this.get("page")) - 1) * 12;
+		int end = Integer.parseInt((String) this.get("page"))  * 12;
+		Object args[] = 
+			{
+				start,
+				end
+			};
+		
+		List<Map<String, String>> teMaps =  this.queryForList(sql.toString(),args);
+		List<Map<String, String>> result = new ArrayList<>();
+		
+		for (Map<String, String> map : teMaps) 
+		{
+			map.put("pageNum", this.queryForMap(sql_1.toString(),new Object[]{}).get("pageNum"));
+			result.add(map);
+		}
+		
+		return result;
 	}
 	
 	/**
@@ -101,12 +133,18 @@ public class Kb01Services extends JdbcServicesSupport
 	 */
 	private List<Map<String, String>> getRateByItemId()throws Exception
 	{
-		String sql = "select k6.kkb601,k6.kkb602,k6.kkb603,k6.kkd101 from kb06 k6 where k6.kkb605 = ?";
+		StringBuilder sql = new StringBuilder()
+				.append("  select k6.kkb601,k6.kkb602,k6.kkb603,k6.kkd101,kd1.kkd105,")
+				.append("		  kd1.kkd108")
+				.append("	 from kb06 k6,kd01 kd1")
+				.append("	where k6.kkb605 = ?")
+				.append("	  and k6.kkd101 = kd1.kkd101")
+				;
 		Object args[] = 
 			{
 				this.get("kkb101")	
 			};
-		return this.queryForList(sql, args);
+		return this.queryForList(sql.toString(), args);
 	}
 	
 	/**
@@ -183,6 +221,11 @@ public class Kb01Services extends JdbcServicesSupport
 		return this.executeUpdate(sql.toString(), args) > 0;
 	}
 	
+	/**
+	 * 	商城管理员下架商品
+	 * @return
+	 * @throws Exception
+	 */
 	private boolean delItem()throws Exception
 	{
 		String sql = "update kb01 set kkb110 = 0 where kkb101 = ?";

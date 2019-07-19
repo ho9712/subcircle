@@ -1,11 +1,15 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%String path = request.getContextPath();%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path;
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <title>我的响应列表</title>
-<link href="<%=path %>/css/bootstrap.css" rel="stylesheet">
+<link href="<%=basePath %>/css/bootstrap.css" rel="stylesheet">
 <jsp:include page="index.jsp" flush="true" /><!-- 引入导航栏 -->
 </head>
 <body>
@@ -15,6 +19,18 @@
 			<!-- row -->
 			<div class="span10 offset2">
 				<!-- col -->
+				
+			<c:choose>
+				<c:when test="${(empty objList[0])&&(empty objList[1])&&(empty objList[2])}">
+					<div align="center">
+						<font color="darkgray" size="5">
+							还没有响应过其他用户的求购呢~~
+							<hr>
+							去求购信息列表逛逛吧
+						</font>
+					</div>
+				</c:when>
+				<c:otherwise>	
 				<c:forEach items = "${objList }" var = "rows" varStatus="objVs">
 					<c:choose>
 						<c:when test="${rows[0].kkb802 == 1 }">
@@ -186,6 +202,9 @@
 				</div>
 				<!-- 遮罩窗体 结束-->
 				
+				</c:otherwise>
+				</c:choose>
+				
 			</div>
 			<!-- col-END -->
 		</div>
@@ -245,7 +264,7 @@
 	}
 	
 	</script>
-	<script src="<%=path %>/js/jquery.js"></script>
-	<script src="<%=path %>/js/bootstrap.min.js"></script>
+	<script src="<%=basePath %>/js/jquery.js"></script>
+	<script src="<%=basePath %>/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.subcircle.services.support.JdbcServicesSupport;
-import com.sun.org.apache.xpath.internal.operations.And;
 
 public class Kb07Services extends JdbcServicesSupport 
 {

@@ -1,11 +1,15 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%String path = request.getContextPath();%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path;
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <title>待处理列表</title>
-<link href="<%=path %>/css/bootstrap.css" rel="stylesheet">
+<link href="<%=basePath %>/css/bootstrap.css" rel="stylesheet">
 <jsp:include page="index.jsp" flush="true" /><!-- 引入导航栏 -->
 </head>
 <body>
@@ -16,6 +20,18 @@
 			<div class="span10 offset2">
 				<!-- col -->
 				<h3 align="center">待处理列表</h3>
+				<c:choose>
+				<c:when test="${empty rows}">
+					<hr>
+					<div align="center">
+						<font color="darkgray" size="5">
+							还没有其他用户响应您的求购呢~~
+							<hr>
+							再耐心等等吧
+						</font>
+					</div>
+				</c:when>
+				<c:otherwise>	
 					<c:forEach items="${rows }" var="ins" varStatus="vs">
 						<table  class="table" style="width: 100%">
 							<tbody>
@@ -169,6 +185,8 @@
 					</div>
 				</div>
 				<!-- 遮罩窗体 结束-->
+				</c:otherwise>
+				</c:choose>
 				
 			</div>
 			<!-- col-END -->
@@ -230,7 +248,7 @@
 	
 	</script>
 	
-	<script src="<%=path %>/js/jquery.js"></script>
-	<script src="<%=path %>/js/bootstrap.min.js"></script>
+	<script src="<%=basePath %>/js/jquery.js"></script>
+	<script src="<%=basePath %>/js/bootstrap.min.js"></script>
 </body>
 </html>

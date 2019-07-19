@@ -1,14 +1,19 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%String path = request.getContextPath();%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path;
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <title>求购信息列表</title>
-<link href="<%=path %>/css/bootstrap.css" rel="stylesheet">
+<link href="<%=basePath %>/css/bootstrap.css" rel="stylesheet">
 <jsp:include page="index.jsp" flush="true" /><!-- 引入导航栏 -->
 </head>
 <body>
+
 	<div class="container-fluid">
 		<!-- 容器 -->
 		<div class="row-fluid">
@@ -16,107 +21,120 @@
 			<div class="span10 offset2">
 				<!-- col -->
 				<c:choose>
-				<c:when test="${rows[0].kkb708 == 1 }">
+				<c:when test="${param.kkb708  == 1 }">
 					<h3 align="center">待审核求购</h3>
 				</c:when>
-				<c:when test="${rows[0].kkb708 == 2 }">
+				<c:when test="${param.kkb708  == 2 }">
 					<h3 align="center">求购信息列表</h3>
 				</c:when>
 				</c:choose>
-				<c:forEach items="${rows }" var="ins" varStatus="vs">
-					<table  class="table" style="width: 100%">
-						<tbody>
-							<tr>
-								<td colspan="6">
-									<div>
-										<span style="font-size: 20px; color: buttonshadow;">求购号:</span>
-										<a id="myModel" href="#modal-container" role="button"
-														 data-toggle="modal"
-														 onclick = "passInquiryInfo('${ins.kkd101}','${ins.kkb702}','${ins.kkb703}','${ins.kkb704}','${ins.kkb705}','${ins.kkb709}','${ins.kkd105}','${ins.kkd108}')">
-											<span style="font-size: 20px; color: red;">
-												&nbsp;${ins.kkb709 }</span>
-										</a>
-									</div>
-								</td>
-							</tr>
-							
-							<tr  class="error">
-								<td width="20%" style="vertical-align: middle;"></td>
-								<td width="20%" style="vertical-align: middle;">求购商品名</td>
-								<td width="15%" style="vertical-align: middle;">求购价</td>
-								<td width="15%" style="vertical-align: middle;">响应人数</td>
-								<td width="15%" style="vertical-align: middle;">求购者</td>
-								<td width="15%"></td>
-							</tr>
-							
-							<tr class ="info">
-								<td style="vertical-align: middle;">
-									<c:choose>
-									<c:when test="${ins.kkb704 != null }">
-										<img class="img-thumbnail"  style="width: 100px;height: 100px"
-											src="${ins.kkb704 }">
-									</c:when>
-									<c:otherwise>
-										<img class="img-thumbnail"  style="width: 100px;height: 100px"
-											src="" alt="用户未上传图片">
-									</c:otherwise>
-									</c:choose>	
-								</td>
-								<td style="vertical-align: middle;">
-									${ins.kkb702 }
-								</td>
-								<td style="vertical-align: middle;">
-									¥${ins.kkb705 }
-								</td>
-								<td style="vertical-align: middle;">
-									${ins.resCount }
-								</td>
-								<td>
-									<div align="left" style="padding-top:10px">
-										<a href="<%=path%>/kd01FindOther.kdhtml?kkd101=${ins.kkd101}"> <img
-											class="img-circle image-responsive"
-											src="${ins.kkd108 }"
-											style="width:50px; height: 50px;">
-											<br>
-											<span
-											style="width: 80%; word-break: break-word; font-size: 10px; font: bold;padding-left: 5px">
-												${ins.kkd105 }
-											</span>
-										</a>
-									</div>
-								</td>
+				
+				<c:choose>
+					<c:when test="${rows == null }">
+						<hr>
+						<div align="center">
+							<font color="darkgray" size="6"> 不存在相关的求购信息</font>
+						</div>
+					</c:when>
+				<c:otherwise>
+					<c:forEach items="${rows }" var="ins" varStatus="vs">
+						<table  class="table" style="width: 100%">
+							<tbody>
+								<tr>
+									<td colspan="6">
+										<div>
+											<span style="font-size: 20px; color: buttonshadow;">求购号:</span>
+											<a id="myModel" href="#modal-container" role="button"
+															 data-toggle="modal"
+															 onclick = "passInquiryInfo('${ins.kkd101}','${ins.kkb702}','${ins.kkb703}','${ins.kkb704}','${ins.kkb705}','${ins.kkb709}','${ins.kkd105}','${ins.kkd108}')">
+												<span style="font-size: 20px; color: red;">
+													&nbsp;${ins.kkb709 }</span>
+											</a>
+										</div>
+									</td>
+								</tr>
 								
-								<td style="vertical-align: middle;">
-								<c:choose>
-									<c:when test="${sessionScope.kkd104 != 2}">
+								<tr  class="error">
+									<td width="20%" style="vertical-align: middle;"></td>
+									<td width="20%" style="vertical-align: middle;">求购商品名</td>
+									<td width="15%" style="vertical-align: middle;">求购价</td>
+									<td width="15%" style="vertical-align: middle;">响应人数</td>
+									<td width="15%" style="vertical-align: middle;">求购者</td>
+									<td width="15%"></td>
+								</tr>
+								
+								<tr class ="info">
+									<td style="vertical-align: middle;">
 										<c:choose>
-										<c:when test="${sessionScope.kkd101 != ins.kkd101 }">
-											<button class = "btn btn-warning" onclick="addResponse('${ins.kkb701}')">响应</button>
+										<c:when test="${ins.kkb704 != null }">
+											<img class="img-thumbnail"  style="width: 100px;height: 100px"
+												src="${ins.kkb704 }">
 										</c:when>
-										</c:choose>
-									</c:when>
-									<c:otherwise>
-										<c:choose>
-											<c:when test="${ins.kkb708 == 1 }">
-												<div class="btn-group btn-group-sm">
-													<button type="button" class="btn btn-success"
-														onclick="passInquiry('${ins.kkb701}','${ins.kkd102 }')">通过</button>
-													<button type="button" class="btn btn-warning"
-														onclick="rejectInquiry('${ins.kkb701}','${ins.kkd102 }','1')">驳回</button>
-												</div>
+										<c:otherwise>
+											<img class="img-thumbnail"  style="width: 100px;height: 100px"
+												src="" alt="用户未上传图片">
+										</c:otherwise>
+										</c:choose>	
+									</td>
+									<td style="vertical-align: middle;">
+										${ins.kkb702 }
+									</td>
+									<td style="vertical-align: middle;">
+										¥${ins.kkb705 }
+									</td>
+									<td style="vertical-align: middle;">
+										${ins.resCount }
+									</td>
+									<td>
+										<div align="left" style="padding-top:10px">
+											<a href="<%=path%>/kd01FindOther.kdhtml?kkd101=${ins.kkd101}"> <img
+												class="img-circle image-responsive"
+												src="${ins.kkd108 }"
+												style="width:50px; height: 50px;">
+												<br>
+												<span
+												style="width: 80%; word-break: break-word; font-size: 10px; font: bold;padding-left: 5px">
+													${ins.kkd105 }
+												</span>
+											</a>
+										</div>
+									</td>
+									
+									<td style="vertical-align: middle;">
+									<c:choose>
+										<c:when test="${sessionScope.kkd104 != 2}">
+											<c:choose>
+											<c:when test="${sessionScope.kkd101 != ins.kkd101 }">
+												<button class = "btn btn-warning" onclick="addResponse('${ins.kkb701}')">响应</button>
 											</c:when>
-											<c:otherwise>
-												<button type="button" class="btn btn-warning"
-														onclick="rejectInquiry('${ins.kkb701}','${ins.kkd102 }','2')">撤销</button>
-											</c:otherwise>
-										</c:choose>
-									</c:otherwise>
-								</c:choose>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</c:forEach>
+											</c:choose>
+										</c:when>
+										<c:otherwise>
+											<c:choose>
+												<c:when test="${ins.kkb708 == 1 }">
+													<div class="btn-group btn-group-sm">
+														<button type="button" class="btn btn-success"
+															onclick="passInquiry('${ins.kkb701}','${ins.kkd102 }')">通过</button>
+														<button type="button" class="btn btn-warning"
+															onclick="rejectInquiry('${ins.kkb701}','${ins.kkd102 }','1')">驳回</button>
+													</div>
+												</c:when>
+												<c:otherwise>
+													<button type="button" class="btn btn-warning"
+															onclick="rejectInquiry('${ins.kkb701}','${ins.kkd102 }','2')">撤销</button>
+												</c:otherwise>
+											</c:choose>
+										</c:otherwise>
+									</c:choose>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</c:forEach>
+						
+					</c:otherwise>
+				</c:choose>
+				
 				
 				<!-- 遮罩窗体 -->
 				<div id="modal-container" class="modal hide fade modal-lg" role="dialog"
@@ -284,7 +302,7 @@
 	
 	</script>
 	
-	<script src="<%=path %>/js/jquery.js"></script>
-	<script src="<%=path %>/js/bootstrap.min.js"></script>
+	<script src="<%=basePath %>/js/jquery.js"></script>
+	<script src="<%=basePath %>/js/bootstrap.min.js"></script>
 </body>
 </html>

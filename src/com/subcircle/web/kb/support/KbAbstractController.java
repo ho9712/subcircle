@@ -1,16 +1,12 @@
 package com.subcircle.web.kb.support;
 
 import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.servlet.http.HttpSession;
-import javax.sql.RowSet;
-
 import com.subcircle.services.support.ServicesInterface;
-import com.subcircle.web.ControllerInterface;import com.sun.xml.internal.ws.developer.StreamingAttachment;
+import com.subcircle.web.ControllerInterface;
 
 public abstract class KbAbstractController implements ControllerInterface 
 {

@@ -1,7 +1,5 @@
 package com.subcircle.services.kbimpl;
 
-import java.util.Map;
-
 import com.subcircle.services.support.JdbcServicesSupport;
 
 public class Kb02Services extends JdbcServicesSupport 

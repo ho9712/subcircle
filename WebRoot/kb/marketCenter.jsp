@@ -1,27 +1,53 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%String path = request.getContextPath();%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path;
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <title>周边商城</title>
-<link href="<%=path %>/css/bootstrap.css" rel="stylesheet">
+<link href="<%=basePath %>/css/bootstrap.css" rel="stylesheet">
+<style type="text/css">		/* 取消number控件的上下箭头 */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+ 
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+</style>
 <jsp:include page="index.jsp" flush="true" /><!-- 引入导航栏 -->
 </head>
 <body>
+<c:choose>
+	<c:when test="${fn:contains(objMap.items[0].pageNum,'.0000') }">
+		<fmt:formatNumber var="pageNum" value="${objMap.items[0].pageNum}" pattern="#"/>
+	</c:when>
+	<c:otherwise>
+		<fmt:formatNumber var="pageNum" value="${objMap.items[0].pageNum + 0.5}" pattern="#"/>
+	</c:otherwise>
+</c:choose>
 	<%-- ${rows.get(1) } --%>
 	<%-- ${hotItems } --%>
 	<div class="container-fluid">
 		<!-- 容器 -->
 		<div class="row-fluid" align="center">
 			<div class="span10 offset2">
+				<form action="<%=path %>/Kb01QueryItems.kbhtml?page=1" method="post">
 				<div>
 					<input class="input-medium search-query" type="text"
-						style="width: 50%; height: 20px;" />
+						style="width: 50%; height: 20px;" 
+						name = "searchText" id="searchText"/>
 					<button class="btn btn-default" contenteditable="true"
-						type="submit">查找</button>
+							onclick="querySearchRes()" >查找</button>
 				</div>
-
+				</form>
 
 				<!-- 轮播图 -->
 				<div class="carousel slide" id="myCarousel" align="center">
@@ -121,25 +147,58 @@
 				<div class="pagination">
 					<!-- 翻页 -->
 					<ul class="pagination">
-						<li><a href="#">&laquo;</a></li>
-						<li class="active"><a href="#">1</a></li>
-						<li class="disabled"><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#">5</a></li>
-						<li><a href="#">&raquo;</a></li>
+						<li>
+							<c:if test="${param.page >1}"><a href="<%=path%>/kb01QueryItems.kbhtml?page=${param.page-1 }&searchText=${param.searchText}">&laquo;</a></c:if>
+						</li>
+						<c:choose>
+							<c:when test="${param.page < pageNum - 3}">	
+								<c:forEach begin = "1" step = "1" end = "5" varStatus="vs">
+									<c:choose>
+										<c:when test="${vs.count == 1 }"><li class = "active"><a href="<%=path%>/kb01QueryItems.kbhtml?page=${empty param.page?'1':param.page + vs.count - 1}&searchText=${param.searchText}">${empty param.page?'1':param.page}</a></li></c:when>
+										<c:otherwise><li><a href="<%=path%>/kb01QueryItems.kbhtml?page=${empty param.page?'1':param.page + vs.count - 1}&searchText=${param.searchText}">${empty param.page?'1':param.page + vs.count - 1}</a></li></c:otherwise>							
+									</c:choose>
+								</c:forEach>
+							</c:when>
+							<c:otherwise>
+								<c:forEach begin = "1" step = "1" end = "${pageNum - param.page + 1 }" varStatus="vs">
+									<c:choose>
+										<c:when test="${vs.count == 1 }"><li class = "active"><a href="<%=path%>/kb01QueryItems.kbhtml?page=${empty param.page?'1':param.page + vs.count - 1}">${empty param.page?'1':param.page}</a></li></c:when>
+										<c:otherwise><li><a href="<%=path%>/kb01QueryItems.kbhtml?page=${empty param.page?'1':param.page + vs.count - 1}">${empty param.page?'1':param.page + vs.count - 1}</a></li></c:otherwise>							
+									</c:choose>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
+						<li>
+							<c:choose>
+								<c:when test="${param.page < pageNum }">
+									<a href="<%=path%>/kb01QueryItems.kbhtml?page=${param.page+1 }">&raquo;</a>
+								</c:when>
+							</c:choose>
+						</li>
 					</ul>
-					<br> <input class="input-medium search-query" type="text"
-						style="width: 20px; height: 20px;"></input>
-					<button class="btn btn-success" contenteditable="true"
-						type="submit">跳转</button>
+					
+					<div align="center">
+						<input  type="number"  class="input-medium search-query"
+									style="width: 30px;height: 20px;"
+									min = "1" max = "${pageNum }" id = "targetPage"
+							 		οnkeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))"
+							 		style="ime-mode:Disabled"
+							 		onKeyDown="if(event.keyCode==13) {loadTarget();}">
+						
+						<button class="btn btn-success" onclick="loadTarget()">跳转</button>
+					</div>
+					
+					<div align="center">
+						<span>第${param.page }页/共${pageNum }页</span>
+					</div >
+					
 				</div>
 				
 	
 				<!-- 遮罩窗体 -->
 				<div id="modal-container" class="modal hide fade modal-lg" role="dialog"
 				 aria-labelledby="myModalLabel" aria-hidden="true" style="height:70%">
-				<form action="<%=request.getContextPath()%>/kb05CreateOrder.kbhtml" method="post">
+				<form action="<%=path%>/kb05CreateOrder.kbhtml" method="post">
 					<div class="modal-header">
 						 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 						<h3 id="myModalLabel" style="color: maroon;">
@@ -222,7 +281,7 @@
 		window.location.href = "<%=request.getContextPath()%>/kb01FindItemById.kbhtml?kkb101=" + kkb101;
 	}
 	
-	//从购物车中加入该商品至用户收藏列表
+	//加入该商品至用户收藏列表
 	function onCollect(kkb101)
 	{
 		 $.ajax({
@@ -232,9 +291,13 @@
 	            dataType: "text",
 	            success: function (data)
 	            {
-	            	if(data)
+	            	if(data == "true")
 	            	{
 	            		alert("收藏成功");
+	            	}
+	            	else
+	            	{
+	            		alert("您已收藏过该商品去个人主页看看吧")
 	            	}
 	            }//endsuccess
 	       });//endajax
@@ -309,7 +372,7 @@
 	
 	function goLogin()
 	{
-		window.location.href="<%=request.getContextPath()%>/kd/login.jsp";	
+		window.location.href="<%=request.getContextPath()%>/kd/nologin.jsp";	
 	}
 	
 	//商城管理员修改商品信息
@@ -337,10 +400,25 @@
 		}
 	}	
 	
+	
+	function loadTarget()
+	{
+		var targetPage = document.getElementById("targetPage").value;
+		if(targetPage != null && targetPage != "")
+		{
+			window.location.href = "<%=path%>/kb01QueryItems.kbhtml?"
+					+"page=" + targetPage;
+		}
+		else
+		{
+			alert("请选择跳转页面!");
+		}
+	}
+	
 	</script>
 	
-	<script src="<%=path %>/js/jquery.js"></script>
-	<script src="<%=path %>/js/bootstrap.min.js"></script>
+	<script src="<%=basePath %>/js/jquery.js"></script>
+	<script src="<%=basePath %>/js/bootstrap.min.js"></script>
 	
 </body>
 </html>
