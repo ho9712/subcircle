@@ -98,7 +98,7 @@
 							</a>
 						</li>
 						<hr>
-						<li><a href="#">
+						<li><a href="<%=path%>/ka01MainForum.kahtml?id=0">
 							<span style="font-size:20px;font: bold;">迷你论坛</span>
 							</a>
 						</li>
