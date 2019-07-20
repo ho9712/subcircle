@@ -29,20 +29,20 @@
 	<div id="navNeue2">
 		<div id="menuNeue">
 		<ul id="navMenuNeue" class="clearit">
-		<li><a href="/anime" class="top chl anime"><span>动画</span></a>
+		<li><a href="#" class="top chl anime"><span>动画</span></a>
 		                <div class="clear"></div>
 		<ul class="clearit">
 		<li><a href="kc02ShowRank.kchtml" class="nav">排行榜</a></li>
 		</ul>
 		</li>
-		<li><a href="/book" class="top chl"><span>书籍</span></a>
+		<li><a href="#" class="top chl"><span>书籍</span></a>
 		<div class="clear"></div>
 		<ul class="clearit">
 		<li><a href="kc03ShowRank.kchtml" class="nav">排行榜</a></li>
 		</ul>
 		</li>
 		
-		<li><a href="/game" class="top chl game"><span>游戏</span></a>
+		<li><a href="#" class="top chl game"><span>游戏</span></a>
 		<div class="clear"></div>
 		<ul class="clearit">
 		<li><a href="kc04ShowRank.kchtml" class="nav">排行榜</a></li>
@@ -199,8 +199,16 @@
 <div class="mainWrapper">
 <div class="columns clearit">
 	<div id="columnA" class="column">
+		<div class="section">
+            <a href="<%=path%>/Kb07QueryInquiry.kbhtml?kkb708=1" class="rr l">前往审核求购</a>        	<h2 class="title">管理求购</h2>
+        	<div>
+        		<ul class="coversSmall">
+           		</ul>
+        	</div>
+        </div>
+        <div class="section_line clear"></div>
         <div class="section">
-            <a href="<%= path %>/kb01QueryItems.kbhtml" class="rr l">前往管理商品</a>        	<h2 class="title">管理商品</h2>
+            <a href="<%= path %>/kb01QueryItems.kbhtml?page=1" class="rr l">前往管理商品</a>        	<h2 class="title">管理商品</h2>
         	<div>
         		<ul class="coversSmall">
            		</ul>

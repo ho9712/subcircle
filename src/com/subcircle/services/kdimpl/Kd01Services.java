@@ -268,7 +268,7 @@ public class Kd01Services extends JdbcServicesSupport
 	{
 		StringBuilder sql=new StringBuilder()
 				.append("select kka101,kka102,date_format(kka105,'%Y-%m-%d %H:%i') kka105")
-				.append(" from ka01 where kkd101=? order by kka105 desc limit 3")
+				.append(" from ka01 where kkd101=? and kka106=1 order by kka105 desc limit 3")
 				;
 		return this.queryForList(sql.toString(), this.get("kkd101"));
 	}

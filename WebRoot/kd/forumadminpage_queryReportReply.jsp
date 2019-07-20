@@ -46,20 +46,20 @@
 	<div id="navNeue2">
 		<div id="menuNeue">
 		<ul id="navMenuNeue" class="clearit">
-		<li><a href="/anime" class="top chl anime"><span>动画</span></a>
+		<li><a href="#" class="top chl anime"><span>动画</span></a>
 		                <div class="clear"></div>
 		<ul class="clearit">
 		<li><a href="kc02ShowRank.kchtml" class="nav">排行榜</a></li>
 		</ul>
 		</li>
-		<li><a href="/book" class="top chl"><span>书籍</span></a>
+		<li><a href="#" class="top chl"><span>书籍</span></a>
 		<div class="clear"></div>
 		<ul class="clearit">
 		<li><a href="kc03ShowRank.kchtml" class="nav">排行榜</a></li>
 		</ul>
 		</li>
 		
-		<li><a href="/game" class="top chl game"><span>游戏</span></a>
+		<li><a href="#" class="top chl game"><span>游戏</span></a>
 		<div class="clear"></div>
 		<ul class="clearit">
 		<li><a href="kc04ShowRank.kchtml" class="nav">排行榜</a></li>
@@ -200,7 +200,7 @@
 			<a href="#" onclick="delReport('${report.kka301}')" class="btnGraySmall rr"><span>删除举报</span></a>
 			<h2 class="title">回复内容: #${report.kka201} ${report.kka202 }</h2>
 			<h2 class="title">贴子: 
-				<a href="<%= path %>/ka01PostContent.kahtml?kka101=${report.kka101}" class="l"> ${report.kka102 }</a>
+				<a href="<%=path%>/ka01AdmPostContent.kahtml?kka101=${report.kka101}" class="l"> ${report.kka102 }</a>
 			</h2>
 			<div class="time"><small class="time">举报时间: ${report.kka303 }</small> </div>
 			<div class="content">举报理由: ${report.kka302 }</div>

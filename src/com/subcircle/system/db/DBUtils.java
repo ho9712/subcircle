@@ -29,7 +29,6 @@ public class DBUtils
 		url=bundle.getString("URL");
 		username=bundle.getString("USERNAME");
 		password=bundle.getString("PASSWORD");
-		
 		try
 		{
 			Class.forName(driver);

@@ -47,20 +47,20 @@
 	<div id="navNeue2">
 		<div id="menuNeue">
 		<ul id="navMenuNeue" class="clearit">
-		<li><a href="/anime" class="top chl anime"><span>动画</span></a>
+		<li><a href="#" class="top chl anime"><span>动画</span></a>
 		                <div class="clear"></div>
 		<ul class="clearit">
 		<li><a href="kc02ShowRank.kchtml" class="nav">排行榜</a></li>
 		</ul>
 		</li>
-		<li><a href="/book" class="top chl"><span>书籍</span></a>
+		<li><a href="#" class="top chl"><span>书籍</span></a>
 		<div class="clear"></div>
 		<ul class="clearit">
 		<li><a href="kc03ShowRank.kchtml" class="nav">排行榜</a></li>
 		</ul>
 		</li>
 		
-		<li><a href="/game" class="top chl game"><span>游戏</span></a>
+		<li><a href="#" class="top chl game"><span>游戏</span></a>
 		<div class="clear"></div>
 		<ul class="clearit">
 		<li><a href="kc04ShowRank.kchtml" class="nav">排行榜</a></li>
@@ -143,7 +143,18 @@
             </div>
 
             <div class="headerAvatar">
-                <a href="<%=path%>/kd01AdminMain.kdhtml" class="avatar"><span class="avatarNeue avatarSize75" style="background-image:url('${sessionScope.user.kkd108}')"></span></a>
+                <c:choose>
+            	<c:when test="${!empty sessionScope.user.kkd108}">
+           		 <a href="<%=path%>/kd01AdminMain.kdhtml" class="avatar">
+                	<span class="avatarNeue avatarSize75" style="background-image:url('${sessionScope.user.kkd108}')"></span>
+                </a>
+            	</c:when>
+            	<c:otherwise>
+           		<a href="<%=path%>/kd01AdminMain.kdhtml" class="avatar">
+                	<span class="avatarNeue avatarSize75" style="background-image:url('<%=path%>/img/avatar/def_avatar.png')"></span>
+                </a>
+            	</c:otherwise>
+            </c:choose>
             </div>
 
             <div class="inner">

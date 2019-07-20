@@ -53,20 +53,20 @@
 	<div id="navNeue2">
 		<div id="menuNeue">
 		<ul id="navMenuNeue" class="clearit">
-		<li><a href="/anime" class="top chl anime"><span>动画</span></a>
+		<li><a href="#" class="top chl anime"><span>动画</span></a>
 		                <div class="clear"></div>
 		<ul class="clearit">
 		<li><a href="kc02ShowRank.kchtml" class="nav">排行榜</a></li>
 		</ul>
 		</li>
-		<li><a href="/book" class="top chl"><span>书籍</span></a>
+		<li><a href="#" class="top chl"><span>书籍</span></a>
 		<div class="clear"></div>
 		<ul class="clearit">
 		<li><a href="kc03ShowRank.kchtml" class="nav">排行榜</a></li>
 		</ul>
 		</li>
 		
-		<li><a href="/game" class="top chl game"><span>游戏</span></a>
+		<li><a href="#" class="top chl game"><span>游戏</span></a>
 		<div class="clear"></div>
 		<ul class="clearit">
 		<li><a href="kc04ShowRank.kchtml" class="nav">排行榜</a></li>
@@ -206,7 +206,7 @@
 		<c:choose>
 		<c:when test="${empty goods}">
 			<div class="section">
-				<a href="<%=path%>/kb01QueryItems.kbhtml" class="rr l">前往商城</a>
+				<a href="<%=path%>/kb01QueryItems.kbhtml?page=1" class="rr l">前往商城</a>
 	            <br><h2 class="title">你还没有收藏过商品...</h2>
 	        	<div>
 	        		<ul class="coversSmall">
