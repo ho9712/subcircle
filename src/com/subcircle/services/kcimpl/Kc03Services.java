@@ -66,6 +66,33 @@ public  Map<String,String> findById()throws Exception
 
 
 
+public boolean UpdateInfoB()throws Exception
+
+{
+	StringBuilder sql = new StringBuilder()
+			.append("update kc03 ")
+			.append("set kkc302=?,kkc309=?,kkc310=?,kkc311=?,kkc312=?,kkc313=?,kkc314=? ")
+			.append("where ")
+			.append("kkc101=?")
+			;
+	
+	Object args[] =
+		{
+				this.get("kkc302"),
+				this.get("kkc309"),
+				this.get("kkc310"),
+				this.get("kkc311"),
+				this.get("kkc312"),
+				this.get("kkc313"),
+				this.get("kkc314"),	
+				this.get("kkc101")
+		};
+	
+	this.appendSql(sql.toString(), args);
+	return this.executeTransaction();
+}
+
+
 
 
 

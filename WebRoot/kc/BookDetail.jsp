@@ -136,13 +136,30 @@
                                         <li><span class="tip">出版社: </span>${ins.kkc313}</li>
             </ul>
                 
-        <div class="modifyTool">
+    <c:choose>
+    <c:when test="${sessionScope.user.kkd101!=null }">
+                
+                
+        <div class="modifyTool">        
         <span class="tip_i">
-                <p><span class="tip">修改：</span><a href="" class="l">信息</a> / <a href="" class="l">封面</a></p>      
-                        
-        
+                <p><span class="tip">修改：</span>               
+                	<c:choose>
+                	<c:when test="${sessionScope.user.kkd104==1 }">
+                	<a href="kc03Edit.kchtml?kkc101=${param.kkc101 }" class="l">
+                	</c:when>
+                	<c:when test="${sessionScope.user.kkd104==4 }">
+                	<a href="kc03Edit.kchtml?kkc101=${param.kkc101 }" class="l">
+                	</c:when>
+                	<c:otherwise>
+                	<a href="#" class="l" onclick="leveltip()">                	
+                	</c:otherwise>                	                	
+                	</c:choose>                                
+ 					信息</a> / <a href="" class="l">封面</a></p>             
         </span>
-        </div>      
+        </div>     
+        
+        </c:when>
+        </c:choose>	     
         </div>
 </div>
 
@@ -441,6 +458,14 @@ $(document).ready(function () {
         content: "",
         url: document.URL    });
 });
+</script>
+
+<script type="text/javascript">
+function leveltip()
+{
+	alert("权限不足！")
+	}
+
 </script>
 <script type="text/javascript">chiiLib.subject.init();</script>
 </body>

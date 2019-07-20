@@ -323,6 +323,28 @@ public abstract class KcAbstractController implements ControllerInterface
 		this.update("delAnimeComment", "");
 	}
 	
+	
+	
+	protected final void UpdateInfo() throws Exception
+	
+	{
+		
+		this.update("UpdateInfo", "");
+	}
+	
+	protected final void UpdateInfoB() throws Exception
+	
+	{
+		
+		this.update("UpdateInfoB", "");
+	}
+	
+	protected final void UpdateInfoG() throws Exception
+	
+	{
+		
+		this.update("UpdateInfoG", "");
+	}
 	/**
 	 * 显示评论详情页面
 	 * @throws Exception

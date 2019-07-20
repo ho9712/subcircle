@@ -4,7 +4,7 @@
 <html>
 <head>
 
-<title></title>
+<title>${ins.kkc309 }</title>
 <link href="<%=path %>/css/bangumi.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -114,8 +114,8 @@
         
     <div class="subjectNav">
 <ul class="navTabs clearit">
-        <li><a href="" >概览</a></li>       
-        <li><a href="">评论</a></li>
+        <li><a href="kc03ShowDetail.kchtml?kkc101=${param.kkc101 }" >概览</a></li>       
+        <li><a href="kc03ShowComments.kchtml?kkc101=${param.kkc101 }">评论</a></li>
         <li><a href="" >讨论版</a></li>
         <li><a href="" class="focus">编辑</a></li>
         </ul>
@@ -127,35 +127,30 @@
 
 
 <h2 class="subtitle">SubCircle 采用的版本</h2>
-<form action="">
+<form action="kc03Edited.kchtml" method="post">
 <table class="olt"><tr><td></td><td></td></tr>
 <tr><td nowrap="nowrap" width="15%"><p class="tip">条目名</p></td><td>
-<input type = "text" name="kkc202" class="inputtext" value="カウボーイビバップ" /></td></tr>
+<input type = "text" name="kkc309" class="inputtext" value="${ins.kkc309 }" /></td></tr>
 <tr><td nowrap="nowrap" width="15%"><p class="tip">中文名</p></td><td>
-<input type = "text" name="kkc202" class="inputtext" value="星际牛仔" /></td></tr>
+<input type = "text" name="kkc302" class="inputtext" value="${ins.kkc302 }" /></td></tr>
+<tr><td nowrap="nowrap" width="15%"><p class="tip">册数</p></td><td>
+<input type = "text" name="kkc310" class="inputtext" value="${ins.kkc310 }" /></td></tr>
 <tr><td nowrap="nowrap" width="15%"><p class="tip">话数</p></td><td>
-<input type = "text" name="kkc209" class="inputtext" value="" /></td></tr>
-<tr><td nowrap="nowrap" width="15%"><p class="tip">原作</p></td><td>
-<input type = "text" name="kkc210" class="inputtext" value="" /></td></tr>
-<tr><td nowrap="nowrap" width="15%"><p class="tip">分镜</p></td><td>
-<input type = "text" name="kkc211" class="inputtext" value="" /></td></tr>
-<tr><td nowrap="nowrap" width="15%"><p class="tip">演出</p></td><td>
-<input type = "text" name="kkc212" class="inputtext" value="" /></td></tr>
-<tr><td nowrap="nowrap" width="15%"><p class="tip">音乐</p></td><td>
-<input type = "text" name="kkc213" class="inputtext" value="" /></td></tr>
-<tr><td nowrap="nowrap" width="15%"><p class="tip">原画</p></td><td>
-<input type = "text" name="kkc214" class="inputtext" value="" /></td></tr>
-<tr><td nowrap="nowrap" width="15%"><p class="tip">官方网站</p></td><td>
-<input type = "text" name="kkc215" class="inputtext" value="" /></td></tr>
-<tr><td nowrap="nowrap" width="15%"><p class="tip">电视台</p></td><td>
-<input type = "text" name="kkc216" class="inputtext" value="" /></td></tr>
+<input type = "text" name="kkc311" class="inputtext" value="${ins.kkc311 }" /></td></tr>
+<tr><td nowrap="nowrap" width="15%"><p class="tip">作者</p></td><td>
+<input type = "text" name="kkc312" class="inputtext" value="${ins.kkc312 }" /></td></tr>
+<tr><td nowrap="nowrap" width="15%"><p class="tip">出版社</p></td><td>
+<input type = "text" name="kkc313" class="inputtext" value="${ins.kkc313 }" /></td></tr>
+
 
 <tr><td nowrap="nowrap" width="15%"><p class="tip">简介</p></td><td>
-<textarea name="kkc217" id="content" class="reply" cols="45" rows="7"  ></textarea>
+<textarea name="kkc314" id="content" class="reply" cols="45" rows="7"  >${ins.kkc314 }</textarea>
+
+<input type="hidden" name="kkc101" value = "${param.kkc101}"  />
 
 </td></tr>
 </table>
-
+<input class="inputBtn" value="提交" name="submit" type="submit">
 
 </form>
 </div>

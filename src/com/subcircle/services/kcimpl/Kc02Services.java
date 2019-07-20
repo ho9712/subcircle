@@ -59,6 +59,39 @@ public class Kc02Services extends JdbcServicesSupport {
 	
 	
 	
+	public boolean UpdateInfo()throws Exception
+	
+	{
+		StringBuilder sql = new StringBuilder()
+				.append("update kc02 ")
+				.append("set kkc202=?,kkc209=?,kkc210=?,kkc211=?,kkc212=?,kkc213=?,kkc214=?,kkc215=?,kkc216=?,kkc217=? ")
+				.append("where ")
+				.append("kkc101=?")
+				;
+		
+		Object args[] =
+			{
+					this.get("kkc202"),
+					this.get("kkc209"),
+					this.get("kkc210"),
+					this.get("kkc211"),
+					this.get("kkc212"),
+					this.get("kkc213"),
+					this.get("kkc214"),
+					this.get("kkc215"),
+					this.get("kkc216"),
+					this.get("kkc217"),
+					this.get("kkc101")
+					
+			};
+		
+		this.appendSql(sql.toString(), args);
+		return this.executeTransaction();
+	}
+	
+	
+	
+	
     public boolean addAnimeComment()throws Exception
     {
     	

@@ -55,6 +55,30 @@ public  Map<String,String> findById()throws Exception
 
 
 
+	public boolean UpdateInfoG()throws Exception
+
+{
+	StringBuilder sql = new StringBuilder()
+			.append("update kc04 ")
+			.append("set kkc402=?,kkc409=?,kkc410=?,kkc411=? ")
+			.append("where ")
+			.append("kkc101=?")
+			;
+	
+	Object args[] =
+		{
+				this.get("kkc402"),
+				this.get("kkc409"),
+				this.get("kkc410"),
+				this.get("kkc411"),
+				this.get("kkc101")
+		};
+	
+	this.appendSql(sql.toString(), args);
+	return this.executeTransaction();
+}
+
+
 public boolean addAnimeComment()throws Exception
 {
 	
