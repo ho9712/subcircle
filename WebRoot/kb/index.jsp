@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -41,19 +42,54 @@
 			<!-- 站点导航栏 -->
 			<div id = "top">
 				<div>
-					<a href="<%=path%>/kd/userpage_main.jsp">
-				 		<img class="img-circle image-responsive" 
-				 			src="${sessionScope.user.kkd108 }" 
-				 			style="width: 100px;height: 100px;">
-				 	</a>
+						<c:choose>
+						<c:when test="${fn:contains('45',sessionScope.user.kkd104) }">
+							<a href="<%=path%>/kd01UserMain.kdhtml">
+				 			<img class="img-circle image-responsive" 
+				 				src="${sessionScope.user.kkd108 }" 
+				 				onerror="this.src='<%=path %>/img/avatar/def_avatar.png'"
+				 				style="width: 100px;height: 100px;">
+				 			</a>
+						</c:when>
+						<c:otherwise>
+							<a href="<%=path%>/kd01AdminMain.kdhtml">
+				 			<img class="img-circle image-responsive" 
+				 				src="${sessionScope.user.kkd108 }" 
+				 				onerror="this.src='<%=path %>/img/avatar/def_avatar.png'"
+				 				style="width: 100px;height: 100px;">
+				 			</a>
+						</c:otherwise>
+					</c:choose>
 				</div>
 				<br>
 				<div>
-					<span style="width:80%;word-break: break-word;font-size:20px;font: bold;">
-						<a href="<%=path%>/kd/userpage_main.jsp">
-							${sessionScope.user.kkd105 }
-						</a>
-					</span>
+					<c:choose>
+						<c:when test="${user == null}">
+							<span
+								style="width: 80%; word-break: break-word; font-size: 20px; font: bold;">
+								<a href="<%=path%>/kd01UserMain.kdhtml"> 亲爱的游客<%=(int)(Math.random()*10000)%>
+							</a>
+							</span>
+						</c:when>
+						<c:otherwise>
+							<c:choose>
+								<c:when test="${fn:contains('45',sessionScope.user.kkd104) }">
+									<span
+										style="width: 80%; word-break: break-word; font-size: 20px; font: bold;">
+										<a href="<%=path%>/kd01UserMain.kdhtml">
+											${sessionScope.user.kkd105 } </a>
+									</span>
+								</c:when>
+								<c:otherwise>
+									<span
+										style="width: 80%; word-break: break-word; font-size: 20px; font: bold;">
+										<a href="<%=path%>/kd01AdminMain.kdhtml">
+											${sessionScope.user.kkd105 } </a>
+									</span>
+								</c:otherwise>
+							</c:choose>
+						</c:otherwise>
+					</c:choose>
 				</div>
 				<div style="padding-top: 50px">
 					<ul class="nav nav-list">
@@ -72,10 +108,25 @@
 							</a>
 						</li>
 						<hr>
-						<li><a href="<%=path%>/kd/userpage_main.jsp">
-							<span style="font-size:20px;font: bold;">个人空间</span>
-							</a>
-						</li>
+						<c:choose>
+							<c:when test="${fn:contains('45',sessionScope.user.kkd104) }">
+								<li >
+									<a href="<%=path%>/kd01UserMain.kdhtml">
+										<span style="font-size:20px;font: bold;">个人空间</span>
+									</a>
+								</li>
+							</c:when>
+							<c:otherwise>
+								<li>
+									<a href="<%=path%>/kd01AdminMain.kdhtml">
+										<span style="font-size:20px;font: bold;">个人空间</span>
+									</a>
+								</li>>
+							</c:otherwise>
+						</c:choose>
+
+
+
 					</ul>
 				</div>
 			</div>

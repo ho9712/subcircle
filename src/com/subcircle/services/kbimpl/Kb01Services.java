@@ -40,7 +40,11 @@ public class Kb01Services extends JdbcServicesSupport
 			sql_1.append(" select count(kkb101)/12 as pageNum from kb01 k")
 				 .append("  where kkb110 = 1");
 		
+		//还原查询条件
 		Object searchText = this.get("searchText");
+		String bPrice = (String) this.get("bPrice");
+		String ePrice = (String)this.get("ePrice");
+		
 		if (searchText != null && !searchText.equals(""))
 		{
 			sql.append("	and (    k.kkb102 like + '%" + searchText + "%'")
@@ -50,13 +54,22 @@ public class Kb01Services extends JdbcServicesSupport
 			   .append("       	  or k.kkb104 like + '%" + searchText + "%'")
 			   .append("		  or k.kkb107 like + '%" + searchText + "%')");
 		}
-		sql.append("limit ?,?");
+		if (bPrice != null && !bPrice.equals("")) 
+		{
+			sql.append("    and   k.kkb103 >= " + bPrice);
+			sql_1.append("    and   k.kkb103 >= " + bPrice);
+		}
+		if (ePrice != null && !ePrice.equals("")) 
+		{
+			sql.append("    and   k.kkb103 <= " + ePrice);
+			sql_1.append("    and   k.kkb103 <= " + ePrice);
+		}
+		sql.append("  limit ?,12");
 		int start = (Integer.parseInt((String) this.get("page")) - 1) * 12;
-		int end = Integer.parseInt((String) this.get("page"))  * 12;
+		
 		Object args[] = 
 			{
 				start,
-				end
 			};
 		
 		List<Map<String, String>> teMaps =  this.queryForList(sql.toString(),args);
@@ -80,10 +93,12 @@ public class Kb01Services extends JdbcServicesSupport
 	{
 		StringBuilder  sql = new StringBuilder()
 				.append(" select k1.kkb101,k1.kkb102,k1.kkb103,k1.kkb104,k1.kkb105,")
-				.append("        k1.kkb106,k1.kkb107,k1.kkb108,k1.kkb109,k1.kkb111")
-				.append("	from kb01 k1")
-				.append("	where k1.kkb110 = 1")
-				.append("	and k1.kkb101 = ?")
+				.append("        s.fvalue kkb106,k1.kkb107,k1.kkb108,k1.kkb109,k1.kkb111")
+				.append("	from kb01 k1,syscode s")
+				.append("  where k1.kkb110 = 1")
+				.append("	 and k1.kkb101 = ?")
+				.append("    and k1.kkb106 = s.fcode ")
+				.append("	 and s.fname='kkb106'")
 				;
 		Object args[] = {this.get("kkb101")};
 		return this.queryForMap(sql.toString(), args);
@@ -235,4 +250,33 @@ public class Kb01Services extends JdbcServicesSupport
 			};
 		return this.executeUpdate(sql, args) > 0;
 	} 
+	
+	/**
+	 * 	用户付款成功后更新商品库存
+	 * @param kkb507订单号,筛选出其中的商品和数量
+	 * @return
+	 */
+	public boolean updateStock(String kkb507) throws Exception
+	{
+		String sql = "select kkb101,kkb504 from kb05 where kkb507 = ?";
+		Object args[] = 
+			{
+				kkb507
+			};
+	
+		List<Map<String, String>> teMaps = this.queryForList(sql, args);
+		
+		String sql_1 = "update kb01 set kkb108 = kkb108 - ? where kkb101 = ?";
+		for (Map<String, String> map : teMaps)
+		{
+			Object args_1[] = 
+				{
+					map.get("kkb504"),
+					map.get("kkb101")
+				};
+			this.appendSql(sql_1, args_1);
+		}
+		return this.executeTransaction();
+	}
+	
 }

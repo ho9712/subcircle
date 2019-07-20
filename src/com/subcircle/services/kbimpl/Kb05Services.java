@@ -55,11 +55,17 @@ public class Kb05Services extends JdbcServicesSupport
 	{
 		StringBuilder sql = new StringBuilder()
 				.append("insert into kb05(kkb101,kkd101,kkb502,kkb503,kkb504,")
-				.append("                 kkb505,kkb506,kkb507)")
-				.append("		 values (?,?,?,current_timestamp,?,")
-				.append("                ?,?,?)")
+				.append("				  kkb505,kkb506,kkb507,kkb508,kkd110,")
+				.append("                 kkd111,kkd112)")
+				.append("  	  values (?,?,?,current_timestamp,?,")
+				.append("             ?,?,?,?,?,")
+				.append("	          ?,?)")
 				;
 
+		Map<String,String> user = (Map<String, String>)this.get("user");
+		String kkd110 = user.get("kkd110");		//用户当前收货地址	
+		String kkd111 = user.get("kkd111"); 	//用户当前收货人
+		String kkd112 = user.get("kkd112");		//用户当前收货联系方式
 		//点击立即购买按钮创建订单的情况
 		if (this.get("kkb101") != null)
 		{
@@ -71,7 +77,11 @@ public class Kb05Services extends JdbcServicesSupport
 			        this.get("kkb504"),	//商品数量
 			        this.get("kkb505"),	//商品单价
 			        this.get("kkb506"),	//订单备注（首页的立即购买按钮才会在订单创建时有值）
-			        this.get("kkb507")	//商户订单号
+			        this.get("kkb507"),	//商户订单号
+			        "0",				//订单还未评价
+			        kkd110,				//用户当前收货地址
+			        kkd111,				//用户当前收货人
+			        kkd112				//用户当前收货联系方式
 				};
 			this.appendSql(sql.toString(), args);
 		}
@@ -92,7 +102,11 @@ public class Kb05Services extends JdbcServicesSupport
 					        ins.get("kkb402"),
 					        ins.get("kkb103"),
 					        this.get("kkb506"),	//订单备注（立即购买才会在订单创建时有值）
-					        this.get("kkb507")	//商户订单号
+					        this.get("kkb507"),	//商户订单号
+					        "0",				//订单还未评价
+					        kkd110,				//用户当前收货地址
+					        kkd111,				//用户当前收货人
+					        kkd112				//用户当前收货联系方式
 						};
 					 this.appendSql(sql.toString(), args);
 				}
@@ -152,12 +166,13 @@ public class Kb05Services extends JdbcServicesSupport
 	private List<Map<String, String>> queryOrderByNum(String userId,String kkb507) throws Exception
 	{
 		StringBuilder sql = new StringBuilder()
-				.append("  select k1.kkb101,k1.kkb105,k1.kkb102,k5.kkb501,k5.kkb504,")
-				.append("         k5.kkb505,k5.kkb506,k5.kkb507,k5.kkb508")
-				.append("    from kb01 k1, kb05 k5")
-				.append("	where k5.kkd101 = ?")
-				.append("     and k5.kkb101 = k1.kkb101")
-				.append("     and k5.kkb507 = ?")
+				.append("select k1.kkb101,k1.kkb105,k1.kkb102,k5.kkb501,k5.kkb504,")
+				.append("	    k5.kkb505,k5.kkb506,k5.kkb507,k5.kkb508,")
+				.append("		k5.kkd110,k5.kkd111,k5.kkd112")
+				.append("  from kb01 k1, kb05 k5")
+				.append(" where	k5.kkd101 = ?")
+				.append("	and k5.kkb101 = k1.kkb101")
+				.append("	and k5.kkb507 = ?")
 				;
 		
 		Object args[] = 

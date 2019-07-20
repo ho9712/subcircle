@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.internal.util.AlipaySignature;
+import com.subcircle.services.kbimpl.Kb01Services;
 import com.subcircle.services.kbimpl.Kb04Services;
 import com.subcircle.services.kbimpl.Kb05Services;
 import com.subcircle.web.kb.impl.alipayConfig.AlipayConfig;
@@ -52,26 +53,25 @@ public class PaySuccessServlet extends HttpServlet
 		{
 			//商户订单号
 			String out_trade_no = new String(request.getParameter("out_trade_no").getBytes("ISO-8859-1"),"UTF-8");
-			System.out.println("商户订单号:"+out_trade_no);
 			//支付宝交易号
 			String trade_no = new String(request.getParameter("trade_no").getBytes("ISO-8859-1"),"UTF-8");
-			System.out.println("支付宝交易号:"+trade_no);
 			
 			//付款金额
 			String total_amount = new String(request.getParameter("total_amount").getBytes("ISO-8859-1"),"UTF-8");
-			System.out.println("付款金额:"+total_amount);
 			//付款成功后从用户购物车移除该订单商品并更新该订单状态为1(待收货)
 			String mString_1 = "从购物车中移除该订单商品";
 			String mString_2 = "更改订单状态";
 			
 			Kb04Services kb04Services = new Kb04Services();
 			Kb05Services kb05Services = new Kb05Services();
+			Kb01Services kb01Services = new Kb01Services();		//更新商品库存
 			//System.out.println("=============");
 			try 
 			{
 				//System.out.println("hhhhh");
 				mString_1 += kb04Services.deleteCartItemsAfterPay(out_trade_no,userId)?"成功":"失败";
 				mString_2 += kb05Services.updateOrderState("1",out_trade_no,userId)?"成功":"失败";
+				kb01Services.updateStock(out_trade_no);		//更新商品库存
 				//System.out.println(mString_1);
 				//System.out.println(mString_2);
 				
@@ -87,7 +87,7 @@ public class PaySuccessServlet extends HttpServlet
 			System.out.println("验签失败");
 		}
 		//——请在这里编写您的程序（以上代码仅作参考）——
-		request.getRequestDispatcher("kb/kb01QueryItems.kbhtml").forward(request, response);
+		request.getRequestDispatcher("kb05QueryAllOrder.kbhtml?kkb502=1").forward(request, response);
 	}	
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 

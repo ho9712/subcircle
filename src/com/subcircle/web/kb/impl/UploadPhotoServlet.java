@@ -33,7 +33,7 @@ public class UploadPhotoServlet extends HttpServlet {
 				part=request.getPart("itemPhoto");
 				filePath=request.getServletContext().getRealPath("img/item/");
 				fileName=part.getSubmittedFileName();
-				data = "/item/"  + uuid+fileName;
+				data = "/img/item/"  + uuid+fileName;
 			}
 			//用户发布求购上传求购商品图片
 			else if (request.getPart("inquiryItemPhoto") != null) 
@@ -41,7 +41,7 @@ public class UploadPhotoServlet extends HttpServlet {
 				part=request.getPart("inquiryItemPhoto");
 				filePath=request.getServletContext().getRealPath("img/inquiry/");
 				fileName=part.getSubmittedFileName();
-				data = "/inquiry/"  + uuid+fileName;
+				data = "/img/inquiry/"  + uuid+fileName;
 			}
 			
 			File file=new File(filePath);

@@ -26,11 +26,18 @@ input[type="number"] {
 </head>
 <body>
 <c:choose>
-	<c:when test="${fn:contains(objMap.items[0].pageNum,'.0000') }">
-		<fmt:formatNumber var="pageNum" value="${objMap.items[0].pageNum}" pattern="#"/>
+	<c:when test="${empty objMap.items }">
+		<fmt:formatNumber var="pageNum" value="${1}" pattern="#"/>
 	</c:when>
 	<c:otherwise>
-		<fmt:formatNumber var="pageNum" value="${objMap.items[0].pageNum + 0.5}" pattern="#"/>
+		<c:choose>
+			<c:when test="${fn:contains(objMap.items[0].pageNum,'.0000') }">
+				<fmt:formatNumber var="pageNum" value="${objMap.items[0].pageNum}" pattern="#"/>
+			</c:when>
+			<c:otherwise>
+				<fmt:formatNumber var="pageNum" value="${objMap.items[0].pageNum + 0.5}" pattern="#"/>
+			</c:otherwise>
+		</c:choose>
 	</c:otherwise>
 </c:choose>
 	<%-- ${rows.get(1) } --%>
@@ -39,18 +46,39 @@ input[type="number"] {
 		<!-- 容器 -->
 		<div class="row-fluid" align="center">
 			<div class="span10 offset2">
-				<form action="<%=path %>/Kb01QueryItems.kbhtml?page=1" method="post">
-				<div>
+				<form id = "searchForm" action="<%=path %>/Kb01QueryItems.kbhtml" method="post">
+				<div align="center">
 					<input class="input-medium search-query" type="text"
-						style="width: 50%; height: 20px;" 
-						name = "searchText" id="searchText"/>
-					<button class="btn btn-default" contenteditable="true"
-							onclick="querySearchRes()" >查找</button>
+						style="width: 50%; height: 20px;" placeholder="搜索"
+						name = "searchText" id="searchText"
+						value = "${param.searchText }"/>
+					<br>
+					<br>
+					<div style="padding-right:300px;">
+						<span>价格区间:¥  </span>
+						<input  type="number"  class="input-medium search-query"
+								style="width: 30px;height: 20px;"
+								min = "0"  name = "bPrice" id = "bPrice"
+						 		οnkeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))"
+						 		style="ime-mode:Disabled"
+						 		value = "${param.bPrice }">
+						 	———— ¥
+						 <input  type="number"  class="input-medium search-query"
+								style="width: 30px;height: 20px;"
+								name = "ePrice" id = "ePrice"
+						 		οnkeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))"
+						 		style="ime-mode:Disabled"
+						 		value = "${param.ePrice }">
+						  	 <button class="btn btn-default" contenteditable="true"
+							onclick="querySearchRes(1)" style="float: right" >查找</button>
+					 </div>	
+				
 				</div>
-				</form>
+				<input type="hidden" id = "page" name = "page" value="1">
+			</form>
 
 				<!-- 轮播图 -->
-				<div class="carousel slide" id="myCarousel" align="center">
+				<div class="carousel slide"  data-ride="carousel" id="myCarousel" align="center">
 					<ol class="carousel-indicators">
 						<li class="active" data-slide-to="0" data-target="#myCarousel"></li>
 						<li data-slide-to="1" data-target="#myCarousel"></li>
@@ -91,8 +119,16 @@ input[type="number"] {
 						href="#myCarousel" class="right carousel-control">›</a>
 				</div>
 				<!-- 轮播图结束 -->
-
-
+				
+			<c:choose>
+				<c:when test="${empty objMap.items}">
+					<div align="center">
+						<font color="darkgray" size="6">
+							没找到符合条件的商品呢~~
+						</font>
+					</div>
+				</c:when>
+				<c:otherwise>	
 				<!-- 商品展示区 -->
 				<c:forEach begin="1" step="1" end="3" varStatus="i">
 					<ul class="thumbnails">
@@ -108,7 +144,8 @@ input[type="number"] {
 												${ins.kkb102 }</a>
 										</h4>
 										<p>${ins.kkb104 }</p>
-										<label><font color="#ff0000" size="2px"> 售价:</font>${ins.kkb103 }
+										<label>
+											售价: ￥ <span style="font-size:20px;color:#ff0000;">${ins.kkb103 }</span>
 										</label>
 										<c:choose>
 											<c:when test="${sessionScope.kkd104 == 2}">
@@ -143,27 +180,29 @@ input[type="number"] {
 						</c:forEach>
 					</ul>
 				</c:forEach>
+			</c:otherwise>
+		</c:choose>
 
 				<div class="pagination">
 					<!-- 翻页 -->
 					<ul class="pagination">
 						<li>
-							<c:if test="${param.page >1}"><a href="<%=path%>/kb01QueryItems.kbhtml?page=${param.page-1 }&searchText=${param.searchText}">&laquo;</a></c:if>
+							<c:if test="${param.page >1}"><a href="#" onclick="querySearchRes(${param.page - 1})">&laquo;</a></c:if>
 						</li>
 						<c:choose>
 							<c:when test="${param.page < pageNum - 3}">	
 								<c:forEach begin = "1" step = "1" end = "5" varStatus="vs">
 									<c:choose>
-										<c:when test="${vs.count == 1 }"><li class = "active"><a href="<%=path%>/kb01QueryItems.kbhtml?page=${empty param.page?'1':param.page + vs.count - 1}&searchText=${param.searchText}">${empty param.page?'1':param.page}</a></li></c:when>
-										<c:otherwise><li><a href="<%=path%>/kb01QueryItems.kbhtml?page=${empty param.page?'1':param.page + vs.count - 1}&searchText=${param.searchText}">${empty param.page?'1':param.page + vs.count - 1}</a></li></c:otherwise>							
+										<c:when test="${vs.count == 1 }"><li class = "active"><a href="#" onclick="querySearchRes(${param.page})">${empty param.page?'1':param.page}</a></li></c:when>
+										<c:otherwise><li><a href="#" onclick="querySearchRes(${param.page + vs.count - 1})">${empty param.page?'1':param.page + vs.count - 1}</a></li></c:otherwise>							
 									</c:choose>
 								</c:forEach>
 							</c:when>
 							<c:otherwise>
 								<c:forEach begin = "1" step = "1" end = "${pageNum - param.page + 1 }" varStatus="vs">
 									<c:choose>
-										<c:when test="${vs.count == 1 }"><li class = "active"><a href="<%=path%>/kb01QueryItems.kbhtml?page=${empty param.page?'1':param.page + vs.count - 1}">${empty param.page?'1':param.page}</a></li></c:when>
-										<c:otherwise><li><a href="<%=path%>/kb01QueryItems.kbhtml?page=${empty param.page?'1':param.page + vs.count - 1}">${empty param.page?'1':param.page + vs.count - 1}</a></li></c:otherwise>							
+										<c:when test="${vs.count == 1 }"><li class = "active"><a href="#" onclick="querySearchRes(${param.page})">${empty param.page?'1':param.page}</a></li></c:when>
+										<c:otherwise><li><a href="#" onclick="querySearchRes(${param.page + vs.count - 1})">${empty param.page?'1':param.page + vs.count - 1}</a></li></c:otherwise>							
 									</c:choose>
 								</c:forEach>
 							</c:otherwise>
@@ -171,7 +210,7 @@ input[type="number"] {
 						<li>
 							<c:choose>
 								<c:when test="${param.page < pageNum }">
-									<a href="<%=path%>/kb01QueryItems.kbhtml?page=${param.page+1 }">&raquo;</a>
+									<a href="#" onclick="querySearchRes(${param.page + 1})">&raquo;</a>
 								</c:when>
 							</c:choose>
 						</li>
@@ -306,6 +345,7 @@ input[type="number"] {
 	//根据商品id以及数量加入用户购物车中
 	function onAddToCart(kkb101)
 	{
+		alert("打算打卡机");
 		var kkb402 = 1;			//从周边商城模块加入购物车数量默认为1
 		 $.ajax({
 	            type: "POST",
@@ -394,20 +434,24 @@ input[type="number"] {
 	            dataType: "text",
 	            success: function (data)
 	            {
-	            	window.location.href = "<%=request.getContextPath()%>/kb01QueryItems.kbhtml"
+	            	window.location.href = "<%=request.getContextPath()%>/kb01QueryItems.kbhtml?page=1"
 	            }//endsuccess
 	       });//endajax
 		}
 	}	
 	
-	
+	//跳转目标页面
 	function loadTarget()
 	{
 		var targetPage = document.getElementById("targetPage").value;
-		if(targetPage != null && targetPage != "")
+		var pageNum = ${pageNum};
+		if(targetPage > pageNum)
 		{
-			window.location.href = "<%=path%>/kb01QueryItems.kbhtml?"
-					+"page=" + targetPage;
+			alert("超出目标页面");
+		}
+		else if(targetPage != null && targetPage != "")
+		{
+			querySearchRes(targetPage);
 		}
 		else
 		{
@@ -415,6 +459,11 @@ input[type="number"] {
 		}
 	}
 	
+	function querySearchRes(targetPage) 
+	{
+		$("#page").attr("value",targetPage);		//更新page的值
+		$("#searchForm").submit();
+	}
 	</script>
 	
 	<script src="<%=basePath %>/js/jquery.js"></script>

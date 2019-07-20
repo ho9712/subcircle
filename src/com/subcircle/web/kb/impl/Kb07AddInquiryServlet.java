@@ -6,7 +6,7 @@ public class Kb07AddInquiryServlet extends Kb07Controller
 	public String execute() throws Exception 
 	{
 		this.update("addInquiry", "·¢²¼Çó¹º");
-		return "kb01QueryItems.kbhtml";
+		return "Kb07QueryMyInquiry.kbhtml";
 	}
 
 }

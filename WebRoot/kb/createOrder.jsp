@@ -13,10 +13,7 @@
 <link href="<%=basePath %>/css/bootstrap.css" rel="stylesheet">
 <jsp:include page="index.jsp" flush="true" /><!-- 引入导航栏 -->
 </head>
-<body>
-<%-- ${flag }
-${backLocation }
-${rows } --%>
+<body> 
 	<div class="container-fluid">
 		<!-- 容器 -->
 		<div class="row-fluid">
@@ -30,8 +27,15 @@ ${rows } --%>
 					</thead>
 				
 					<tbody>
-						<tr>
-							<td>收获地址</td>
+						<tr class="warning">
+							<td>收货地址</td>
+							<td>收货人</td>
+							<td>联系方式</td>
+						</tr>
+						<tr class="info">
+							<td>${rows[0].kkd110 }</td>
+							<td>${rows[0].kkd111 }
+							<td>${rows[0].kkd112 }
 						</tr>
 					</tbody>
 				

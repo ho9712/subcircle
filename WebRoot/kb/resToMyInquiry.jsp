@@ -82,10 +82,12 @@
 									</td>
 									<td>
 										<div align="left" style="padding-top:10px">
-											<a href=""> <img
+											<a href="<%=path%>/kd01FindOther.kdhtml?kkd101=${ins.kkd101}">
+											 <img
 												class="img-circle image-responsive"
 												src="${ins.kkd108 }"
-												style="width:50px; height: 50px;">
+												style="width:50px; height: 50px;"
+												onerror="this.src='<%=path %>/img/avatar/def_avatar.png'">
 												<br>
 												<span
 												style="width: 80%; word-break: break-word; font-size: 10px; font: bold;padding-left: 5px">
@@ -100,7 +102,7 @@
 											<button type="button" class="btn btn-success"
 												onclick="updateResponse('${ins.kkb801 }','2')">拒绝</button>
 											<button type="button" class="btn btn-warning"
-												onclick="updateResponse(${ins.kkb801 },'3')">确认</button>
+												onclick="updateResponse('${ins.kkb701 }','${ins.kkb801 }','3')">确认</button>
 										</div>
 									</td>
 								</tr>
@@ -135,9 +137,11 @@
 											<div align="center" style="padding-top: 10px">
 												<span style="font-size:20px;">响应者</span>
 													<hr>
-												<a id="userLink" href=""> <img class="img-circle image-responsive"
-													   			id = "InquiryUserImg"	src=""
-													    style="width: 80px; height: 80px;">
+												<a id="userLink" href="">
+												 <img class="img-circle image-responsive"
+										   			id = "InquiryUserImg"	src=""
+												    style="width: 80px; height: 80px;"
+												    onerror="this.src='<%=path %>/img/avatar/def_avatar.png'">
 													<br> <span id="InquiryUserName"
 													style="width: 80%; word-break: break-word; font-size: 10px; font: bold; padding-left: 5px">
 														</span>
@@ -210,7 +214,7 @@
 	}
 	
 	//更新响应的状态
-	function updateResponse(kkb801,kkb802)
+	function updateResponse(kkb701,kkb801,kkb802)
 	{
 		var msg = "";
 		if(kkb802 == "3")
@@ -235,6 +239,17 @@
 					if(data == "true")
 	            	{
 						alert("操作成功");
+						$.ajax({
+				            type: "POST",
+				            url: "${pageContext.request.contextPath}/Kb07UpdateInquiry.kbhtml?"
+				            	+"kkb708=3"
+				            	+"&kkb701="+kkb701,
+				            dataType: "text",
+				            success: function (data)
+				            {
+				            	
+				            }
+						});
 						location.reload();
 	            	}
 					else

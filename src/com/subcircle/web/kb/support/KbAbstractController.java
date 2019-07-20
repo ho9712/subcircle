@@ -35,6 +35,7 @@ public abstract class KbAbstractController implements ControllerInterface
 		//从session拿出用户id和权限交给dto
 		this.dto.put("kkd101",this.session.getAttribute("kkd101"));
 		this.dto.put("kkd104",this.session.getAttribute("kkd104"));
+		this.dto.put("user",this.session.getAttribute("user"));
 		//为Services传递DTO
 		this.services.setServicesDto(dto);
 	}

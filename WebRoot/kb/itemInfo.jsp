@@ -39,7 +39,7 @@
 					<tbody>
 						<tr>
 							<td>售价</td>
-							<td>${objList[0].kkb103 }</td>
+							<td>¥ <span style="font-size:20px;color:#ff0000;">${objList[0].kkb103 }</span></td>
 						</tr>
 						<tr class="success">
 							<td>商品类型</td>
@@ -145,8 +145,11 @@
 							<tr class="info">
 								<td>
 									<div align="left" style="padding-top: 10px">
-										<a href="<%=path%>/kd01FindOther.kdhtml?kkd101=${rateInfo.kkd101}"> <img class="img-circle image-responsive"
-											src="${rateInfo.kkd108 }" style="width: 50px; height: 50px;">
+										<a href="<%=path%>/kd01FindOther.kdhtml?kkd101=${rateInfo.kkd101}">
+										 <img class="img-circle image-responsive"
+											src="${rateInfo.kkd108 }" 
+											style="width: 50px; height: 50px;"
+											onerror="this.src='<%=path %>/img/avatar/def_avatar.png'">
 											<br> <span
 											style="width: 80%; word-break: break-word; font-size: 10px; font: bold; padding-left: 5px">
 												${rateInfo.kkd105 } </span>
@@ -259,7 +262,7 @@ function onCollect(kkb101)
 	            dataType: "text",
 	            success: function (data)
 	            {
-	            	window.location.href = "<%=request.getContextPath()%>/kb01QueryItems.kbhtml"
+	            	window.location.href = "<%=request.getContextPath()%>/kb01QueryItems.kbhtml?page=1"
 	            }//endsuccess
 	       });//endajax
 		}

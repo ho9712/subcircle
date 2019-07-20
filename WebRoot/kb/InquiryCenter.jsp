@@ -87,10 +87,12 @@
 									</td>
 									<td>
 										<div align="left" style="padding-top:10px">
-											<a href="<%=path%>/kd01FindOther.kdhtml?kkd101=${ins.kkd101}"> <img
+											<a href="<%=path%>/kd01FindOther.kdhtml?kkd101=${ins.kkd101}"> 
+											<img
 												class="img-circle image-responsive"
 												src="${ins.kkd108 }"
-												style="width:50px; height: 50px;">
+												style="width:50px; height: 50px;"
+												onerror="this.src='<%=path %>/img/avatar/def_avatar.png'">
 												<br>
 												<span
 												style="width: 80%; word-break: break-word; font-size: 10px; font: bold;padding-left: 5px">
@@ -163,9 +165,11 @@
 											<div align="center" style="padding-top: 10px">
 												<span style="font-size:20px;">求购者</span>
 													<hr>
-												<a id = "userLink" href="<%=path%>/kd01FindOther.kdhtml?kkd101=${ins.kkd101}"> <img class="img-circle image-responsive"
+												<a id = "userLink" href="<%=path%>/kd01FindOther.kdhtml?kkd101=${ins.kkd101}"> 
+														<img class="img-circle image-responsive"
 													   			id = "InquiryUserImg"	src=""
-													    style="width: 80px; height: 80px;">
+													    	style="width: 80px; height: 80px;"
+													    	onerror="this.src='<%=path %>/img/avatar/def_avatar.png'">
 													<br> <span id="InquiryUserName"
 													style="width: 80%; word-break: break-word; font-size: 10px; font: bold; padding-left: 5px">
 														</span>

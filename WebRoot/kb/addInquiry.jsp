@@ -66,7 +66,7 @@
 									<div style="padding-left: 20%">
 										<div class="btn-group btn-group-sm">
 											<button type="button" class="btn btn-success"
-												onclick="submitInquiryInfo('<%=request.getContextPath()%>/kb07AddInquiry.kbhtml')">
+												onclick="submitInquiryInfo('<%=request.getContextPath()%>/kb07AddInquiry.kbhtml?kkd101=${kkd101 }')">
 												发布</button>
 											<button type="button" class="btn btn-warning"
 												onclick="onCancle()">取消</button>
@@ -93,7 +93,6 @@
 		            dataType: "text",
 		            success: function (data)
 		            {
-		            	alert(data);
 		            	if(data)
 		            	{
 		            		$("#showPhoto").attr("src",data);

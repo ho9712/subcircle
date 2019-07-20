@@ -6,7 +6,7 @@ public class Kb01AddItemServlet extends Kb01Controller
 	public String execute() throws Exception 
 	{
 		this.update("addItem", "ÃÌº”…Ã∆∑");
-		return "kb01QueryItems.kbhtml";
+		return "kb01QueryItems.kbhtml?page=1";
 	}
 
 }

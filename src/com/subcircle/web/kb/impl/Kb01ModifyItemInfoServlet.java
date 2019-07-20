@@ -6,7 +6,7 @@ public class Kb01ModifyItemInfoServlet extends Kb01Controller
 	public String execute() throws Exception
 	{
 		this.update("modifyItemInfo","修改商品信息");
-		return "kb01QueryItems.kbhtml";
+		return "kb01QueryItems.kbhtml?page=1";
 	}
 
 }
