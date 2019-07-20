@@ -311,11 +311,16 @@
 	
 	function submitForm(orderPrice,kkb507,target)
 	{
-		 $("#WIDout_trade_no").attr("value",kkb507);
-		 $("#kkb507").attr("value",kkb507);
-		 $("#WIDtotal_amount").attr("value",orderPrice);
-		 $("#myForm").attr("action",target);
-		 $("#myForm").submit();
+		 var msg = "您确认提交该操作吗"
+		 if(confirm(msg)==true)
+		 {
+			 $("#WIDout_trade_no").attr("value",kkb507);
+			 $("#kkb507").attr("value",kkb507);
+			 $("#WIDtotal_amount").attr("value",orderPrice);
+			 $("#myForm").attr("action",target);
+			 $("#myForm").submit();
+			 alert("操作成功");
+		 }
 	}
 	
 	</script>
