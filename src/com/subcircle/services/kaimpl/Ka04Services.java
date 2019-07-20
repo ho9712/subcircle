@@ -3,6 +3,9 @@ package com.subcircle.services.kaimpl;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import javax.naming.spi.DirStateFactory.Result;
+
 import com.subcircle.system.tools.Tools;
 import com.subcircle.services.support.JdbcServicesSupport;
 
@@ -14,21 +17,46 @@ public class Ka04Services extends JdbcServicesSupport
 	     * @throws Exception
 	     */
 		 private boolean addCollection() throws Exception
-		    {
-		    	//1.编写SQL语句
+		    {   
+			   //1.编写SQL语句
 		    	StringBuilder sql=new StringBuilder()
-		    			.append("insert into ka04(kkd101,kka101,kka402,kka403)")
-		    			.append("          values(?,?,CURRENT_TIMESTAMP,1)")
+		    			.append("select kka401,kkd101,kka101,kka402 from  ka04")
+		    			.append(" where kkd101=? and kka101=?")
 		    			;
-		    	
-		    	//2.编写参数数组
 		    	Object args[]=
 		    		{  
-		    		    //此处硬编码用户流水号为1，以后通过获取用户流水号动态更新。
-		    			"1",
+		    			this.get("kkd101"),
 		    			this.get("kka101")	
 		    	    };
-		        return this.executeUpdate(sql.toString(), args)>0;	
+			 
+		       Map<String,String> result = this.queryForMap(sql.toString(),args);
+		        
+		        if(result!=null)
+		        {
+		        	return false;
+		        }
+		    	
+		        else
+		        {
+		    	   //1.编写SQL语句
+		    	  StringBuilder sql2=new StringBuilder()
+		    			.append("insert into ka04(kkd101,kka101,kka402)")
+		    			.append("          values(?,?,CURRENT_TIMESTAMP)")
+		    			;
+		    	
+		    	  //2.编写参数数组
+		    	   Object args2[]=
+		    		{  
+		    			this.get("kkd101"),
+		    			this.get("kka101")	
+		    	    };
+		        return this.executeUpdate(sql2.toString(), args2)>0;	
 		    }
-  
+
+		    }
 }
+
+
+
+
+

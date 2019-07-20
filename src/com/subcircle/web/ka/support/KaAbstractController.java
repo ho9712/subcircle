@@ -22,7 +22,6 @@ public abstract class KaAbstractController implements ControllerInterface
 	{
 		this.services=services;
 	}
-	
 		
 	/***********************************************************
 	 * 					为Services传递DTO
@@ -129,6 +128,15 @@ public abstract class KaAbstractController implements ControllerInterface
 		return (boolean)method.invoke(this.services);
 	}
 	
+	
+	private List<Map<String,Object>> executeHotPost(String methodName)throws Exception
+	{
+		Method method=this.services.getClass().getDeclaredMethod(methodName);
+		//设置访问权限，使能够访问private方法
+		method.setAccessible(true);
+		return (List<Map<String,Object>>)method.invoke(this.services);
+	}
+	
 
 	
 	/*********************************************************************
@@ -198,6 +206,25 @@ public abstract class KaAbstractController implements ControllerInterface
 		{
 			this.saveAttribute("msg", "没有符合条件的数据!");
 		}	
+	}
+	
+	
+	/**
+	 * 回复贴子
+	 * @throws Exception
+	 */
+	protected final String postContent() throws Exception
+	{   
+		if (this.session.getAttribute("kkd101")==null|| this.session.getAttribute("kkd101").toString().equals("")) 
+	   {
+		  return "kd/nologin.jsp";
+	   } 
+		else
+		{	
+	      this.executeMethod("postContent");
+	      this.saveAttribute("msg", "回复成功！");
+		  return "ka01PostContent.kahtml";
+		}
 	}
 	
 	
@@ -274,6 +301,37 @@ public abstract class KaAbstractController implements ControllerInterface
 		}
 		return "ka01AdmPostContent.kahtml";
 	}
+	
+	
+	
+	/**
+	 * 添加收藏
+	 * @throws Exception
+	 */
+	protected final void addCollection()throws Exception
+	{
+		if( this.executeMethod("addCollection"))
+		{
+			this.saveAttribute("msg", "收藏成功！");
+		}
+		else
+		{		
+		   this.saveAttribute("msg", "收藏失败！您已经收藏过该贴子。");
+		}
+	}
+
+	
+	/**
+	 * 查询热点贴子
+	 * @throws Exception
+	 */
+	protected final void hotPost()throws Exception
+	{
+		
+		List<Map<String,Object>> rows1=this.executeHotPost("queryHotPost");
+		this.saveAttribute("rows1", rows1);
+	}
+
 	
 	
 }

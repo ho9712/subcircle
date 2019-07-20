@@ -54,7 +54,6 @@ public class KaBaseServlet extends HttpServlet
 		//±‹√‚NPE
 		if(toPath != null && toPath.equals(""))
 		{
-			//System.out.println(request.getHeader("referer"));
 			response.sendRedirect(request.getHeader("Referer"));
 		}
 		else

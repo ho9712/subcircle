@@ -5,7 +5,8 @@ public class Ka01BookForumServlet  extends Ka01Controller
 	
 	@Override
 	public String execute() throws Exception 
-	{
+	{   
+		this.hotPost();
 		return this.queryByCondition();
 	}
 }

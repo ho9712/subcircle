@@ -56,4 +56,5 @@ public class Ka03Services extends JdbcServicesSupport
 	    	    };
 	        return this.executeUpdate(sql.toString(), args)>0;	
 	    }
+	 
 }

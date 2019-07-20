@@ -22,7 +22,7 @@ public class Ka02Services extends JdbcServicesSupport
 	public Map<String,String> findById()throws Exception
     {
 		StringBuilder sql=new StringBuilder()
-    			.append("select  x.kka101, x.kka102, b.fvalue, a.kkd105,x.kka104,x.kka105")
+    			.append("select  x.kka101, x.kka102, b.fvalue, a.kkd105,a.kkd102,x.kka104,x.kka105")
     			.append("  from ka01 x,kd01 a, syscode b")
     			.append("  where x.kkd101 = a.kkd101 and b.fname = 'kka103' and b.fcode = x.kka103 ")
     		    .append("  and  x.kka106=1 and x.kka101=? ")
@@ -122,11 +122,11 @@ public class Ka02Services extends JdbcServicesSupport
     			Tools.getReplyId(this.get("kka101").toString()),
     			this.get("kka202")
     	    };
-    	 System.out.println(this.get("kka101"));
-    	 System.out.println(this.get("kka201-2"));
         return this.executeUpdate(sql.toString(), args)>0;	
     }
 	
+	
+	            
 	/**
 	 * 管理员功能--删帖子回复，实际操作为更改回复表kka204属性值，从1（未删除）更改为0（已删除）
 	 * @return
@@ -145,9 +145,34 @@ public class Ka02Services extends JdbcServicesSupport
     			this.get("kka201"),
     			this.get("kka101")
     	    };
-    	return this.executeUpdate(sql.toString(), args)>0;
+    	boolean flag = this.executeUpdate(sql.toString(), args)>0;
     	
-    }
+    	if (flag) 
+		  {
+    		StringBuilder sql2=new StringBuilder()
+    				.append("insert into kd02(kkd202,kkd203,kkd204,kkd205,kkd206,kkd207,kkd208,kkd209)")
+    				.append("     values (?,?,?,?,?,current_timestamp,'0','0')")
+    				;
+    		    
+    		
+            Object[] args2={
+    					this.get("kkd202"),	
+    					this.get("kkd203"),
+			            "回复违规消息反馈",
+			            "您发布的内容为“" + this.get("kka202") +  "”的回复涉嫌违规，已被管理员删除。请注意您的言论及措辞！",
+			            "0"
+ 		                };
+             this.executeUpdate(sql2.toString(), args2);
+		           }
+		     return flag;
+  }
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	/**
@@ -156,16 +181,17 @@ public class Ka02Services extends JdbcServicesSupport
      * @throws Exception
      */
 	 private List<Map<String,String>> query02Services()throws Exception
-	  {
-		 // Object kka101=this.get("kka101");
-	  		//定义SQL主体
-	  		StringBuilder sql=new StringBuilder()
-	  				.append("select x.kka201,x.kka202,x.kka203,x.kka204,x.ka02_kka201,a.kkd105,b.kka101,c.kka202 rootAnswer,c.kka204 delSign")
-	  				.append(" from ka02 x,kd01 a,ka01 b,ka02 c ")
-	  				.append(" where x.kkd101 = a.kkd101 and b.kka101 = x.kka101 and b.kka101 =? and x.ka02_kka201=c.kka201 and x.kka101 = c.kka101")
-	  				.append(" order by x.kka203")
-	  				;
-
+	  {  
+	  		
+		  //定义SQL主体
+		  		StringBuilder sql=new StringBuilder()
+		  				.append("select x.kka201,x.kka202,x.kka203,x.kka204,x.ka02_kka201,a.kkd102,a.kkd105,b.kka101,c.kka202 rootAnswer,c.kka204 delSign")
+		  				.append(" from ka02 x,kd01 a,ka01 b,ka02 c ")
+		  				.append(" where x.kka201!=0 and x.kkd101 = a.kkd101 and b.kka101 = x.kka101 and b.kka101 =? and x.ka02_kka201=c.kka201 and x.kka101 = c.kka101")
+		  				.append(" order by x.kka203")
+		  				;
+	  		
+	  		
 	  		Object args[] =
 	  			{
 	  				this.get("kka101"),

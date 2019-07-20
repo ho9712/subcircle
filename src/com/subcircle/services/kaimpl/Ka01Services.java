@@ -18,7 +18,7 @@ public class Ka01Services extends JdbcServicesSupport
 	public Map<String,String> findById()throws Exception
     {
     	StringBuilder sql=new StringBuilder()
-    			.append("select  x.kka101, x.kka102, b.fvalue, a.kkd105,x.kka104,x.kka105")
+    			.append("select  x.kka101, x.kka102, b.fvalue, a.kkd105,a.kkd102,x.kka104,x.kka105")
     			.append("  from ka01 x,kd01 a, syscode b")
     			.append("  where x.kkd101 = a.kkd101 and b.fname = 'kka103' and b.fcode = x.kka103 ")
     		    .append("  and  x.kka106=1 and x.kka101=? ")
@@ -68,9 +68,32 @@ public class Ka01Services extends JdbcServicesSupport
   			paras.add("%"+search+"%");
   			paras.add("%"+search+"%");
   		}
+  		 sql.append(" order by x.kka105 desc");
   		return this.queryForList(sql.toString(),paras.toArray());
 		
 	}
+	
+	/**
+     * 查询热点贴子。根据回复数目排序
+     * @return
+     * @throws Exception
+     */
+	public List<Map<String,String>> queryHotPost()throws Exception
+    {
+    	StringBuilder sql=new StringBuilder()
+    			.append("select a1.kka101,a1.kka102,a1.kka106,c.fvalue cnkka103,b.number")
+    			.append("  from ka01 a1,syscode c,(select ss.kka101, count(ss.kka201)  number")
+    			.append("								from (select x.kka201,b.kka101")
+    			.append("											from ka02 x,ka01 b")
+    			.append("											where  b.kka101 = x.kka101) ss ")
+    			.append("											group by ss.kka101) b")
+    			.append(" where a1.kka103=c.fcode and a1.kka101=b.kka101 and a1.kka106 =1")
+    			.append(" ORDER BY number DESC")
+    			;
+    	//执行查询 
+    	Object args[] ={};
+    	return this.queryForList(sql.toString(),args);
+    }
 	 
 	
 	/**
@@ -108,7 +131,8 @@ public class Ka01Services extends JdbcServicesSupport
     	return this.executeTransaction();
     }
 	 
-	 
+
+	        
 	    /**
 	     * 管理员功能--删帖，实际操作为更改帖子表kka106属性值，从1（未删除）更改为0（已删除）
 	     * @return
@@ -125,8 +149,28 @@ public class Ka01Services extends JdbcServicesSupport
 	    			0,
                 this.get("kka101")
 	    	};
-	    	return this.executeUpdate(sql.toString(), args)>0;
-	    	
+	      boolean flag = this.executeUpdate(sql.toString(), args)>0;
+			
+	          if (flag) 
+			  {
+				
+				
+				StringBuilder sql2=new StringBuilder()
+						.append("insert into kd02(kkd202,kkd203,kkd204,kkd205,kkd206,kkd207,kkd208,kkd209)")
+						.append("     values (?,?,?,?,?,current_timestamp,'0','0')")
+						;
+			    
+				Object[] args2={
+					this.get("kkd202"),	
+					this.get("kkd203"),
+					"贴子违规消息反馈",
+				    "您发布的标题为“" + this.get("kka102") + "”的贴子涉嫌违规，已被管理员删除。请注意您的言论及措辞！",
+					"0"
+				               };
+				this.executeUpdate(sql2.toString(), args2);
+		     }
+	               return flag;
+	    
 	    }
 	 
 	   
@@ -136,25 +180,26 @@ public class Ka01Services extends JdbcServicesSupport
 	     * @return
 	     * @throws Exception
 	     */
-	 private List<Map<String,String>> query02Services()throws Exception
-	  {
-		 // Object kka101=this.get("kka101");
-	  		//定义SQL主体
+	   private List<Map<String,String>> query02Services()throws Exception
+	    {
+	  		
+	  	//定义SQL主体
 	  		StringBuilder sql=new StringBuilder()
-	  				.append("select x.kka201,x.kka202,x.kka203,x.kka204,x.ka02_kka201,a.kkd105,b.kka101,c.kka202 rootAnswer")
+	  				.append("select x.kka201,x.kka202,x.kka203,x.kka204,x.ka02_kka201,a.kkd102,a.kkd105,b.kka101,c.kka202 rootAnswer,c.kka204 delSign")
 	  				.append(" from ka02 x,kd01 a,ka01 b,ka02 c ")
-	  				.append(" where x.kkd101 = a.kkd101 and b.kka101 = x.kka101 and b.kka101 =? and x.ka02_kka201=c.kka201 and x.kka101 = c.kka101")
+	  				.append(" where x.kka201!=0 and x.kkd101 = a.kkd101 and b.kka101 = x.kka101 and b.kka101 =? and x.ka02_kka201=c.kka201 and x.kka101 = c.kka101")
 	  				.append(" order by x.kka203")
 	  				;
+	  		
+	  		
 	  		Object args[] =
 	  			{
 	  				this.get("kka101")
 	  		    };
 	  		List<Map<String,String>> rows=this.queryForList(sql.toString(), args);
-	  		rows.remove(0);
 	  		return rows;
-	  }
-	  
+	     }
+	    
 	
 	 
 	    /**

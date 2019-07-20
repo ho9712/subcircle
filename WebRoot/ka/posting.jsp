@@ -1,6 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://org.wangxg/jsp/extl" prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%String path=request.getContextPath(); %>
 
 <!DOCTYPE html>
@@ -20,82 +21,143 @@
 	}
 </style>
  <div id="wrapperNeue" class="wrapperNeue">
- <div id="headerNeue2">
- <div class="headerNeueInner clearit">
-<div class="bg musume_2"></div>
- <a href="/" class="logo">Bangumi 番组计划</a>
- <input type="checkbox" id="navMenuNeueToggle" />    	
- <label for="navMenuNeueToggle" class="menuCompact"></label>    
-<div id="navNeue2">
-<div id="menuNeue">
-<ul id="navMenuNeue" class="clearit">
-<li>
-<a href="/anime" class="top chl anime"><span>动画</span></a>
-<div class="clear"></div>
-<ul class="clearit">
-<li><a href="/anime/chart" class="nav">排行榜</a></li>
-<li><a href="/calendar" class="nav">每日放送</a></li>
-<li><a href="/anime/tag" class="nav">动画标签</a></li>
-<li><a href="/anime/browser" class="nav">分类浏览</a></li>
-<li><a href="/anime/blog" class="nav">动画日志</a></li>
-</ul>
-</li>
-<li><a href="/book" class="top chl"><span>书籍</span></a>
-<div class="clear"></div>
-<ul class="clearit">
-<li><a href="/book/chart" class="nav">排行榜</a></li>
-<li><a href="/book/tag" class="nav">图书标签</a></li>
-<li><a href="/book/browser" class="nav">分类浏览</a></li>
-<li><a href="/book/blog" class="nav">图书日志</a></li>
-</ul>
-</li>
-<li><a href="/music" class="top chl"><span>音乐</span></a>
-<div class="clear"></div>
-<ul class="clearit">
-<li><a href="/music/chart" class="nav">排行榜</a></li>
-<li><a href="/music/tag" class="nav">音乐标签</a></li>
-<li><a href="/music/browser" class="nav">浏览全部</a></li>
-<li><a href="/music/blog" class="nav">音乐日志</a></li>
-</ul>
-</li>
-<li><a href="/game" class="top chl"><span>游戏</span></a>
-<div class="clear"></div>
-<ul class="clearit">
-<li><a href="/game/chart" class="nav">排行榜</a></li>
-<li><a href="/game/tag" class="nav">游戏标签</a></li>
-<li><a href="/game/browser" class="nav">平台浏览</a></li>
-<li><a href="/game/blog" class="nav">游戏日志</a></li>
-</ul>
-</li>
-<li class="doujin"><a href="http://doujin.bangumi.tv">天窗联盟</a></li>
-</ul>	
-</div>
-</div>
-<div class="idBadgerNeue">
-<div class="guest"><a href="<%=path %>/kd/login.jsp" class="guest login">登录</a><a href="<%=path %>/kd/signup.jsp" class="guest signup">注册</a></div>
+    <!-- 顶部栏 -->
+<div id="headerNeue2">
+    <div class="headerNeueInner clearit">
+         <div class="bg musume_4"></div>
+   		 <a href="/" class="logo">Bangumi 番组计划</a>
+        
+		<input type="checkbox" id="navMenuNeueToggle" />        
+		<label for="navMenuNeueToggle" class="menuCompact"></label>
+	<!-- 顶部导航 -->
+	<div id="navNeue2">
+		<div id="menuNeue">
+		<ul id="navMenuNeue" class="clearit">
+		<li><a href="/anime" class="top chl anime"><span>动画</span></a>
+		                <div class="clear"></div>
+		<ul class="clearit">
+		<li><a href="kc02ShowRank.kchtml" class="nav">排行榜</a></li>
+		</ul>
+		</li>
+		<li><a href="/book" class="top chl"><span>书籍</span></a>
+		<div class="clear"></div>
+		<ul class="clearit">
+		<li><a href="kc03ShowRank.kchtml" class="nav">排行榜</a></li>
+		</ul>
+		</li>
+		
+		<li><a href="/game" class="top chl game"><span>游戏</span></a>
+		<div class="clear"></div>
+		<ul class="clearit">
+		<li><a href="kc04ShowRank.kchtml" class="nav">排行榜</a></li>
+		</ul>
+		</li>
+		
+		<li>&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="kb01QueryItems.kbhtml">
+			<img alt="前往商城" src="<%=path%>/img/shop_logo.png" style="width:150px;height:50px;">
+			</a>&nbsp;&nbsp;
+		</li>
+		<li>
+			<a href="<%=path %>/ka01MainForum.kahtml?id=0">
+			<img alt="前往论坛" src="<%=path%>/img/forum_logo.png" style="width:150px;height:50px;">
+			</a>&nbsp;&nbsp;
+		</li>
+		</ul>
+		</div>
+	</div>
+	<!-- 顶部导航 -->
 	
-</div><div id="headerSearchWrapper">
-<div id="headerSearch">
-        <form action="/subject_search" method="post">
-    <div class="inner">
-<select name="cat" id="siteSearchSelect">
-<option value="all">全部</option>
-<option value="2">动画</option>
-<option value="1">书籍</option>
-<option value="4">游戏</option>
-<option value="3">音乐</option>
-<option value="6">三次元</option>
-<option value="person">人物</option>			
-</select>
-<input id="search_text" name="search_text" class="textfield" type="text" />
-        <input type="submit" name="submit" value="搜索" class="search" />
-    </div>
-</form>
-    </div>   
-</div>  
+    <!-- 顶部头像菜单 -->
+    <div class="idBadgerNeue">
+    	<c:choose>
+    		<c:when test="${empty user}">
+    			<div class="guest">
+			    	<a href="<%=path %>/kd/login.jsp" class="guest login">登录</a>
+		    		<a href="<%=path %>/kd/signup.jsp" class="guest signup">注册</a>
+		    	</div>
+    		</c:when>
+    		<c:otherwise>
+    			<c:choose>
+            		<c:when test="${fn:contains('45',sessionScope.user.kkd104) }">
+            			<a class="avatar" href="<%=path%>/kd01UserMain.kdhtml">
+						<span class="avatarNeue avatarSize32 ll" 
+							style="background-image:url('<%=path%>/img/avatar/def_avatar.png');background-size: 100% auto;"></span>
+						</a>
+            		</c:when>
+            		<c:otherwise>
+            			<a class="avatar" href="<%=path%>/kd01AdminMain.kdhtml">
+						<span class="avatarNeue avatarSize32 ll" 
+							style="background-image:url('<%=path%>/img/avatar/def_avatar.png');background-size: 100% auto;"></span>
+						</a>
+            		</c:otherwise>
+            	</c:choose>
+    		</c:otherwise>
+    	</c:choose>
+    	
+    	<!-- 用户或管理员入口 -->
+		<ul id="badgeUserPanel">
+		<c:choose>
+       		<c:when test="${fn:contains('45',sessionScope.user.kkd104) }">
+				<li><a href="<%=path%>/kd01UserMain.kdhtml">个人主页</a></li>                    
+	       		<li><a href="<%=path%>/kc06AnimeColl.kdhtml">作品</a></li>
+	       		<li><a href="<%=path%>/ka01PostRecord.kdhtml">论坛</a></li>
+	       		<li><a href="<%=path%>/kb02ShopRecord.kdhtml">商城</a></li>
+	       		<li class="row">
+		        <a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a> | 
+		        <a href="<%=path%>/kd/userpage_info.jsp">设置</a> | 
+		        <a href="<%=path%>/logout.kdhtml">登出</a>
+	        	</li>
+	    	</c:when>
+	    	<c:otherwise>
+	    		<li><a href="<%=path%>/kd01AdminMain.kdhtml">个人主页</a></li>
+	    		<c:choose>
+	    			<c:when test="${sessionScope.kkd104 eq '0' }">
+						<li><a href="<%= path %>/kd01QueryAdmin.kdhtml">Root管理员</a></li>
+					</c:when>
+					<c:when test="${sessionScope.kkd104 eq '1' }">
+						<li><a href="<%= path %>/kd01QueryUser.kdhtml">作品管理员</a></li>
+					</c:when>
+					<c:when test="${sessionScope.kkd104 eq '2' }">
+						<li><a href="<%= path %>/kd/shopadminpage_turn.jsp">商城管理员</a></li>
+					</c:when>
+					<c:when test="${sessionScope.kkd104 eq '3' }">
+						<li><a href="<%= path %>/ka03QueryReport.kdhtml?flag=post">论坛管理员</a></li>
+					</c:when>
+	    		</c:choose>
+	    		<li class="row">
+	    		<a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a> | 
+		        <a href="<%=path%>/kd/adminpage_info.jsp">设置</a> | 
+		        <a href="<%=path%>/logout.kdhtml">登出</a>
+	        	</li>
+	    	</c:otherwise>
+        </c:choose>
+    	</ul>	
+    	<!-- 用户或管理员入口 -->
+	</div>
+	<!-- 顶部头像菜单 -->
+	
+	<!-- 顶部搜索栏 -->
+	<div id="headerSearchWrapper">
+		<div id="headerSearch">
+	        <form action="" method="post">
+			    <div class="inner">
+				<select name="cat" id="siteSearchSelect">
+					<option value="all">全部</option>
+					<option value="2">动画</option>
+					<option value="1">书籍</option>
+					<option value="4">游戏</option>         
+				</select>
+				<input id="search_text" name="search_text" class="textfield" type="text" />
+		        <input type="submit" name="submit" value="搜索" class="search" />
+			    </div>
+			</form>
+	    </div>   
+	</div>   
+	<!-- 顶部搜索栏 -->
     </div>
 </div>
-  <!-- 以上为导航栏 -->                 
+<!-- 顶部栏 -->
                     
   
   <!-- 以下为页面内容 -->
@@ -195,15 +257,21 @@
 
 </div>
 </div></div>
+
 <div class="homeBg"></div>
+<!-- 底部菜单栏 -->
 <div id="dock">
     <div class="content">
         <ul class="clearit">
-                <li class="first"><a href="http://bangumi.tv/user/481528">ericho</a></li>
-        <li><a href="http://bangumi.tv/notify/all">提醒</a> | <a href="http://bangumi.tv/pm">短信</a> | <a href="http://bangumi.tv/settings">设置</a> | <a href="http://bangumi.tv/logout/fbf17791" target="_self">登出</a></li>
-                <li class="last"><a href="javascript:void(0);" id="showrobot">&nbsp;</a></li>
+        <li class="first"><a href="<%=path%>/kd01UserMain.kdhtml">${sessionScope.user.kkd102 }</a></li>
+        <li><a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a></li>
+        <li><a href="<%=path%>/kd/userpage_info.jsp">设置</a></li>
+        <li><a href="<%=path%>/logout.kdhtml">登出</a></li>
+        <li class="last"><a href="javascript:void(0);" id="showrobot">&nbsp;</a></li>
         </ul>
     </div>
 </div>
+<!-- 底部菜单栏 -->
+
 <script type="text/javascript">chiiLib.login.init();</script>
 </body></html>
