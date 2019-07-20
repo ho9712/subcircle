@@ -154,7 +154,19 @@
                 	<a href="#" class="l" onclick="leveltip()">                	
                 	</c:otherwise>                	                	
                 	</c:choose>                                
- 					信息</a> / <a href="" class="l">封面</a></p>             
+ 					信息</a> /
+ 					<c:choose>
+                	<c:when test="${sessionScope.user.kkd104==1 }">
+                	<a href="" class="l">
+                	</c:when>
+                	<c:when test="${sessionScope.user.kkd104==4 }">
+                	<a href="" class="l">
+                	</c:when>
+                	<c:otherwise>
+                	<a href="#" class="l" onclick="leveltip()">                	
+                	</c:otherwise>                	                	
+                	</c:choose> 
+                	封面</a></p>             
         </span>
         </div>     
         
