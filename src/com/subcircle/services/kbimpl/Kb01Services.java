@@ -185,9 +185,9 @@ public class Kb01Services extends JdbcServicesSupport
 	{
 		StringBuilder sql = new StringBuilder()
 				.append(" insert into kb01(kkb102,kkb103,kkb104,kkb105,kkb106,")
-				.append("			  	   kkb107,kkb108,kkb109,kkb111)")
+				.append("			  	   kkb107,kkb108,kkb109,kkb110,kkb111)")
 				.append("	   values     (?,?,?,?,?,")
-				.append("				   ?,?,?,?)")
+				.append("				   ?,?,?,1,?)")
 				;
 		
 		Object args[] = 

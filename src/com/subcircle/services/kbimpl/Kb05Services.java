@@ -287,7 +287,7 @@ public class Kb05Services extends JdbcServicesSupport
 			//返回到商城主界面
 			if (this.get("backLocation").equals("1"))
 			{
-				result = "kb01QueryItems.kbhtml";
+				result = "kb01QueryItems.kbhtml?page=1";
 			}
 			//返回到商品详情页面
 			else if (this.get("backLocation").equals("2"))

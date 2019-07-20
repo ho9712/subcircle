@@ -151,8 +151,8 @@
 										<!-- 根据不同订单状态的详情显示不同的操作 -->
 										<c:choose>
 											<c:when test="${flag == 0}">
-												<input type="submit" class="btn btn-success" href="#"
-													formaction="<%=request.getContextPath()%>/kb05DelOrderToPay.kbhtml"
+												<input type="button" class="btn btn-success" href="#"
+													onclick="deleteOrder()"
 													value="取消订单">
 												<input type="button" class="btn btn-warning" href="#"
 													onclick = "dealOrder();"
@@ -162,13 +162,13 @@
 												<input type="submit" class="btn btn-success" href="#"
 													formaction=""
 													value="申请退款">
-												<input type="submit" class="btn btn-warning" href="#"
-													formaction="<%=request.getContextPath()%>/kb05UpdateOrderState.kbhtml"
+												<input type="button" class="btn btn-warning" href="#"
+													onclick="confirmOrder()"
 													value="确认收货" >
 											</c:when>
 											<c:when test="${flag == 2}">
 												<input type="submit" class="btn btn-success" href="#"
-													formaction="<%=request.getContextPath()%>/kb05DelOrderToPay.kbhtml"
+													onclick="deleteOrder()"
 													value="删除订单">
 												<c:choose>
 													<c:when test="${rows[0].kkb508 == 0 }">
@@ -272,6 +272,31 @@
 	            	}
 	            }//endsuccess
 	       });//endajax
+	}
+	
+	//取消删除订单
+	function deleteOrder()
+	{
+		var msg = "您确定取消该笔订单吗";
+		if(confirm(msg)==true)
+		{
+			$("#myForm").attr("action","<%=request.getContextPath()%>/kb05DelOrderToPay.kbhtml");
+			$("#myForm").submit();
+			alert("取消成功");
+		}
+	}
+	
+	//确认收货
+	function confirmOrder()
+	{
+		alert("=======");
+		var msg = "您确定收到该笔订单了吗";
+		if(confirm(msg)==true)
+		{
+			$("#myForm").attr("action","<%=request.getContextPath()%>/kb05UpdateOrderState.kbhtml");
+			$("#myForm").submit();
+			alert("收货成功");
+		}
 	}
 	
 	window.onload = function()

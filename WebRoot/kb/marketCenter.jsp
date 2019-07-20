@@ -345,7 +345,6 @@ input[type="number"] {
 	//根据商品id以及数量加入用户购物车中
 	function onAddToCart(kkb101)
 	{
-		alert("打算打卡机");
 		var kkb402 = 1;			//从周边商城模块加入购物车数量默认为1
 		 $.ajax({
 	            type: "POST",
