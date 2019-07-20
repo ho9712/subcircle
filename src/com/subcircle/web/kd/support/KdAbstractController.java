@@ -664,6 +664,8 @@ public abstract class KdAbstractController implements ControllerInterface
 		}
 		List<Map<String, String>> animeColls=this.executeQueryForList("queryAnimeColl");
 		this.saveAttribute("animeColls", animeColls);
+		Map<String, Object> totalCount=this.executeQueryForMap("queryAnimeCollCount");
+		this.saveAttribute("totalCount", totalCount);
 	}
 	
 	//≤È—Ø ÈºÆ ’≤ÿ

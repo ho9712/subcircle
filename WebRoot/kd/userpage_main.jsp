@@ -67,7 +67,7 @@
 		</li>
 		
 		<li>&nbsp;&nbsp;&nbsp;&nbsp;
-			<a href="kb01QueryItems.kbhtml">
+			<a href="kb01QueryItems.kbhtml?page=1">
 			<img alt="前往商城" src="<%=path%>/img/shop_logo.png" style="width:150px;height:50px;">
 			</a>&nbsp;&nbsp;
 		</li>
@@ -208,7 +208,8 @@
 					<h2 class="drag">&nbsp;</h2>
 					<div class="horizontalOptions clearit">
 						<ul class="">
-							<li class="title"><h2> <a href="<%=path%>/kc06AnimeColl.kdhtml">我的动画</a></h2></li>
+							<li class="title"><h2> <a href="<%=path%>/kc06AnimeColl.kdhtml">我的动画</a> </h2>
+							&nbsp;&nbsp;&nbsp;&nbsp;(${colls.animeCount.number }部收藏)</li>
 						</ul>
 					</div>
 				
@@ -248,7 +249,8 @@
 					<h2 class="drag">&nbsp;</h2>
 					<div class="horizontalOptions clearit">
 						<ul class="">
-							<li class="title"><h2> <a href="<%=path%>/kc06BookColl.kdhtml">我的书籍</a></h2></li>
+							<li class="title"><h2> <a href="<%=path%>/kc06BookColl.kdhtml">我的书籍</a> </h2>
+							&nbsp;&nbsp;&nbsp;&nbsp;(${colls.bookCount.number }部收藏)</li>
 						</ul>
 					</div>
 				
@@ -288,7 +290,8 @@
 					<h2 class="drag">&nbsp;</h2>
 					<div class="horizontalOptions clearit">
 						<ul class="">
-							<li class="title"><h2> <a href="<%=path%>/kc06GameColl.kdhtml">我的游戏</a></h2></li>
+							<li class="title"><h2> <a href="<%=path%>/kc06GameColl.kdhtml">我的游戏</a> </h2>
+							 &nbsp;&nbsp;&nbsp;&nbsp;(${colls.gameCount.number }部收藏)</li>
 						</ul>
 					</div>
 				

@@ -44,7 +44,7 @@ public class UploadAvatarServlet extends HttpServlet
 				part.write(url);
 				Map<String,Object> dto=new HashMap<>();
 				dto.put("kkd101", request.getSession().getAttribute("kkd101"));
-				dto.put("kkd108", "/avatar/"+uuid+fileName);
+				dto.put("kkd108", "/img/avatar/"+uuid+fileName);
 				Kd01Services services =new Kd01Services();
 				services.setServicesDto(dto);
 				if(services.modifyAvatar())

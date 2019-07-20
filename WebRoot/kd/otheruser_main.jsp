@@ -48,7 +48,7 @@
 		</li>
 		
 		<li>&nbsp;&nbsp;&nbsp;&nbsp;
-			<a href="kb01QueryItems.kbhtml">
+			<a href="kb01QueryItems.kbhtml?page=1">
 			<img alt="前往商城" src="<%=path%>/img/shop_logo.png" style="width:150px;height:50px;">
 			</a>&nbsp;&nbsp;
 		</li>
@@ -261,6 +261,7 @@
 							<h2> 
 							<a href="<%=path%>/kc06OtherAnimeColl.kdhtml?kkd101=${other.kkd101}">Ta的动画</a>
 							</h2>
+							&nbsp;&nbsp;&nbsp;&nbsp;(${colls.animeCount.number }部收藏)
 							</li>
 						</ul>
 					</div>
@@ -303,6 +304,7 @@
 							<h2> 
 							<a href="<%=path%>/kc06OtherBookColl.kdhtml?kkd101=${other.kkd101}">Ta的书籍</a>
 							</h2>
+							&nbsp;&nbsp;&nbsp;&nbsp;(${colls.bookCount.number }部收藏)
 							</li>
 						</ul>
 					</div>
@@ -345,6 +347,7 @@
 							<h2> 
 							<a href="<%=path%>/kc06OtherGameColl.kdhtml?kkd101=${other.kkd101}">Ta的游戏</a>
 							</h2>
+							&nbsp;&nbsp;&nbsp;&nbsp;(${colls.gameCount.number }部收藏)
 							</li>
 						</ul>
 					</div>
@@ -386,7 +389,7 @@
 		<div id="columnB" class="column">
 			<div id="">
 				<div class="SidePanel png_bg">
-					<h2>/ 我的... <small><a href="/user/481528/timeline">...more</a></small></h2>
+					<h2>/ 我的历史 </h2>
 				
 					<ul class="timeline">
 						<li>
@@ -399,7 +402,7 @@
 			<div id="sideLayout">
 				<div id="friend" class="sort">
 					<div class="SidePanel png_bg" align="left">
-						<h2>/ Ta的论坛 <small><a href="/user/481528/friends">...more</a></small></h2>
+						<h2>/ Ta的论坛 <small><a href="<%=path%>/ka01OtherPostRecord.kdhtml?kkd101=${other.kkd101}">...more</a></small></h2>
 						<ul class="timeline">
 							<c:forEach items="${posts }" var="post">
 							<li>
@@ -412,13 +415,12 @@
 							</c:forEach>
 						</ul>
 						<hr class="board" />
-						<a href="/user/481528/rev_friends">+ 查看更多</a>
+						<a href="<%=path%>/ka01OtherPostRecord.kdhtml?kkd101=${other.kkd101}">+ 查看更多</a>
 					</div>
 				</div>
 			</div>
 			<div class="menu_inner">
-			    	<p> <a href="/feed/user/481528/interests" class="l">/ </a></p>
-			    	<p><a href="/user/481528/wiki" class="l">/ </a></p>
+			    	<p> <a href="#" class="l">/ </a></p>
 			</div>
 		</div>
 	<!-- 主页主体B栏 -->

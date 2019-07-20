@@ -47,7 +47,7 @@
 		</li>
 		
 		<li>&nbsp;&nbsp;&nbsp;&nbsp;
-			<a href="kb01QueryItems.kbhtml">
+			<a href="kb01QueryItems.kbhtml?page=1">
 			<img alt="前往商城" src="<%=path%>/img/shop_logo.png" style="width:150px;height:50px;">
 			</a>&nbsp;&nbsp;
 		</li>
@@ -209,14 +209,14 @@
 					<div class="horizontalOptions clearit">
 						<ul class="">
 							<li class="title"><h2> 我的公告</h2></li>
-							<li style="float:right"><small><a href="/user/481528/blog">...more</a></small></li>
+							<li style="float:right"><small><a href="#">...more</a></small></li>
 						</ul>
 					</div>
 				
 					<div class="content_inner clearit" align="left">
 						<div align="center" class="clearit">
 							<span class="green">还没有发布过公告?</span>
-								<a href="/blog/create" class="l">>立即发布<</a><br />
+								<a href="#" class="l">>立即发布<</a><br />
 							<span class="tip_j">你可以通过公告向 SubCircle 的会员告知信息</span>
 						</div>
 					</div>
@@ -242,9 +242,9 @@
 			<div id="sideLayout">
 				<div id="friend" class="sort">
 					<div class="SidePanel png_bg" align="left">
-						<h2>/ 我的公告 <small><a href="/user/481528/friends">...more</a></small></h2>
+						<h2>/ 我的公告 <small><a href="#">...more</a></small></h2>
 						<hr class="board" />
-						<a href="/user/481528/rev_friends">+ 发布站内公告</a>
+						<a href="#">+ 发布站内公告</a>
 					</div>
 				</div>
 			</div>

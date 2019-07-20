@@ -74,7 +74,7 @@
 		</li>
 		
 		<li>&nbsp;&nbsp;&nbsp;&nbsp;
-			<a href="kb01QueryItems.kbhtml">
+			<a href="kb01QueryItems.kbhtml?page=1">
 			<img alt="前往商城" src="<%=path%>/img/shop_logo.png" style="width:150px;height:50px;">
 			</a>&nbsp;&nbsp;
 		</li>
@@ -237,7 +237,9 @@
 			<a href="<%=path%>/kb01FindItemById.kbhtml?kkb101=${good.kkb101}" class="l"> ${good.kkb102 }</a>
 			</h2>
 			<div class="time"><small class="time">收藏时间: ${good.kkb302 }</small> </div>
-			<div class="content"><p class="line_limit">商品介绍: ${good.kkb104 }</p>
+			<div class="content">
+			<p class="line_limit">商品介绍: ${good.kkb104 }</p>
+			<p>关联作品: ${good.kkb107}</p>
 			</div>
 			</div>
 			<div class="tools clearit">

@@ -236,6 +236,30 @@ public class Kd01Services extends JdbcServicesSupport
 				.append(" limit 6")
 				;
 		colls.put("gameColl", this.queryForList(sql3.toString(), this.get("kkd101")));
+		StringBuilder sql4=new StringBuilder()
+				.append("select count(*) number")
+				.append("  from kc06 c6,kc01 c1")
+				.append(" where c6.kkd101=?")
+				.append("   and c6.kkc101=c1.kkc101")
+				.append("   and c1.kkc102=1")
+				;
+		colls.put("animeCount", this.queryForMap(sql4.toString(), this.get("kkd101")));
+		StringBuilder sql5=new StringBuilder()
+				.append("select count(*) number")
+				.append("  from kc06 c6,kc01 c1")
+				.append(" where c6.kkd101=?")
+				.append("   and c6.kkc101=c1.kkc101")
+				.append("   and c1.kkc102=2")
+				;
+		colls.put("bookCount", this.queryForMap(sql5.toString(), this.get("kkd101")));
+		StringBuilder sql6=new StringBuilder()
+				.append("select count(*) number")
+				.append("  from kc06 c6,kc01 c1")
+				.append(" where c6.kkd101=?")
+				.append("   and c6.kkc101=c1.kkc101")
+				.append("   and c1.kkc102=3")
+				;
+		colls.put("gameCount", this.queryForMap(sql6.toString(), this.get("kkd101")));
 		return colls;
 	}
 	

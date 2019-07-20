@@ -11,7 +11,7 @@
 	function onClickSort(vorder)
 	{
 		var vform=document.getElementById("myform");
-		vform.action="<%=path%>/kc06AnimeColl.kdhtml?order="+vorder;
+		vform.action="<%=path%>/kc06AnimeColl.kdhtml?page=${param.page}&order="+vorder;
 		vform.submit();
 	}
 	function modifyComment(kkc701,kkc702,kkc703)
@@ -26,7 +26,7 @@
 		var msg="确定取消收藏该作品?";
 		if(confirm(msg))
 		{
-			window.location.href="<%=path%>/kc06DelAnimeColl.kdhtml?kkc601="+kkc601+"&kkc701="+kkc701;		
+			window.location.href="<%=path%>/kc06DelAnimeColl.kdhtml?page=${param.page}&kkc601="+kkc601+"&kkc701="+kkc701;		
 			alert("取消收藏成功！");
 		}
 	}
@@ -74,7 +74,7 @@
 		</li>
 		
 		<li>&nbsp;&nbsp;&nbsp;&nbsp;
-			<a href="kb01QueryItems.kbhtml">
+			<a href="kb01QueryItems.kbhtml?page=1">
 			<img alt="前往商城" src="<%=path%>/img/shop_logo.png" style="width:150px;height:50px;">
 			</a>&nbsp;&nbsp;
 		</li>
@@ -269,7 +269,7 @@
 			<!-- 弹窗 -->
 		<!-- 评分 -->
 		<div id="panel" style="display:none;"><div class="collectBox clearit">
-		    <form id="collectBoxForm" name="collectBoxForm" method="post" action="kc06ModifyAnimeComment.kdhtml">
+		    <form id="collectBoxForm" name="collectBoxForm" method="post" action="kc06ModifyAnimeComment.kdhtml?page=${param.page}&order=${param.order}">
 		    <input  type="hidden" id="kkc701" name="kkc701" value=""/>
 				<div id="interest_rate" class="cell" >
 				<span class="tip">我的评价:</span> <span class="alarm" id="rating-tip"></span>
@@ -301,6 +301,90 @@
 		<!-- 弹窗 -->
 		</c:otherwise>
 		</c:choose>
+		
+		<!-- 分页 -->
+		<div id="multipage">
+			<div class="page_inner">
+				<c:choose>
+					<c:when test="${totalCount.count/6 <1}"></c:when>
+					<c:otherwise>
+						<c:choose>
+							<c:when test="${empty param.page }">
+								<strong class="p_cur">1</strong>
+								<c:if test="${totalCount.count/6 >1}">
+									<c:forEach begin="2" end="10" var="p">
+										<c:choose>
+											<c:when test="${p ge totalCount.count/6+1}">
+											</c:when>
+											<c:otherwise>
+												<a href="<%=path%>/kc06AnimeColl.kdhtml?page=${p }&order=${param.order}" class="p">${p }</a>
+											</c:otherwise>
+										</c:choose>
+									</c:forEach>
+								</c:if>
+								<a href="<%=path%>/kc06AnimeColl.kdhtml?page=2&order=${param.order}" class="p">&rsaquo;&rsaquo;</a>
+							</c:when>
+							<c:otherwise>
+								<!-- 左移 -->
+								<c:if test="${param.page >1}">
+									<a href="<%=path%>/kc06AnimeColl.kdhtml?page=1&order=${param.order}" class="p">|&lsaquo;</a>
+									<a href="<%=path%>/kc06AnimeColl.kdhtml?page=${param.page-1}&order=${param.order}" class="p">&lsaquo;&lsaquo;</a>
+								</c:if>
+								<!-- 左移 -->
+								
+								<!-- 页数小于10 大于10 总页数-当前页数小于10 -->
+								<c:choose>
+									<c:when test="${param.page ge 3}">
+										<c:forEach begin="${param.page-2 }" end="${param.page+7}" var="p">
+										<c:choose>
+											<c:when test="${p ge totalCount.count/6+1}">
+											</c:when>
+											<c:otherwise>
+												<c:choose>
+												<c:when test="${p eq param.page}">
+													<strong class="p_cur">${p}</strong>
+												</c:when>
+												<c:otherwise>
+													<a href="<%=path%>/kc06AnimeColl.kdhtml?page=${p}&order=${param.order}" class="p">${p}</a>
+												</c:otherwise>
+											</c:choose>
+											</c:otherwise>
+										</c:choose>
+										</c:forEach>
+									</c:when>
+									<c:otherwise>
+										<c:forEach begin="1" end="10" var="p">
+										<c:choose>
+											<c:when test="${p ge totalCount.count/6+1}">
+											</c:when>
+											<c:otherwise>
+												<c:choose>
+												<c:when test="${p eq param.page}">
+													<strong class="p_cur">${p}</strong>
+												</c:when>
+												<c:otherwise>
+													<a href="<%=path%>/kc06AnimeColl.kdhtml?page=${p}&order=${param.order}" class="p">${p}</a>
+												</c:otherwise>
+											</c:choose>
+											</c:otherwise>
+										</c:choose>
+										</c:forEach>
+									</c:otherwise>
+								</c:choose>
+								
+								<!-- 右移 -->
+								<c:if test="${param.page < totalCount.count/6}">
+									<a href="<%=path%>/kc06AnimeColl.kdhtml?page=${param.page+1}&order=${param.order}" class="p">&rsaquo;&rsaquo;</a>
+								</c:if>
+								<!-- 右移 -->
+							</c:otherwise>
+						</c:choose>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</div>
+		<!-- 分页 -->
+		
 		</div>
 		
 		

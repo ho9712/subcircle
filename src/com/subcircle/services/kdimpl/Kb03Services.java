@@ -18,7 +18,7 @@ public class Kb03Services extends JdbcServicesSupport
 		
 		
 		StringBuilder sql=new StringBuilder()
-				.append("select b1.kkb101,b1.kkb102,b1.kkb103,b1.kkb104,b1.kkb105,")
+				.append("select b1.kkb101,b1.kkb102,b1.kkb103,b1.kkb104,b1.kkb105,b1.kkb107,")
 				.append("			 b3.kkb301,date_format(b3.kkb302,'%Y-%m-%d %H:%i') kkb302")
 				.append("  from kb01 b1,kb03 b3,kd01 d1")
 				.append(" where b1.kkb101=b3.kkb101")
