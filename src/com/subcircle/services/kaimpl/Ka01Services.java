@@ -18,7 +18,7 @@ public class Ka01Services extends JdbcServicesSupport
 	public Map<String,String> findById()throws Exception
     {
     	StringBuilder sql=new StringBuilder()
-    			.append("select  x.kka101, x.kka102, b.fvalue, a.kkd105,a.kkd102,x.kka104,x.kka105")
+    			.append("select  x.kka101, x.kka102, b.fvalue, a.kkd105,a.kkd102,x.kka104,date_format(x.kka105,'%Y-%m-%d %H:%i') kka105")
     			.append("  from ka01 x,kd01 a, syscode b")
     			.append("  where x.kkd101 = a.kkd101 and b.fname = 'kka103' and b.fcode = x.kka103 ")
     		    .append("  and  x.kka106=1 and x.kka101=? ")
@@ -40,7 +40,7 @@ public class Ka01Services extends JdbcServicesSupport
 		Object search=this.get("search_text");
 		//定义SQL主体
   		StringBuilder sql=new StringBuilder()
-  				.append("select x.kka101,x.kka102,b.fvalue cnkka103,x.kka104,a.kkd105,x.kka105")
+  				.append("select x.kka101,x.kka102,b.fvalue cnkka103,x.kka104,a.kkd105,date_format(x.kka105,'%Y-%m-%d %H:%i') kka105")
   				.append(" from ka01 x,kd01 a,syscode b ")
   				.append(" where x.kka103=b.fcode and b.fname='kka103' and x.kkd101 = a.kkd101")
   				.append(" and x.kka106 = 1")
@@ -185,7 +185,7 @@ public class Ka01Services extends JdbcServicesSupport
 	  		
 	  	//定义SQL主体
 	  		StringBuilder sql=new StringBuilder()
-	  				.append("select x.kka201,x.kka202,x.kka203,x.kka204,x.ka02_kka201,a.kkd102,a.kkd105,b.kka101,c.kka202 rootAnswer,c.kka204 delSign")
+	  				.append("select x.kka201,x.kka202,date_format(x.kka203,'%Y-%m-%d %H:%i') kka203,x.kka204,x.ka02_kka201,a.kkd102,date_format(b.kka105,'%Y-%m-%d %H:%i') kka105,b.kka101,c.kka202 rootAnswer,c.kka204 delSign")
 	  				.append(" from ka02 x,kd01 a,ka01 b,ka02 c ")
 	  				.append(" where x.kka201!=0 and x.kkd101 = a.kkd101 and b.kka101 = x.kka101 and b.kka101 =? and x.ka02_kka201=c.kka201 and x.kka101 = c.kka101")
 	  				.append(" order by x.kka203")

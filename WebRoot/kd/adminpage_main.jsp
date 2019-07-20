@@ -160,7 +160,7 @@
     <!-- 主页导航栏 -->
     <div class="navTabsWrapper">
 		<ul class="navTabs">
-			<li><a href="<%= path %>/kd/adminpage_main.jsp" class="focus">主页</a></li>
+			<li><a href="<%=path%>/kd01AdminMain.kdhtml" class="focus">主页</a></li>
 			<c:choose>
 				<c:when test="${sessionScope.kkd104 eq '0' }">
 					<li><a href="<%= path %>/kd01QueryAdmin.kdhtml">Root管理员</a></li>
@@ -204,7 +204,7 @@
 				    	<a href="<%=path%>/kd/adminpage_info.jsp" class="btnGraySmall"><span>编辑个人信息</span></a>        
 	                </div>
 				</div>
-			    <div id="blog" class="sort">
+			    <!-- <div id="blog" class="sort">
 					<h2 class="drag">&nbsp;</h2>
 					<div class="horizontalOptions clearit">
 						<ul class="">
@@ -220,7 +220,7 @@
 							<span class="tip_j">你可以通过公告向 SubCircle 的会员告知信息</span>
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	<!-- 主页主体A栏 -->
@@ -239,7 +239,7 @@
 					</ul>
 				</div>
 			</div>
-			<div id="sideLayout">
+			<!-- <div id="sideLayout">
 				<div id="friend" class="sort">
 					<div class="SidePanel png_bg" align="left">
 						<h2>/ 我的公告 <small><a href="#">...more</a></small></h2>
@@ -247,7 +247,7 @@
 						<a href="#">+ 发布站内公告</a>
 					</div>
 				</div>
-			</div>
+			</div> -->
 		</div>
 	<!-- 主页主体B栏 -->
 </div>
@@ -260,7 +260,7 @@
 <div id="dock">
     <div class="content">
         <ul class="clearit">
-        <li class="first"><a href="<%= path %>/kd/adminpage_main.jsp">${sessionScope.user.kkd102 }</a></li>
+        <li class="first"><a href="<%=path%>/kd01AdminMain.kdhtml">${sessionScope.user.kkd102 }</a></li>
         <li><a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a></li>
         <li><a href="<%= path %>/kd/adminpage_info.jsp">设置</a></li>
         <li><a href="<%=path%>/logout.kdhtml">登出</a></li>

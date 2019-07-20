@@ -33,20 +33,20 @@
 	<div id="navNeue2">
 		<div id="menuNeue">
 		<ul id="navMenuNeue" class="clearit">
-		<li><a href="/anime" class="top chl anime"><span>动画</span></a>
+		<li><a href="#" class="top chl anime"><span>动画</span></a>
 		                <div class="clear"></div>
 		<ul class="clearit">
 		<li><a href="kc02ShowRank.kchtml" class="nav">排行榜</a></li>
 		</ul>
 		</li>
-		<li><a href="/book" class="top chl"><span>书籍</span></a>
+		<li><a href="#" class="top chl"><span>书籍</span></a>
 		<div class="clear"></div>
 		<ul class="clearit">
 		<li><a href="kc03ShowRank.kchtml" class="nav">排行榜</a></li>
 		</ul>
 		</li>
 		
-		<li><a href="/game" class="top chl game"><span>游戏</span></a>
+		<li><a href="#" class="top chl game"><span>游戏</span></a>
 		<div class="clear"></div>
 		<ul class="clearit">
 		<li><a href="kc04ShowRank.kchtml" class="nav">排行榜</a></li>
@@ -92,48 +92,48 @@
 						</a>
             		</c:otherwise>
             	</c:choose>
+            	<!-- 用户或管理员入口 -->
+				<ul id="badgeUserPanel">
+				<c:choose>
+		       		<c:when test="${fn:contains('45',sessionScope.user.kkd104) }">
+						<li><a href="<%=path%>/kd01UserMain.kdhtml">个人主页</a></li>                    
+			       		<li><a href="<%=path%>/kc06AnimeColl.kdhtml">作品</a></li>
+			       		<li><a href="<%=path%>/ka01PostRecord.kdhtml">论坛</a></li>
+			       		<li><a href="<%=path%>/kb02ShopRecord.kdhtml">商城</a></li>
+			       		<li class="row">
+				        <a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a> | 
+				        <a href="<%=path%>/kd/userpage_info.jsp">设置</a> | 
+				        <a href="<%=path%>/logout.kdhtml">登出</a>
+			        	</li>
+			    	</c:when>
+			    	<c:otherwise>
+			    		<li><a href="<%=path%>/kd01AdminMain.kdhtml">个人主页</a></li>
+			    		<c:choose>
+			    			<c:when test="${sessionScope.kkd104 eq '0' }">
+								<li><a href="<%= path %>/kd01QueryAdmin.kdhtml">Root管理员</a></li>
+							</c:when>
+							<c:when test="${sessionScope.kkd104 eq '1' }">
+								<li><a href="<%= path %>/kd01QueryUser.kdhtml">作品管理员</a></li>
+							</c:when>
+							<c:when test="${sessionScope.kkd104 eq '2' }">
+								<li><a href="<%= path %>/kd/shopadminpage_turn.jsp">商城管理员</a></li>
+							</c:when>
+							<c:when test="${sessionScope.kkd104 eq '3' }">
+								<li><a href="<%= path %>/ka03QueryReport.kdhtml?flag=post">论坛管理员</a></li>
+							</c:when>
+			    		</c:choose>
+			    		<li class="row">
+			    		<a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a> | 
+				        <a href="<%=path%>/kd/adminpage_info.jsp">设置</a> | 
+				        <a href="<%=path%>/logout.kdhtml">登出</a>
+			        	</li>
+			    	</c:otherwise>
+		        </c:choose>
+		    	</ul>	
+		    	<!-- 用户或管理员入口 -->
     		</c:otherwise>
     	</c:choose>
     	
-    	<!-- 用户或管理员入口 -->
-		<ul id="badgeUserPanel">
-		<c:choose>
-       		<c:when test="${fn:contains('45',sessionScope.user.kkd104) }">
-				<li><a href="<%=path%>/kd01UserMain.kdhtml">个人主页</a></li>                    
-	       		<li><a href="<%=path%>/kc06AnimeColl.kdhtml">作品</a></li>
-	       		<li><a href="<%=path%>/ka01PostRecord.kdhtml">论坛</a></li>
-	       		<li><a href="<%=path%>/kb02ShopRecord.kdhtml">商城</a></li>
-	       		<li class="row">
-		        <a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a> | 
-		        <a href="<%=path%>/kd/userpage_info.jsp">设置</a> | 
-		        <a href="<%=path%>/logout.kdhtml">登出</a>
-	        	</li>
-	    	</c:when>
-	    	<c:otherwise>
-	    		<li><a href="<%=path%>/kd01AdminMain.kdhtml">个人主页</a></li>
-	    		<c:choose>
-	    			<c:when test="${sessionScope.kkd104 eq '0' }">
-						<li><a href="<%= path %>/kd01QueryAdmin.kdhtml">Root管理员</a></li>
-					</c:when>
-					<c:when test="${sessionScope.kkd104 eq '1' }">
-						<li><a href="<%= path %>/kd01QueryUser.kdhtml">作品管理员</a></li>
-					</c:when>
-					<c:when test="${sessionScope.kkd104 eq '2' }">
-						<li><a href="<%= path %>/kd/shopadminpage_turn.jsp">商城管理员</a></li>
-					</c:when>
-					<c:when test="${sessionScope.kkd104 eq '3' }">
-						<li><a href="<%= path %>/ka03QueryReport.kdhtml?flag=post">论坛管理员</a></li>
-					</c:when>
-	    		</c:choose>
-	    		<li class="row">
-	    		<a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a> | 
-		        <a href="<%=path%>/kd/adminpage_info.jsp">设置</a> | 
-		        <a href="<%=path%>/logout.kdhtml">登出</a>
-	        	</li>
-	    	</c:otherwise>
-        </c:choose>
-    	</ul>	
-    	<!-- 用户或管理员入口 -->
 	</div>
 	<!-- 顶部头像菜单 -->
 	
@@ -181,7 +181,7 @@
      <!-- 论坛导航栏 -->
     <div class="subjectNav">
       <ul class="navTabs">
-      <li><a href="ka01MainForum.kahtml?id=0" class="focus">全部</a></li>
+      <li><a href="ka01MainForum.kahtml?id=0">全部</a></li>
         <li><a href="ka01AnimeForum.kahtml?id=1">番剧</a></li>
         <li><a href="ka01BookForum.kahtml?id=2">书籍</a></li>
         <li><a href="ka01GameForum.kahtml?id=3" >游戏</a></li>

@@ -258,8 +258,7 @@
 		<c:choose>
 		<c:when test="${empty replys}">
 			<div class="section">
-				<a href="<%=path %>/ka01MainForum.kahtml?id=0" class="rr l">前往论坛</a>
-	            <br><h2 class="title">你还没有回复过贴子...</h2>
+	            <br><h2 class="title">Ta还没有回复过贴子...</h2>
 	        	<div>
 	        		<ul class="coversSmall">
 	           		</ul>
