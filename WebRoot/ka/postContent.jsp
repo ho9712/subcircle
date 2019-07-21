@@ -526,13 +526,38 @@
 <!-- 底部菜单栏 -->
 <div id="dock">
     <div class="content">
+    <c:choose>
+    <c:when test="${empty user}">
         <ul class="clearit">
-        <li class="first"><a href="<%=path%>/kd01UserMain.kdhtml">${sessionScope.user.kkd102 }</a></li>
+        <li class="first"><a href="<%=path %>/kd/login.jsp">登录</a></li>
+        <li><a href="<%=path %>/kd/signup.jsp">注册</a></li>
+        <li class="last"><a href="javascript:void(0);" id="showrobot">&nbsp;</a></li>
+        </ul>
+    </c:when>
+    <c:otherwise>
+    	<ul class="clearit">
+        <c:choose>
+       		<c:when test="${fn:contains('45',sessionScope.user.kkd104) }">
+       			 <li class="first"><a href="<%=path%>/kd01UserMain.kdhtml">${sessionScope.user.kkd102 }</a></li>
+       		</c:when>
+       		<c:otherwise>
+       			 <li class="first"><a href="<%=path%>/kd01AdminMain.kdhtml">${sessionScope.user.kkd102 }</a></li>
+       		</c:otherwise>
+       	</c:choose>
         <li><a href="<%= path %>/kd02QueryReceive.kdhtml?username=${user.kkd102}">短信</a></li>
-        <li><a href="<%=path%>/kd/userpage_info.jsp">设置</a></li>
+        <c:choose>
+       		<c:when test="${fn:contains('45',sessionScope.user.kkd104) }">
+       			 <li><a href="<%=path%>/kd/userpage_info.jsp">设置</a></li>
+       		</c:when>
+       		<c:otherwise>
+       			 <li><a href="<%=path%>/kd/adminpage_info.jsp">设置</a></li>
+       		</c:otherwise>
+       	</c:choose>
         <li><a href="<%=path%>/logout.kdhtml">登出</a></li>
         <li class="last"><a href="javascript:void(0);" id="showrobot">&nbsp;</a></li>
         </ul>
+    </c:otherwise>
+    </c:choose>
     </div>
 </div>
 <!-- 底部菜单栏 -->
