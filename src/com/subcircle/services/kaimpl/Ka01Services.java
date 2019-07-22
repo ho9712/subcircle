@@ -87,7 +87,7 @@ public class Ka01Services extends JdbcServicesSupport
     			.append("											from ka02 x,ka01 b")
     			.append("											where  b.kka101 = x.kka101) ss ")
     			.append("											group by ss.kka101) b")
-    			.append(" where a1.kka103=c.fcode and a1.kka101=b.kka101 and a1.kka106 =1")
+    			.append(" where a1.kka103=c.fcode and c.fname='kka103' and a1.kka101=b.kka101 and a1.kka106 =1")
     			.append(" ORDER BY number DESC")
     			;
     	//÷¥––≤È—Ø 
