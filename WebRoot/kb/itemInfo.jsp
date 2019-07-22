@@ -308,7 +308,6 @@ function onCollect(kkb101)
 		
 		//所有用户平均评分
 		var scoreAll = $("#scoreAll").val();
-		alert(scoreAll);
 		$("#starAll").raty({
 			hints: ['1','2', '3', '4', '5'],
 			path: "<%=basePath %>/img",
