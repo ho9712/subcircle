@@ -22,7 +22,7 @@ public class Ka02Services extends JdbcServicesSupport
 	public Map<String,String> findById()throws Exception
     {
 		StringBuilder sql=new StringBuilder()
-    			.append("select  x.kka101, x.kka102, b.fvalue, a.kkd105,a.kkd102,x.kka104,x.kka105")
+    			.append("select  x.kka101, x.kka102, b.fvalue cnkka103, a.kkd105,a.kkd102,x.kka104,x.kka105")
     			.append("  from ka01 x,kd01 a, syscode b")
     			.append("  where x.kkd101 = a.kkd101 and b.fname = 'kka103' and b.fcode = x.kka103 ")
     		    .append("  and  x.kka106=1 and x.kka101=? ")
@@ -166,13 +166,6 @@ public class Ka02Services extends JdbcServicesSupport
 		           }
 		     return flag;
   }
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	/**

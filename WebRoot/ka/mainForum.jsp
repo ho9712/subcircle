@@ -20,14 +20,15 @@
 	}
 </style>
     <div id="wrapperNeue" class="wrapperNeue">
+    
      <!-- 顶部栏 -->
-<div id="headerNeue2">
+    <div id="headerNeue2">
     <div class="headerNeueInner clearit">
          <div class="bg musume_4"></div>
-   		 <a href="/" class="logo">Bangumi 番组计划</a>
-        
-		<input type="checkbox" id="navMenuNeueToggle" />        
-		<label for="navMenuNeueToggle" class="menuCompact"></label>
+   		 <a href="/" class="logo"></a>
+         <input type="checkbox" id="navMenuNeueToggle" />        
+		 <label for="navMenuNeueToggle" class="menuCompact"></label>
+	
 	<!-- 顶部导航 -->
 	<div id="navNeue2">
 		<div id="menuNeue">
@@ -91,6 +92,7 @@
 						</a>
             		</c:otherwise>
             	</c:choose>
+            	
             	<!-- 用户或管理员入口 -->
 				<ul id="badgeUserPanel">
 				<c:choose>
@@ -174,11 +176,12 @@
     	</h1>
     </div>
     <!-- 主页个人信息 -->
+    
      <!-- 论坛导航栏 -->
     <div class="subjectNav">
       <ul class="navTabs">
       <li><a href="ka01MainForum.kahtml?id=0" class="focus">全部</a></li>
-        <li><a href="ka01AnimeForum.kahtml?id=1">番剧</a></li>
+        <li><a href="ka01AnimeForum.kahtml?id=1">动画</a></li>
         <li><a href="ka01BookForum.kahtml?id=2">书籍</a></li>
         <li><a href="ka01GameForum.kahtml?id=3" >游戏</a></li>
       </ul>
@@ -190,6 +193,7 @@
 <div class="columns clearit">
 <div id="columnA" class="column">
   <div class="navTabsWrapper">
+    
     <!-- 搜索框 -->
     <div id="forumSearch">
       <form action="<%=path %>/ka01SearchResult.kahtml" method="post">
@@ -204,6 +208,8 @@
     <div>
     <br>
     <br>
+    
+       <!-- 贴子列表 -->
       <c:forEach items="${rows }" var="ins">
        <div class="SidePanel png_bg" style="width:85%;margin-left: 5px">
         
@@ -232,10 +238,14 @@
         <br>
         <div style="float:left;">
           <font size="2" style="width:10%;height:15px;margin-left: 15px">
-              ${ins.kkd105 }
+              ${ins.cnkka103 }
           </font>
         </div>
         <br>
+        <div style="margin-left: 20px" align="right">
+          ${ins.kkd105 }
+        </div>
+        <br/>
         <div style="margin-left: 20px" align="right">
           ${ins.kka105 }
         </div>

@@ -179,7 +179,7 @@
     <div class="subjectNav">
       <ul class="navTabs">
       <li><a href="ka01MainForum.kahtml?id=0">全部</a></li>
-        <li><a href="ka01AnimeForum.kahtml?id=1">番剧</a></li>
+        <li><a href="ka01AnimeForum.kahtml?id=1">动画</a></li>
         <li><a href="ka01BookForum.kahtml?id=2">书籍</a></li>
         <li><a href="ka01GameForum.kahtml?id=3" class="focus" >游戏</a></li>
       </ul>
@@ -205,6 +205,8 @@
     <div>
     <br>
     <br>
+    
+      <!-- 贴子列表 -->
       <c:forEach items="${rows }" var="ins">
        <div class="SidePanel png_bg" style="width:85%;margin-left: 5px">
         
@@ -233,10 +235,14 @@
         <br>
         <div style="float:left;">
           <font size="2" style="width:10%;height:15px;margin-left: 15px">
-              ${ins.kkd105 }
+              ${ins.cnkka103 }
           </font>
         </div>
         <br>
+        <div style="margin-left: 20px" align="right">
+          ${ins.kkd105 }
+        </div>
+        <br/>
         <div style="margin-left: 20px" align="right">
           ${ins.kka105 }
         </div>
