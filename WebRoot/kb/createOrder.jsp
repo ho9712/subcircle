@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+	<%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://org.wangxg/jsp/extl" prefix="e" %>
 <%
@@ -11,6 +11,7 @@
 <head>
 <title>订单生成</title>
 <link href="<%=basePath %>/css/bootstrap.css" rel="stylesheet">
+
 <jsp:include page="index.jsp" flush="true" /><!-- 引入导航栏 -->
 </head>
 <body> 
@@ -63,7 +64,7 @@
 
 
 							<tr class= "warning">
-								<td style="vertical-align: middle;"><img
+								<td style="vertical-align: middle;" width="30%"><img
 									class="img-thumbnail"
 									src="${ins.kkb105 }"
 									width="100" height="100" /></td>
@@ -109,8 +110,14 @@
 													<span>评分</span>
 													<br>
 													<br>
-													<e:select name="kkb602"
-														value="5:5,4:4,3:3,2:2,1:1" defval="${ins.kkb602 }"/>
+													
+													<div id="star"></div>
+													<input type="hidden" name ="kkb602" value="-1">
+													
+													
+													
+													<%-- <e:select name="kkb602"
+														value="5:5,4:4,3:3,2:2,1:1" defval="${ins.kkb602 }"/> --%>												
 												</div>
 											</td>
 											<td colspan="3">
@@ -124,8 +131,13 @@
 													<span>评分</span>
 													<br>
 													<br>
-													<e:select name="kkb602" readonly="true"
-														value="5:5,4:4,3:3,2:2,1:1" defval="${ins.kkb602 }"/>
+													
+													<div id="star"></div>
+													<input type="hidden" name = "kkb602" value="${ins.kkb602 }">
+													
+													<%-- <div id="result">${ins.kkb602 }</div> --%>
+													<%-- <e:select name="kkb602" readonly="true"
+														value="5:5,4:4,3:3,2:2,1:1" defval="${ins.kkb602 }"/> --%>
 												</div>
 											</td>
 											<td colspan="3">
@@ -289,7 +301,6 @@
 	//确认收货
 	function confirmOrder()
 	{
-		alert("=======");
 		var msg = "您确定收到该笔订单了吗";
 		if(confirm(msg)==true)
 		{
@@ -299,9 +310,65 @@
 		}
 	}
 	
+	//星星评分
+	function rat(){
+		var kkb602List = document.getElementsByName("kkb602");
+		var i = 0;
+		//已评价回显评分
+		if(kkb602List[i].value != null && kkb602List[i].value != "-1")
+		{
+			$('td div #star').each(function(index,element){
+				var score = kkb602List[i].value;
+				i++;
+				$(this).raty({
+					hints: ['1','2', '3', '4', '5'],
+					path: "<%=basePath %>/img",
+					starOff: 'star-off-big.png',
+					starOn: 'star-on-big.png',
+					size: 30,
+					start: 40,
+					showHalf: true,
+	            	score:score,
+	            	readOnly:true
+	            });   //设置点亮的星数 这里设置为3颗星星默认点亮，可以从后台获得对应项的分数来动态显示星星数，这里先写死。并使用只读属性，表示不能点选　　　　　　　　　
+	          });
+		}
+		//给出评分
+		else
+		{
+			$('td div #star').each(function(index,element){
+				$(this).raty({
+					hints: ['1','2', '3', '4', '5'],
+					path: "<%=basePath %>/img",
+					starOff: 'star-off-big.png',
+					starOn: 'star-on-big.png',
+					size: 30,
+					start: 40,
+					showHalf: true,
+					targetKeep : true,//targetKeep 属性设置为true，用户的选择值才会被保持在目标DIV中，否则只是鼠标悬停时有值，而鼠标离开后这个值就会消失
+					click: function (score, evt) {
+						kkb602List[i].value = score;
+						i++;
+					}
+				});
+			});
+		}
+
+		/*第二种方式可以设置一个隐蔽的HTML元素来保存用户的选择值，然后可以在脚本里面通过jQuery选中这个元素来处理该值。 弹出结果
+		var text = $(result).text();
+		$('img').click(function () {
+			if ($(result).text() != text) {
+				alert('你的评分是'+$(result).text()/m+'分');
+				alert(result);
+				return;
+			}
+		});*/
+	}
+	
 	window.onload = function()
 	{
 		updateSummaryInfo();
+		rat();
 	}
 	
 	
@@ -309,6 +376,7 @@
 
 
 <script src="<%=basePath %>/js/jquery.js"></script>
+<script src="<%=basePath %>/js/jquery.raty.js" type="text/javascript"></script>
 <script src="https://cdn.bootcss.com/jquery.form/4.2.1/jquery.form.min.js"></script>
 <script src="<%=basePath %>/js/bootstrap.min.js"></script>
 

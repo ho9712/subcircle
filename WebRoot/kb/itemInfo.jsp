@@ -125,7 +125,10 @@
 							<td style="width: 15%">
 							<c:choose>
 								<c:when test="${count != 0 }">							
-									${score/count }
+									
+								<div id = "starAll"></div>
+								<input type="hidden" id = "scoreAll" value="${score/count }">
+								
 								</c:when>
 								<c:otherwise>
 									暂无评分信息
@@ -156,7 +159,12 @@
 										</a>
 									</div>
 								</td>
-								<td style="vertical-align: middle;">${rateInfo.kkb602 }</td>
+								<td style="vertical-align: middle;">
+									<div>
+										<div id = "star"></div>
+										<input type="hidden" name ="kkb602" value="${rateInfo.kkb602 }">
+									</div> 
+								</td>
 								<td style="vertical-align: middle;">${rateInfo.kkb603 }</td>
 								<c:choose>
 									<c:when test="${sessionScope.kkd104 == 2}">
@@ -277,9 +285,54 @@ function onCollect(kkb101)
 			window.location.href = "<%=request.getContextPath()%>/kb06DelRate.kbhtml?kkb601=" + kkb601;	
 		}
 	}
+	
+	//星星评分显示	
+	function rat(){
+		var kkb602List = document.getElementsByName("kkb602");
+		var i = 0;
+		$('td div #star').each(function(index,element){
+			var score = kkb602List[i].value;
+			i++;
+			$(this).raty({
+				hints: ['1','2', '3', '4', '5'],
+				path: "<%=basePath %>/img",
+				starOff: 'star-off-big.png',
+				starOn: 'star-on-big.png',
+				size: 30,
+				start: 40,
+				showHalf: true,
+            	score:score,
+            	readOnly:true
+            });   //设置点亮的星数 这里设置为3颗星星默认点亮，可以从后台获得对应项的分数来动态显示星星数，这里先写死。并使用只读属性，表示不能点选　　　　　　　　　
+          });
+		
+		//所有用户平均评分
+		var scoreAll = $("#scoreAll").val();
+		alert(scoreAll);
+		$("#starAll").raty({
+			hints: ['1','2', '3', '4', '5'],
+			path: "<%=basePath %>/img",
+			starOff: 'star-off-big.png',
+			starOn: 'star-on-big.png',
+			size: 30,
+			start: 40,
+			showHalf: true,
+        	score:scoreAll,
+        	readOnly:true
+        });   //设置点亮的星数 这
+		
+	}
+	
+	window.onload = function()
+	{
+		rat();
+	}
+	
+	
 </script>
 
 <script src="<%=basePath %>/js/jquery.js"></script>
+<script src="<%=basePath %>/js/jquery.raty.js" type="text/javascript"></script>
 <script src="<%=basePath %>/js/bootstrap.min.js"></script>
 
 </body>

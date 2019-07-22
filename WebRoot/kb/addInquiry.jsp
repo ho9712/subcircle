@@ -115,7 +115,7 @@
 		
 		function onCancle()
 		{
-			window.location.href = "<%=request.getHeader("Referer")%>"
+			window.location.href = "<%=path%>/kb01QueryItems.kbhtml?page=1"
 		}
 		
 		//通过时间获取唯一的求购号

@@ -65,7 +65,9 @@ public class Kb01Services extends JdbcServicesSupport
 			sql_1.append("    and   k.kkb103 <= " + ePrice);
 		}
 		sql.append("  limit ?,12");
-		int start = (Integer.parseInt((String) this.get("page")) - 1) * 12;
+		
+		String page =  this.get("page").toString();
+ 		int start = (Integer.parseInt(page) - 1) * 12;
 		
 		Object args[] = 
 			{
