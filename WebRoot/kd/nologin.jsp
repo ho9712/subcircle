@@ -21,7 +21,7 @@
 <div id="headerNeue2">
     <div class="headerNeueInner clearit">
          <div class="bg musume_4"></div>
-   		 <a href="/" class="logo">Bangumi 番组计划</a>
+   		 <a href="<%=path%>/home" class="logo"></a>
         
 		<input type="checkbox" id="navMenuNeueToggle" />        
 		<label for="navMenuNeueToggle" class="menuCompact"></label>
@@ -101,7 +101,7 @@
 <div class="message">
 <h2>呜咕，出错了</h2>
 <p class="text">你还没有登录SubCircle，请前往登录，或返回</p>
-<p class="tip_j">/ <a href="/" class="l">返回首页</a> 或 <a href="javascript:history.back();" class="l">回到上页</a></p>
+<p class="tip_j">/ <a href="<%=path%>/home" class="l">返回首页</a> 或 <a href="javascript:history.back();" class="l">回到上页</a></p>
 <p class="tip_j">/ <a href="<%= path %>/kd/login.jsp" class="l">登录</a> 或 <a href="<%= path %>/kd/signup.jsp" class="l">注册</a></p>
 
 </div>

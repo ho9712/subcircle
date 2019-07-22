@@ -45,7 +45,7 @@
 <div id="headerNeue2">
     <div class="headerNeueInner clearit">
          <div class="bg musume_4"></div>
-   		 <a href="/" class="logo">Bangumi 番组计划</a>
+   		 <a href="<%=path%>/home" class="logo"></a>
         
 		<input type="checkbox" id="navMenuNeueToggle" />        
 		<label for="navMenuNeueToggle" class="menuCompact"></label>
@@ -327,7 +327,6 @@
 							<c:otherwise>
 								<!-- 左移 -->
 								<c:if test="${param.page >1}">
-									<a href="<%=path%>/kc06AnimeColl.kdhtml?page=1&order=${param.order}" class="p">|&lsaquo;</a>
 									<a href="<%=path%>/kc06AnimeColl.kdhtml?page=${param.page-1}&order=${param.order}" class="p">&lsaquo;&lsaquo;</a>
 								</c:if>
 								<!-- 左移 -->

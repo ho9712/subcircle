@@ -177,7 +177,7 @@ public abstract class KdAbstractController implements ControllerInterface
 	}
 	
 	//用户注册
-	protected final void userSignUp()throws Exception
+	protected final String userSignUp()throws Exception
 	{
 		if(this.dto.get("kkd102").toString().length()<6 || this.dto.get("kkd102").toString().length()>12)
 		{
@@ -196,12 +196,14 @@ public abstract class KdAbstractController implements ControllerInterface
 			if(this.executeMethod("userSignUp"))
 			{
 				this.setHint("成功", "注册成功！");
+				return "kd/login";
 			}
 			else
 			{
 				this.setHint("失败", "此用户名已被使用，请换一个试试！");
 			}
 		}
+		return "kd/signup";
 	}
 
 	//用户登录
@@ -546,6 +548,7 @@ public abstract class KdAbstractController implements ControllerInterface
 	protected final void queryReceive()throws Exception
 	{
 		this.dto.put("flag", "receive");
+		this.dto.put("username", this.session.getAttribute("kkd102"));
 		List<Map<String, String>> receives=this.services.queryByCondition();
 		this.saveAttribute("receives", receives);
 	}
@@ -554,6 +557,7 @@ public abstract class KdAbstractController implements ControllerInterface
 	protected final void querySend()throws Exception
 	{
 		this.dto.put("flag", "send");
+		this.dto.put("username", this.session.getAttribute("kkd102"));
 		List<Map<String, String>> sends=this.services.queryByCondition();
 		this.saveAttribute("sends", sends);
 	}
@@ -677,6 +681,8 @@ public abstract class KdAbstractController implements ControllerInterface
 		}
 		List<Map<String, String>> bookColls=this.executeQueryForList("queryBookColl");
 		this.saveAttribute("bookColls", bookColls);
+		Map<String, Object> totalCount=this.executeQueryForMap("queryBookCollCount");
+		this.saveAttribute("totalCount", totalCount);
 	}
 	
 	//查询游戏收藏
@@ -688,6 +694,8 @@ public abstract class KdAbstractController implements ControllerInterface
 		}
 		List<Map<String, String>> gameColls=this.executeQueryForList("queryGameColl");
 		this.saveAttribute("gameColls", gameColls);
+		Map<String, Object> totalCount=this.executeQueryForMap("queryGameCollCount");
+		this.saveAttribute("totalCount", totalCount);
 	}
 	
 	//修改作品评价
@@ -725,6 +733,8 @@ public abstract class KdAbstractController implements ControllerInterface
 		}
 		List<Map<String, String>> posts=this.services.queryByCondition();
 		this.saveAttribute("posts", posts);
+		Map<String, Object> totalCount=this.executeQueryForMap("postRecordCount");
+		this.saveAttribute("totalCount", totalCount);
 	}
 	
 	//删除贴子
@@ -749,6 +759,8 @@ public abstract class KdAbstractController implements ControllerInterface
 		}
 		List<Map<String, String>> replys=this.services.queryByCondition();
 		this.saveAttribute("replys", replys);
+		Map<String, Object> totalCount=this.executeQueryForMap("replyRecordCount");
+		this.saveAttribute("totalCount", totalCount);
 	}
 	
 	//删除回帖
@@ -770,6 +782,8 @@ public abstract class KdAbstractController implements ControllerInterface
 		this.dto.put("kkd101", this.session.getAttribute("kkd101"));
 		List<Map<String, String>> postColls=this.services.queryByCondition();
 		this.saveAttribute("postColls", postColls);
+		Map<String, Object> totalCount=this.executeQueryForMap("postCollCount");
+		this.saveAttribute("totalCount", totalCount);
 	}
 	
 	//取消帖子收藏
@@ -791,6 +805,8 @@ public abstract class KdAbstractController implements ControllerInterface
 		this.dto.put("kkd101", this.session.getAttribute("kkd101"));
 		List<Map<String, String>> goods=this.services.queryByCondition();
 		this.saveAttribute("goods", goods);
+		Map<String, Object> totalCount=this.executeQueryForMap("shopRecordCount");
+		this.saveAttribute("totalCount", totalCount);
 	}
 	
 	//删除商品浏览记录
@@ -825,6 +841,8 @@ public abstract class KdAbstractController implements ControllerInterface
 		this.dto.put("kkd101", this.session.getAttribute("kkd101"));
 		List<Map<String, String>> goods=this.services.queryByCondition();
 		this.saveAttribute("goods", goods);
+		Map<String, Object> totalCount=this.executeQueryForMap("shopCollCount");
+		this.saveAttribute("totalCount", totalCount);
 	}
 	
 	//删除商品收藏记录

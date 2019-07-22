@@ -18,7 +18,7 @@
 <div id="headerNeue2">
     <div class="headerNeueInner clearit">
          <div class="bg musume_4"></div>
-   		 <a href="/" class="logo">Bangumi 番组计划</a>
+   		 <a href="<%=path%>/home" class="logo"></a>
         
 		<input type="checkbox" id="navMenuNeueToggle" />        
 		<label for="navMenuNeueToggle" class="menuCompact"></label>
@@ -111,6 +111,7 @@
                 <p><input id="nickname" name="kkd105" class="inputtext" type="text" required="required" /></p>
                 <div id="rechaptcha_form"></div>
                 <p class="title"><input class="inputBtn" type="submit" name="regsubmit" value="注册会员" /></p>
+                ${msg }
                 </form>
             </div>
         </div>

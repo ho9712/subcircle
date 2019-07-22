@@ -8,6 +8,7 @@ import com.subcircle.services.support.JdbcServicesSupport;
 
 public class Kc06Services extends JdbcServicesSupport 
 {
+	//查询动画收藏
 	public List<Map<String, String>> queryAnimeColl()throws Exception
 	{
 		Object keyword=this.get("keyword");
@@ -75,6 +76,7 @@ public class Kc06Services extends JdbcServicesSupport
 		return this.queryForList(sql.toString(), paras.toArray());
 	}
 	
+	//查询动画收藏数量
 	public Map<String, String> queryAnimeCollCount()throws Exception
 	{
 		Object keyword=this.get("keyword");
@@ -111,12 +113,14 @@ public class Kc06Services extends JdbcServicesSupport
 		return this.queryForMap(sql.toString(), paras.toArray());
 	}
 	
+	//查询书籍收藏
 	public List<Map<String, String>> queryBookColl()throws Exception
 	{
 		Object keyword=this.get("keyword");
 		Object bkkc602=this.get("bkkc602");
 		Object ekkc602=this.get("ekkc602");
 		Object order=this.get("order");
+		Object page=this.get("page");
 		
 		List<Object> paras=new ArrayList<>();
 		StringBuilder sql=new StringBuilder()
@@ -165,15 +169,63 @@ public class Kc06Services extends JdbcServicesSupport
 				sql.append(" order by c7.kkc702 desc");
 			}
 		}
+		if(isNotNull(page))
+		{
+			sql.append(" limit ?,6");
+			paras.add((Integer.parseInt((page).toString())-1)*6);
+		}
+		else
+		{
+			sql.append(" limit 0,6");
+		}
 		return this.queryForList(sql.toString(), paras.toArray());
 	}
 	
+	//查询书籍收藏数量
+	public Map<String, String> queryBookCollCount()throws Exception
+	{
+		Object keyword=this.get("keyword");
+		Object bkkc602=this.get("bkkc602");
+		Object ekkc602=this.get("ekkc602");
+		
+		List<Object> paras=new ArrayList<>();
+		StringBuilder sql=new StringBuilder()
+				.append("select count(*) count")
+				.append("	from kc01 c1,kc03 c3,kc06 c6,kc07 c7")
+				.append(" where c6.kkd101=? and c7.kkd101=?")
+				.append("   and c6.kkc101=c1.kkc101")
+				.append("   and c3.kkc101=c1.kkc101")
+				.append("   and c7.kkc101=c1.kkc101")
+				;
+		paras.add(this.get("kkd101"));
+		paras.add(this.get("kkd101"));
+		if(isNotNull(keyword))
+		{
+			sql.append(" and c3.kkc302 like ?");
+			paras.add("%"+keyword+"%");
+			
+		}
+		if(isNotNull(bkkc602))
+		{
+			sql.append(" and c6.kkc602>?");
+			paras.add(bkkc602);
+		}
+		if(isNotNull(ekkc602))
+		{
+			sql.append(" and c6.kkc602<?");
+			paras.add(ekkc602);
+		}
+		return this.queryForMap(sql.toString(), paras.toArray());
+	}
+	
+	//查询游戏收藏
 	public List<Map<String, String>> queryGameColl()throws Exception
 	{
 		Object keyword=this.get("keyword");
 		Object bkkc602=this.get("bkkc602");
 		Object ekkc602=this.get("ekkc602");
 		Object order=this.get("order");
+		Object page=this.get("page");
 		
 		List<Object> paras=new ArrayList<>();
 		StringBuilder sql=new StringBuilder()
@@ -222,9 +274,56 @@ public class Kc06Services extends JdbcServicesSupport
 				sql.append(" order by c7.kkc702 desc");
 			}
 		}
+		if(isNotNull(page))
+		{
+			sql.append(" limit ?,6");
+			paras.add((Integer.parseInt((page).toString())-1)*6);
+		}
+		else
+		{
+			sql.append(" limit 0,6");
+		}
 		return this.queryForList(sql.toString(), paras.toArray());
 	}
 	
+	//查询游戏收藏数量
+	public Map<String, String> queryGameCollCount()throws Exception
+	{
+		Object keyword=this.get("keyword");
+		Object bkkc602=this.get("bkkc602");
+		Object ekkc602=this.get("ekkc602");
+		
+		List<Object> paras=new ArrayList<>();
+		StringBuilder sql=new StringBuilder()
+				.append("select count(*) count")
+				.append("	from kc01 c1,kc04 c4,kc06 c6,kc07 c7")
+				.append(" where c6.kkd101=? and c7.kkd101=?")
+				.append("   and c6.kkc101=c1.kkc101")
+				.append("   and c4.kkc101=c1.kkc101")
+				.append("   and c7.kkc101=c1.kkc101")
+				;
+		paras.add(this.get("kkd101"));
+		paras.add(this.get("kkd101"));
+		if(isNotNull(keyword))
+		{
+			sql.append(" and c4.kkc402 like ?");
+			paras.add("%"+keyword+"%");
+			
+		}
+		if(isNotNull(bkkc602))
+		{
+			sql.append(" and c6.kkc602>?");
+			paras.add(bkkc602);
+		}
+		if(isNotNull(ekkc602))
+		{
+			sql.append(" and c6.kkc602<?");
+			paras.add(ekkc602);
+		}
+		return this.queryForMap(sql.toString(), paras.toArray());
+	}
+	
+	//修改对作品的评分评价
 	public boolean modifyComment()throws Exception
 	{
 		String sql="update kc07 set kkc702=?,kkc703=? where kkc701=?";

@@ -11,7 +11,7 @@
 	function onClickSort(vorder)
 	{
 		var vform=document.getElementById("myform");
-		vform.action="<%=path%>/kc06OtherAnimeColl.kdhtml?kkd101=${param.kkd101}&order="+vorder;
+		vform.action="<%=path%>/kc06OtherAnimeColl.kdhtml?kkd101=${param.kkd101}&page=${param.page}&order="+vorder;
 		vform.submit();
 	}
 </script>
@@ -29,7 +29,7 @@
 <div id="headerNeue2">
     <div class="headerNeueInner clearit">
          <div class="bg musume_4"></div>
-   		 <a href="/" class="logo">Bangumi 番组计划</a>
+   		 <a href="<%=path%>/home" class="logo"></a>
         
 		<input type="checkbox" id="navMenuNeueToggle" />        
 		<label for="navMenuNeueToggle" class="menuCompact"></label>
