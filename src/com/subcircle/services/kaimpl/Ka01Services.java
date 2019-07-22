@@ -106,8 +106,8 @@ public class Ka01Services extends JdbcServicesSupport
 	 int kka101=Tools.getPk("kka101");
     	//1.编写SQL语句
     	StringBuilder sql1=new StringBuilder()
-    			.append("insert into ka01(kka101,kkd101,kka102,kka103,kka104,kka105,kka106)")
-    			.append("          values(?,?,?,?,?,CURRENT_TIMESTAMP,1)")
+    			.append("insert into ka01(kka101,kkd101,kka102,kka103,kka104,kka105,kka106,kkc101)")
+    			.append("          values(?,?,?,?,?,CURRENT_TIMESTAMP,1,?)")
     			;
     	//2.编写参数数组
     	Object args[]=
@@ -117,6 +117,7 @@ public class Ka01Services extends JdbcServicesSupport
     			this.get("kka102"),
     			this.get("kka103"),
     			this.get("kka104"),
+    			this.get("kkc101"),
     	    };
     	this.appendSql(sql1.toString(), args);
     	StringBuilder sql2=new StringBuilder()

@@ -7,6 +7,6 @@ public class Ka01PostingServlet extends Ka01Controller
 		public String execute() throws Exception 
 		{
 			this.update("posting","·¢Ìù");
-            return "ka/posting.jsp";
+            return "ka01MainForum.kahtml?id=0";
 		}
 }

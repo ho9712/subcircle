@@ -202,6 +202,7 @@
    <!-- 发帖表单 -->
 <form id="editTopicForm" name="new_comment" method="post" action="<%=request.getContextPath()%>/ka01Posting.kahtml">		
  <input type="hidden" name="kka101" value="${param.kka101 }" />
+  <input type="hidden" name="kkc101" value="null" />
 <script type="text/javascript">var CHOBITS_SID = 'aru27g'; var SCRIPT_URL = '/blog/upload_photo';</script> 
 <table align="center" width="99%" class="settings">
   <tr><td valign="top" width="10%">标题</td><td valign="top"><input id="tpc_title" name="kka102" class="inputtext" type="text"  required="required"> <span class="alarm"></span></td></tr>
