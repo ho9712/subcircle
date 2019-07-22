@@ -5,7 +5,7 @@
 <html>
 <head>
 
-<title>评论们~</title>
+<title>添加新番剧条目</title>
 <link href="<%=path %>/css/bangumi.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -139,7 +139,7 @@
         <input type="submit" name="submit" value="搜索" class="search" />
     </div>
 </form>
-    </div>   
+    </div>    
 </div>   
     </div>
 </div>
@@ -147,115 +147,71 @@
 
 
 <div id="main" class="png_bg"></div>
-<div id="headerSubject" class="clearit" xmlns:v="http://rdf.data-vocabulary.org/#" typeof="v:Movie">       
+<div id="headerSubject" class="clearit" xmlns:v="http://rdf.data-vocabulary.org/#" typeof="v:Movie">
+<h1 class="nameSingle">
+   <a href="" title="" property="v:itemreviewed"></a>
+   标题
+                    </h1>
+
+   
+        
     <div class="subjectNav">
 <ul class="navTabs clearit">
-        <li><a href="kc02ShowDetail.kchtml?kkc101=${param.kkc101}">概览</a></li>       
-        <li><a href=""   class="focus">评论</a></li>
-        <li><a href="" >讨论版</a></li>
+        <li><a href="" class="focus">番剧</a></li>       
+        <li><a href="">书籍</a></li>
+        <li><a href="" >游戏</a></li>
         </ul>
 	
 </div>
 </div>
+
 <div class="mainWrapper"><div class="columns clearit">
-<div id="columnInSubjectA" class="column">
-<div class="content_inner clearit"><div id="comment_box"><div class="item clearit">
-
-    </div>
-    
-
-<div class="subject_section">
 
 
+<h2 class="subtitle">添加番剧条目</h2>
+<form id="photoForm" method="post" enctype="multipart/form-data">
+					<img id = "showPhoto" src="${ins.kkb105 }" style="width: 100px;height:100px">
+					<input type="file" name="logos" size="25" onchange="uploadPhoto()"/><br>
+					<small class="grey">仅支持上传.jpg或.png格式文件</small>
+				</form>
+<form action="" method="post">
+<table class="olt"><tr><td></td><td></td></tr>
+<tr><td nowrap="nowrap" width="15%"><p class="tip">条目名</p></td><td>
+<input type = "text" name="" class="inputtext" value="" /></td></tr>
+<tr><td nowrap="nowrap" width="15%"><p class="tip">中文名</p></td><td>
+<input type = "text" name="kkc202" class="inputtext" value="" /></td></tr>
+<tr><td nowrap="nowrap" width="15%"><p class="tip">话数</p></td><td>
+<input type = "text" name="kkc209" class="inputtext" value="" /></td></tr>
+<tr><td nowrap="nowrap" width="15%"><p class="tip">原作</p></td><td>
+<input type = "text" name="kkc210" class="inputtext" value="" /></td></tr>
+<tr><td nowrap="nowrap" width="15%"><p class="tip">分镜</p></td><td>
+<input type = "text" name="kkc211" class="inputtext" value="" /></td></tr>
+<tr><td nowrap="nowrap" width="15%"><p class="tip">演出</p></td><td>
+<input type = "text" name="kkc212" class="inputtext" value="" /></td></tr>
+<tr><td nowrap="nowrap" width="15%"><p class="tip">音乐</p></td><td>
+<input type = "text" name="kkc213" class="inputtext" value="" /></td></tr>
+<tr><td nowrap="nowrap" width="15%"><p class="tip">原画</p></td><td>
+<input type = "text" name="kkc214" class="inputtext" value="" /></td></tr>
+<tr><td nowrap="nowrap" width="15%"><p class="tip">官方网站</p></td><td>
+<input type = "text" name="kkc215" class="inputtext" value="" /></td></tr>
+<tr><td nowrap="nowrap" width="15%"><p class="tip">电视台</p></td><td>
+<input type = "text" name="kkc216" class="inputtext" value="" /></td></tr>
 
+<tr><td nowrap="nowrap" width="15%"><p class="tip">简介</p></td><td>
+<textarea name="kkc217" id="content" class="reply" cols="45" rows="7"  ></textarea>
 
+<input type="hidden" name="kkc101" value = ""  />
 
-<c:choose>
-			<c:when test="${rows!=null }">
-			<c:forEach items="${rows }" var="comments" varStatus="vs">
-			<c:choose>
-			<c:when test="${(vs.count)%2 ==1 }">
+</td></tr>
+</table>
+<input class="inputBtn" value="提交" name="submit" type="submit">
 
-
-
-
-<div class="item clearit">
-<a href="" class="avatar">
-<span class="avatarNeue avatarSize32 ll" style="background-image:url('${comments.kkd108 }');background-size: 100% auto; "></span>
-</a>
-<div class="text_main_even">
-<div class="text">
-
-<!-- 注意此处的星星样式以及评分
-sstars1-10即评分 根据数据读取即可
-链接里是用户个人中心的链接
-图片复用个人中心的头像
-用户ID
- -->
- 
- 
-            <a href="" class="l">${comments.kkd105 }</a> <small class="grey">${comments.kkc704 }</small> <span class="sstars${comments.kkc702 } starsinfo"></span>         <p>${comments.kkc703 }</p>
-</div>
-</div>
-</div>
-
-
-</c:when>
-<c:otherwise>
-<div class="item clearit">
-<a href="" class="avatar"><span class="avatarNeue avatarSize32 rr" style="background-image:url('${comments.kkd108 }');background-size: 100% auto;"></span></a>
-<div class="text_main_odd">
-<div class="text">
-
-<!-- 注意此处的星星样式以及评分
-sstars1-10即评分 根据数据读取即可
-链接里是用户个人中心的链接
-图片复用个人中心的头像
-用户ID
- -->
- 
- 
-            <a href="" class="l">${comments.kkd105 }</a> <small class="grey">${comments.kkc704 }</small> <span class="sstars${comments.kkc702 } starsinfo"></span>         <p>${comments.kkc703 }</p>
-</div>
-</div>
-</div>
-</c:otherwise>
-</c:choose>
-</c:forEach>
-</c:when>
-</c:choose>
-
- <div class="clearit"><div class="page_inner">
-			 
-			 <a href="kc02ShowComments.kchtml?page=1" class="p">|&lsaquo;</a>
-			 <c:if test="${param.page >1}"><a href="kc02ShowRank.kchtml?page=${param.page-1 }&kkc101=${param.kkc101}" class="p">&lsaquo;&lsaquo;</a></c:if>
-			 <strong class="p_cur">${empty param.page?'1':param.page}</strong>
-			 <a href="kc02ShowComments.kchtml?page=${empty param.page?'2':param.page+1}&kkc101=${param.kkc101}" class="p">${empty param.page?'2':param.page+1}</a>
-			 <a href="kc02ShowComments.kchtml?page=${empty param.page?'3':param.page+2}&kkc101=${param.kkc101}" class="p">${empty param.page?'3':param.page+2}</a>
-			 <a href="kc02ShowComments.kchtml?page=${empty param.page?'4':param.page+3}&kkc101=${param.kkc101}" class="p">${empty param.page?'4':param.page+3}</a>
-			 <a href="kc02ShowComments.kchtml?page=${empty param.page?'5':param.page+4}&kkc101=${param.kkc101}" class="p">${empty param.page?'5':param.page+4}</a>
-			 <a href="kc02ShowComments.kchtml?page=${empty param.page?'6':param.page+5}&kkc101=${param.kkc101}" class="p">${empty param.page?'6':param.page+5}</a>
-			 <a href="kc02ShowComments.kchtml?page=${empty param.page?'7':param.page+6}&kkc101=${param.kkc101}" class="p">${empty param.page?'7':param.page+6}</a>
-			 <a href="kc02ShowComments.kchtml?page=${empty param.page?'8':param.page+7}&kkc101=${param.kkc101}" class="p">${empty param.page?'8':param.page+7}</a>
-			 <a href="kc02ShowComments.kchtml?page=${empty param.page?'9':param.page+8}&kkc101=${param.kkc101}" class="p">${empty param.page?'9':param.page+8}</a>
-			 <a href="kc02ShowComments.kchtml?page=${empty param.page?'10':param.page+9}&kkc101=${param.kkc101}" class="p">${empty param.page?'10':param.page+9}</a>
-			 <c:if test="${param.page <640 }"><a href="kc02ShowComments.kchtml?page=${param.page+1 }&kkc101=${param.kkc101}" class="p">&rsaquo;&rsaquo;</a></c:if>			 
-			 <a href="kc02ShowComments.kchtml?page=640&kkc101=${param.kkc101}" class="p">&rsaquo;|</a>
-			 <a class="p_pages" style="padding: 0px">
-			 <input class="inputtext" style="width:30px;" type="text" name="custompage" onKeyDown="if(event.keyCode==13) {window.location='kc02ShowComments.kchtml?page='+this.value + '&kkc101=${param.kkc101}'; return false;}"></a>
-			 <span class="p_edge">(&nbsp;${empty param.page?'1':param.page}&nbsp;/&nbsp;640&nbsp;)</span>
-			 </div>
-			 </div>
-
-
-
-</div>
-</div>  
-</div>      
+</form>
 </div>
 
 </div>
-</div>
+
+
 
 <!-- <script type="text/javascript" src="<%=path %>/js/jquery.js"></script>
 <script type="text/javascript" src="<%=path %>/js/bootstrap.min.js"></script>
@@ -275,6 +231,27 @@ sstars1-10即评分 根据数据读取即可
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
+    
+    
+    
+	function uploadPhoto()
+	{
+		alert("!")
+		$("#photoForm").attr("action","<%=request.getContextPath()%>/uploadlogosServlet")
+		$("#photoForm").ajaxSubmit({
+	            type: "POST",
+	            dataType: "text",
+	            success: function (data)
+	            {
+	            	alert(data)
+	            	if(data)
+	            	{
+	            		$("#showPhoto").attr("src",data);
+	            		$("#kkb105").attr("value",data);
+	            	}
+	            }//endsuccess
+	       });//endajax		
+	}
 </script>
 
 
@@ -287,5 +264,11 @@ $(document).ready(function () {
 });
 </script>
 <script type="text/javascript">chiiLib.subject.init();</script>
+
+
+<script src="<%=path %>/js/jquery.js" type="text/javascript" ></script>
+<script src="https://cdn.bootcss.com/jquery.form/4.2.1/jquery.form.min.js"></script>
 </body>
+
+
 </html>

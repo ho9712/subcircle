@@ -127,10 +127,10 @@
 
 <div id="headerSearchWrapper">
 <div id="headerSearch">
-        <form action="" method="post">
+        <form action="kc02Search.kchtml" method="post">
     <div class="inner">
+    
     <select name="kkcs" id="siteSearchSelect">
-<option value="all">全部</option>
 <option value="2">动画</option>
 <option value="1">书籍</option>
 <option value="4">游戏</option> 
@@ -139,7 +139,7 @@
         <input type="submit" name="submit" value="搜索" class="search" />
     </div>
 </form>
-    </div>   
+    </div>    
 </div>   
     </div>
 </div>
@@ -358,42 +358,45 @@
     <div class="subject_section">
 <div class="rr"><a href="#;" onclick="switchDisplay('new_topic');" class="chiiBtn"><span>添加新讨论</span></a></div><h2 class="subtitle">讨论版</h2>
 
-<table class="topic_list" border="0" cellpadding="0" cellspacing="0" style="margin-bottom:0px;"><tbody>    <tr class="odd">
-    <td class="subject"><a href="/subject/topic/15388" title="你们觉得第一集的女性对Spike有没有动感情？" class="l">你们觉得第一集的女性对Spike有没有动感情？</a></td>
-    <td width="15%"><a href="/user/288280">陈苦瓜</a></td>
-    <td width="15%" align="right"><small class="grey">5 replies</small></td>
-    <td width="15%" align="right"><small class="grey">2019-6-8</small></td>
-    </tr>    <tr class="even">
-    <td class="subject"><a href="/subject/topic/1352" title="这么神的片子竟然没人讨论" class="l">这么神的片子竟然没人讨论</a></td>
-    <td width="15%"><a href="/user/xsummer">Xsummer</a></td>
-    <td width="15%" align="right"><small class="grey">129 replies</small></td>
-    <td width="15%" align="right"><small class="grey">2011-9-5</small></td>
-    </tr>    <tr class="odd">
-    <td class="subject"><a href="/subject/topic/1289" title="感觉ED的角色多余了呀" class="l">感觉ED的角色多余了呀</a></td>
-    <td width="15%"><a href="/user/45008">lancer</a></td>
-    <td width="15%" align="right"><small class="grey">9 replies</small></td>
-    <td width="15%" align="right"><small class="grey">2011-8-4</small></td>
-    </tr>    <tr class="even">
-    <td class="subject"><a href="/subject/topic/12905" title="可有可无的一段话" class="l">可有可无的一段话</a></td>
-    <td width="15%"><a href="/user/288280">陈苦瓜</a></td>
-    <td width="15%" align="right"><small class="grey">3 replies</small></td>
-    <td width="15%" align="right"><small class="grey">2018-6-23</small></td>
-    </tr>    <tr class="odd">
-    <td class="subject"><a href="/subject/topic/12461" title="关于 “幻之章节” :Cowboy Bebop - Session XX よせあつめブルース 和 Ru~ssian~" class="l">关于 “幻之章节” :Cowboy Bebop - Session XX よせあつめブルース 和 Ru~ssian~</a></td>
-    <td width="15%"><a href="/user/syz4521233">syz</a></td>
-    <td width="15%" align="right"><small class="grey">9 replies</small></td>
-    <td width="15%" align="right"><small class="grey">2018-3-10</small></td>
-    </tr><tr><td>&nbsp</td><td width="15%"></td><td width="15%"></td><td width="15%" align="right"><a href="/subject/253/board" class="more">更多讨论 »</a></td></tr>
+<table class="topic_list" border="0" cellpadding="0" cellspacing="0" style="margin-bottom:0px;"><tbody>    
+    <c:choose>
+			<c:when test="${rows2!=null }">
+			<c:forEach items="${rows2 }" var="topics" varStatus="vs">
+			<c:choose>
+			<c:when test="${(vs.count)%2 ==1 }">
+	<tr class="odd">
+    <td class="subject"><a href="" title="${topics.kka102 }" class="l">${topics.kka102 }</a></td>
+    <td width="15%"><a href="">${topics.kkd105 }</a></td>
+    <td width="15%" align="right"><small class="grey"></small></td>
+    <td width="15%" align="right"><small class="grey">${topics.kka105 }</small></td>
+    </tr>    
+    </c:when>
+    <c:otherwise>
+    <tr class="even">
+    <td class="subject"><a href="" title="${topics.kka102 }" class="l">${topics.kka102 }</a></td>
+    <td width="15%"><a href="">{topics.kkd105 }</a></td>
+    <td width="15%" align="right"><small class="grey"></small></td>
+    <td width="15%" align="right"><small class="grey">${topics.kka105 }</small></td>
+    </tr>
+    </c:otherwise>
+        </c:choose></c:forEach>
+        </c:when>
+        </c:choose>
+    <tr><td>&nbsp</td><td width="15%"></td><td width="15%"></td><td width="15%" align="right"><a href="" class="more">更多讨论 »</a></td></tr>
 </tbody></table>
 <a name="new"></a>
 <div id="new_topic" style="display:none;">
 <h2 class="subtitle">添加新讨论</h2>
 <span class="tip">
-<form id="newTopicForm" name="new_comment" method="post" action="/subject/253/topic/new">
+<form id="newTopicForm" name="new_comment" method="post" action="ka01Posting.kahtml">
 <input type="hidden" name="formhash" value="2dae75e4">
+<input type="hidden" name="kkd101" value="${sessionScope.user.kkd101 }">
+<input type="hidden" name="kkc101" value="${param.kkc101 }">
+<input type="hidden" name="kka103" value="3">
+<input type="hidden" name="id" value="0">
 <table align="center" width="99%" class="settings">
-<tr><td valign="top" width="10%">标题</td><td valign="top"><input id="title" name="title" class="inputtext" type="text"></td></tr>
-<tr><td valign="top" width="10%">正文</td><td valign="top"><textarea name="content" id="content" cols="45" rows="7" class="reply" onKeyDown="seditor_ctlent(event,'newTopicForm');"></textarea></td></tr>
+<tr><td valign="top" width="10%">标题</td><td valign="top"><input id="title" name="kka102" class="inputtext" type="text"></td></tr>
+<tr><td valign="top" width="10%">正文</td><td valign="top"><textarea name="kka104" id="content" cols="45" rows="7" class="reply" onKeyDown="seditor_ctlent(event,'newTopicForm');"></textarea></td></tr>
 <tr>
 <td valign="top" width="10%"></td>
 <td valign="top"><div id="submitBtnO"><input class="inputBtn" value="加上去" name="submit" type="submit"> or <a href="#;" onclick="switchDisplay('new_topic');" class="l">取消</a></div></td>

@@ -221,12 +221,14 @@ public abstract class KcAbstractController implements ControllerInterface
 		Map<String,String> ins = this.services.findById();
 		List<Map<String, String>> rows=this.services.queryAnimeComment();
 		Boolean b = this.services.collectionExsits();
+		List<Map<String, String>> rows2 = this.services.queryAnimeTopic();
 
 		if(ins!=null)
 		{
 			this.saveAttribute("ins", ins);
 			this.saveAttribute("rows",rows) ;
 			this.saveAttribute("b", b);
+			this.saveAttribute("rows2", rows2);
 		}
 		else
 		{
@@ -248,11 +250,13 @@ public abstract class KcAbstractController implements ControllerInterface
 		Map<String,String> ins = this.services.findById();
 		List<Map<String, String>> rows=this.services.queryAnimeComment();
 		Boolean b = this.services.collectionExsits();
+		List<Map<String, String>> rows2 = this.services.queryAnimeTopic();
 		if(ins!=null)
 		{
 			this.saveAttribute("ins", ins);
 			this.saveAttribute("rows",rows) ;
 			this.saveAttribute("b", b);
+			this.saveAttribute("rows2", rows2);
 		}
 		else
 		{
@@ -273,11 +277,13 @@ public abstract class KcAbstractController implements ControllerInterface
 		Map<String,String> ins = this.services.findById();
 		List<Map<String, String>> rows=this.services.queryAnimeComment();
 		Boolean b = this.services.collectionExsits();
+		List<Map<String, String>> rows2 = this.services.queryAnimeTopic();
 		if(ins!=null)
 		{
 			this.saveAttribute("ins", ins);
 			this.saveAttribute("rows",rows) ;
 			this.saveAttribute("b", b);	
+			this.saveAttribute("rows2", rows2);
 		}
 		else
 		{

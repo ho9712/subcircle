@@ -44,4 +44,8 @@ public interface ServicesInterface
 	{
 		return false;
 	}
+	default List<Map<String, String>> queryAnimeTopic() throws Exception
+	{
+		return null;
+	}
 }

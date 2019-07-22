@@ -214,6 +214,26 @@ public class Kc02Services extends JdbcServicesSupport {
     }
 	
     
+    public List<Map<String, String>> queryAnimeTopic () throws Exception
+    
+    {
+    	String kkc101 = this.get("kkc101").toString();
+    	StringBuilder sql =new StringBuilder()
+    			.append("select a.kka101,a.kkd101,a.kka102,a.kka104,a.kka105,b.kkd105 ")
+    			.append("from ka01 a,kd01 b ")
+    			.append("where a.kkc101=")
+    			.append(kkc101)
+    			.append(" and a.kkd101 = b.kkd101 ")
+    			.append("and a.kka106 = 1 ")
+    			.append("order by a.kka105 DESC ")
+    			.append("limit 5 ")
+    			;
+    	
+    	Object args[] = {};
+    	
+    	return this.queryForList(sql.toString(), args);
+    }
+    
     public List<Map<String,String>> queryAnimeCommentAll () throws Exception
     
     

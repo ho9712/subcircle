@@ -133,8 +133,8 @@
 <div id="headerSearch">
         <form action="kc02Search.kchtml" method="post">
     <div class="inner">
+    
     <select name="kkcs" id="siteSearchSelect">
-<option value="all">全部</option>
 <option value="2">动画</option>
 <option value="1">书籍</option>
 <option value="4">游戏</option> 
@@ -143,7 +143,7 @@
         <input type="submit" name="submit" value="搜索" class="search" />
     </div>
 </form>
-    </div>   
+    </div>    
 </div>   
     </div>
 </div>
@@ -155,17 +155,9 @@
 	
 	
 	<div id="columnSearch">
-    <div class="searchBox clearit">
-        <h1>条目搜索</h1>
-                <form action="kc02Search.kchtml" method="post">
-            <input name="kkcs" value="all" type="hidden" />
-            <input value="" name="kksk" class="searchInputL" type="text" />
-            <input class="searchBtnL" title="Search" value="搜索" type="submit" />
-        </form>
-        
-            </div>    
+    
 </div>
-	
+		
 	<div class="row-fluid">
 		<div class="span12">
 			<ul id="browserItemList" class="browserFull">
