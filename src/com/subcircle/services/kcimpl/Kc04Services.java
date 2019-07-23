@@ -6,6 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.subcircle.services.support.JdbcServicesSupport;
+import com.subcircle.system.tools.Tools;
 
 public  class Kc04Services extends JdbcServicesSupport {
 
@@ -301,6 +302,47 @@ public boolean collectionExsits()throws Exception
 	}
 	
 	
+}
+
+
+
+public boolean addGame() throws Exception
+
+{
+	StringBuilder sql1 = new StringBuilder()
+			.append("insert into kc01 ")
+			.append("(kkc101,kkc102) ")
+			.append("values (?,?)")
+			;
+	int temp = Tools.getPk("kkc101");
+	String kkc101 = String.valueOf(temp);
+	String kkc102 ="3";
+	StringBuilder sql2 = new StringBuilder()
+			.append("insert into kc04 ")
+			.append("(kkc101,kkc402,kkc404,kkc405,kkc409,kkc410,kkc411 )")
+			.append("values (?,?,?,?,?,?,?)")
+			;
+	
+	Object args1 []=
+		{
+				kkc101,
+				kkc102
+		};
+	Object args2 []=
+		{
+				kkc101,
+				this.get("kkc402"),
+				this.get("kkc404"),
+				this.get("kkc405"),
+				this.get("kkc409"),
+				this.get("kkc410"),
+				this.get("kkc411")
+				
+		};
+	
+	this.appendSql(sql1.toString(), args1);
+	this.appendSql(sql2.toString(), args2);
+	return this.executeTransaction();
 }
 	
 }

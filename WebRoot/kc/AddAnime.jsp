@@ -150,7 +150,7 @@
 <div id="headerSubject" class="clearit" xmlns:v="http://rdf.data-vocabulary.org/#" typeof="v:Movie">
 <h1 class="nameSingle">
    <a href="" title="" property="v:itemreviewed"></a>
-   标题
+   添加条目
                     </h1>
 
    
@@ -158,8 +158,8 @@
     <div class="subjectNav">
 <ul class="navTabs clearit">
         <li><a href="" class="focus">番剧</a></li>       
-        <li><a href="">书籍</a></li>
-        <li><a href="" >游戏</a></li>
+        <li><a href="<%= path %>/kc/AddBook.jsp">书籍</a></li>
+        <li><a href="<%= path %>/kc/AddGame.jsp" >游戏</a></li>
         </ul>
 	
 </div>
@@ -170,16 +170,18 @@
 
 <h2 class="subtitle">添加番剧条目</h2>
 <form id="photoForm" method="post" enctype="multipart/form-data">
-					<img id = "showPhoto" src="${ins.kkb105 }" style="width: 100px;height:100px">
+					<img id = "showPhoto" src="<%=path%>/img/avatar/def_avatar.png" style="width: 100px;height:100px">
 					<input type="file" name="logos" size="25" onchange="uploadPhoto()"/><br>
 					<small class="grey">仅支持上传.jpg或.png格式文件</small>
 				</form>
-<form action="" method="post">
+<form action="kc02AddAnime.kchtml" method="post">
 <table class="olt"><tr><td></td><td></td></tr>
 <tr><td nowrap="nowrap" width="15%"><p class="tip">条目名</p></td><td>
 <input type = "text" name="" class="inputtext" value="" /></td></tr>
 <tr><td nowrap="nowrap" width="15%"><p class="tip">中文名</p></td><td>
 <input type = "text" name="kkc202" class="inputtext" value="" /></td></tr>
+<tr><td nowrap="nowrap" width="15%"><p class="tip">缩略信息</p></td><td>
+<input type = "text" name="kkc205" class="inputtext" value="" /></td></tr>
 <tr><td nowrap="nowrap" width="15%"><p class="tip">话数</p></td><td>
 <input type = "text" name="kkc209" class="inputtext" value="" /></td></tr>
 <tr><td nowrap="nowrap" width="15%"><p class="tip">原作</p></td><td>
@@ -200,7 +202,8 @@
 <tr><td nowrap="nowrap" width="15%"><p class="tip">简介</p></td><td>
 <textarea name="kkc217" id="content" class="reply" cols="45" rows="7"  ></textarea>
 
-<input type="hidden" name="kkc101" value = ""  />
+<input type="hidden" name="kkc101" value = "">
+<input type="hidden" id="kkc204" name="kkc204" value = "">
 
 </td></tr>
 </table>
@@ -236,18 +239,18 @@
     
 	function uploadPhoto()
 	{
-		alert("!")
+		
 		$("#photoForm").attr("action","<%=request.getContextPath()%>/uploadlogosServlet")
 		$("#photoForm").ajaxSubmit({
 	            type: "POST",
 	            dataType: "text",
 	            success: function (data)
 	            {
-	            	alert(data)
+	            	
 	            	if(data)
 	            	{
 	            		$("#showPhoto").attr("src",data);
-	            		$("#kkb105").attr("value",data);
+	            		$("#kkc204").attr("value",data);
 	            	}
 	            }//endsuccess
 	       });//endajax		

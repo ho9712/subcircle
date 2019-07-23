@@ -6,6 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.subcircle.services.support.JdbcServicesSupport;
+import com.subcircle.system.tools.Tools;
 
 public class Kc02Services extends JdbcServicesSupport {
 	
@@ -406,6 +407,54 @@ public class Kc02Services extends JdbcServicesSupport {
     		return false;
     	}
     	
+    }
+    
+    
+    
+    
+    public boolean addAnime() throws Exception
+    
+    {
+    	StringBuilder sql1 = new StringBuilder()
+    			.append("insert into kc01 ")
+    			.append("(kkc101,kkc102) ")
+    			.append("values (?,?)")
+    			;
+    	int temp = Tools.getPk("kkc101");
+    	String kkc101 = String.valueOf(temp);
+    	String kkc102 ="1";
+    	StringBuilder sql2 = new StringBuilder()
+    			.append("insert into kc02 ")
+    			.append("(kkc101,kkc202,kkc204,kkc205,kkc209,kkc210,kkc211,kkc212,kkc213,kkc214,kkc215,kkc216,kkc217 )")
+    			.append("values (?,?,?,?,?,?,?,?,?,?,?,?,?)")
+    			;
+    	
+    	Object args1 []=
+    		{
+    				kkc101,
+    				kkc102
+    		};
+    	Object args2 []=
+    		{
+    				kkc101,
+    				this.get("kkc202"),
+    				this.get("kkc204"),
+    				this.get("kkc205"),
+    				this.get("kkc209"),
+    				this.get("kkc210"),
+    				this.get("kkc211"),
+    				this.get("kkc212"),
+    				this.get("kkc213"),
+    				this.get("kkc214"),
+    				this.get("kkc215"),
+    				this.get("kkc216"),
+    				this.get("kkc217")
+    				
+    		};
+    	
+    	this.appendSql(sql1.toString(), args1);
+    	this.appendSql(sql2.toString(), args2);
+    	return this.executeTransaction();
     }
     
 }

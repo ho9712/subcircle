@@ -176,8 +176,9 @@
 <input type = "text" name="kkc409" class="inputtext" value="${ins.kkc409 }" /></td></tr>
 <tr><td nowrap="nowrap" width="15%"><p class="tip">中文名</p></td><td>
 <input type = "text" name="kkc402" class="inputtext" value="${ins.kkc402 }" /></td></tr>
-<tr><td nowrap="nowrap" width="15%"><p class="tip">简介</p></td><td>
+<tr><td nowrap="nowrap" width="15%"><p class="tip">信息</p></td><td>
 <textarea name="kkc410" id="content" class="reply" cols="45" rows="7"  >${ins.kkc410 }</textarea>
+<tr><td nowrap="nowrap" width="15%"><p class="tip">简介</p></td><td>
 <textarea name="kkc411" id="content" class="reply" cols="45" rows="7"  >${ins.kkc411 }</textarea>
 
 <input type="hidden" name="kkc101" value = "${param.kkc101}"  />

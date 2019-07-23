@@ -6,6 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.subcircle.services.support.JdbcServicesSupport;
+import com.subcircle.system.tools.Tools;
 
 public class Kc03Services extends JdbcServicesSupport {
 
@@ -319,7 +320,47 @@ public boolean collectionExsits()throws Exception
 	
 }
 
+public boolean addBook() throws Exception
 
+{
+	StringBuilder sql1 = new StringBuilder()
+			.append("insert into kc01 ")
+			.append("(kkc101,kkc102) ")
+			.append("values (?,?)")
+			;
+	int temp = Tools.getPk("kkc101");
+	String kkc101 = String.valueOf(temp);
+	String kkc102 ="2";
+	StringBuilder sql2 = new StringBuilder()
+			.append("insert into kc03 ")
+			.append("(kkc101,kkc302,kkc304,kkc305,kkc309,kkc310,kkc311,kkc312,kkc313,kkc314 )")
+			.append("values (?,?,?,?,?,?,?,?,?,?)")
+			;
+	
+	Object args1 []=
+		{
+				kkc101,
+				kkc102
+		};
+	Object args2 []=
+		{
+				kkc101,
+				this.get("kkc302"),
+				this.get("kkc304"),
+				this.get("kkc305"),
+				this.get("kkc309"),
+				this.get("kkc310"),
+				this.get("kkc311"),
+				this.get("kkc312"),
+				this.get("kkc313"),
+				this.get("kkc314")
+				
+		};
+	
+	this.appendSql(sql1.toString(), args1);
+	this.appendSql(sql2.toString(), args2);
+	return this.executeTransaction();
+}
 
 
 }

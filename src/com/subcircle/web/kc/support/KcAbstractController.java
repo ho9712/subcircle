@@ -331,6 +331,20 @@ public abstract class KcAbstractController implements ControllerInterface
 	
 	
 	
+	protected final void AddAnime() throws Exception
+	{
+		this.update("addAnime", "");
+	}
+	
+	protected final void AddBook() throws Exception
+	{
+		this.update("addBook", "");
+	}
+	
+	protected final void AddGame() throws Exception
+	{
+		this.update("addGame", "");
+	}
 	protected final void UpdateInfo() throws Exception
 	
 	{
