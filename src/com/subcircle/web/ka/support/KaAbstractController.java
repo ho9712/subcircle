@@ -137,6 +137,14 @@ public abstract class KaAbstractController implements ControllerInterface
 		return (List<Map<String,Object>>)method.invoke(this.services);
 	}
 	
+	private Map<String, String> executeQueryForMap(String methodName)throws Exception
+	{
+		Method method=this.services.getClass().getDeclaredMethod(methodName);
+		//设置访问权限，使能够访问private方法
+		method.setAccessible(true);
+		return (Map<String, String>)method.invoke(this.services);
+	}
+	
 
 	
 	/*********************************************************************
@@ -158,6 +166,9 @@ public abstract class KaAbstractController implements ControllerInterface
 		{
 			this.saveAttribute("msg", "没有符合条件的数据!");
 		}
+		Map<String,String> totalCount=this.executeQueryForMap("postCount");
+		this.saveAttribute("totalCount", totalCount);	
+		this.hotPost();
 		
 		if(this.dto.get("id").toString().equals("0"))
 		{

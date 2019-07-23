@@ -18,7 +18,7 @@ public class Ka01Services extends JdbcServicesSupport
 	public Map<String,String> findById()throws Exception
     {
     	StringBuilder sql=new StringBuilder()
-    			.append("select  x.kka101, x.kka102, b.fvalue cnkka103, a.kkd105,a.kkd102,x.kka104,date_format(x.kka105,'%Y-%m-%d %H:%i') kka105")
+    			.append("select  x.kka101, x.kka102, b.fvalue cnkka103, a.kkd101,a.kkd105,a.kkd108,a.kkd102,x.kka104,date_format(x.kka105,'%Y-%m-%d %H:%i') kka105")
     			.append("  from ka01 x,kd01 a, syscode b")
     			.append("  where x.kkd101 = a.kkd101 and b.fname = 'kka103' and b.fcode = x.kka103 ")
     		    .append("  and  x.kka106=1 and x.kka101=? ")
@@ -38,6 +38,8 @@ public class Ka01Services extends JdbcServicesSupport
 	{
 		Object id=this.get("id");
 		Object search=this.get("search_text");
+		Object page=this.get("page");
+		
 		//定义SQL主体
   		StringBuilder sql=new StringBuilder()
   				.append("select x.kka101,x.kka102,b.fvalue cnkka103,x.kka104,a.kkd105,date_format(x.kka105,'%Y-%m-%d %H:%i') kka105")
@@ -68,9 +70,57 @@ public class Ka01Services extends JdbcServicesSupport
   			paras.add("%"+search+"%");
   			paras.add("%"+search+"%");
   		}
-  		 sql.append(" order by x.kka105 desc");
+		sql.append(" order by x.kka105 desc");
+		if(isNotNull(page))
+		{
+			sql.append(" limit ?,12");
+			paras.add((Integer.parseInt(page.toString())-1)*12);
+		}
+		else
+		{
+			sql.append(" limit 0,12");
+		}
   		return this.queryForList(sql.toString(),paras.toArray());
 		
+	}
+	
+	//查询贴子总数
+	public Map<String, String> postCount()throws Exception
+	{
+		Object id=this.get("id");
+		Object search=this.get("search_text");
+		
+		//定义SQL主体
+  		StringBuilder sql=new StringBuilder()
+  				.append("select count(*) count")
+  				.append(" from ka01 x,kd01 a,syscode b ")
+  				.append(" where x.kka103=b.fcode and b.fname='kka103' and x.kkd101 = a.kkd101")
+  				.append(" and x.kka106 = 1")
+  				; 
+  				
+  		List<Object> paras=new ArrayList<>();
+  		if(id!=null && id.toString().equals("0"))
+  		{
+  		}
+  		else if(id!=null && id.toString().equals("1"))
+  		{
+  			sql.append(" and x.kka103=1");
+  		}
+  		else if(id!=null && id.toString().equals("2"))
+  		{
+  			sql.append(" and x.kka103=2");
+  		}
+  		else if(id!=null && id.toString().equals("3"))
+  		{
+  			sql.append(" and x.kka103=3");
+  		}
+  		if(search!=null && !search.toString().equals(""))
+  		{
+  			sql.append(" and (x.kka102 like ? or x.kka104 like ?)");
+  			paras.add("%"+search+"%");
+  			paras.add("%"+search+"%");
+  		}
+  		return this.queryForMap(sql.toString(), paras.toArray());
 	}
 	
 	/**
@@ -103,7 +153,7 @@ public class Ka01Services extends JdbcServicesSupport
      */
 	private boolean posting() throws Exception
     {
-	 int kka101=Tools.getPk("kka101");
+		int kka101=Tools.getPk("kka101");
     	//1.编写SQL语句
     	StringBuilder sql1=new StringBuilder()
     			.append("insert into ka01(kka101,kkd101,kka102,kka103,kka104,kka105,kka106,kkc101)")
@@ -187,6 +237,7 @@ public class Ka01Services extends JdbcServicesSupport
 	  	//定义SQL主体
 	  		StringBuilder sql=new StringBuilder()
 	  				.append("select x.kka201,x.kka202,date_format(x.kka203,'%Y-%m-%d %H:%i') kka203,x.kka204,x.ka02_kka201,a.kkd102,date_format(b.kka105,'%Y-%m-%d %H:%i') kka105,b.kka101,c.kka202 rootAnswer,c.kka204 delSign")
+	  				.append("       ,a.kkd101,a.kkd105,a.kkd108")
 	  				.append(" from ka02 x,kd01 a,ka01 b,ka02 c ")
 	  				.append(" where x.kka201!=0 and x.kkd101 = a.kkd101 and b.kka101 = x.kka101 and b.kka101 =? and x.ka02_kka201=c.kka201 and x.kka101 = c.kka101")
 	  				.append(" order by x.kka203")

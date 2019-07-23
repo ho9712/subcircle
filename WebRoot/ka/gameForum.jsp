@@ -25,7 +25,7 @@
 <div id="headerNeue2">
     <div class="headerNeueInner clearit">
          <div class="bg musume_4"></div>
-   		 <a href="/" class="logo">Bangumi 番组计划</a>
+   		 <a href="<%=path%>/home" class="logo"></a>
         
 		<input type="checkbox" id="navMenuNeueToggle" />        
 		<label for="navMenuNeueToggle" class="menuCompact"></label>
@@ -78,20 +78,42 @@
 		    	</div>
     		</c:when>
     		<c:otherwise>
-    			<c:choose>
-            		<c:when test="${fn:contains('45',sessionScope.user.kkd104) }">
-            			<a class="avatar" href="<%=path%>/kd01UserMain.kdhtml">
-						<span class="avatarNeue avatarSize32 ll" 
-							style="background-image:url('<%=path%>/img/avatar/def_avatar.png');background-size: 100% auto;"></span>
-						</a>
-            		</c:when>
-            		<c:otherwise>
-            			<a class="avatar" href="<%=path%>/kd01AdminMain.kdhtml">
-						<span class="avatarNeue avatarSize32 ll" 
-							style="background-image:url('<%=path%>/img/avatar/def_avatar.png');background-size: 100% auto;"></span>
-						</a>
-            		</c:otherwise>
-            	</c:choose>
+    			<!-- 头像或默认头像，以及头像返回页面 -->
+				<c:choose>
+	            	<c:when test="${!empty sessionScope.user.kkd108}">
+	            	<c:choose>
+	            		<c:when test="${fn:contains('45',sessionScope.user.kkd104) }">
+	            			<a class="avatar" href="<%=path%>/kd01UserMain.kdhtml">
+							<span class="avatarNeue avatarSize32 ll" 
+								style="background-image:url('${sessionScope.user.kkd108}');background-size: 100% auto;"></span>
+							</a>
+	            		</c:when>
+	            		<c:otherwise>
+	            			<a class="avatar" href="<%=path%>/kd01AdminMain.kdhtml">
+							<span class="avatarNeue avatarSize32 ll" 
+								style="background-image:url('${sessionScope.user.kkd108}');background-size: 100% auto;"></span>
+							</a>
+	            		</c:otherwise>
+	            	</c:choose>
+	            	</c:when>
+	            	<c:otherwise>
+	            	<c:choose>
+	            		<c:when test="${fn:contains('45',sessionScope.user.kkd104) }">
+	            			<a class="avatar" href="<%=path%>/kd01UserMain.kdhtml">
+							<span class="avatarNeue avatarSize32 ll" 
+								style="background-image:url('<%=path%>/img/avatar/def_avatar.png');background-size: 100% auto;"></span>
+							</a>
+	            		</c:when>
+	            		<c:otherwise>
+	            			<a class="avatar" href="<%=path%>/kd01AdminMain.kdhtml">
+							<span class="avatarNeue avatarSize32 ll" 
+								style="background-image:url('<%=path%>/img/avatar/def_avatar.png');background-size: 100% auto;"></span>
+							</a>
+	            		</c:otherwise>
+	            	</c:choose>
+	            	</c:otherwise>
+	            </c:choose>
+	            <!-- 头像或默认头像，以及头像返回页面 -->
             	<!-- 用户或管理员入口 -->
 				<ul id="badgeUserPanel">
 				<c:choose>
@@ -210,7 +232,7 @@
       <c:forEach items="${rows }" var="ins">
        <div class="SidePanel png_bg" style="width:85%;margin-left: 5px">
         
-        <div id="columnA">
+        <div id="columnA" style="width:100%;">
           <font size="3" style="width:80%;height:15px;margin-left: 10px">
             <c:if test="${sessionScope.user.kkd104 ne 3 }">
             <a href="#" onclick="itemInfo(${ins.kka101 })">
@@ -227,24 +249,20 @@
             </a>
             </c:if>
           </font>
+          <div class="rr">
+              <span style="color:#ff8f8f;">${ins.cnkka103 }</span>
+          </div>
         </div>
         <br>
         <div  class="line_limit" style="margin-left: 15px">
           ${ins.kka104 }
         </div>
         <br>
-        <div style="float:left;">
-          <font size="2" style="width:10%;height:15px;margin-left: 15px">
-              ${ins.cnkka103 }
-          </font>
-        </div>
-        <br>
         <div style="margin-left: 20px" align="right">
           ${ins.kkd105 }
         </div>
-        <br/>
         <div style="margin-left: 20px" align="right">
-          ${ins.kka105 }
+          <small class="grey">${ins.kka105 }</small>
         </div>
        </div>
       </c:forEach>
@@ -277,7 +295,7 @@
   <!-- 显示热点贴子 -->
    <div class="SidePanel png_bg">
 	<h2>
-		看看有哪些热门贴子吧~ <small><a href="#">...more</a></small>
+		看看有哪些热门贴子吧~ 
 	</h2>
 	
 	<table class="timeline">

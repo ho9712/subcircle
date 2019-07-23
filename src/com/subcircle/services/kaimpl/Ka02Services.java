@@ -22,7 +22,7 @@ public class Ka02Services extends JdbcServicesSupport
 	public Map<String,String> findById()throws Exception
     {
 		StringBuilder sql=new StringBuilder()
-    			.append("select  x.kka101, x.kka102, b.fvalue cnkka103, a.kkd105,a.kkd102,x.kka104,x.kka105")
+    			.append("select  x.kka101, x.kka102, b.fvalue cnkka103, a.kkd101,a.kkd105,a.kkd102,x.kka104,x.kka105")
     			.append("  from ka01 x,kd01 a, syscode b")
     			.append("  where x.kkd101 = a.kkd101 and b.fname = 'kka103' and b.fcode = x.kka103 ")
     		    .append("  and  x.kka106=1 and x.kka101=? ")
@@ -179,6 +179,7 @@ public class Ka02Services extends JdbcServicesSupport
 		  //定义SQL主体
 		  		StringBuilder sql=new StringBuilder()
 		  				.append("select x.kka201,x.kka202,x.kka203,x.kka204,x.ka02_kka201,a.kkd102,a.kkd105,b.kka101,c.kka202 rootAnswer,c.kka204 delSign")
+		  				.append("       ,a.kkd101,a.kkd105,a.kkd108")
 		  				.append(" from ka02 x,kd01 a,ka01 b,ka02 c ")
 		  				.append(" where x.kka201!=0 and x.kkd101 = a.kkd101 and b.kka101 = x.kka101 and b.kka101 =? and x.ka02_kka201=c.kka201 and x.kka101 = c.kka101")
 		  				.append(" order by x.kka203")

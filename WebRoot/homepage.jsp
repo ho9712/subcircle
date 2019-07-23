@@ -193,7 +193,7 @@
                         <p>15353 部动画、167179 本书籍、29994 部游戏</p>
                         <p>55256 张音乐、104034 位人物</p>
                         <p>章节、角色、声优、Staff、系列资讯尽在掌握</p>
-                        <div class="signUp"><a href="/signup" class="btnBlue">立即注册</a></div>
+                        <div class="signUp"><a href="<%=path %>/kd/signup.jsp" class="btnBlue">立即注册</a></div>
                         </div>   
                     </li>
                 </ul>
