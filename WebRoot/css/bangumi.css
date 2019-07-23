@@ -980,7 +980,7 @@ div.musume{background:url("http://bangumi.tv/img/bg/bg_intro_musume.png") no-rep
 div.slider{position:relative}#columnIntroA
 #sliderNav{position:absolute;z-index:2;left:430px;top:20px;width:245px}#columnIntroA #sliderNav li
 span{float:left;cursor:pointer;color:#999;text-shadow:0px -1px 1px #FFF;font-size:21px;padding:5px;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px}#columnIntroA #sliderNav li span.active, #columnIntroA #sliderNav li span:hover{color:#FFF;text-shadow:none;background:#F09199;-webkit-transition:background linear 0.2s;-moz-transition:background linear 0.2s;transition:background linear 0.2s}#sliderSequence{position:relative;z-index:1;width:690px;height:195px;overflow:hidden;-webkit-backface-visibility:hidden;-moz-backface-visibility:hidden;-ms-backface-visibility:hidden;-o-backface-visibility:hidden;backface-visibility:hidden}#sliderSequence li>*{position:absolute}/*/*/#sliderSequence
-p.thumb{display:block;width:270px;height:115px;background:url('https://pic.yupoo.com/fotomag/Cpg0r61d/Mlutw.jpg') no-repeat;-webkit-box-shadow: -2px 0px 5px rgba(0,0,0,0.2);-moz-box-shadow:-2px 0px 5px rgba(0,0,0,0.2);box-shadow:-2px 2px 10px rgba(0,0,0,0.2);-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px}#sliderSequence li
+p.thumb{display:block;width:270px;height:115px;background:url('/img/piece.png') no-repeat;-webkit-box-shadow: -2px 0px 5px rgba(0,0,0,0.2);-moz-box-shadow:-2px 0px 5px rgba(0,0,0,0.2);box-shadow:-2px 2px 10px rgba(0,0,0,0.2);-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px}#sliderSequence li
 div.desc{position:absolute;width:260px;height:195px;top:60px;margin:0
 0 0 0;padding:0
 0 0 0;line-height:180%}#sliderSequence li div.desc

@@ -38,6 +38,7 @@ public class Ka01Services extends JdbcServicesSupport
 	{
 		Object id=this.get("id");
 		Object search=this.get("search_text");
+		Object kkc101=this.get("kkc101");
 		Object page=this.get("page");
 		
 		//定义SQL主体
@@ -49,6 +50,11 @@ public class Ka01Services extends JdbcServicesSupport
   				; 
   				
   		List<Object> paras=new ArrayList<>();
+  		if(isNotNull(kkc101))
+  		{
+  			sql.append(" and x.kkc101=?");
+  			paras.add(kkc101);
+  		}
   		if(id!=null && id.toString().equals("0"))
   		{
   		}
@@ -89,6 +95,7 @@ public class Ka01Services extends JdbcServicesSupport
 	{
 		Object id=this.get("id");
 		Object search=this.get("search_text");
+		Object kkc101=this.get("kkc101");
 		
 		//定义SQL主体
   		StringBuilder sql=new StringBuilder()
@@ -99,6 +106,11 @@ public class Ka01Services extends JdbcServicesSupport
   				; 
   				
   		List<Object> paras=new ArrayList<>();
+  		if(isNotNull(kkc101))
+  		{
+  			sql.append(" and x.kkc101=?");
+  			paras.add(kkc101);
+  		}
   		if(id!=null && id.toString().equals("0"))
   		{
   		}

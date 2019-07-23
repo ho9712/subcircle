@@ -13,7 +13,7 @@
 <div id="headerNeue2">
     <div class="headerNeueInner clearit">
          <div class="bg musume_4"></div>
-    <a href="/" class="logo">Bangumi 番组计划</a>
+    <a href="<%=path%>/home" class="logo"></a>
         
     
 <input type="checkbox" id="navMenuNeueToggle" />        
@@ -68,16 +68,36 @@
 	    		<c:otherwise>
 	    			<c:choose>
 	            		<c:when test="${fn:contains('45',sessionScope.user.kkd104) }">
-	            			<a class="avatar" href="<%=path%>/kd01UserMain.kdhtml">
-							<span class="avatarNeue avatarSize32 ll" 
-								style="background-image:url('<%=path%>/img/avatar/def_avatar.png');background-size: 100% auto;"></span>
-							</a>
+	            			<c:choose>
+				            	<c:when test="${!empty sessionScope.user.kkd108}">
+				                <a class="avatar" href="<%=path%>/kd01UserMain.kdhtml">
+								<span class="avatarNeue avatarSize32 ll" 
+									style="background-image:url('${sessionScope.user.kkd108}');background-size: 100% auto;"></span>
+								</a>
+				            	</c:when>
+				            	<c:otherwise>
+				                <a class="avatar" href="<%=path%>/kd01UserMain.kdhtml">
+								<span class="avatarNeue avatarSize32 ll" 
+									style="background-image:url('<%=path%>/img/avatar/def_avatar.png');background-size: 100% auto;"></span>
+								</a>
+				            	</c:otherwise>
+				            </c:choose>
 	            		</c:when>
 	            		<c:otherwise>
-	            			<a class="avatar" href="<%=path%>/kd01AdminMain.kdhtml">
-							<span class="avatarNeue avatarSize32 ll" 
-								style="background-image:url('<%=path%>/img/avatar/def_avatar.png');background-size: 100% auto;"></span>
-							</a>
+							<c:choose>
+				            	<c:when test="${!empty sessionScope.user.kkd108}">
+				                <a class="avatar" href="<%=path%>/kd01AdminMain.kdhtml">
+								<span class="avatarNeue avatarSize32 ll" 
+									style="background-image:url('${sessionScope.user.kkd108}');background-size: 100% auto;"></span>
+								</a>
+				            	</c:when>
+				            	<c:otherwise>
+				                <a class="avatar" href="<%=path%>/kd01AdminMain.kdhtml">
+								<span class="avatarNeue avatarSize32 ll" 
+									style="background-image:url('<%=path%>/img/avatar/def_avatar.png');background-size: 100% auto;"></span>
+								</a>
+				            	</c:otherwise>
+				            </c:choose>
 	            		</c:otherwise>
 	            	</c:choose>
 	            	<!-- 用户或管理员入口 -->

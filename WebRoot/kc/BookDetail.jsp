@@ -5,6 +5,14 @@
 <html>
 <head>
 
+<style> 
+pre {
+font-size:12px;
+white-space: pre-wrap;
+word-wrap: break-word;
+} 
+</style> 
+
 <title>${ins.kkc309}</title>
 <link href="<%=path %>/css/bangumi.css" rel="stylesheet" type="text/css">
 </head>
@@ -13,7 +21,7 @@
 <div id="headerNeue2">
     <div class="headerNeueInner clearit">
          <div class="bg musume_4"></div>
-    <a href="/" class="logo">Bangumi 番组计划</a>
+    <a href="<%=path%>/home" class="logo"></a>
         
     
 <input type="checkbox" id="navMenuNeueToggle" />        
@@ -68,16 +76,36 @@
 	    		<c:otherwise>
 	    			<c:choose>
 	            		<c:when test="${fn:contains('45',sessionScope.user.kkd104) }">
-	            			<a class="avatar" href="<%=path%>/kd01UserMain.kdhtml">
-							<span class="avatarNeue avatarSize32 ll" 
-								style="background-image:url('<%=path%>/img/avatar/def_avatar.png');background-size: 100% auto;"></span>
-							</a>
+	            			<c:choose>
+				            	<c:when test="${!empty sessionScope.user.kkd108}">
+				                <a class="avatar" href="<%=path%>/kd01UserMain.kdhtml">
+								<span class="avatarNeue avatarSize32 ll" 
+									style="background-image:url('${sessionScope.user.kkd108}');background-size: 100% auto;"></span>
+								</a>
+				            	</c:when>
+				            	<c:otherwise>
+				                <a class="avatar" href="<%=path%>/kd01UserMain.kdhtml">
+								<span class="avatarNeue avatarSize32 ll" 
+									style="background-image:url('<%=path%>/img/avatar/def_avatar.png');background-size: 100% auto;"></span>
+								</a>
+				            	</c:otherwise>
+				            </c:choose>
 	            		</c:when>
 	            		<c:otherwise>
-	            			<a class="avatar" href="<%=path%>/kd01AdminMain.kdhtml">
-							<span class="avatarNeue avatarSize32 ll" 
-								style="background-image:url('<%=path%>/img/avatar/def_avatar.png');background-size: 100% auto;"></span>
-							</a>
+							<c:choose>
+				            	<c:when test="${!empty sessionScope.user.kkd108}">
+				                <a class="avatar" href="<%=path%>/kd01AdminMain.kdhtml">
+								<span class="avatarNeue avatarSize32 ll" 
+									style="background-image:url('${sessionScope.user.kkd108}');background-size: 100% auto;"></span>
+								</a>
+				            	</c:when>
+				            	<c:otherwise>
+				                <a class="avatar" href="<%=path%>/kd01AdminMain.kdhtml">
+								<span class="avatarNeue avatarSize32 ll" 
+									style="background-image:url('<%=path%>/img/avatar/def_avatar.png');background-size: 100% auto;"></span>
+								</a>
+				            	</c:otherwise>
+				            </c:choose>
 	            		</c:otherwise>
 	            	</c:choose>
 	            	<!-- 用户或管理员入口 -->
@@ -159,7 +187,7 @@
 <ul class="navTabs clearit">
         <li><a href="${ins.kkc303}" class="focus">概览</a></li>       
         <li><a href="kc03ShowComments.kchtml?kkc101=${param.kkc101 }" >评论</a></li>
-        <li><a href="" >讨论版</a></li>
+        <li><a href="<%=path%>/ka01MainForum.kahtml?id=0&kkc101=${param.kkc101}" >讨论版</a></li>
         </ul>
 	
 </div>
@@ -197,19 +225,7 @@
                 	<a href="#" class="l" onclick="leveltip()">                	
                 	</c:otherwise>                	                	
                 	</c:choose>                                
- 					信息</a> /
- 					<c:choose>
-                	<c:when test="${sessionScope.user.kkd104==1 }">
-                	<a href="" class="l">
-                	</c:when>
-                	<c:when test="${sessionScope.user.kkd104==4 }">
-                	<a href="" class="l">
-                	</c:when>
-                	<c:otherwise>
-                	<a href="#" class="l" onclick="leveltip()">                	
-                	</c:otherwise>                	                	
-                	</c:choose> 
-                	封面</a></p>             
+ 					信息</a></p>             
         </span>
         </div>     
         
@@ -222,7 +238,7 @@
     <div id="columnSubjectHomeB" class="column">
    <div id="columnSubjectInHomeB" class="clearit">
             <div id="subject_detail" class="ll"> 
-    <div id="subject_summary" class="subject_summary" property="v:summary">${ins.kkc314}</div>
+    <div id="subject_summary" class="subject_summary" property="v:summary"><pre>${ins.kkc314}</pre></div>
     			<small class="gery clearit"><a href="#;" id="show_summary"  class="rr l">more...</a></small>
     			</div>
     			         <div id="panelInterestWrapper">
@@ -373,16 +389,16 @@
 			<c:choose>
 			<c:when test="${(vs.count)%2 ==1 }">
 	<tr class="odd">
-    <td class="subject"><a href="" title="${topics.kka102 }" class="l">${topics.kka102 }</a></td>
-    <td width="15%"><a href="">${topics.kkd105 }</a></td>
+    <td class="subject"><a href="<%=path%>/ka01PostContent.kahtml?kka101=${topics.kka101}" title="${topics.kka102 }" class="l">${topics.kka102 }</a></td>
+    <td width="15%"><a href="<%=path%>/kd01FindOther.kdhtml?kkd101=${topics.kkd101 }">${topics.kkd105 }</a></td>
     <td width="15%" align="right"><small class="grey"></small></td>
     <td width="15%" align="right"><small class="grey">${topics.kka105 }</small></td>
     </tr>    
     </c:when>
     <c:otherwise>
     <tr class="even">
-    <td class="subject"><a href="" title="${topics.kka102 }" class="l">${topics.kka102 }</a></td>
-    <td width="15%"><a href="">{topics.kkd105 }</a></td>
+    <td class="subject"><a href="<%=path%>/ka01PostContent.kahtml?kka101=${topics.kka101}" title="${topics.kka102 }" class="l">${topics.kka102 }</a></td>
+    <td width="15%"><a href="<%=path%>/kd01FindOther.kdhtml?kkd101=${topics.kkd101 }">{topics.kkd105 }</a></td>
     <td width="15%" align="right"><small class="grey"></small></td>
     <td width="15%" align="right"><small class="grey">${topics.kka105 }</small></td>
     </tr>
@@ -390,7 +406,7 @@
         </c:choose></c:forEach>
         </c:when>
         </c:choose>
-<tr><td>&nbsp</td><td width="15%"></td><td width="15%"></td><td width="15%" align="right"><a href="" class="more">更多讨论 »</a></td></tr>
+<tr><td>&nbsp</td><td width="15%"></td><td width="15%"></td><td width="15%" align="right"><a href="<%=path%>/ka01MainForum.kahtml?id=0&kkc101=${param.kkc101}" class="more">更多讨论 »</a></td></tr>
 </tbody></table>
 <a name="new"></a>
 <div id="new_topic" style="display:none;">
@@ -433,9 +449,20 @@
 
 
 <div class="item clearit">
-<a href="" class="avatar">
-<span class="avatarNeue avatarSize32 ll" style="background-image:url('${comments.kkd108 }');background-size: 100% auto; "></span>
-</a>
+<!-- 头像 -->
+<c:choose>
+   	<c:when test="${!empty comments.kkd108}">
+  		 <a href="<%=path%>/kd01FindOther.kdhtml?kkd101=${comments.kkd101 }" class="avatar">
+       	<span class="avatarNeue avatarSize32 ll" style="background-image:url('${comments.kkd108 }');background-size:100% auto;"></span>
+       </a>
+   	</c:when>
+   	<c:otherwise>
+  		<a href="<%=path%>/kd01FindOther.kdhtml?kkd101=${comments.kkd101 }" class="avatar">
+       	<span class="avatarNeue avatarSize32 ll" style="background-image:url('<%=path%>/img/avatar/def_avatar.png');background-size:100% auto;"></span>
+       </a>
+   	</c:otherwise>
+</c:choose>
+<!-- 头像 -->
 <div class="text_main_even">
 <div class="text">
 
@@ -447,7 +474,7 @@ sstars1-10即评分 根据数据读取即可
  -->
  
  
-            <a href="" class="l">${comments.kkd105 }</a> <small class="grey">${comments.kkc704 }</small> <span class="sstars${comments.kkc702 } starsinfo"></span>         <p>${comments.kkc703 }</p>
+            <a href="<%=path%>/kd01FindOther.kdhtml?kkd101=${comments.kkd101 }" class="l">${comments.kkd105 }</a> <small class="grey">${comments.kkc704 }</small> <span class="sstars${comments.kkc702 } starsinfo"></span>         <p>${comments.kkc703 }</p>
 </div>
 </div>
 </div>
@@ -456,7 +483,20 @@ sstars1-10即评分 根据数据读取即可
 </c:when>
 <c:otherwise>
 <div class="item clearit">
-<a href="" class="avatar"><span class="avatarNeue avatarSize32 rr" style="background-image:url('${comments.kkd108 }');background-size: 100% auto;"></span></a>
+<!-- 头像 -->
+<c:choose>
+   	<c:when test="${!empty comments.kkd108}">
+  		 <a href="<%=path%>/kd01FindOther.kdhtml?kkd101=${comments.kkd101 }" class="avatar">
+       	<span class="avatarNeue avatarSize32 ll" style="background-image:url('${comments.kkd108 }');background-size:100% auto;"></span>
+       </a>
+   	</c:when>
+   	<c:otherwise>
+  		<a href="<%=path%>/kd01FindOther.kdhtml?kkd101=${comments.kkd101 }" class="avatar">
+       	<span class="avatarNeue avatarSize32 ll" style="background-image:url('<%=path%>/img/avatar/def_avatar.png');background-size:100% auto;"></span>
+       </a>
+   	</c:otherwise>
+</c:choose>
+<!-- 头像 -->
 <div class="text_main_odd">
 <div class="text">
 
@@ -468,7 +508,7 @@ sstars1-10即评分 根据数据读取即可
  -->
  
  
-            <a href="" class="l">${comments.kkd105 }</a> <small class="grey">${comments.kkc704 }</small> <span class="sstars${comments.kkc702 } starsinfo"></span>         <p>${comments.kkc703 }</p>
+            <a href="<%=path%>/kd01FindOther.kdhtml?kkd101=${comments.kkd101 }" class="l">${comments.kkd105 }</a> <small class="grey">${comments.kkc704 }</small> <span class="sstars${comments.kkc702 } starsinfo"></span>         <p>${comments.kkc703 }</p>
 </div>
 </div>
 </div>

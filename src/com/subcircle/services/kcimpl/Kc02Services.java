@@ -200,7 +200,7 @@ public class Kc02Services extends JdbcServicesSupport {
     {
     	String kkc101 = this.get("kkc101").toString();
     	StringBuilder sql = new StringBuilder()
-    			.append("SELECT a.kkd101,a.kkd105,a.kkd108,b.kkc702,b.kkc703,b.kkc704 ")
+    			.append("SELECT a.kkd101,a.kkd105,a.kkd108,b.kkc702,b.kkc703,date_format(b.kkc704,'%Y-%m-%d %H:%i') kkc704 ")
     			.append("FROM kd01 a,kc07 b ")
     			.append("where b.kkc101=")
     			.append(kkc101)
@@ -220,7 +220,7 @@ public class Kc02Services extends JdbcServicesSupport {
     {
     	String kkc101 = this.get("kkc101").toString();
     	StringBuilder sql =new StringBuilder()
-    			.append("select a.kka101,a.kkd101,a.kka102,a.kka104,a.kka105,b.kkd105 ")
+    			.append("select a.kka101,a.kkd101,a.kka102,a.kka104,date_format(a.kka105,'%Y-%m-%d %H:%i') kka105,b.kkd105 ")
     			.append("from ka01 a,kd01 b ")
     			.append("where a.kkc101=")
     			.append(kkc101)
@@ -252,11 +252,11 @@ public class Kc02Services extends JdbcServicesSupport {
     	
     	String kkc101 = this.get("kkc101").toString();
     	StringBuilder sql = new StringBuilder()
-    			.append("SELECT a.kkd101,a.kkd105,a.kkd108,b.kkc702,b.kkc703,b.kkc704 ")
-    			.append("FROM kd01 a,kc07 b ")
+    			.append("SELECT c2.kkc202,a.kkd101,a.kkd105,a.kkd108,b.kkc702,b.kkc703,date_format(b.kkc704,'%Y-%m-%d %H:%i') kkc704 ")
+    			.append("FROM kd01 a,kc07 b,kc02 c2 ")
     			.append("where b.kkc101=")
     			.append(kkc101)
-    			.append(" AND a.kkd101 = b.kkd101 ")
+    			.append(" AND a.kkd101 = b.kkd101 and b.kkc101=c2.kkc101 ")
     			.append("ORDER BY b.kkc704 DESC ")
     			.append("LIMIT ")
 				.append(curPage)

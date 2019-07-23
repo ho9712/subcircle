@@ -152,19 +152,18 @@
 
 <div id="headerSearchWrapper">
 <div id="headerSearch">
-        <form action="kc02Search.kchtml" method="post">
+    <form action="kc02Search.kchtml" method="post">
     <div class="inner">
- <select name="kkcs" id="siteSearchSelect">
-<option value="all">全部</option>
-<option value="2">动画</option>
-<option value="1">书籍</option>
-<option value="4">游戏</option>
-</select>
-<input id="search_text" name="kksk" class="textfield" type="text" />
-        <input type="submit" name="submit" value="搜索" class="search" />
+    <select name="kkcs" id="siteSearchSelect">
+		<option value="2">动画</option>
+		<option value="1">书籍</option>
+		<option value="4">游戏</option> 
+	</select>
+	<input id="search_text" name="kksk" class="textfield" type="text" />
+    <input type="submit" name="submit" value="搜索" class="search" />
     </div>
-</form>
-    </div>   
+	</form>
+</div>   
 </div>   
     </div>
 </div>
@@ -178,9 +177,6 @@
             <div class="slider">
                 <ul id="sliderNav">
                     <li><span class="active">探索</span></li>
-                    <li><span>记录</span></li>
-                    <li><span>分享</span></li>
-                    <li><span>交流</span></li>                                        
                 </ul>
                 <div id="sliderSequence">
                 <ul>
@@ -189,10 +185,10 @@
                         <p class="thumb snap2 animate2 animate-in"></p>
                         <p class="thumb snap3 animate3 animate-in"></p>
                         <div class="desc animate-in">
-                        <h3>不断充实的资料库等你探索</h3>
-                        <p>15353 部动画、167179 本书籍、29994 部游戏</p>
-                        <p>55256 张音乐、104034 位人物</p>
-                        <p>章节、角色、声优、Staff、系列资讯尽在掌握</p>
+                        <h3>全方位作品资讯服务等你探索</h3>
+                        <p>动画、书籍、游戏 综合资讯</p>
+                        <p>迷你论坛实时讨论，分享交流</p>
+                        <p>周边商城丰富作品周边商品等待购买</p>
                         <div class="signUp"><a href="<%=path %>/kd/signup.jsp" class="btnBlue">立即注册</a></div>
                         </div>   
                     </li>
