@@ -93,7 +93,7 @@
 				</div>
 				<div style="padding-top: 50px">
 					<ul class="nav nav-list">
-						<li><a href="#">
+						<li><a href="<%=path%>/home">
 							<span style="font-size:20px;font: bold;">站点首页</span>
 							</a>
 						</li>

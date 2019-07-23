@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.subcircle.services.kbimpl.Kb06Services;
+import com.sun.org.apache.xpath.internal.operations.And;
 
 @WebServlet("/getRateByIdServlet")
 public class GetRateById extends HttpServlet {
@@ -21,11 +22,13 @@ public class GetRateById extends HttpServlet {
 		try 
 		{
 			String score = services.getScoreById(itemId);
-			PrintWriter out = response.getWriter();
-			response.setContentType("text");
-			out.write(score.substring(0, 3)); //保留小数点后一位
-			out.flush();
-			out.close();
+			if(score != null && score != "") {
+				PrintWriter out = response.getWriter();
+				response.setContentType("text");
+				out.write(score.substring(0, 3)); //保留小数点后一位
+				out.flush();
+				out.close();
+			}
 		} 
 		catch (Exception e) 
 		{

@@ -74,7 +74,7 @@ input[type="number"] {
 					 </div>	
 				
 				</div>
-				<input type="hidden" id = "page" name = "page" value="1">
+				<!-- <input type="hidden" id = "page" name = "page" value="1"> -->
 			</form>
 
 				<!-- 轮播图 -->
@@ -460,7 +460,8 @@ input[type="number"] {
 	
 	function querySearchRes(targetPage) 
 	{
-		$("#page").attr("value",targetPage);		//更新page的值
+		/* $("#page").attr("value",targetPage);		//更新page的值 */
+		$("#searchForm").attr("action","<%=path %>/Kb01QueryItems.kbhtml?page="+targetPage)
 		$("#searchForm").submit();
 	}
 	</script>

@@ -231,13 +231,16 @@
 	//商城管理员审核通过用户的求购并发送消息
 	function passInquiry(kkb701,kkd203)
 	{
-		window.location.href = "<%=path%>/kb07UpdateInquiry.kbhtml?"
-				+"kkb701=" + kkb701
-				+"&kkb708=2"
-				+"&kkd202=${user.kkd102}"
-				+"&kkd203=" +kkd203;
+		msg = "您确认通过该求购请求吗"
+		if(confirm(msg) == true)
+		{
+			window.location.href = "<%=path%>/kb07UpdateInquiry.kbhtml?"
+					+"kkb701=" + kkb701
+					+"&kkb708=2"
+					+"&kkd202=${user.kkd102}"
+					+"&kkd203=" +kkd203;
+		}
 	}
-		
 	//商城管理员审核驳回/撤销用户的求购并发送消息
 	//flag==表示驳回,flag == 2表示审核通过后被撤销
 	function rejectInquiry(kkb701,kkd203,flag) 
